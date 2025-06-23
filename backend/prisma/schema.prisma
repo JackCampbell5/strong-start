@@ -16,19 +16,19 @@ model service{
   address               String
   zipcode               Int
   description           String
-  phonenumber           String
+  phone_number          String
   email                 String
   phone                 String
   website               String
   hours                 String
-  logo                  Strings
+  logo                  String
   language              String
   date_needed           String
   services_offered      String[]
   restrictions          String
   next_steps            String
-  organizationID        Int
-  organization          nonprofit
+  nonprofit_ID          Int
+  nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
 
 // The non profit associated with a certain database of services.
@@ -38,17 +38,21 @@ name                    String    @unique
 phone                   String
 email                   String
 logo                    String
-request_list            accessrequest[]
+services                service[]
+employees               nonprofit_employee[]
+refugees                refugee[]
+refugee_logs            refugee_log[]
 }
 
-// Each user from the non profit side who can manage  the services for their non profit.
-model nonprofituser{
+// Each employee from the non profit side who can manage  the services for their non profit.
+model nonprofit_employee{
   id                    Int      @id @default(autoincrement())
   username              String   @unique
   password              String
-  signininfo            String
+  signin_info           String
   email                 String
-  organization          nonprofit
+  nonprofit_ID          Int
+  nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
 
 // The refugee account so a refugee can sign in and out and save services.
@@ -56,22 +60,23 @@ model refugee{
   id                    Int     @id @default(autoincrement())
   username              String  @unique
   password              String
-  signininfo            String
+  signin_info           String
   email                 String
   address               String
-  organizationID        Int
-  organization          nonprofit
-  logs                  refugeelog[]
+  nonprofit_ID          Int
+  nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
+  logs                  refugee_log[]
   }
 
 
 // A log object for a refugee user to keep track of important data.
-model refugeelog{
+model refugee_log{
   id                    Int     @id @default(autoincrement())
   type                  String
   data                  String
   date                  Int
-  user                  refugee
-  userid                Int
-  nonprofit_id          nonprofit
+  refugee               refugee @relation(fields: [refugee_ID], references: [id])
+  refugee_ID            Int
+  nonprofit_ID          Int
+  nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
