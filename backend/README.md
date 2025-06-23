@@ -1,5 +1,6 @@
 # Backend
 
+This is the backend of the Strong Start Application.
 
 ## Setup
 
