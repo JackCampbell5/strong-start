@@ -14,18 +14,18 @@ model service{
   id                    Int     @id @default(autoincrement())
   name                  String  @unique
   address               String
-  zipcode               Int
-  description           String
-  phone_number          String
-  email                 String
-  phone                 String
+  zipcode               Int?
+  description           String?
+  phone_number          String?
+  email                 String?
+  phone                 String?
   website               String
-  hours                 String
-  logo                  String
-  language              String
-  date_needed           String
+  hours                 String?
+  logo                  String?
+  language              String?
+  date_needed           String?
   services_offered      String[]
-  restrictions          String
+  restrictions          String?
   next_steps            String
   nonprofit_ID          Int
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
@@ -35,9 +35,9 @@ model service{
 model nonprofit {
 id                      Int       @id @default(autoincrement())
 name                    String    @unique
-phone                   String
-email                   String
-logo                    String
+phone                   String?
+email                   String?
+logo                    String?
 services                service[]
 employees               nonprofit_employee[]
 refugees                refugee[]
@@ -62,7 +62,7 @@ model refugee{
   password              String
   signin_info           String
   email                 String
-  address               String
+  address               String?
   nonprofit_ID          Int
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
   logs                  refugee_log[]
