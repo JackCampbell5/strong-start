@@ -7,6 +7,7 @@ import {getNonProfit} from '../utils/nonprofit_utils.js'
 import employeeRouter from './nonprofit-employee.js'
 import nonprofitRouter from './nonprofit.js'
 import refugeeRouter from './refugee.js'
+import serviceRouter from './service.js'
 
 const prisma = new PrismaClient()
 const apiRouter = express.Router()
@@ -41,6 +42,17 @@ apiRouter.get('/refugee', (req, res) => {
 
 // Route for /api/v1/refugee/:nonprofitname
 apiRouter.use('/refugee/:nonprofitname',getNonProfit, refugeeRouter)
+
+
+// START service
+// Route for /api/v1/service
+apiRouter.get('/service', (req, res) => {
+    // DEBUG This endpoint should never return anything but is currently located here for debugging purposes
+    res.send('Service overall endpoint!');
+});
+
+// Route for /api/v1/service/:nonprofitname
+apiRouter.use('/service/:nonprofitname',getNonProfit, serviceRouter)
 
 
 
