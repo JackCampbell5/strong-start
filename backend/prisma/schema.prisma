@@ -1,17 +1,19 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
   output   = "../generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  extensions = [pgcrypto]
 }
 
-// A service to be searched for. WIll be associated with a specific non-profits database.
+// A service to be searched for. Will be associated with a specific non-profits database.
 model service{
-  id                    Int     @id @default(autoincrement())
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                  String  @unique
   address               String
   zipcode               Int?
@@ -27,43 +29,43 @@ model service{
   services_offered      String[]
   restrictions          String?
   next_steps            String
-  nonprofit_ID          Int
+  nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
 
 // The non profit associated with a certain database of services.
 model nonprofit {
-id                      Int       @id @default(autoincrement())
-name                    String    @unique
-phone                   String?
-email                   String?
-logo                    String?
-services                service[]
-employees               nonprofit_employee[]
-refugees                refugee[]
-refugee_logs            refugee_log[]
+  id                     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name                   String    @unique
+  phone                  String?
+  email                  String?
+  logo                   String?
+  services               service[]
+  employees              nonprofit_employee[]
+  refugees               refugee[]
+  refugee_logs           refugee_log[]
 }
 
 // Each employee from the non profit side who can manage  the services for their non profit.
 model nonprofit_employee{
-  id                    Int      @id @default(autoincrement())
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   username              String   @unique
   password              String
   signin_info           String
   email                 String
-  nonprofit_ID          Int
+  nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
 
 // The refugee account so a refugee can sign in and out and save services.
 model refugee{
-  id                    Int     @id @default(autoincrement())
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   username              String  @unique
   password              String
   signin_info           String
   email                 String
   address               String?
-  nonprofit_ID          Int
+  nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
   logs                  refugee_log[]
   }
@@ -71,12 +73,12 @@ model refugee{
 
 // A log object for a refugee user to keep track of important data.
 model refugee_log{
-  id                    Int     @id @default(autoincrement())
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   type                  String
   data                  String
   date                  Int
   refugee               refugee @relation(fields: [refugee_ID], references: [id])
-  refugee_ID            Int
-  nonprofit_ID          Int
+  refugee_ID            String  @db.Uuid
+  nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
