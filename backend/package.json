@@ -19,5 +19,9 @@
   },
   "devDependencies": {
     "prisma": "^6.10.1"
+  },
+  "imports": {
+    "#utils/*": "./utils/*",
+    "#prisma/*": "./generated/prisma/*"
   }
 }

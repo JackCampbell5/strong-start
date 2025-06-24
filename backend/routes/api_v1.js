@@ -1,7 +1,7 @@
 // Routes starting with /api/v1
-import { PrismaClient } from '../generated/prisma/client.js';
+import { PrismaClient } from '#prisma/client.js';
 import express from 'express'
-import {getNonProfit} from '../utils/nonprofit_utils.js'
+import {getNonProfit} from '#utils/nonprofit_utils.js'
 
 // Import routes
 import employeeRouter from './nonprofit-employee.js'

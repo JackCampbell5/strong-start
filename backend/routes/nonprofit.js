@@ -1,4 +1,4 @@
-import { PrismaClient } from '../generated/prisma/client.js';
+import { PrismaClient } from '#prisma/client.js';
 import express from 'express'
 const prisma = new PrismaClient()
 const nonprofitRouter = express.Router()
