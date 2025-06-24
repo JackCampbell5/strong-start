@@ -19,85 +19,67 @@ nonprofitRouter.get("/all", async (req, res) => {
 });
 
 // Get one nonprofit by name
-nonprofitRouter.get("/:nonprofit_name", async (req, res) => {
-  const { nonprofit_name } = req.params;
-  const findNonProfit = await prisma.nonprofit.findUnique({
+nonprofitRouter.get("/:nonprofitname", async (req, res) => {
+  const { nonprofitname } = req.params;
+  const findCard = await prisma.nonprofit.findUnique({
     where: {
-      name: nonprofit_name,
+      name: nonprofitname,
     },
   });
-  if (findNonProfit) {
-    res.status(200).json(findNonProfit);
-  } else {
-    res.status(404).send(`Nonprofit ${nonprofit_name} not found`);
-  }
+  res.status(200).json(findCard);
 });
 
-// Get one nonprofit by id
-nonprofitRouter.get("/id/:nonprofit_id", async (req, res) => {
-  const { nonprofit_id } = req.params;
-  const findNonProfit = await prisma.nonprofit.findUnique({
-    where: {
-      id: nonprofit_id,
-    },
-  });
-  if (findNonProfit) {
-    res.status(200).json(findNonProfit);
-  } else {
-    res.status(404).send(`Nonprofit ${nonprofit_id} not found`);
-  }
-});
-
-// Add a new nonprofit by id
+// Add a new nonprofit by name
 nonprofitRouter.post("/add", async (req, res) => {
   const nonProfitData = req.body;
   const name = nonProfitData.name;
-  const exists = await checkNonProfitName(name);
 
-  if (!exists) {
+  const findCards = await prisma.nonprofit.findUnique({
+    where: {
+      name: name,
+    },
+  });
+  if (!findCards) {
     const createNonProfit = await prisma.nonprofit.create({
       data: nonProfitData,
     });
     res.status(201).json(createNonProfit);
   } else {
-    res.status(400).send(`Nonprofit ${name} already exists`);
+    req.status(400).json({ message: "Nonprofit already exists" });
   }
 });
 
-// Edit a nonprofit by id
-nonprofitRouter.put("/:nonprofit_id/edit", async (req, res) => {
-  const { nonprofit_id } = req.params;
+// Edit a nonprofit by name
+nonprofitRouter.put("/:nonprofitname/edit", async (req, res) => {
+  const { nonprofitname } = req.params;
   const nonProfitData = req.body;
-  const exists = await checkNonProfitId(nonprofit_id);
-
-  if (exists) {
+  try {
     const updateOne = await prisma.nonprofit.update({
       where: {
-        id: nonprofit_id,
+        name: nonprofitname,
       },
+
       data: nonProfitData,
     });
     res.json(updateOne);
     res.status(214).send();
-  } else {
-    res.status(404).send(`Nonprofit ${nonprofit_id} not found`);
+  } catch (PrismaClientKnownRequestError) {
+    res.status(404).send("Nonprofit not found");
   }
 });
 
-// Delete a nonprofit by id
-nonprofitRouter.delete("/:nonprofit_id/delete", async (req, res) => {
-  const { nonprofit_id } = req.params;
-  const exists = await checkNonProfitId(nonprofit_id);
-
-  if (exists) {
+// Delete a nonprofit by name
+nonprofitRouter.delete("/:nonprofitname/delete", async (req, res) => {
+  const { nonprofitname } = req.params;
+  try {
     await prisma.nonprofit.delete({
       where: {
-        id: nonprofit_id,
+        name: nonprofitname,
       },
     });
-    res.status(214).send(`Nonprofit ${nonprofit_id} deleted`);
-  } else {
-    res.status(404).send(`Nonprofit ${nonprofit_id} not found`);
+    res.status(214).send();
+  } catch (PrismaClientKnownRequestError) {
+    res.status(404).send("Nonprofit not found");
   }
 });
 
