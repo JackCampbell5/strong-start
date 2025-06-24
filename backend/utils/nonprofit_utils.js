@@ -7,13 +7,13 @@ const prisma = new PrismaClient();
  * @returns The data associated with the nonprofit
  */
 async function getNonProfitData(name) {
-  return { name: name }; // Temp until we can create non profits
+  // return {"name":name} // Temp until we can create non profits
   // This would work but we can not create non profits yet
-  // return await prisma.nonprofit.findUnique({
-  //    where: {
-  //      name: name,
-  //    },
-  //  })
+  return await prisma.nonprofit.findUnique({
+    where: {
+      name: name,
+    },
+  });
 }
 
 /**
