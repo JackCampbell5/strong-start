@@ -6,14 +6,18 @@ const prisma = new PrismaClient();
  * @param {String} name The name to check
  * @returns True if it exists, false otherwise
  */
-export async function checkNonProfitName(name) {
-  let resultData = await prisma.nonprofit.findUnique({
-    where: {
-      name: name,
-    },
-  });
-  console.log(resultData != null);
-  return resultData != null;
+export async function checkNonProfitName(name, next) {
+  try {
+    let resultData = await prisma.nonprofit.findUnique({
+      where: {
+        name: name,
+      },
+    });
+    console.log(resultData != null);
+    return resultData != null;
+  } catch (e) {
+    next(e);
+  }
 }
 
 /**
@@ -21,13 +25,17 @@ export async function checkNonProfitName(name) {
  * @param {String} id The id to check
  * @returns True if it exists, false otherwise
  */
-export async function checkNonProfitId(id) {
-  let resultData = await prisma.nonprofit.findUnique({
-    where: {
-      id: id,
-    },
-  });
-  return resultData != null;
+export async function checkNonProfitId(id, next) {
+  try {
+    let resultData = await prisma.nonprofit.findUnique({
+      where: {
+        id: id,
+      },
+    });
+    return resultData != null;
+  } catch (e) {
+    next(e);
+  }
 }
 
 /**
@@ -35,12 +43,16 @@ export async function checkNonProfitId(id) {
  * @param {String} name The name to search for
  * @returns The data associated with the nonprofit
  */
-async function getNonProfitData(name) {
-  return await prisma.nonprofit.findUnique({
-    where: {
-      name: name,
-    },
-  });
+async function getNonProfitData(name, next) {
+  try {
+    return await prisma.nonprofit.findUnique({
+      where: {
+        name: name,
+      },
+    });
+  } catch (e) {
+    next(e);
+  }
 }
 
 /**
