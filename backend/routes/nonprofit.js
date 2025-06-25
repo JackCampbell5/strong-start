@@ -19,33 +19,33 @@ nonprofitRouter.get("/all", async (req, res) => {
 });
 
 // Get one nonprofit by name
-nonprofitRouter.get("/:nonprofitname", async (req, res) => {
-  const { nonprofitname } = req.params;
+nonprofitRouter.get("/:nonprofit_id", async (req, res) => {
+  const { nonprofit_id } = req.params;
   const findNonProfit = await prisma.nonprofit.findUnique({
     where: {
-      name: nonprofitname,
+      id: nonprofit_id,
     },
   });
-  res.status(200).json(findNonProfit);
+  if (findNonProfit) {
+    res.status(200).json(findNonProfit);
+  } else {
+    res.status(404).send(`Nonprofit ${nonprofit_id} not found`);
+  }
 });
 
 // Add a new nonprofit by name
 nonprofitRouter.post("/add", async (req, res) => {
   const nonProfitData = req.body;
   const name = nonProfitData.name;
+  const exists = await checkNonProfitName(name);
 
-  const findNonProfits = await prisma.nonprofit.findUnique({
-    where: {
-      name: name,
-    },
-  });
-  if (!findNonProfits) {
+  if (!exists) {
     const createNonProfit = await prisma.nonprofit.create({
       data: nonProfitData,
     });
     res.status(201).json(createNonProfit);
   } else {
-    req.status(400).json({ message: "Nonprofit already exists" });
+    res.status(400).send(`Nonprofit ${name} already exists`);
   }
 });
 
@@ -56,9 +56,8 @@ nonprofitRouter.put("/:nonprofitname/edit", async (req, res) => {
   try {
     const updateOne = await prisma.nonprofit.update({
       where: {
-        name: nonprofitname,
+        id: nonprofit_id,
       },
-
       data: nonProfitData,
     });
     res.json(updateOne);
@@ -74,7 +73,7 @@ nonprofitRouter.delete("/:nonprofitname/delete", async (req, res) => {
   try {
     await prisma.nonprofit.delete({
       where: {
-        name: nonprofitname,
+        id: nonprofit_id,
       },
     });
     res.status(214).send();
