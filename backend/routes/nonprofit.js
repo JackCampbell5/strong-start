@@ -29,7 +29,7 @@ nonprofitRouter.get("/:nonprofit_name", async (req, res) => {
 });
 
 // Get one nonprofit by id
-nonprofitRouter.get("/:nonprofit_id", async (req, res) => {
+nonprofitRouter.get("/id/:nonprofit_id", async (req, res) => {
   const { nonprofit_id } = req.params;
   const findNonProfit = await prisma.nonprofit.findUnique({
     where: {
