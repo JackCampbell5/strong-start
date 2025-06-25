@@ -22,6 +22,7 @@
   },
   "imports": {
     "#utils/*": "./utils/*",
-    "#prisma/*": "./generated/prisma/*"
+    "#prisma/*": "./generated/prisma/*",
+    "#errors/*": "./middleware/errors/*"
   }
 }
