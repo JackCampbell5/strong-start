@@ -56,7 +56,7 @@ employeeRouter.post("/register", async (req, res, next) => {
   const username = employeeData.username;
   const nonprofit = req.body.nonprofit;
   try {
-    const exists = await checkEmployeeUsername(username, next);
+    const exists = await checkEmployeeUsername(username, "", next);
     if (!exists) {
       // Hash the password
       const plainPassword = employeeData.password;
@@ -121,39 +121,57 @@ employeeRouter.post("/login", async (req, res, next) => {
 //   });
 // });
 
-// // Edit a nonprofit by name
-// employeeRouter.put("/:employee_name/edit", async (req, res, next) => {
-//   const { employee_name } = req.params;
-//   const nonProfitData = req.body;
-//   try {
-//     const updateOne = await prisma.nonprofit_employee.update({
-//       where: {
-//         name: employee_name,
-//       },
+// Edit a employee by name
+employeeRouter.put("/:employee_id/edit", async (req, res, next) => {
+  const { employee_id } = req.params;
+  const employeeData = req.body.data;
+  const nonprofit = req.body.nonprofit;
+  try {
+    const exists = await checkEmployeeId(employee_id, nonprofit, next);
+    if (exists) {
+      // If employee gives a new password, hash it
+      if (employeeData.password) {
+        const hash = await hashPassword(employeeData.password);
+        employeeData.password = hash;
+      }
 
-//       data: nonProfitData,
-//     });
-//     res.json(updateOne);
-//     res.status(214).send();
-//   } catch (PrismaClientKnownRequestError) {
-//     res.status(404).send("Nonprofit not found");
-//   }
-// });
+      // Update the employee
+      const updateOne = await prisma.nonprofit_employee.update({
+        where: {
+          id: employee_id,
+        },
+        data: employeeData,
+      });
+      res.json(updateOne);
+      res.status(214).send();
+    } else {
+      throw new EmployeeNotFoundError(employee_id);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
 
-// // Delete a nonprofit by name
-// employeeRouter.delete("/:employee_name/delete", async (req, res, next) => {
-//   const { employee_name } = req.params;
-//   try {
-//     await prisma.nonprofit_employee.delete({
-//       where: {
-//         name: employee_name,
-//       },
-//     });
-//     res.status(214).send();
-//   } catch (PrismaClientKnownRequestError) {
-//     res.status(404).send("Nonprofit not found");
-//   }
-// });
+// Delete a nonprofit by name
+employeeRouter.delete("/:employee_id/delete", async (req, res, next) => {
+  const { employee_id } = req.params;
+  const nonprofit = req.body.nonprofit;
+  try {
+    const exists = await checkEmployeeId(employee_id, nonprofit, next);
+    if (exists) {
+      await prisma.nonprofit_employee.delete({
+        where: {
+          id: employee_id,
+        },
+      });
+      res.status(214).send();
+    } else {
+      throw new EmployeeNotFoundError(employee_id);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
 
 // Error handling
 employeeRouter.use((err, req, res, next) => {

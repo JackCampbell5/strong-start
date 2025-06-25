@@ -6,14 +6,17 @@ const prisma = new PrismaClient();
  * @param {String} username The name to check
  * @returns True if it exists, false otherwise
  */
-export async function checkEmployeeUsername(username, next) {
+export async function checkEmployeeUsername(username, nonprofit, next) {
   try {
     let resultData = await prisma.nonprofit_employee.findUnique({
       where: {
         username: username,
       },
     });
-    return resultData != null;
+    return (
+      resultData != null &&
+      (nonprofit.id === resultData.nonprofit_ID || !nonprofit)
+    );
   } catch (e) {
     next(e);
   }
