@@ -14,6 +14,21 @@ nonprofitRouter.get("/", async (req, res) => {
 });
 
 // Get one nonprofit by name
+nonprofitRouter.get("/:nonprofit_name", async (req, res) => {
+  const { nonprofit_name } = req.params;
+  const findNonProfit = await prisma.nonprofit.findUnique({
+    where: {
+      name: nonprofit_name,
+    },
+  });
+  if (findNonProfit) {
+    res.status(200).json(findNonProfit);
+  } else {
+    res.status(404).send(`Nonprofit ${nonprofit_name} not found`);
+  }
+});
+
+// Get one nonprofit by id
 nonprofitRouter.get("/:nonprofit_id", async (req, res) => {
   const { nonprofit_id } = req.params;
   const findNonProfit = await prisma.nonprofit.findUnique({
@@ -28,7 +43,7 @@ nonprofitRouter.get("/:nonprofit_id", async (req, res) => {
   }
 });
 
-// Add a new nonprofit by name
+// Add a new nonprofit by id
 nonprofitRouter.post("/add", async (req, res) => {
   const nonProfitData = req.body;
   const name = nonProfitData.name;
@@ -44,7 +59,7 @@ nonprofitRouter.post("/add", async (req, res) => {
   }
 });
 
-// Edit a nonprofit by name
+// Edit a nonprofit by id
 nonprofitRouter.put("/:nonprofit_id/edit", async (req, res) => {
   const { nonprofit_id } = req.params;
   const nonProfitData = req.body;
@@ -64,7 +79,7 @@ nonprofitRouter.put("/:nonprofit_id/edit", async (req, res) => {
   }
 });
 
-// Delete a nonprofit by name
+// Delete a nonprofit by id
 nonprofitRouter.delete("/:nonprofit_id/delete", async (req, res) => {
   const { nonprofit_id } = req.params;
   const exists = await checkNonProfitId(nonprofit_id);
