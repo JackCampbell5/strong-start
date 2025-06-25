@@ -12,6 +12,7 @@ import { hashPassword, verifyPassword } from "#utils/auth-utils.js";
 import {
   EmployeeNotFoundError,
   EmployeeUsernameTakenError,
+  EmployeeLogInError,
 } from "#errors/employee-errors.js";
 
 const prisma = new PrismaClient();
@@ -97,7 +98,7 @@ employeeRouter.post("/login", async (req, res, next) => {
         const secureEmployee = secureEmployeeData(employeeData);
         res.status(201).json(secureEmployee);
       } else {
-        res.status(201).json("Failed to login");
+        throw new EmployeeLogInError(username);
       }
     } else {
       throw new EmployeeNotFoundError(username);
@@ -176,7 +177,10 @@ employeeRouter.delete("/:employee_id/delete", async (req, res, next) => {
 // Error handling
 employeeRouter.use((err, req, res, next) => {
   const retStr = `${err.name}: ${err.message}`;
-  if (err instanceof EmployeeNotFoundError) {
+  if (
+    err instanceof EmployeeNotFoundError ||
+    err instanceof EmployeeLogInError
+  ) {
     return res.status(404).send(retStr);
   } else if (err instanceof EmployeeUsernameTakenError) {
     return res.status(409).send(retStr);
