@@ -9,6 +9,11 @@ const nonprofitRouter = express.Router();
 
 // Default is to get all nonprofits
 nonprofitRouter.get("/", async (req, res) => {
+  res.status(200).json({ message: "Nonprofit route" });
+});
+
+// Get all nonprofits
+nonprofitRouter.get("/all", async (req, res) => {
   const foundNonProfits = await prisma.nonprofit.findMany();
   res.status(200).json(foundNonProfits);
 });
