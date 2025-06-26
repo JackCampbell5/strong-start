@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();
 
 // Default is to get all nonprofits
-nonprofitRouter.get("/", async (req, res) => {
+nonprofitRouter.get("/", async (req, res, next) => {
   res.status(200).json({ message: "Nonprofit route" });
 });
 
@@ -65,7 +65,7 @@ nonprofitRouter.get("/id/:nonprofit_id", async (req, res, next) => {
 });
 
 // Add a new nonprofit by id
-nonprofitRouter.post("/add", async (req, res) => {
+nonprofitRouter.post("/add", async (req, res, next) => {
   const nonProfitData = req.body;
   const name = nonProfitData.name;
   try {
@@ -85,7 +85,7 @@ nonprofitRouter.post("/add", async (req, res) => {
 });
 
 // Edit a nonprofit by id
-nonprofitRouter.put("/:nonprofit_id/edit", async (req, res) => {
+nonprofitRouter.put("/:nonprofit_id/edit", async (req, res, next) => {
   const { nonprofit_id } = req.params;
   const nonProfitData = req.body;
   try {
