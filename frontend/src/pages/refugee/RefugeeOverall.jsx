@@ -23,6 +23,7 @@ function RefugeeOverall({}) {
     <div className="RefugeeOverall">
       <NavRefugee />
       <h3>RefugeeOverall</h3>
+      {/* Navigation. Will be moved to nav bar eventually */}
       <button onClick={() => navigate(`${priorPart}`)}>Refugee Root Dir</button>
       <button onClick={() => navigate(`${priorPart}contact`)}>Contact</button>
       <button onClick={() => navigate(`${priorPart}home`)}>Home</button>

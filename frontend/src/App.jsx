@@ -10,6 +10,7 @@ import { useEffect } from "react";
 
 function App() {
   const navigate = useNavigate();
+  // Set to root on reload (Will change in future just makes data less complicated for now)
   useEffect(() => {
     navigate("/");
   }, []);
