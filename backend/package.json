@@ -24,6 +24,6 @@
     "#utils/*": "./utils/*",
     "#prisma/*": "./generated/prisma/*",
     "#errors/*": "./middleware/errors/*",
-    "#routes/*": "./routes/*"
+    "#routes/*": "./api/routes/*"
   }
 }
