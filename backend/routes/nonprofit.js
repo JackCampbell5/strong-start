@@ -99,7 +99,7 @@ nonprofitRouter.put("/:nonprofit_id/edit", async (req, res, next) => {
         data: nonProfitData,
       });
       res.json(updateOne);
-      res.status(214).send();
+      res.status(200).send();
     } else {
       throw NonProfitNotFoundError(nonprofit_id);
     }
@@ -123,7 +123,7 @@ nonprofitRouter.delete("/:nonprofit_id/delete", async (req, res, next) => {
           id: nonprofit_id,
         },
       });
-      res.status(214).send(`Nonprofit ${nonprofit_id} deleted`);
+      res.status(200).send(`Nonprofit ${nonprofit_id} deleted`);
     } else {
       throw new NonProfitNotFoundError(nonprofit_id);
     }

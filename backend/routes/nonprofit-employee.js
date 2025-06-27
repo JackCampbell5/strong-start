@@ -144,7 +144,7 @@ employeeRouter.put("/:employee_id/edit", async (req, res, next) => {
         data: employeeData,
       });
       res.json(updateOne);
-      res.status(214).send();
+      res.status(200).send();
     } else {
       throw new EmployeeNotFoundError(employee_id);
     }
@@ -165,7 +165,7 @@ employeeRouter.delete("/:employee_id/delete", async (req, res, next) => {
           id: employee_id,
         },
       });
-      res.status(214).send();
+      res.status(200).send();
     } else {
       throw new EmployeeNotFoundError(employee_id);
     }

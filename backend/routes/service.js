@@ -112,7 +112,7 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
         data: updatedData,
       });
       res.json(updateOne);
-      res.status(214).send();
+      res.status(200).send();
     } else {
       throw new ServiceNotFoundError(service_id);
     }
@@ -134,7 +134,7 @@ serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
           id: service_id,
         },
       });
-      res.status(214).send(`Nonprofit ${service_id} deleted`);
+      res.status(200).send(`Nonprofit ${service_id} deleted`);
     } else {
       throw new ServiceNotFoundError(service_id);
     }
