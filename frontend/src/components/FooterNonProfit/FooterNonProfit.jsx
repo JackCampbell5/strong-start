@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function FooterNonProfit({}) {
   return (
     <div className="FooterNonProfit">
-      <h3><FooterNonProfit></FooterNonProfit></h3>
+      <h3>FooterNonProfit</h3>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function Help({}) {
   return (
     <div className="Help">
-      <h3><Help></Help></h3>
+      <h3>Help</h3>
     </div>
   );
 }

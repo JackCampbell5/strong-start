@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function Register({}) {
   return (
     <div className="Register">
-      <h3><Register></Register></h3>
+      <h3>Register</h3>
     </div>
   );
 }

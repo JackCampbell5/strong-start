@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function SearchFilters({}) {
   return (
     <div className="SearchFilters">
-      <h3><SearchFilters></SearchFilters></h3>
+      <h3>SearchFilters</h3>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function NavRefugee({}) {
   return (
     <div className="NavRefugee">
-      <h3><NavRefugee></NavRefugee></h3>
+      <h3>NavRefugee</h3>
     </div>
   );
 }

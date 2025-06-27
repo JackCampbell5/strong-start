@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 function AccountInfoChange({}) {
   return (
     <div className="AccountInfoChange">
-      <h3><AccountInfoChange></AccountInfoChange></h3>
+      <h3>AccountInfoChange</h3>
     </div>
   );
 }
