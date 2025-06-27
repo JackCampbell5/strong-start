@@ -2,18 +2,45 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 /**
+ * Checks if a nonprofit exists with that name
+ * @param {String} name The name to check
+ * @returns True if it exists, false otherwise
+ */
+export async function checkNonProfitName(name) {
+  let resultData = await prisma.nonprofit.findUnique({
+    where: {
+      name: name,
+    },
+  });
+  console.log(resultData != null);
+  return resultData != null;
+}
+
+/**
+ * Checks if a nonprofit exists with that id
+ * @param {String} id The id to check
+ * @returns True if it exists, false otherwise
+ */
+export async function checkNonProfitId(id) {
+  let resultData = await prisma.nonprofit.findUnique({
+    where: {
+      id: id,
+    },
+  });
+  return resultData != null;
+}
+
+/**
  * Finds the data associated with a nonprofit's name
  * @param {String} name The name to search for
  * @returns The data associated with the nonprofit
  */
 async function getNonProfitData(name) {
-  return { name: name }; // Temp until we can create non profits
-  // This would work but we can not create non profits yet
-  // return await prisma.nonprofit.findUnique({
-  //    where: {
-  //      name: name,
-  //    },
-  //  })
+  return await prisma.nonprofit.findUnique({
+    where: {
+      name: name,
+    },
+  });
 }
 
 /**
