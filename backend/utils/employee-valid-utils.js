@@ -46,15 +46,16 @@ export function secureEmployeeData(data) {
 }
 
 /**
- * Finds the data associated with a nonprofit's name
+ * Finds the data associated with a employee's name
  * @param {String} name The name to search for
- * @returns The data associated with the nonprofit
+ * @returns The data associated with the employee
  */
-export async function getEmployeeData(username, next) {
+export async function getEmployeeData(username, nonprofit, next) {
   try {
     return await prisma.nonprofit_employee.findUnique({
       where: {
         username: username,
+        nonprofit_ID: nonprofit.id,
       },
     });
   } catch (e) {

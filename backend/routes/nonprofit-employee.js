@@ -20,6 +20,12 @@ const employeeRouter = express.Router();
 
 // Default is to get all nonprofits
 employeeRouter.get("/", async (req, res, next) => {
+  const nonprofit = req.body.nonprofit;
+  res.send(`Welcome to ${nonprofit.name}'s employee database!`);
+});
+
+// Default is to get all nonprofits
+employeeRouter.get("/all", async (req, res, next) => {
   const findNonProfits = await prisma.nonprofit_employee.findMany();
   // Hide the password
   for (let a of findNonProfits) {
@@ -60,8 +66,7 @@ employeeRouter.post("/register", async (req, res, next) => {
     const exists = await checkEmployeeUsername(username, "", next);
     if (!exists) {
       // Hash the password
-      const plainPassword = employeeData.password;
-      const hash = await hashPassword(plainPassword);
+      const hash = await hashPassword(employeeData.password);
       employeeData.password = hash;
       employeeData["nonprofit_ID"] = nonprofit.id;
 
@@ -86,10 +91,8 @@ employeeRouter.post("/login", async (req, res, next) => {
   const { username, password: plainPassword } = req.body;
   const nonprofit = req.body.nonprofit;
   try {
-    const exists = await checkEmployeeUsername(username, nonprofit, next);
-    if (exists) {
-      // Hash the password
-      const employeeData = await getEmployeeData(username, next);
+    const employeeData = await getEmployeeData(username, nonprofit, next);
+    if (employeeData) {
       if (await verifyPassword(plainPassword, employeeData.password)) {
         // TODO SESSION - Add when session is implemented
         // req.session.user = user; // Added to session
