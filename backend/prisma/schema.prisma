@@ -14,7 +14,7 @@ datasource db {
 // A service to be searched for. Will be associated with a specific non-profits database.
 model service{
   id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name                  String  @unique
+  name                  String
   address               String
   zipcode               Int?
   description           String?

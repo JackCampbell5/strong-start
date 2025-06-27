@@ -2,6 +2,7 @@
 import { PrismaClient } from "#prisma/client.js";
 import express from "express";
 import { getNonProfit } from "#utils/nonprofit_utils.js";
+import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
 
 // Import routes
 import employeeRouter from "./nonprofit-employee.js";
@@ -54,5 +55,14 @@ apiRouter.get("/service", (req, res) => {
 
 // Route for /api/v1/service/:nonprofitname
 apiRouter.use("/service/:nonprofitname", getNonProfit, serviceRouter);
+
+apiRouter.use((err, req, res, next) => {
+  const retStr = `${err.name}: ${err.message}`;
+  if (err instanceof NonProfitNotFoundError) {
+    return res.status(404).send(retStr);
+  } else {
+    return res.status(500).send(retStr);
+  }
+});
 
 export default apiRouter;

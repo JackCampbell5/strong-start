@@ -1,5 +1,6 @@
 import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
+import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
 
 /**
  * Checks if a nonprofit exists with that name
@@ -67,7 +68,7 @@ export async function getNonProfit(req, res, next) {
     const name = req.params.nonprofitname;
     const data = await getNonProfitData(name, next);
     if (!data) {
-      return res.status(404).json({ error: "Non-profit not found" });
+      throw new NonProfitNotFoundError(name);
     } else {
       if (!req.body) req.body = {};
       req.body.nonprofit = data;
