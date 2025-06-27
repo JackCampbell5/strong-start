@@ -1,0 +1,18 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import './NavNonProfit.css'
+import PropTypes from 'prop-types';
+
+function NavNonProfit({}) {
+  return (
+    <div className="NavNonProfit">
+      <h3>NavNonProfit</h3>
+    </div>
+  );
+}
+
+NavNonProfit.propTypes = {
+    // data: PropTypes.func.isRequired,
+};
+
+export default NavNonProfit;
