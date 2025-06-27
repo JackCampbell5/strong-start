@@ -1,4 +1,5 @@
 import argon2 from "argon2";
+import PasswordHashFailed from "#errors/auth-errors.js";
 
 export async function hashPassword(plainPassword) {
   try {
@@ -11,7 +12,7 @@ export async function hashPassword(plainPassword) {
     return hash;
   } catch (err) {
     console.error("Hashing failed:", err);
-    throw err;
+    throw new PasswordHashFailed(err.message);
   }
 }
 
