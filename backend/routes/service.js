@@ -37,13 +37,20 @@ serviceRouter.get("/:service_name", async (req, res, next) => {
   const { service_name } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
-    const findService = await prisma.service.findUnique({
+    const findService = await prisma.service.findMany({
       where: {
         name: service_name,
         nonprofit_ID: nonprofit.id,
       },
     });
+    //If the find returns results
     if (findService) {
+      // Make sure there is only one service with the same name
+      if (findService.length !== 1) {
+        throw new Error(
+          "Multiple services with the same name in one nonprofit found"
+        );
+      }
       res.status(200).json(findService);
     } else {
       throw new ServiceNotFoundError(service_name);
