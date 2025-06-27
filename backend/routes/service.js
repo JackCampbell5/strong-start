@@ -9,14 +9,24 @@ const prisma = new PrismaClient();
 const serviceRouter = express.Router();
 
 serviceRouter.get("/", (req, res) => {
-  res.send("Welcome to a services service database!");
+  const nonprofit = req.body.nonprofit;
+  res.send(`Welcome to ${nonprofit.name}'s service database!`);
 });
 
 // Get all services
 serviceRouter.get("/all", async (req, res, next) => {
   try {
-    const foundServices = await prisma.service.findMany();
-    res.status(200).json(foundServices);
+    const nonprofit = req.body.nonprofit;
+    const foundServices = await prisma.service.findMany({
+      where: {
+        nonprofit_ID: nonprofit.id,
+      },
+    });
+    if (foundServices.length !== 0) {
+      res.status(200).json(foundServices);
+    } else {
+      res.status(404).send("No services found");
+    }
   } catch (e) {
     return next(e);
   }
@@ -104,7 +114,7 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
       res.json(updateOne);
       res.status(214).send();
     } else {
-      throw ServiceNotFoundError(service_id);
+      throw new ServiceNotFoundError(service_id);
     }
   } catch (e) {
     return next(e);
