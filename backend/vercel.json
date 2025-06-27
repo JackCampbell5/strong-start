@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npx prisma migrate deploy; npx prisma generate",
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "devCommand": "node ./api/index.js"
+}
