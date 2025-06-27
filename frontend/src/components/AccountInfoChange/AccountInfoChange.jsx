@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function AccountInfoChange({}) {
   return (
-    // JSX code for rendering the component
     <div className="AccountInfoChange">
       <h3><AccountInfoChange></AccountInfoChange></h3>
     </div>

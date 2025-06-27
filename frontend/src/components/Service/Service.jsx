@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function Service({}) {
   return (
-    // JSX code for rendering the component
     <div className="Service">
       <h3><Service></Service></h3>
     </div>

@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function NavRefugee({}) {
   return (
-    // JSX code for rendering the component
     <div className="NavRefugee">
       <h3><NavRefugee></NavRefugee></h3>
     </div>

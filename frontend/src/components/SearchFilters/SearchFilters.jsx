@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function SearchFilters({}) {
   return (
-    // JSX code for rendering the component
     <div className="SearchFilters">
       <h3><SearchFilters></SearchFilters></h3>
     </div>

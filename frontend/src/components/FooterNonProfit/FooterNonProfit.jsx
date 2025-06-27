@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function FooterNonProfit({}) {
   return (
-    // JSX code for rendering the component
     <div className="FooterNonProfit">
       <h3><FooterNonProfit></FooterNonProfit></h3>
     </div>

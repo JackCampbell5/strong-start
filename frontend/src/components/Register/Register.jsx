@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function Register({}) {
   return (
-    // JSX code for rendering the component
     <div className="Register">
       <h3><Register></Register></h3>
     </div>
