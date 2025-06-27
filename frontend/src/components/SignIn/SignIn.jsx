@@ -1,19 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './Service.css'
+import './SignIn.css'
 import PropTypes from 'prop-types';
 
-function Service({}) {
+function SignIn({}) {
   return (
     // JSX code for rendering the component
-    <div className="Service">
-      <h3><Service></Service></h3>
+    <div className="SignIn">
+      <h3><SignIn></SignIn></h3>
     </div>
   );
 }
 
-Service.propTypes = {
+SignIn.propTypes = {
     // data: PropTypes.func.isRequired,
 };
 
-export default Service;
+export default SignIn;

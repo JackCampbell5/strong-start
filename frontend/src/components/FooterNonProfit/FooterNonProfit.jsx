@@ -1,19 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './Service.css'
+import './FooterNonProfit.css'
 import PropTypes from 'prop-types';
 
-function Service({}) {
+function FooterNonProfit({}) {
   return (
     // JSX code for rendering the component
-    <div className="Service">
-      <h3><Service></Service></h3>
+    <div className="FooterNonProfit">
+      <h3><FooterNonProfit></FooterNonProfit></h3>
     </div>
   );
 }
 
-Service.propTypes = {
+FooterNonProfit.propTypes = {
     // data: PropTypes.func.isRequired,
 };
 
-export default Service;
+export default FooterNonProfit;

@@ -1,19 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './Service.css'
+import './ServiceList.css'
 import PropTypes from 'prop-types';
 
-function Service({}) {
+function ServiceList({}) {
   return (
     // JSX code for rendering the component
-    <div className="Service">
-      <h3><Service></Service></h3>
+    <div className="ServiceList">
+      <h3><ServiceList></ServiceList></h3>
     </div>
   );
 }
 
-Service.propTypes = {
+ServiceList.propTypes = {
     // data: PropTypes.func.isRequired,
 };
 
-export default Service;
+export default ServiceList;

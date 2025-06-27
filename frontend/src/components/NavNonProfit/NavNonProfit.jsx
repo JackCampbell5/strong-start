@@ -1,19 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './Service.css'
+import './NavNonProfit.css'
 import PropTypes from 'prop-types';
 
-function Service({}) {
+function NavNonProfit({}) {
   return (
     // JSX code for rendering the component
-    <div className="Service">
-      <h3><Service></Service></h3>
+    <div className="NavNonProfit">
+      <h3><NavNonProfit></NavNonProfit></h3>
     </div>
   );
 }
 
-Service.propTypes = {
+NavNonProfit.propTypes = {
     // data: PropTypes.func.isRequired,
 };
 
-export default Service;
+export default NavNonProfit;

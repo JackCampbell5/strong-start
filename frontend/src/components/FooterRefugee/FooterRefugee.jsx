@@ -1,19 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './Service.css'
+import './FooterRefugee.css'
 import PropTypes from 'prop-types';
 
-function Service({}) {
+function FooterRefugee({}) {
   return (
     // JSX code for rendering the component
-    <div className="Service">
-      <h3><Service></Service></h3>
+    <div className="FooterRefugee">
+      <h3><FooterRefugee></FooterRefugee></h3>
     </div>
   );
 }
 
-Service.propTypes = {
+FooterRefugee.propTypes = {
     // data: PropTypes.func.isRequired,
 };
 
-export default Service;
+export default FooterRefugee;
