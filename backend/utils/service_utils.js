@@ -2,7 +2,7 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 /**
- * Checks if a nonprofit exists with that name
+ * Checks if a service exists with that name
  * @param {String} name The name to check
  * @returns True if it exists, false otherwise
  */
@@ -27,7 +27,7 @@ export async function checkServiceName(name, nonprofit, next) {
 }
 
 /**
- * Checks if a nonprofit exists with that id
+ * Checks if a service exists with that id
  * @param {String} id The id to check
  * @returns True if it exists, false otherwise
  */
