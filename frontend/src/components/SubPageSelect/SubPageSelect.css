@@ -1,16 +1,20 @@
-.SubPageSelect main {
+main {
+  height: 70vh;
+  width: 100vw;
+}
+/* Flexbox inside main for the flexbox */
+.SubPageSelect .flexContent {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
-  height: 70vh;
-  width: 100vw;
 }
 
 /* The header pieces */
 main h1 {
-  margin: -4%;
+  margin-bottom: -3%;
   font-size: 400%;
 }
 main h2 {
@@ -27,6 +31,7 @@ main .select-div {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 /* The buttons themselves  */

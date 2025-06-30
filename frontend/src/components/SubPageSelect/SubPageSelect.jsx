@@ -12,28 +12,33 @@ function SubPageSelect({ changePage }) {
     <div className="SubPageSelect">
       <IconComp />
       <main>
-        <h1>Welcome to Strong Start!</h1>
-        <p className="welcomeText">
-          Strong start is a site dedicated to matching refugees with essential
-          services. To get started click a button below to get redirected to the
-          site that matches you the best. <br />
-          <br /> <strong>Refugee-</strong> A refugee looking to be matched with
-          a service
-          <br /> <strong>Non-Profit-</strong> A non-profit employee looking to
-          edit/manage services
-        </p>
-        <h2>What Role Are you?</h2>
-        <div className="select-div">
-          <div className="select-buttons" onClick={() => changePage("refugee")}>
-            <IoEarth />
-            Refugee
-          </div>
-          <div
-            className="select-buttons"
-            onClick={() => changePage("nonprofit")}
-          >
-            <FaHandsHelping />
-            Non-Profit
+        <div className="flexContent">
+          <h1>Welcome to Strong Start!</h1>
+          <p className="welcomeText">
+            Strong start is a site dedicated to matching refugees with essential
+            services. To get started click a button below to get redirected to
+            the site that matches you the best. <br />
+            <br /> <strong>Refugee-</strong> A refugee looking to be matched
+            with a service
+            <br /> <strong>Non-Profit-</strong> A non-profit employee looking to
+            edit/manage services
+          </p>
+          <h2>What Role Are you?</h2>
+          <div className="select-div">
+            <div
+              className="select-buttons"
+              onClick={() => changePage("refugee")}
+            >
+              <IoEarth />
+              Refugee
+            </div>
+            <div
+              className="select-buttons"
+              onClick={() => changePage("nonprofit")}
+            >
+              <FaHandsHelping />
+              Non-Profit
+            </div>
           </div>
         </div>
       </main>
