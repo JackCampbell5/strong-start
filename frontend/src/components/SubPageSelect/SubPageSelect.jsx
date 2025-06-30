@@ -16,8 +16,9 @@ function SubPageSelect({ changePage }) {
           <h1>Welcome to Strong Start!</h1>
           <p className="welcomeText">
             Strong start is a site dedicated to matching refugees with essential
-            services. To get started click a button below to get redirected to
-            the site that matches you the best. <br />
+            services. To get started, click a button below that matches what
+            your looking for. <br />
+            {/* //TODO Maybe add more intro text here */}
             <br /> <strong>Refugee-</strong> A refugee looking to be matched
             with a service
             <br /> <strong>Non-Profit-</strong> A non-profit employee looking to
