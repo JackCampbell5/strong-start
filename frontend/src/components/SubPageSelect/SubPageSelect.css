@@ -10,10 +10,15 @@
 
 /* The header pieces */
 main h1 {
+  margin: -4%;
   font-size: 400%;
 }
 main h2 {
+  margin: 10px;
   font-size: 300%;
+}
+main .welcomeText {
+  width: 70vw;
 }
 
 /* The Div with the buttons  */
