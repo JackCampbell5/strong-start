@@ -1,0 +1,49 @@
+.SubPageSelect main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 70vh;
+  width: 100vw;
+}
+
+/* The header pieces */
+main h1 {
+  font-size: 400%;
+}
+main h2 {
+  font-size: 300%;
+}
+
+/* The Div with the buttons  */
+main .select-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* The buttons themselves  */
+main .select-buttons {
+  padding: 10px;
+  background-color: #c4faff;
+  border: 5px solid rgb(0, 152, 247);
+  border-radius: 10px;
+  font-size: 250%;
+  font-weight: bold;
+  transition: border-radius 0.3s ease-in-out;
+}
+
+main .select-buttons:hover {
+  background-color: #9df7ff;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: border-radius 0.3s ease-in-out;
+}
+
+/* Make the icons look nice  */
+.select-buttons svg {
+  font-size: 140%;
+  vertical-align: bottom;
+}

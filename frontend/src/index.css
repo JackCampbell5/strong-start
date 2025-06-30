@@ -15,6 +15,9 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  background-color: #effeff;
+  color: #00292c;
+  text-align: center;
 }
 
 button {
@@ -22,7 +25,6 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-
 }
 button:focus,
 button:focus-visible {
