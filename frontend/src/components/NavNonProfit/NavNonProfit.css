@@ -10,6 +10,8 @@
 }
 .NavNonProfit .navLogo {
   padding-left: 10px;
+  height: 100%;
+  width: 25%;
 }
 
 .NavNonProfit .navAllButtons {
