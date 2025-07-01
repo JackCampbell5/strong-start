@@ -4,7 +4,8 @@ const nonProfitLink = import.meta.env.VITE_BACKEND_API;
 
 export async function fetchNonProfitStats(after) {
   let nonProfit = getNonProfit();
-  after(statsDefault); // Temp until frontend connects to backend
+  after(statsDefault);
+  // Temp until frontend connects to backend
   // await fetch(`${nonProfit}${id}/stats`)
   //     .then((response) => {
   //       if (!response.ok) {

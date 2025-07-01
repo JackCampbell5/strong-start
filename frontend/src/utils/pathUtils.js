@@ -1,3 +1,4 @@
+import { elementType } from "prop-types";
 import { useLocation } from "react-router";
 
 export const NpPages = Object.freeze({
@@ -20,11 +21,10 @@ export function getLocation() {
  * @returns  The name gotten from the url bar
  */
 export function getNonProfit() {
-  let location = useLocation().pathname;
-  let allLocations = location.split("/");
-  if (allLocations.length >= 1) {
-    return allLocations[1];
+  const params = new URLSearchParams(location.search);
+  if (params.get("nonprofit") !== null) {
+    return params.get("nonprofit");
   } else {
-    return "";
+    return ""; // Figure out best way to handle this
   }
 }
