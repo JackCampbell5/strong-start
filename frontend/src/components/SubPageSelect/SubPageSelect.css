@@ -38,7 +38,7 @@ main .select-div {
 /* The buttons themselves  */
 main .select-buttons {
   padding: 10px;
-  background-color: #c4faff;
+  background: var(--background-darker);
   border: 5px solid rgb(0, 152, 247);
   border-radius: 10px;
   font-size: 250%;
@@ -47,7 +47,7 @@ main .select-buttons {
 }
 
 main .select-buttons:hover {
-  background-color: #9df7ff;
+  background: #9df7ff;
   cursor: pointer;
   border-radius: 30px;
   transition: border-radius 0.3s ease-in-out;

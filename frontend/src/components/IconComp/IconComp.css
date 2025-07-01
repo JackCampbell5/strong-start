@@ -9,7 +9,7 @@
 }
 .IconComp:hover {
   cursor: pointer;
-  background-color: #77f4ff;
+  background: var(--background-hover);
   border-radius: 10px;
   transition: background-color 0.3s ease-in-out;
 }

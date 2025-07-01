@@ -2,6 +2,14 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  --background: #effeff;
+  --text: #00292c;
+  --background-darker: #c4faff;
+  --background-hover: #77f4ff;
+  --background-selected: #84c2c8;
+  --border-light: #00c1d3;
+  --border-mid: #0098f7;
+  --border-dark: #007e87;
 
   /* color-scheme: light dark; */
 
@@ -15,14 +23,14 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  background-color: #effeff;
-  color: #00292c;
+  background: var(--background);
+  color: var(--text);
   text-align: center;
 }
 
 button {
   cursor: pointer;
-  border: #00292c solid 0px;
+  border: var(--text) solid 0px;
 }
 button:hover {
 }
