@@ -30,18 +30,20 @@ function NonProfitOverall({}) {
   return (
     <div className="NonProfitOverall">
       <NavNonProfit navSet={nav} />
-      <Routes>
-        <Route path="" element={<h3>Non Profit Root Dir Viewer</h3>} />{" "}
-        {/* The default path will probably end up as the sign in or dashboard*/}
-        <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
-        <Route path={`/${NpPages.EDITSERVICE}`} element={<Account />} />
-        <Route path={`/${NpPages.NEWSERVICE}`} element={<EditService />} />
-        <Route path={`/${NpPages.SEARCHSERVICE}`} element={<Login />} />
-        <Route path={`/${NpPages.VIEWSERVICES}`} element={<NewService />} />
-        <Route path={`/${NpPages.LOGIN}`} element={<SearchService />} />
-        <Route path={`/${NpPages.SIGNUP}`} element={<ViewServices />} />
-        {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
-      </Routes>
+      <div className="mainContent">
+        <Routes>
+          <Route path="" element={<h3>Non Profit Root Dir Viewer</h3>} />{" "}
+          {/* The default path will probably end up as the sign in or dashboard*/}
+          <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
+          <Route path={`/${NpPages.EDITSERVICE}`} element={<Account />} />
+          <Route path={`/${NpPages.NEWSERVICE}`} element={<EditService />} />
+          <Route path={`/${NpPages.SEARCHSERVICE}`} element={<Login />} />
+          <Route path={`/${NpPages.VIEWSERVICES}`} element={<NewService />} />
+          <Route path={`/${NpPages.LOGIN}`} element={<SearchService />} />
+          <Route path={`/${NpPages.SIGNUP}`} element={<ViewServices />} />
+          {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
+        </Routes>
+      </div>
       <FooterNonProfit />
     </div>
   );
