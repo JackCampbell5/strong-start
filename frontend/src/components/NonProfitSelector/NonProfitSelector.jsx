@@ -18,7 +18,6 @@ function NonProfitSelector({ errorText, setErrorText }) {
       if (val === "unselected") {
         params.delete("nonprofit");
       } else {
-        console.log(val);
         params.set("nonprofit", val); // Set your query parameter here
         setErrorText("");
       }

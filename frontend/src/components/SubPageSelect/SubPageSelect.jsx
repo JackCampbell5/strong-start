@@ -16,7 +16,6 @@ function SubPageSelect({ changePage }) {
   const location = useLocation();
   function changePageHelper(page) {
     const params = new URLSearchParams(location.search);
-    console.log(params);
     if (params.get("nonprofit") !== null) {
       changePage(page);
     } else {
