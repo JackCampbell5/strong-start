@@ -3,6 +3,11 @@ import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import PropTypes from "prop-types";
+
+// Other components
+import EditService from "#nonprofitPage/EditServicePage/EditServicePage";
+
+// Helper functions
 import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
 import { statsDefault } from "#default-data/nonProfitDefaultData";
 
@@ -30,6 +35,7 @@ function Dashboard({}) {
           })}
         </div>
       </div>
+      <EditService />
     </div>
   );
 }
