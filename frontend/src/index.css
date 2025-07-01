@@ -38,3 +38,8 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.errorText {
+  color: red;
+  font-weight: bold;
+}
