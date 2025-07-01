@@ -32,7 +32,7 @@ function NonProfitOverall({}) {
       <NavNonProfit navSet={nav} />
       <div className="mainContent">
         <Routes>
-          <Route path="" element={<h3>Non Profit Root Dir Viewer</h3>} />{" "}
+          <Route path="" element={<Dashboard />} />{" "}
           {/* The default path will probably end up as the sign in or dashboard*/}
           <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
           <Route path={`/${NpPages.EDITSERVICE}`} element={<Account />} />
