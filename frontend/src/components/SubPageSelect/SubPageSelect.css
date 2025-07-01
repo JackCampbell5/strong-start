@@ -1,8 +1,9 @@
+/* Need main class for height of page to allow for increased scrollability  */
 main {
   height: 70vh;
   width: 100vw;
 }
-/* Flexbox inside main for the flexbox */
+/* Flexbox inside main for the flexbox which allows for centering*/
 .SubPageSelect .flexContent {
   display: flex;
   align-items: center;

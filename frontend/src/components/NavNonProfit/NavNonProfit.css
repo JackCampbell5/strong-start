@@ -1,3 +1,78 @@
-/* .NavNonProfit{
+.NavNonProfit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: calc(100vw - 10px);
+  border-bottom: #00c1d3 2px solid;
+}
+.navLogo {
+  padding-left: 10px;
+}
 
-} */
+.navAllButtons {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* width: 100%; */
+  /* float: right; */
+}
+
+.navBarButton {
+  height: 50px;
+  margin: 0px;
+  padding: 0px 10px;
+  background-color: #c4faff;
+  border-left: 1px solid #0098f7;
+  border-right: 1px solid #0098f7;
+  border-bottom: #00c1d3 1px solid;
+  font-size: 100%;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+.navAllButtons .navBarButton:hover {
+  background-color: #77f4ff;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#selected {
+  background-color: #84c2c8;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Nav bar things */
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 10px;
+}
+
+.dropdownArrow {
+  vertical-align: middle;
+}
+
+#not-shown {
+  display: none;
+}
+#shown {
+  display: flex;
+  flex-direction: column;
+}

@@ -1,4 +1,15 @@
 .IconComp {
   text-align: left;
-  padding: 0px 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
+.IconComp h1 {
+  margin: 0px;
+  padding: 1px;
+}
+.IconComp:hover {
+  cursor: pointer;
+  background-color: #77f4ff;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-in-out;
 }

@@ -22,7 +22,7 @@ body {
 
 button {
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: #00292c solid 0px;
 }
 button:hover {
 }
