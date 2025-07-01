@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 function FooterNonProfit({}) {
   return (
     <div className="FooterNonProfit">
-      <p>Contact: StrongStart@gmail.com with any question</p>
+      <p>Contact: StrongStart@gmail.com with any questions</p>
     </div>
   );
 }

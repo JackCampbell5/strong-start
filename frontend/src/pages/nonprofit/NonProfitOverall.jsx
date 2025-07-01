@@ -33,8 +33,8 @@ function NonProfitOverall({}) {
       <Routes>
         <Route path="" element={<h3>Non Profit Root Dir Viewer</h3>} />{" "}
         {/* The default path will probably end up as the sign in or dashboard*/}
-        <Route path={`/${NpPages.DASHBOARD}`} element={<Account />} />
-        <Route path={`/${NpPages.EDITSERVICE}`} element={<Dashboard />} />
+        <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
+        <Route path={`/${NpPages.EDITSERVICE}`} element={<Account />} />
         <Route path={`/${NpPages.NEWSERVICE}`} element={<EditService />} />
         <Route path={`/${NpPages.SEARCHSERVICE}`} element={<Login />} />
         <Route path={`/${NpPages.VIEWSERVICES}`} element={<NewService />} />
