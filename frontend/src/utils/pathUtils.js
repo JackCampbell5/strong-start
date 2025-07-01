@@ -15,3 +15,16 @@ export function getLocation() {
   let allLocations = location.split("/");
   return allLocations[allLocations.length - 1];
 }
+/**
+ * Gets the nonprofit name from the url bar
+ * @returns  The name gotten from the url bar
+ */
+export function getNonProfit() {
+  let location = useLocation().pathname;
+  let allLocations = location.split("/");
+  if (allLocations.length >= 1) {
+    return allLocations[1];
+  } else {
+    return "";
+  }
+}

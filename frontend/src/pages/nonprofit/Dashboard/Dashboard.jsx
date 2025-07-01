@@ -1,19 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Dashboard.css";
 import PropTypes from "prop-types";
-import { formatVarName } from "#utils/textUtils";
+import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
+import { statsDefault } from "#default-data/nonProfitDefaultData";
 
 function Dashboard({}) {
-  const statsDefault = {
-    servicesNumber: { name: "Services #", key: 0 },
-    servicesOffered: { name: "Services offered", key: 0 },
-    popularZipCode: { name: "Popular Zip Codes", key: 0 },
-    servicesOffered2: { name: "Cost", key: 0 },
-  };
   const [siteStats, setSiteStats] = useState(statsDefault);
 
+  useEffect(() => {
+    fetchNonProfitStats(setSiteStats);
+  }, []);
   return (
     <div className="Dashboard">
       <div className="dashHeader largeHeader">Dashboard</div>
