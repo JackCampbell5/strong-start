@@ -69,7 +69,8 @@ function NonProfitSelector({ errorText, setErrorText }) {
 }
 
 NonProfitSelector.propTypes = {
-  // data: PropTypes.func.isRequired,
+  errorText: PropTypes.string.isRequired,
+  setErrorText: PropTypes.func.isRequired,
 };
 
 export default NonProfitSelector;

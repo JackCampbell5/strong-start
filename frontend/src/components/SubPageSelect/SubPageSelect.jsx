@@ -70,7 +70,7 @@ function SubPageSelect({ changePage }) {
 }
 
 SubPageSelect.propTypes = {
-  // data: PropTypes.func.isRequired,
+  changePage: PropTypes.func.isRequired,
 };
 
 export default SubPageSelect;
