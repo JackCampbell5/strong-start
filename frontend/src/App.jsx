@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     navigate("/");
   }, []);
-  function subPageSelect1(subPage) {
+  function subPageChoose(subPage) {
     if (subPage === "nonprofit") {
       navigate("/nonprofit");
     } else if (subPage === "refugee") {
@@ -29,7 +29,7 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<SubPageSelect changePage={subPageSelect1} />}
+          element={<SubPageSelect changePage={subPageChoose} />}
         />
         <Route path="/nonprofit/*" element={<NonProfitOverall />} />
         <Route path="/refugee/*" element={<RefugeeOverall />} />

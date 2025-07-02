@@ -10,9 +10,4 @@ function IconComp({}) {
     </div>
   );
 }
-
-IconComp.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
-
 export default IconComp;
