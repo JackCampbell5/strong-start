@@ -13,8 +13,4 @@ function NewService({}) {
   );
 }
 
-NewService.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
-
 export default NewService;

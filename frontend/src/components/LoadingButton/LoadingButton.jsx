@@ -27,6 +27,8 @@ function LoadingButton({ loading, onClick, text }) {
 
 LoadingButton.propTypes = {
   loading: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 export default LoadingButton;

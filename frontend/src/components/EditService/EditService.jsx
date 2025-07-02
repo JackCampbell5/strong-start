@@ -159,7 +159,7 @@ function EditService({ serviceID = null }) {
 }
 
 EditService.propTypes = {
-  // data: PropTypes.func.isRequired,
+  serviceID: PropTypes.string.isRequired,
 };
 
 export default EditService;
