@@ -43,6 +43,7 @@ function EditService({ serviceID = null }) {
       retData.push(a);
     }
     setServiceInput(retData);
+    setLoading(false);
   }
 
   /**
@@ -105,8 +106,9 @@ function EditService({ serviceID = null }) {
   }
 
   useEffect(() => {
-    if (!serviceID) {
-      fetchServiceDetails(updateServiceInput);
+    if (serviceID) {
+      setLoading(true);
+      fetchServiceDetails(serviceID, updateServiceInput);
     }
   }, []);
 

@@ -149,3 +149,8 @@ export const serviceInputDefaultValues = {
     icon: MdOutlineSkipNext,
   },
 };
+
+export const serviceNameInputDefault = {
+  id: "default",
+  text: "Select a Service",
+};
