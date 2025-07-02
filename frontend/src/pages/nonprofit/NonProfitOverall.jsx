@@ -9,11 +9,11 @@ import "./NonProfitOverall.css";
 import Account from "#nonprofitPage/Account/Account";
 import Dashboard from "#nonprofitPage/Dashboard/Dashboard";
 import EditService from "#nonprofitPage/EditServicePage/EditServicePage";
-import Login from "#nonprofitPage/Login/Login";
+import LoginPage from "#nonprofitPage/LoginPage/LoginPage";
 import NewService from "#nonprofitPage/NewService/NewService";
 import SearchService from "#nonprofitPage/SearchService/SearchService";
 import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
-import SignIn from "#components/SignIn/SignIn";
+import RegisterPage from "#nonprofitPage/RegisterPage/RegisterPage";
 
 //Other Components
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
@@ -34,7 +34,7 @@ function NonProfitOverall({}) {
       <div className="mainContent">
         <Routes>
           <Route path="" element={<Dashboard />} />{" "}
-          {/* The default path will probably end up as the sign in or dashboard*/}
+          {/* The default path will probably end up as the Log In or dashboard*/}
           <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
           <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
           <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
@@ -43,8 +43,8 @@ function NonProfitOverall({}) {
             element={<SearchService />}
           />
           <Route path={`/${NpPages.VIEWSERVICES}`} element={<ViewServices />} />
-          <Route path={`/${NpPages.LOGIN}`} element={<Login />} />
-          <Route path={`/${NpPages.SIGNUP}`} element={<SignIn />} />
+          <Route path={`/${NpPages.LOGIN}`} element={<LoginPage />} />
+          <Route path={`/${NpPages.REGISTER}`} element={<RegisterPage />} />
           {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
         </Routes>
       </div>

@@ -57,7 +57,7 @@ model nonprofit_employee{
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
 
-// The refugee account so a refugee can sign in and out and save services.
+// The refugee account so a refugee can Log In and out and save services.
 model refugee{
   id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   username              String  @unique

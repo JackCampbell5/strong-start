@@ -89,10 +89,10 @@ function NavNonProfit({ navSet }) {
             </button>
             <button
               className="navBarButton"
-              id={location === NpPages.SIGNUP ? "selected" : "unselected"}
-              onClick={() => navSet(NpPages.SIGNUP)}
+              id={location === NpPages.REGISTER ? "selected" : "unselected"}
+              onClick={() => navSet(NpPages.REGISTER)}
             >
-              Sign Up
+              Register
             </button>
           </div>
         </div>

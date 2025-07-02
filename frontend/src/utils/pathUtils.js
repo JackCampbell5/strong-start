@@ -9,7 +9,7 @@ export const NpPages = Object.freeze({
   SEARCHSERVICE: "searchservice",
   VIEWSERVICES: "viewservices",
   LOGIN: "login",
-  SIGNUP: "signup",
+  REGISTER: "register",
 });
 
 /**

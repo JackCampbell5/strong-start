@@ -58,7 +58,7 @@ employeeRouter.get("/:employee_id", async (req, res, next) => {
 
 // Register a new non profit employee
 employeeRouter.post("/register", async (req, res, next) => {
-  // I believe it does not mater what non profit they are trying to sign into here for sign up as usernames have to be unique anyways.
+  // I believe it does not mater what non profit they are trying to Log Into here for Register as usernames have to be unique anyways.
   const employeeData = req.body.data;
   const username = employeeData.username;
   const nonprofit = req.body.nonprofit;

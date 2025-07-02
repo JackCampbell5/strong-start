@@ -1,22 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./Login.css";
+import "./LoginPage.css";
 import PropTypes from "prop-types";
 import Register from "#components/Register/Register";
-import SignIn from "#components/SignIn/SignIn";
+import Login from "#components/Login/Login";
 
-function Login({}) {
+function LoginPage({}) {
   return (
-    <div className="Login">
-      <h3>Login</h3>
-      <Register />
-      <SignIn />
+    <div className="LoginPage">
+      <h1>Login Page</h1>
+      <Login />
     </div>
   );
 }
 
-Login.propTypes = {
+LoginPage.propTypes = {
   // data: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default LoginPage;
