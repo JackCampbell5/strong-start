@@ -7,7 +7,7 @@ function LoadingButton({ loading, onClick, text }) {
   {
     return (
       <div className="LoadingButton">
-        <button onClick={onClick}>
+        <button onClick={onClick} className={"loading" + loading}>
           {loading ? (
             <div className="loadingInside">
               Loading

@@ -1,13 +1,10 @@
-/* .LoadingButton{{
-
-}} */
-
-/* When we are loading new movies make the button have not hover effect and change color */
-#loadingtrue:hover {
-  background-color: rgb(52, 0, 52);
+.LoadingButton button {
+  width: 100px;
+  height: 50px;
 }
-#loadingtrue {
-  background-color: rgb(52, 0, 52);
+
+.LoadingButton .loadingtrue:hover {
+  background-color: var(--background-darker);
 }
 
 /* Loading animation  */
