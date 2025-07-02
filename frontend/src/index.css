@@ -36,6 +36,13 @@ body {
 button {
   cursor: pointer;
   border: var(--text) solid 0px;
+  background-color: var(--background-darker);
+  font-size: 110%;
+  border: var(--border-light) solid 1px;
+  border-radius: 20px;
+}
+button:hover {
+  background-color: var(--background-hover);
 }
 
 .errorText {

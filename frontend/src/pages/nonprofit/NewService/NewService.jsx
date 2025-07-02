@@ -7,7 +7,7 @@ import EditService from "#components/EditService/EditService";
 function NewService({}) {
   return (
     <div className="NewService">
-      <h3>NewService</h3>
+      <h1>Create a New Service</h1>
       <EditService />
     </div>
   );
