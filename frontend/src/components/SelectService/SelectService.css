@@ -4,11 +4,11 @@
 
 .SelectService .selectService select {
   width: 40vw;
-  font-size: 150%;
   background-color: var(--background-darker);
   border: var(--border-mid) 5px solid;
   border-radius: 15px;
   color: var(--text);
+  font-size: 150%;
 }
 .SelectService .selectService select:hover {
   background-color: var(--background-hover);
