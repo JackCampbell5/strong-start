@@ -5,7 +5,7 @@ import "./Dashboard.css";
 import PropTypes from "prop-types";
 
 // Other components
-import EditService from "#nonprofitPage/EditServicePage/EditServicePage";
+import EditService from "#components/EditService/EditService";
 
 // Helper functions
 import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
@@ -35,6 +35,7 @@ function Dashboard({}) {
           })}
         </div>
       </div>
+      <div className="dashHeader smallHeader">Create New Service</div>
       <EditService />
     </div>
   );
