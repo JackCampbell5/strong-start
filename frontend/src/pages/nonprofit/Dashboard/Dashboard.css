@@ -1,7 +1,6 @@
 .Dashboard {
   text-align: left;
   margin: 0px 10px;
-  width: calc(100vw - 20px);
 }
 
 .Dashboard .dashHeader {

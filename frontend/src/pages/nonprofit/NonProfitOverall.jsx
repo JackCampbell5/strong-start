@@ -20,6 +20,7 @@ import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 
 // Utils
 import { NpPages } from "#utils/pathUtils";
+import SignIn from "#components/SignIn/SignIn";
 
 function NonProfitOverall({}) {
   const priorPart = "/nonprofit/";
@@ -35,12 +36,15 @@ function NonProfitOverall({}) {
           <Route path="" element={<Dashboard />} />{" "}
           {/* The default path will probably end up as the sign in or dashboard*/}
           <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
-          <Route path={`/${NpPages.EDITSERVICE}`} element={<Account />} />
-          <Route path={`/${NpPages.NEWSERVICE}`} element={<EditService />} />
-          <Route path={`/${NpPages.SEARCHSERVICE}`} element={<Login />} />
-          <Route path={`/${NpPages.VIEWSERVICES}`} element={<NewService />} />
-          <Route path={`/${NpPages.LOGIN}`} element={<SearchService />} />
-          <Route path={`/${NpPages.SIGNUP}`} element={<ViewServices />} />
+          <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
+          <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
+          <Route
+            path={`/${NpPages.SEARCHSERVICE}`}
+            element={<SearchService />}
+          />
+          <Route path={`/${NpPages.VIEWSERVICES}`} element={<ViewServices />} />
+          <Route path={`/${NpPages.LOGIN}`} element={<Login />} />
+          <Route path={`/${NpPages.SIGNUP}`} element={<SignIn />} />
           {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
         </Routes>
       </div>
