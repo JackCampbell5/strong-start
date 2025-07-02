@@ -49,8 +49,3 @@
 .EditService .errorText {
   width: 50%;
 }
-
-/* Placeholder Text */
-.EditService input::placeholder {
-  /* padding: 0px 10px; */
-}
