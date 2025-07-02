@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./EditService.css";
 import PropTypes from "prop-types";
 
@@ -12,11 +12,17 @@ import {
   serviceInputDefaultData,
   serviceInputDefaultValues,
 } from "#default-data/serviceDefaultData";
-import { fetchServiceDetails, postService } from "#fetch/serviceFetchUtils";
+import {
+  fetchServiceDetails,
+  postService,
+  putService,
+} from "#fetch/serviceFetchUtils";
 import { reformatData } from "#utils/textUtils";
 
 function EditService({ serviceID = null }) {
+  const formRef = useRef(null);
   const [errorText, setErrorText] = useState("");
+  const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState("");
 
   const [serviceInput, setServiceInput] = useState(serviceInputDefaultData);
@@ -85,11 +91,16 @@ function EditService({ serviceID = null }) {
    * @param {string} success - Blank if successful and the error message if not
    */
   function submitReturn(success) {
-    if (!success) {
-      window.location.reload();
+    setLoading(false);
+    if (success) {
+      // window.location.reload();
+      setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
+      setSuccessText("Service successfully uploaded");
+      setTimeout(() => {
+        setSuccessText("");
+      }, 5000); // 5000 milliseconds = 5 seconds
     } else {
-      setLoading(success);
-      setErrorText("Something went wrong. Please try again.");
+      setErrorText(success);
     }
   }
 
@@ -109,6 +120,7 @@ function EditService({ serviceID = null }) {
               {obj.icon ? <obj.icon /> : null}
               {obj.id === "description" ? (
                 <textarea
+                  key={obj.id + "Input"}
                   id={obj.id + "Input"}
                   type="text"
                   value={obj.value}
@@ -122,6 +134,7 @@ function EditService({ serviceID = null }) {
                 />
               ) : (
                 <input
+                  key={obj.id + "Input"}
                   id={obj.id + "Input"}
                   type="text"
                   value={obj.value}
@@ -140,6 +153,7 @@ function EditService({ serviceID = null }) {
       </div>
       <LoadingButton loading={loading} onClick={serviceSubmit} text="Submit" />
       <p className="errorText">{errorText}</p>
+      <p className="successText">{successText}</p>
     </div>
   );
 }
