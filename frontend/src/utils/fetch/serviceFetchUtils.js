@@ -151,7 +151,7 @@ export async function fetchSearch(data) {
  */
 export async function fetchAllServices() {
   let nonProfit = getNonProfit();
-  return { result: true, data: serviceSearchTestData };
+  return { valid: true, data: serviceSearchTestData };
   // Add the data as query params
   // TODO Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/name-list`)
