@@ -10,7 +10,7 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 // util functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 
-function Register({}) {
+function Register() {
   const navigate = useNavigate();
   let location = useLocation().pathname;
   const [username, setUsername] = useState("");

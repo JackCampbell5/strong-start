@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // Other Components
 import Register from "#components/Register/Register";
 
-function RegisterPage({}) {
+function RegisterPage() {
   {
     return (
       <div className="RegisterPage">
