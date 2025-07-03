@@ -1,3 +1,30 @@
-/* .Dashboard{
+.Dashboard {
+  text-align: left;
+  margin: 0px 10px;
+}
 
-} */
+.Dashboard .dashHeader {
+  border-bottom: 2px solid var(--border-dark);
+  width: 75%;
+}
+
+.Dashboard .largeHeader {
+  font-size: 300%;
+}
+
+.Dashboard .smallHeader {
+  font-size: 200%;
+}
+
+.Dashboard .siteStats {
+  width: 75%;
+  display: flex;
+}
+.Dashboard .siteStats .siteStatLeft {
+  width: 75%;
+}
+
+.Dashboard .siteStats .siteStatRight {
+  width: 25%;
+  text-align: right;
+}

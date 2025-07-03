@@ -1,7 +1,7 @@
 /* Need main class for height of page to allow for increased scrollability  */
 main {
   height: 70vh;
-  width: 100vw;
+  width: calc(100vw - 20px);
 }
 /* Flexbox inside main for the flexbox which allows for centering*/
 .SubPageSelect .flexContent {
@@ -20,10 +20,22 @@ main h1 {
 }
 main h2 {
   margin: 10px;
-  font-size: 300%;
+  font-size: 200%;
 }
 main .welcomeText {
   width: 70vw;
+}
+
+main .select-nonprofit select {
+  width: 40vw;
+  font-size: 150%;
+  background-color: var(--background-darker);
+  border: var(--border-mid) 5px solid;
+  border-radius: 15px;
+  color: var(--text);
+}
+main .select-nonprofit select:hover {
+  background-color: var(--background-hover);
 }
 
 /* The Div with the buttons  */
