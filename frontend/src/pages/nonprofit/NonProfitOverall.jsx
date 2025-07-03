@@ -18,42 +18,28 @@ import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
 import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 
+// Utils
+import { NpPages } from "#utils/pathUtils";
+
 function NonProfitOverall({}) {
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
+  function nav(path) {
+    navigate(priorPart + path);
+  }
   return (
     <div className="NonProfitOverall">
-      <NavNonProfit />
-      <h3>NonProfitOverall</h3>
-      {/* Navigation. Will be moved to nav bar eventually */}
-      <button onClick={() => navigate(priorPart)}>Non Profit Root Dir</button>
-      <button onClick={() => navigate(`${priorPart}account`)}>Account</button>
-      <button onClick={() => navigate(`${priorPart}dashboard`)}>
-        Dashboard
-      </button>
-      <button onClick={() => navigate(`${priorPart}editservice`)}>
-        EditService
-      </button>
-      <button onClick={() => navigate(`${priorPart}login`)}>Login</button>
-      <button onClick={() => navigate(`${priorPart}newservice`)}>
-        NewService
-      </button>
-      <button onClick={() => navigate(`${priorPart}searchservice`)}>
-        SearchService
-      </button>
-      <button onClick={() => navigate(`${priorPart}viewservices`)}>
-        ViewServices
-      </button>
+      <NavNonProfit onNavigate={nav} />
       <Routes>
         <Route path="" element={<h3>Non Profit Root Dir Viewer</h3>} />{" "}
         {/* The default path will probably end up as the sign in or dashboard*/}
-        <Route path="/account" element={<Account />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/editservice" element={<EditService />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/newservice" element={<NewService />} />
-        <Route path="/searchservice" element={<SearchService />} />
-        <Route path="/viewservices" element={<ViewServices />} />
+        <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
+        <Route path={`/${NpPages.EDITSERVICE}`} element={<Account />} />
+        <Route path={`/${NpPages.NEWSERVICE}`} element={<EditService />} />
+        <Route path={`/${NpPages.SEARCHSERVICE}`} element={<Login />} />
+        <Route path={`/${NpPages.VIEWSERVICES}`} element={<NewService />} />
+        <Route path={`/${NpPages.LOGIN}`} element={<SearchService />} />
+        <Route path={`/${NpPages.SIGNUP}`} element={<ViewServices />} />
         {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
       </Routes>
       <FooterNonProfit />

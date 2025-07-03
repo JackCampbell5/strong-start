@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './FooterNonProfit.css'
-import PropTypes from 'prop-types';
+import "./FooterNonProfit.css";
+import PropTypes from "prop-types";
 
 function FooterNonProfit({}) {
   return (
     <div className="FooterNonProfit">
-      <h3>FooterNonProfit</h3>
+      <p>Contact: StrongStart@gmail.com with any questions</p>
     </div>
   );
 }
 
 FooterNonProfit.propTypes = {
-    // data: PropTypes.func.isRequired,
+  // data: PropTypes.func.isRequired,
 };
 
 export default FooterNonProfit;
