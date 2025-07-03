@@ -1,0 +1,37 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0px;
+}
+
+.Login .userInfo {
+  margin: 10px;
+}
+.Login .loginField {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.Login .loginField p {
+  font-size: 125%;
+}
+
+.Login .loginField input {
+  margin: 0px 10px;
+  padding: 0px 10px;
+  background-color: var(--background-darker);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 125%;
+  height: 30px;
+}
+.Login .showPassword svg {
+  height: 30px;
+  width: 30px;
+}
