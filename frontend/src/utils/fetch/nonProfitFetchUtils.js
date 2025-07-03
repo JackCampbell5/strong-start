@@ -1,6 +1,9 @@
 import { getNonProfit } from "#utils/pathUtils";
-import { statsDefault } from "#default-data/nonProfitDefaultData";
-const nonProfitLink = import.meta.env.VITE_BACKEND_API;
+import {
+  statsDefault,
+  nonprofitAllDefault,
+} from "#default-data/nonProfitDefaultData";
+const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/nonprofit";
 
 export async function fetchNonProfitStats(after) {
   let nonProfit = getNonProfit();
@@ -14,12 +17,30 @@ export async function fetchNonProfitStats(after) {
   //       return response.json(); // Parse JSON data from the response
   //     })
   //     .then((data) => {
-  //       // Update UI or perform other actions with the data
+  //       // Update the component with the data
   //       after(data);
   //     })
   //     .catch((error) => {
   //       // Handle error
   //       console.error("Error fetching non-profit stats:", error);
-  //       // Display an error message or retry the request
+  //     });
+}
+
+export async function fetchNonProfitList(after) {
+  after(nonprofitAllDefault);
+  // await fetch(`${nonProfitLink}/all`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json(); // Parse JSON data from the response
+  //     })
+  //     .then((data) => {
+  //       // Update the component with the data
+  //       after(data);
+  //     })
+  //     .catch((error) => {
+  //       // Handle error
+  //       console.error("Error fetching all non-profits :", error);
   //     });
 }
