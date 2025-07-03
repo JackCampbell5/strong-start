@@ -15,7 +15,6 @@ export const NpPages = Object.freeze({
 export const QueryParams = Object.freeze({
   NONPROFIT: "nonprofit",
 });
-
 /**
  * Gets the last part of the url bar to help with highlighting the correct nav bar item
  * @returns The last part of the url bar
