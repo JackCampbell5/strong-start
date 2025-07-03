@@ -10,7 +10,7 @@ function RegisterPage({}) {
   {
     return (
       <div className="RegisterPage">
-        <h3>Register For a New Account</h3>
+        <h1>Register For a New Account</h1>
         <Register />
       </div>
     );
