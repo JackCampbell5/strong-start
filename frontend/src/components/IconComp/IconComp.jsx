@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./IconComp.css";
 import PropTypes from "prop-types";
 
-function IconComp({}) {
+function IconComp() {
   return (
     <div className="IconComp">
       <h1>Strong Start</h1>
