@@ -6,11 +6,11 @@ import PropTypes from "prop-types";
 // Other Components
 import Register from "#components/Register/Register";
 
-function RegisterPage({}) {
+function RegisterPage() {
   {
     return (
       <div className="RegisterPage">
-        <h3>Register For a New Account</h3>
+        <h1>Register For a New Account</h1>
         <Register />
       </div>
     );
