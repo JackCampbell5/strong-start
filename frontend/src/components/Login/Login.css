@@ -31,3 +31,7 @@
   font-size: 125%;
   height: 30px;
 }
+.Login .showPassword svg {
+  height: 30px;
+  width: 30px;
+}

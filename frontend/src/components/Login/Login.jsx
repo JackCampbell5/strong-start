@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { loginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
 
 import "./Login.css";
 import PropTypes, { func } from "prop-types";
@@ -15,6 +16,7 @@ function Login({}) {
   let location = useLocation().pathname;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,13 +71,19 @@ function Login({}) {
           <p>Password:</p>
           <input
             className="password"
-            type="text"
+            type={showPassword ? "text" : "password"}
             value={password}
             placeholder="password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
+          <div
+            className="showPassword"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
+          </div>
         </div>
       </div>
       <LoadingButton loading={loading} onClick={handleLogin} text="Log In" />
