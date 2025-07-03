@@ -29,9 +29,9 @@ function NavRefugee({ navSet }) {
         <button
           className={[
             "navBarButton",
-            location === RPages.SEARCHRESULTS ? "selected" : "unselected",
+            location === RPages.ALLSERVICES ? "selected" : "unselected",
           ].join(" ")}
-          onClick={() => navSet(RPages.SEARCHRESULTS)}
+          onClick={() => navSet(RPages.ALLSERVICES)}
         >
           All Services
         </button>
