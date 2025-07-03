@@ -15,3 +15,32 @@ npm run dev
 - [React](https://reactjs.org/)
 - [React Router](https://reactrouter.com/)
 - [React-icons](https://react-icons.github.io/react-icons/)
+
+## Style
+
+### CSS
+
+- Display / position / flex
+- Flexbox
+  - flex-direction
+  - align-items
+  - justify-content
+  - flex-wrap
+  - gap
+- width/height
+- Margin
+- Padding
+- Background Color
+- Border Stuff
+- Text
+- Cursor
+- Animations
+
+### JS Imports Order
+
+- React
+- Other External Imports
+- CSS Files
+- Pages in React
+- React Components
+- Util Functions
