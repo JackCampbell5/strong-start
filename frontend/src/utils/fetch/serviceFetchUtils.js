@@ -5,7 +5,7 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 export async function fetchServiceDetails(after) {
   let nonProfit = getNonProfit();
   after(serviceInputDefaultData);
-  // Temp until frontend connects to backend
+  //   // TODO will uncomment once frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/${id}`)
   //     .then((response) => {
   //       if (!response.ok) {
@@ -26,7 +26,7 @@ export async function fetchServiceDetails(after) {
 export async function postService(info, after) {
   let nonProfit = getNonProfit();
   after(true);
-  //   // Temp until frontend connects to backend
+  //   // TODO will uncomment once frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
   //     method: "POST",
   //     headers: { "Content-Type": "application/json" },
@@ -53,7 +53,7 @@ export async function postService(info, after) {
 export async function putService(info, after) {
   let nonProfit = getNonProfit();
   after(true);
-  //   // Temp until frontend connects to backend
+  //   // TODO will uncomment once frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
   //     method: "PUT",
   //     headers: { "Content-Type": "application/json" },
