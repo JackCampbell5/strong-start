@@ -29,7 +29,7 @@ function NonProfitOverall({}) {
   }
   return (
     <div className="NonProfitOverall">
-      <NavNonProfit navSet={nav} />
+      <NavNonProfit onNavigate={nav} />
       <Routes>
         <Route path="" element={<h3>Non Profit Root Dir Viewer</h3>} />{" "}
         {/* The default path will probably end up as the sign in or dashboard*/}
