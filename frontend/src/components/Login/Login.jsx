@@ -47,7 +47,6 @@ function Login({}) {
     let allLocations = location.split("/");
     let ending = allLocations[allLocations.length - 1];
     let newPath = location.replace(ending, "register");
-    console.log(newPath);
     navigate(newPath);
   }
 

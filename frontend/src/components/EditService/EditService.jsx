@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import "./EditService.css";
 import PropTypes from "prop-types";
 
@@ -20,7 +20,6 @@ import {
 import { reformatData } from "#utils/textUtils";
 
 function EditService({ serviceID = null }) {
-  const formRef = useRef(null);
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState("");
