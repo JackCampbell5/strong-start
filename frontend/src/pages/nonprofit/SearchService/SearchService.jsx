@@ -21,7 +21,7 @@ function SearchService({}) {
     fetchSearch(data).then((results) => {
       if (results.valid) {
         setLoading(false);
-        setSearchResults(results);
+        setSearchResults(results.data);
       } else {
         setErrorText(results.error);
       }
@@ -31,9 +31,7 @@ function SearchService({}) {
     <div className="SearchService">
       <h3>SearchService</h3>
       <SearchFilters loading={loading} searchFor={searchFor} />
-      {searchResults.length !== 0 ? (
-        <ServiceList data={searchResults} />
-      ) : null}
+      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
     </div>
   );
