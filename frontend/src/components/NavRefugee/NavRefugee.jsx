@@ -14,7 +14,8 @@ function NavRefugee({ navSet }) {
     <div className="NavRefugee">
       <div className="navLogo" onClick={() => navSet("")}>
         <IconComp />
-      </div>
+      </div>{" "}
+      <h3>Refugee</h3>
       <div className="navAllButtons">
         <button
           className={[
