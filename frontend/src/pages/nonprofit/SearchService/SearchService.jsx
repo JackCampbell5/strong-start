@@ -1,6 +1,6 @@
-import React from "react";
+import React, { use } from "react";
 import ReactDOM from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./SearchService.css";
 import PropTypes, { func } from "prop-types";
 
@@ -32,7 +32,7 @@ function SearchService({}) {
       <h3>SearchService</h3>
       <SearchFilters loading={loading} searchFor={searchFor} />
       {searchResults.length !== 0 ? (
-        <ServiceList searchResults={searchResults} />
+        <ServiceList data={searchResults} />
       ) : null}
       <p className="errorText">{errorText}</p>
     </div>

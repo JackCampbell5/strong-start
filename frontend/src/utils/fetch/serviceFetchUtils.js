@@ -1,8 +1,6 @@
 import { getNonProfit } from "#utils/pathUtils";
-import {
-  serviceInputDefaultData,
-  serviceSearchTestData,
-} from "#default-data/serviceDefaultData";
+import { serviceInputDefaultData } from "#default-data/serviceDefaultData";
+import { serviceSearchTestData } from "#test-data/serviceTestData";
 import { data } from "react-router";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 
@@ -126,6 +124,32 @@ export async function putService(info, after) {
  * @param {Function} after - Function to call with data fetched
  */
 export async function fetchSearch(data) {
+  let nonProfit = getNonProfit();
+  return { valid: true, data: serviceSearchTestData };
+  // Add the data as query params
+  // TODO Temp until frontend connects to backend
+  // await fetch(`${serviceLink}/${nonProfit}/name-list`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json(); // Parse JSON data from the response
+  //     })
+  //     .then((data) => {
+  //       // Update the component with the data
+  //       after(data);
+  //     })
+  //     .catch((error) => {
+  //       // Handle error
+  //       console.error("Error fetching given service:", error);
+  //     });
+}
+
+/**
+ *
+ * @returns An object containing all the services in this non profits database
+ */
+export async function fetchAllServices() {
   let nonProfit = getNonProfit();
   return { valid: true, data: serviceSearchTestData };
   // Add the data as query params
