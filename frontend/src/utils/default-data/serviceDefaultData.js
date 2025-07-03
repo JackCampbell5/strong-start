@@ -207,7 +207,7 @@ export const serviceSearchDefault = [
     icon: MdOutlinePersonAddAlt,
   },
 ];
-const serviceSearchTestData = [
+export const serviceSearchTestData = [
   {
     id: 1,
     name: "American Red Cross",
