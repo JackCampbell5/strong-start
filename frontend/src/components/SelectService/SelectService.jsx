@@ -12,11 +12,9 @@ function SelectService({ setServiceID, setServiceName }) {
   {
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
     function setServiceListHelper(data) {
-      console.log(data);
       if (data[0].id !== "default") {
         data = [serviceNameInputDefault, ...data];
       }
-      console.log(data[1]);
       setServiceList(data);
     }
 

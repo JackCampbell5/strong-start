@@ -1,6 +1,6 @@
-import React from "react";
+import React, { use } from "react";
 import ReactDOM from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./SearchService.css";
 import PropTypes, { func } from "prop-types";
 
@@ -18,16 +18,16 @@ function SearchService({}) {
   function searchFor(data) {
     setLoading(true);
     fetchSearch(data).then((results) => {
-      setSearchResults(results);
+      setLoading(false);
+      setSearchResults(results.data);
     });
   }
   return (
     <div className="SearchService">
       <h3>SearchService</h3>
       <SearchFilters loading={loading} searchFor={searchFor} />
-      {searchResults.length !== 0 ? (
-        <ServiceList searchResults={searchResults} />
-      ) : null}
+      <h1>Search Results</h1>
+      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
     </div>
   );
 }
