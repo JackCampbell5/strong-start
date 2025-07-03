@@ -30,7 +30,7 @@ function NonProfitOverall({}) {
   }
   return (
     <div className="NonProfitOverall">
-      <NavNonProfit onNavigate`={nav} />
+      <NavNonProfit onNavigate={nav} />
       <div className="mainContent">
         <Routes>
           <Route path="" element={<Dashboard />} />{" "}
