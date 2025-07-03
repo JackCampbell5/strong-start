@@ -14,20 +14,27 @@ import { fetchSearch } from "#fetch/serviceFetchUtils";
 function SearchService({}) {
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [errorText, setErrorText] = useState("");
 
   function searchFor(data) {
     setLoading(true);
     fetchSearch(data).then((results) => {
-      setLoading(false);
-      setSearchResults(results.data);
+      if (results.valid) {
+        setLoading(false);
+        setSearchResults(results);
+      } else {
+        setErrorText(results.error);
+      }
     });
   }
   return (
     <div className="SearchService">
       <h3>SearchService</h3>
       <SearchFilters loading={loading} searchFor={searchFor} />
-      <h1>Search Results</h1>
-      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
+      {searchResults.length !== 0 ? (
+        <ServiceList data={searchResults} />
+      ) : null}
+      <p className="errorText">{errorText}</p>
     </div>
   );
 }
