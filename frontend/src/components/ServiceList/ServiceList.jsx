@@ -4,11 +4,16 @@ import "./ServiceList.css";
 import PropTypes from "prop-types";
 import Service from "#components/Service/Service";
 
-function ServiceList({}) {
+function ServiceList({ data }) {
   return (
     <div className="ServiceList">
-      <h3>ServiceList</h3>
-      <Service />
+      <div className="allServices">
+        {data
+          ? data.map((obj) => {
+              return <Service key={obj.id} data={obj} />;
+            })
+          : null}
+      </div>
     </div>
   );
 }
