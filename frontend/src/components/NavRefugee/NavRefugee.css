@@ -1,3 +1,78 @@
-/* .NavRefugee{
+.NavRefugee {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: calc(100vw - 10px);
+  border-bottom: var(--border-light) 2px solid;
+}
+.NavRefugee .navLogo {
+  padding-left: 10px;
+  height: 100%;
+  width: 25%;
+}
 
-} */
+.NavRefugee .navAllButtons {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.NavRefugee .navBarButton {
+  height: 50px;
+  margin: 0px;
+  padding: 0px 10px;
+  background: var(--background-darker);
+  border-left: 1px solid var(--border-mid);
+  border-right: 1px solid var(--border-mid);
+  border-bottom: var(--border-light) 1px solid;
+  color: var(--text);
+  font-size: 100%;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+.NavRefugee .navAllButtons .navBarButton:hover {
+  background: var(--background-hover);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.NavRefugee .selected {
+  background: var(--background-selected);
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Nav bar things */
+
+/* The container <div> - needed to position the dropdown content */
+.NavRefugee .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.NavRefugee .dropdown-content {
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 10px;
+}
+
+.NavRefugee .dropdownArrow {
+  vertical-align: middle;
+}
+
+.NavRefugee #not-shown {
+  display: none;
+}
+.NavRefugee #shown {
+  display: flex;
+  flex-direction: column;
+}

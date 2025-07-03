@@ -22,7 +22,7 @@ import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 // Utils
 import { NpPages } from "#utils/pathUtils";
 
-function NonProfitOverall({}) {
+function NonProfitOverall() {
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
   function nav(path) {
@@ -52,9 +52,5 @@ function NonProfitOverall({}) {
     </div>
   );
 }
-
-NonProfitOverall.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default NonProfitOverall;

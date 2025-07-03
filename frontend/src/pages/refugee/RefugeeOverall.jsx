@@ -15,37 +15,35 @@ import Help from "#refugeePage/Help/Help";
 import FooterRefugee from "#components/FooterRefugee/FooterRefugee";
 import NavRefugee from "#components/NavRefugee/NavRefugee";
 
-function RefugeeOverall({}) {
+// Utils
+import { RPages } from "#utils/pathUtils";
+
+function RefugeeOverall() {
   const priorPart = "/refugee/";
   const navigate = useNavigate();
+  function nav(path) {
+    navigate(priorPart + path);
+  }
 
   return (
     <div className="RefugeeOverall">
-      <NavRefugee />
-      <h3>RefugeeOverall</h3>
-      {/* Navigation. Will be moved to nav bar eventually */}
-      <button onClick={() => navigate(`${priorPart}`)}>Refugee Root Dir</button>
-      <button onClick={() => navigate(`${priorPart}contact`)}>Contact</button>
-      <button onClick={() => navigate(`${priorPart}home`)}>Home</button>
-      <button onClick={() => navigate(`${priorPart}searchresults`)}>
-        SearchResults
-      </button>
-      <button onClick={() => navigate(`${priorPart}help`)}>Help</button>
-      <Routes>
-        <Route path="/" element={<h1>Refugee Root Dir</h1>} />
-        {/* The default path will probably end up as the home page*/}
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/searchresults" element={<SearchResults />} />
-        <Route path="/help" element={<Help />} />
-      </Routes>
+      <NavRefugee navSet={nav} />
+      <div className="mainContent">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* The default path will probably end up as the home page*/}
+          <Route path={`/${RPages.HOME}`} element={<Home />} />
+          <Route
+            path={`/${RPages.SEARCHRESULTS}`}
+            element={<SearchResults />}
+          />
+          <Route path={`/${RPages.CONTACT}`} element={<Contact />} />
+          <Route path={`/${RPages.HELP}`} element={<Help />} />
+        </Routes>
+      </div>
       <FooterRefugee />
     </div>
   );
 }
-
-RefugeeOverall.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default RefugeeOverall;
