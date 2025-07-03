@@ -11,6 +11,12 @@ export const NpPages = Object.freeze({
   LOGIN: "login",
   REGISTER: "register",
 });
+export const RPages = Object.freeze({
+  CONTACT: "contact",
+  HOME: "home",
+  SEARCHRESULTS: "searchresults",
+  HELP: "help",
+});
 
 /**
  * Gets the last part of the url bar to help with highlighting the correct nav bar item
