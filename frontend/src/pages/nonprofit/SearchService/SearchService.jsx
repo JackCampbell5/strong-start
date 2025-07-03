@@ -14,11 +14,17 @@ import { fetchSearch } from "#fetch/serviceFetchUtils";
 function SearchService({}) {
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [errorText, setErrorText] = useState("");
 
   function searchFor(data) {
     setLoading(true);
     fetchSearch(data).then((results) => {
-      setSearchResults(results);
+      if (results.valid) {
+        setLoading(false);
+        setSearchResults(results);
+      } else {
+        setErrorText(results.error);
+      }
     });
   }
   return (
@@ -28,6 +34,7 @@ function SearchService({}) {
       {searchResults.length !== 0 ? (
         <ServiceList searchResults={searchResults} />
       ) : null}
+      <p className="errorText">{errorText}</p>
     </div>
   );
 }
