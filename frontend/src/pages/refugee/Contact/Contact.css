@@ -1,3 +1,8 @@
-/* .Contact{
-
-} */
+.Contact {
+  height: 100%;
+}
+.Contact .contactButton {
+  width: 50%;
+  height: 50%;
+  font-size: 15vh;
+}
