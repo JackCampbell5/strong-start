@@ -48,7 +48,8 @@ function SelectService({ setServiceID, setServiceName }) {
 }
 
 SelectService.propTypes = {
-  // data: PropTypes.func.isRequired,
+  setServiceID: PropTypes.func.isRequired,
+  setServiceName: PropTypes.func.isRequired,
 };
 
 export default SelectService;
