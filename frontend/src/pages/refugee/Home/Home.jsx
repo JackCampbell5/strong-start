@@ -11,7 +11,7 @@ import ServiceList from "#components/ServiceList/ServiceList";
 // utils
 import { fetchSearch } from "#fetch/serviceFetchUtils";
 
-function Home({}) {
+function Home() {
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
