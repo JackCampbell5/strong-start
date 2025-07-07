@@ -1,15 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { loginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
-
 import "./Login.css";
-import PropTypes, { func } from "prop-types";
 
 // Other components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
+
+//util functions
+import { loginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 
 function Login({}) {
   const navigate = useNavigate();

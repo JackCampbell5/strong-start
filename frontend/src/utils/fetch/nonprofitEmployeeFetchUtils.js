@@ -31,14 +31,14 @@ export async function loginNonprofitEmployee(username, password) {
   //       return data;
   //     });
 }
+
 /**
  * Creates a new service for a nonprofit
  * @param {object} info - The info to post to the backend
- * @param {*} after  - Function to call with data fetched
  */
-export async function registerNonprofitEmployee(data, after) {
+export async function registerNonprofitEmployee(data) {
   let nonProfit = getNonProfit();
-  after({ success: true, message: "Register Success" });
+  return { success: true, message: "Register Success" };
   //   // Temp until frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/register`, {
   //     method: "POST",
