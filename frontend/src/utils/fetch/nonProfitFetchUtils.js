@@ -1,13 +1,11 @@
 import { getNonProfit } from "#utils/pathUtils";
-import {
-  statsDefault,
-  nonprofitAllDefault,
-} from "#default-data/nonProfitDefaultData.js";
+import { statsDefault } from "#default-data/nonProfitDefaultData";
+import nonprofitAllTest from "#test-data/nonprofitAllTest";
 const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/nonprofit";
 
-export async function fetchNonProfitStats(after) {
+export async function fetchNonProfitStats() {
   let nonProfit = getNonProfit();
-  after(statsDefault);
+  return statsDefault;
   // Temp until frontend connects to backend
   // await fetch(`${nonProfit}${id}/stats`)
   //     .then((response) => {
@@ -26,8 +24,8 @@ export async function fetchNonProfitStats(after) {
   //     });
 }
 
-export async function fetchNonProfitList(after) {
-  after(nonprofitAllDefault);
+export async function fetchNonProfitList() {
+  return nonprofitAllTest;
   // await fetch(`${nonProfitLink}/all`)
   //     .then((response) => {
   //       if (!response.ok) {

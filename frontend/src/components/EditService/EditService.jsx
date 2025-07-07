@@ -8,10 +8,8 @@ import PropTypes from "prop-types";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 // Util Methods
-import {
-  serviceInputDefaultData,
-  serviceInputDefaultValues,
-} from "#default-data/serviceDefaultData.js";
+import { serviceInputDefaultValues } from "#default-data/serviceDefaultData.js";
+import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 import {
   fetchServiceDetails,
   postService,
@@ -25,25 +23,6 @@ function EditService({ serviceID = null }) {
   const [loading, setLoading] = useState("");
 
   const [serviceInput, setServiceInput] = useState(serviceInputDefaultData);
-
-  // Make sure the data that was sent back includes the icon and default values
-  function updateServiceInput(data) {
-    let retData = [];
-    for (let a of data) {
-      let key = a.id;
-      if (serviceInputDefaultValues[key]) {
-        if (!a.default) {
-          a.default = serviceInputDefaultValues[key].default;
-        }
-        if (!a.icon) {
-          a.icon = serviceInputDefaultValues[key].icon;
-        }
-      }
-      retData.push(a);
-    }
-    setServiceInput(retData);
-    setLoading(false);
-  }
 
   /**
    * Submit the service to the backend
@@ -107,7 +86,24 @@ function EditService({ serviceID = null }) {
   useEffect(() => {
     if (serviceID) {
       setLoading(true);
-      fetchServiceDetails(serviceID, updateServiceInput);
+      fetchServiceDetails(serviceID).then((data) => {
+        // Make sure the data that was sent back includes the icon and default values
+        let retData = [];
+        for (let a of data) {
+          let key = a.id;
+          if (serviceInputDefaultValues[key]) {
+            if (!a.default) {
+              a.default = serviceInputDefaultValues[key].default;
+            }
+            if (!a.icon) {
+              a.icon = serviceInputDefaultValues[key].icon;
+            }
+          }
+          retData.push(a);
+        }
+        setServiceInput(retData);
+        setLoading(false);
+      });
     }
   }, []);
 

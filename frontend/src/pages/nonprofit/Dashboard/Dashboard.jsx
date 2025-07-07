@@ -15,7 +15,9 @@ function Dashboard({}) {
   const [siteStats, setSiteStats] = useState(statsDefault);
 
   useEffect(() => {
-    fetchNonProfitStats(setSiteStats);
+    fetchNonProfitStats().then((data) => {
+      setSiteStats(data);
+    });
   }, []);
   return (
     <div className="Dashboard">
@@ -25,13 +27,17 @@ function Dashboard({}) {
       <p>How your sites doing</p>
       <div className="siteStats">
         <div className="siteStatLeft">
-          {Object.entries(siteStats).map((obj, key) => {
-            return <p key={obj[0]}>{obj[1].name}</p>;
+          {Object.entries(siteStats).map((obj) => {
+            let key = obj[0]; // gets the key from obj.entries
+            let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+            return <p key={key}>{dict.name}</p>;
           })}
         </div>
         <div className="siteStatRight">
-          {Object.entries(siteStats).map((obj, key) => {
-            return <p key={obj[0]}>{obj[1].key}</p>;
+          {Object.entries(siteStats).map((obj) => {
+            let key = obj[0]; // gets the key from obj.entries
+            let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+            return <p key={key}>{dict.key}</p>;
           })}
         </div>
       </div>
