@@ -151,6 +151,6 @@ export const serviceInputDefaultValues = {
 };
 
 export const serviceNameInputDefault = {
-  id: "default",
+  id: "unselected",
   text: "Select a Service",
 };

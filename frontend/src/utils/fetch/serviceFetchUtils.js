@@ -34,7 +34,7 @@ export async function fetchServiceDetails(id) {
  */
 export async function fetchServiceNameList(after) {
   let nonProfit = getNonProfit();
-  after([{ id: 100, text: "Test Service" }]);
+  return [{ id: 100, text: "Test Service" }];
   // TODO Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/name-list`)
   //     .then((response) => {

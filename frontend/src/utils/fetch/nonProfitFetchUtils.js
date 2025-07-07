@@ -3,9 +3,9 @@ import { statsDefault } from "#default-data/nonProfitDefaultData";
 import nonprofitAllTest from "#test-data/nonprofitAllTest";
 const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/nonprofit";
 
-export async function fetchNonProfitStats(after) {
+export async function fetchNonProfitStats() {
   let nonProfit = getNonProfit();
-  after(statsDefault);
+  return statsDefault;
   // Temp until frontend connects to backend
   // await fetch(`${nonProfit}${id}/stats`)
   //     .then((response) => {

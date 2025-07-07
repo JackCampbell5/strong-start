@@ -8,9 +8,12 @@ import PropTypes from "prop-types";
 import EditService from "#components/EditService/EditService";
 import SelectService from "#components/SelectService/SelectService";
 
+//Utils
+import { serviceNameInputDefault } from "#default-data/serviceDefaultData";
+
 function EditServicePage({}) {
-  const [serviceID, setServiceID] = useState("default");
-  const [serviceName, setServiceName] = useState("default");
+  const [serviceID, setServiceID] = useState(serviceNameInputDefault.id);
+  const [serviceName, setServiceName] = useState(serviceNameInputDefault.id);
 
   return (
     <div className="EditServicePage">
@@ -19,7 +22,7 @@ function EditServicePage({}) {
         setServiceID={setServiceID}
         setServiceName={setServiceName}
       />
-      {serviceID !== "default" ? (
+      {serviceID !== serviceNameInputDefault.id ? (
         <div className="editOneService">
           <h1>Editing {serviceName}</h1> <EditService serviceID={serviceID} />{" "}
         </div>
