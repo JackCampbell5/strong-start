@@ -25,6 +25,10 @@
     "#utils/*": "./utils/*",
     "#prisma/*": "./generated/prisma/*",
     "#errors/*": "./middleware/errors/*",
-    "#routes/*": "./api/routes/*"
+    "#routes/*": "./api/routes/*",
+    "#seed/*": "./prisma/seed/*"
+  },
+  "prisma": {
+    "seed": "node prisma/seed/seed.js"
   }
 }

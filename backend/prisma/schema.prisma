@@ -51,7 +51,6 @@ model nonprofit_employee{
   id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   username              String   @unique
   password              String
-  signin_info           String
   email                 String
   nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
