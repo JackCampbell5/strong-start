@@ -32,7 +32,7 @@ function Login({}) {
       return;
     }
     setLoading(true);
-    loginNonprofitEmployee(username, password, loginReturn);
+    loginNonprofitEmployee(username, password).then(loginReturn);
   }
   function loginReturn(data) {
     setLoading(false);
@@ -47,7 +47,6 @@ function Login({}) {
     let allLocations = location.split("/");
     let ending = allLocations[allLocations.length - 1];
     let newPath = location.replace(ending, "register");
-    console.log(newPath);
     navigate(newPath);
   }
 
@@ -79,7 +78,7 @@ function Login({}) {
           />
           <div
             className="showPassword"
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
           </div>

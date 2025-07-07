@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Register from "#components/Register/Register";
 import Login from "#components/Login/Login";
 
-function LoginPage({}) {
+function LoginPage() {
   return (
     <div className="LoginPage">
       <h1>Login Page</h1>
@@ -13,9 +13,5 @@ function LoginPage({}) {
     </div>
   );
 }
-
-LoginPage.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default LoginPage;
