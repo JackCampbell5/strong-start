@@ -7,12 +7,12 @@ import PropTypes from "prop-types";
 import IconComp from "#components/IconComp/IconComp";
 import { getLocation, RPages } from "#utils/pathUtils";
 
-function NavRefugee({ navSet }) {
+function NavRefugee({ onNavigate }) {
   const location = getLocation();
 
   return (
     <div className="NavRefugee">
-      <div className="navLogo" onClick={() => navSet("")}>
+      <div className="navLogo" onClick={() => onNavigate("")}>
         <IconComp />
       </div>{" "}
       <h3>Refugee</h3>
@@ -22,7 +22,7 @@ function NavRefugee({ navSet }) {
             "navBarButton",
             location === RPages.HOME ? "selected" : "unselected",
           ].join(" ")}
-          onClick={() => navSet(RPages.HOME)}
+          onClick={() => onNavigate(RPages.HOME)}
         >
           Home
         </button>
@@ -31,7 +31,7 @@ function NavRefugee({ navSet }) {
             "navBarButton",
             location === RPages.SEARCHRESULTS ? "selected" : "unselected",
           ].join(" ")}
-          onClick={() => navSet(RPages.SEARCHRESULTS)}
+          onClick={() => onNavigate(RPages.SEARCHRESULTS)}
         >
           All Services
         </button>
@@ -40,7 +40,7 @@ function NavRefugee({ navSet }) {
             "navBarButton",
             location === RPages.CONTACT ? "selected" : "unselected",
           ].join(" ")}
-          onClick={() => navSet(RPages.CONTACT)}
+          onClick={() => onNavigate(RPages.CONTACT)}
         >
           Contact
         </button>
@@ -49,7 +49,7 @@ function NavRefugee({ navSet }) {
             "navBarButton",
             location === RPages.HELP ? "selected" : "unselected",
           ].join(" ")}
-          onClick={() => navSet(RPages.HELP)}
+          onClick={() => onNavigate(RPages.HELP)}
         >
           Help
         </button>
@@ -59,7 +59,7 @@ function NavRefugee({ navSet }) {
 }
 
 NavRefugee.propTypes = {
-  // data: PropTypes.func.isRequired,
+  onNavigate: PropTypes.func.isRequired,
 };
 
 export default NavRefugee;
