@@ -53,27 +53,25 @@ function SearchFilters({ loading, searchFor }) {
     <div className="SearchFilters">
       <h1>Filters</h1>
       <div className="allSearch">
-        {searchInput.map((obj, index) => {
-          return (
-            <div className="searchParam" key={obj.id + "Class"}>
-              <p id={obj.id + "P"}>{obj.name}:</p>
-              {obj.icon ? <obj.icon /> : null}
-              <input
-                key={obj.id + "Input"}
-                id={obj.id + "Input"}
-                type="text"
-                value={obj.value}
-                placeholder={obj.default}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  const data = [...searchInput];
-                  data[index].value = value;
-                  setSearchInput(data);
-                }}
-              />
-            </div>
-          );
-        })}
+        {searchInput.map((obj, index) => (
+          <div className="searchParam" key={obj.id + "Class"}>
+            <p id={obj.id + "P"}>{obj.name}:</p>
+            {obj.icon ? <obj.icon /> : null}
+            <input
+              key={obj.id + "Input"}
+              id={obj.id + "Input"}
+              type="text"
+              value={obj.value}
+              placeholder={obj.default}
+              onChange={(e) => {
+                const value = e.target.value;
+                const data = [...searchInput];
+                data[index].value = value;
+                setSearchInput(data);
+              }}
+            />
+          </div>
+        ))}
       </div>
       <LoadingButton loading={loading} onClick={searchSubmit} text="Submit" />
       <p className="errorText">{errorText}</p>
