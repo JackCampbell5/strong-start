@@ -61,7 +61,7 @@ export async function fetchServiceNameList(after) {
 export async function postService(info, after) {
   let nonProfit = getNonProfit();
   after(true);
-  //   // Temp until frontend connects to backend
+  //   // TODO when frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
   //     method: "POST",
   //     headers: { "Content-Type": "application/json" },
@@ -93,7 +93,7 @@ export async function postService(info, after) {
 export async function putService(info, after) {
   let nonProfit = getNonProfit();
   after(true);
-  //   // Temp until frontend connects to backend
+  //   // TODO when frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
   //     method: "PUT",
   //     headers: { "Content-Type": "application/json" },

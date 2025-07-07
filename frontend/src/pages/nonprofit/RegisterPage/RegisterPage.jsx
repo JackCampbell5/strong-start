@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 // Other Components
 import Register from "#components/Register/Register";
 
-function RegisterPage({}) {
+function RegisterPage() {
   {
     return (
       <div className="RegisterPage">
@@ -16,9 +16,5 @@ function RegisterPage({}) {
     );
   }
 }
-
-RegisterPage.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default RegisterPage;
