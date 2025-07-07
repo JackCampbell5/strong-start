@@ -1,20 +1,40 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { useState } from "react";
 import "./Home.css";
 import PropTypes from "prop-types";
-import SearchFilters from "#components/SearchFilters/SearchFilters";
 
-function Home({}) {
+// Other components
+import SearchFilters from "#components/SearchFilters/SearchFilters";
+import ServiceList from "#components/ServiceList/ServiceList";
+
+// utils
+import { fetchSearch } from "#fetch/serviceFetchUtils";
+
+function Home() {
+  const [loading, setLoading] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [errorText, setErrorText] = useState("");
+
+  function searchFor(data) {
+    setLoading(true);
+    fetchSearch(data).then((results) => {
+      if (results.valid) {
+        setLoading(false);
+        setSearchResults(results.data);
+      } else {
+        setErrorText(results.error);
+      }
+    });
+  }
   return (
-    <div className="Home">
+    <div className="SearchService">
       <h3>Home</h3>
-      <SearchFilters />
+      <SearchFilters loading={loading} searchFor={searchFor} />
+      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
+      <p className="errorText">{errorText}</p>
     </div>
   );
 }
-
-Home.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default Home;

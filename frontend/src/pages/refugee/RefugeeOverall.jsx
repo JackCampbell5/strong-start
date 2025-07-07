@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 // Other pages
 import Contact from "#refugeePage/Contact/Contact";
 import Home from "#refugeePage/Home/Home";
-import SearchResults from "#refugeePage/SearchResults/SearchResults";
+import AllServices from "#refugeePage/AllServices/AllServices";
 import Help from "#refugeePage/Help/Help";
 
 //Other Components
@@ -33,10 +33,7 @@ function RefugeeOverall() {
           <Route path="/" element={<Home />} />
           {/* The default path will probably end up as the home page*/}
           <Route path={`/${RPages.HOME}`} element={<Home />} />
-          <Route
-            path={`/${RPages.SEARCHRESULTS}`}
-            element={<SearchResults />}
-          />
+          <Route path={`/${RPages.ALLSERVICES}`} element={<AllServices />} />
           <Route path={`/${RPages.CONTACT}`} element={<Contact />} />
           <Route path={`/${RPages.HELP}`} element={<Help />} />
         </Routes>

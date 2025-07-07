@@ -14,7 +14,7 @@ export const NpPages = Object.freeze({
 export const RPages = Object.freeze({
   CONTACT: "contact",
   HOME: "home",
-  SEARCHRESULTS: "searchresults",
+  ALLSERVICES: "allservices",
   HELP: "help",
 });
 
