@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 
 import {
   nonprofitDefaultOption,
-  nonprofitDefaultID,
 } from "#default-data/nonProfitDefaultData";
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
 import { QueryParams } from "#utils/pathUtils";
@@ -19,7 +18,7 @@ function NonProfitSelector({ errorText, setErrorText }) {
     // Add query params when the dropdown is changed
     function addNonProfit(e) {
       let val = e.target.value;
-      if (val === nonprofitDefaultID) {
+      if (val === nonprofitDefaultOption.id) {
         setSearchParams(searchParams.delete(QueryParams.NONPROFIT));
       } else {
         searchParams.set(QueryParams.NONPROFIT, val); // Set your query parameter here
@@ -32,16 +31,14 @@ function NonProfitSelector({ errorText, setErrorText }) {
     const [nonprofitList, setNonprofitList] = useState([
       nonprofitDefaultOption,
     ]);
-    function setNonprofitListHelper(data) {
-      console.log(data);
-      if (!(data[0].id === nonprofitDefaultID)) {
-        data = [nonprofitDefaultOption, ...data];
-      }
-      setNonprofitList(data);
-    }
 
     useEffect(() => {
-      fetchNonProfitList(setNonprofitListHelper);
+      fetchNonProfitList().then((data) => {
+       if (!(data[0].id === nonprofitDefaultOption.id)) {
+        data = [nonprofitDefaultOption, ...data];
+        }
+        setNonprofitList(data);
+      });
     }, []);
     return (
       <div className="NonProfitSelector">

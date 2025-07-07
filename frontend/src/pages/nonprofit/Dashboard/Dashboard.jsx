@@ -15,7 +15,9 @@ function Dashboard({}) {
   const [siteStats, setSiteStats] = useState(statsDefault);
 
   useEffect(() => {
-    fetchNonProfitStats(setSiteStats);
+    fetchNonProfitStats().then((data) => {
+      setSiteStats(data);
+    });
   }, []);
   return (
     <div className="Dashboard">

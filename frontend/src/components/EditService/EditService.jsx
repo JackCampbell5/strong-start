@@ -25,24 +25,6 @@ function EditService({ serviceID = null }) {
 
   const [serviceInput, setServiceInput] = useState(serviceInputDefaultData);
 
-  // Make sure the data that was sent back includes the icon and default values
-  function updateServiceInput(data) {
-    let retData = [];
-    for (let a of data) {
-      let key = a.id;
-      if (serviceInputDefaultValues[key]) {
-        if (!a.default) {
-          a.default = serviceInputDefaultValues[key].default;
-        }
-        if (!a.icon) {
-          a.icon = serviceInputDefaultValues[key].icon;
-        }
-      }
-      retData.push(a);
-    }
-    setServiceInput(retData);
-  }
-
   /**
    * Submit the service to the backend
    */
@@ -103,8 +85,26 @@ function EditService({ serviceID = null }) {
   }
 
   useEffect(() => {
-    if (!serviceID) {
-      fetchServiceDetails(updateServiceInput);
+    if (serviceID) {
+      setLoading(true);
+      fetchServiceDetails(serviceID).then((data) => {
+        // Make sure the data that was sent back includes the icon and default values
+        let retData = [];
+        for (let a of data) {
+          let key = a.id;
+          if (serviceInputDefaultValues[key]) {
+            if (!a.default) {
+              a.default = serviceInputDefaultValues[key].default;
+            }
+            if (!a.icon) {
+              a.icon = serviceInputDefaultValues[key].icon;
+            }
+          }
+          retData.push(a);
+        }
+        setServiceInput(retData);
+        setLoading(false);
+      });
     }
   }, []);
 
