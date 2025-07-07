@@ -80,7 +80,7 @@ function Login({}) {
           />
           <div
             className="showPassword"
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
           </div>
