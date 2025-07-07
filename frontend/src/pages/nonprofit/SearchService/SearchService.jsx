@@ -1,6 +1,6 @@
-import React from "react";
+import React, { use } from "react";
 import ReactDOM from "react-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./SearchService.css";
 import PropTypes, { func } from "prop-types";
 
@@ -14,20 +14,25 @@ import { fetchSearch } from "#fetch/serviceFetchUtils";
 function SearchService({}) {
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [errorText, setErrorText] = useState("");
 
   function searchFor(data) {
     setLoading(true);
     fetchSearch(data).then((results) => {
-      setSearchResults(results);
+      setLoading(false);
+      if (results.valid) {
+        setSearchResults(results.data);
+      } else {
+        setErrorText(results.error);
+      }
     });
   }
   return (
     <div className="SearchService">
       <h3>SearchService</h3>
       <SearchFilters loading={loading} searchFor={searchFor} />
-      {searchResults.length !== 0 ? (
-        <ServiceList searchResults={searchResults} />
-      ) : null}
+      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
+      <p className="errorText">{errorText}</p>
     </div>
   );
 }

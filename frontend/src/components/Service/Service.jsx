@@ -1,18 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './Service.css'
-import PropTypes from 'prop-types';
+import "./Service.css";
+import PropTypes from "prop-types";
 
-function Service({}) {
+/**
+ *  A service component that displays info about a specific service a nonprofit has added
+ * @param {object} data - Info on a specific service
+ */
+function Service({ data }) {
   return (
     <div className="Service">
-      <h3>Service</h3>
+      <h3>{data.name}</h3>
+      {Object.entries(data).map((obj) => {
+        let key = obj[0]; // gets the key from obj.entries
+        let info = obj[1]; // gets the string stored at the given key from obj.entries
+        return key !== "id" && key !== "name" ? (
+          <p key={key}>
+            <strong>{key}:</strong> {info}
+          </p>
+        ) : null;
+      })}
     </div>
   );
 }
 
 Service.propTypes = {
-    // data: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default Service;

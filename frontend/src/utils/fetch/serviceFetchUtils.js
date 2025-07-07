@@ -1,7 +1,5 @@
 import { getNonProfit } from "#utils/pathUtils";
-import {
-  serviceSearchTestData,
-} from "#default-data/serviceDefaultData.js";
+import serviceSearchTestData from "#test-data//serviceSearchTestData";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 
@@ -125,7 +123,33 @@ export async function putService(info, after) {
  */
 export async function fetchSearch(data) {
   let nonProfit = getNonProfit();
-  return { result: true, data: serviceSearchTestData };
+  return { valid: true, data: serviceSearchTestData };
+  // Add the data as query params
+  // TODO Temp until frontend connects to backend
+  // await fetch(`${serviceLink}/${nonProfit}/name-list`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json(); // Parse JSON data from the response
+  //     })
+  //     .then((data) => {
+  //       // Update the component with the data
+  //       after(data);
+  //     })
+  //     .catch((error) => {
+  //       // Handle error
+  //       console.error("Error fetching given service:", error);
+  //     });
+}
+
+/**
+ *
+ * @returns An object containing all the services in this non profits database
+ */
+export async function fetchAllServices() {
+  let nonProfit = getNonProfit();
+  return { valid: true, data: serviceSearchTestData };
   // Add the data as query params
   // TODO Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/name-list`)

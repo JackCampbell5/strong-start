@@ -73,7 +73,6 @@ function Register() {
     let allLocations = location.split("/");
     let ending = allLocations[allLocations.length - 1];
     let newPath = location.replace(ending, "login");
-    console.log(newPath);
     navigate(newPath);
   }
   return (
