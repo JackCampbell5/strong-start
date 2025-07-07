@@ -5,7 +5,6 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 /**
  * Gets all of a specified services information
  * @param {string} id - The id to get the services for
- * @param {Function} after - Function to call with data fetched
  */
 export async function fetchServiceDetails(id) {
   let nonProfit = getNonProfit();

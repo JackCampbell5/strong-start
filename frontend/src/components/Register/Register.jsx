@@ -40,7 +40,7 @@ function Register() {
       email: email,
     };
     setLoading(true);
-    registerNonprofitEmployee(user, registerReturn);
+    registerNonprofitEmployee(user).then(registerReturn);
   }
 
   function findValidationErrors() {
@@ -57,11 +57,7 @@ function Register() {
     if (email === "") {
       retString += "Email cannot be empty. ";
     }
-    if (retString !== "") {
-      setErrorText(retString);
-      return false;
-    }
-    return true;
+    return retString;
   }
 
   function registerReturn(data) {
