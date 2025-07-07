@@ -12,6 +12,7 @@ import { reformatData } from "#utils/textUtils";
 
 function SearchFilters({ loading, searchFor }) {
   const [errorText, setErrorText] = useState("");
+  // Uses serviceSearchDefault which is a list of objects that contain the name, icon, and default value for each param
   const [searchInput, setSearchInput] = useState(serviceSearchDefault);
 
   /**
@@ -66,11 +67,11 @@ function SearchFilters({ loading, searchFor }) {
       <div className="allSearch">
         {searchInput.map((obj, index) => (
           <div className="searchParam" key={obj.id + "Class"}>
-            <p id={obj.id + "P"}>{obj.name}:</p>
+            <p className={obj.id + "P"}>{obj.name}:</p>
             {obj.icon ? <obj.icon /> : null}
             <input
               key={obj.id + "Input"}
-              id={obj.id + "Input"}
+              className={obj.id + "Input"}
               type="text"
               value={obj.value}
               placeholder={obj.default}
