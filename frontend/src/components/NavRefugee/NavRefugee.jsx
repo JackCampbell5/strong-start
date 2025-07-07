@@ -1,18 +1,65 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import './NavRefugee.css'
-import PropTypes from 'prop-types';
+import "./NavRefugee.css";
+import PropTypes from "prop-types";
 
-function NavRefugee({}) {
+// Other components
+import IconComp from "#components/IconComp/IconComp";
+import { getLocation, RPages } from "#utils/pathUtils";
+
+function NavRefugee({ onNavigate }) {
+  const location = getLocation();
+
   return (
     <div className="NavRefugee">
-      <h3>NavRefugee</h3>
+      <div className="navLogo" onClick={() => onNavigate("")}>
+        <IconComp />
+      </div>{" "}
+      <h3>Refugee</h3>
+      <div className="navAllButtons">
+        <button
+          className={[
+            "navBarButton",
+            location === RPages.HOME ? "selected" : "unselected",
+          ].join(" ")}
+          onClick={() => onNavigate(RPages.HOME)}
+        >
+          Home
+        </button>
+        <button
+          className={[
+            "navBarButton",
+            location === RPages.SEARCHRESULTS ? "selected" : "unselected",
+          ].join(" ")}
+          onClick={() => onNavigate(RPages.SEARCHRESULTS)}
+        >
+          All Services
+        </button>
+        <button
+          className={[
+            "navBarButton",
+            location === RPages.CONTACT ? "selected" : "unselected",
+          ].join(" ")}
+          onClick={() => onNavigate(RPages.CONTACT)}
+        >
+          Contact
+        </button>
+        <button
+          className={[
+            "navBarButton",
+            location === RPages.HELP ? "selected" : "unselected",
+          ].join(" ")}
+          onClick={() => onNavigate(RPages.HELP)}
+        >
+          Help
+        </button>
+      </div>
     </div>
   );
 }
 
 NavRefugee.propTypes = {
-    // data: PropTypes.func.isRequired,
+  onNavigate: PropTypes.func.isRequired,
 };
 
 export default NavRefugee;

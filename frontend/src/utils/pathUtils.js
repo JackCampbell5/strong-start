@@ -11,6 +11,12 @@ export const NpPages = Object.freeze({
   LOGIN: "login",
   REGISTER: "register",
 });
+export const RPages = Object.freeze({
+  CONTACT: "contact",
+  HOME: "home",
+  SEARCHRESULTS: "searchresults",
+  HELP: "help",
+});
 
 export const QueryParams = Object.freeze({
   NONPROFIT: "nonprofit",
