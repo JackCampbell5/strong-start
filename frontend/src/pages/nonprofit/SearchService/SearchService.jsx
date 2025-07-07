@@ -19,8 +19,8 @@ function SearchService({}) {
   function searchFor(data) {
     setLoading(true);
     fetchSearch(data).then((results) => {
+      setLoading(false);
       if (results.valid) {
-        setLoading(false);
         setSearchResults(results.data);
       } else {
         setErrorText(results.error);

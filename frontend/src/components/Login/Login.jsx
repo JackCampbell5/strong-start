@@ -32,7 +32,7 @@ function Login({}) {
       return;
     }
     setLoading(true);
-    loginNonprofitEmployee(username, password, loginReturn);
+    loginNonprofitEmployee(username, password).then(loginReturn);
   }
   function loginReturn(data) {
     setLoading(false);
@@ -78,7 +78,7 @@ function Login({}) {
           />
           <div
             className="showPassword"
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
           </div>

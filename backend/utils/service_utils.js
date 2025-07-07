@@ -15,12 +15,12 @@ export async function checkServiceName(name, nonprofit, next) {
       },
     });
     console.log(resultData);
-    if (resultData != null && resultData.length > 1) {
+    if (resultData !== null && resultData.length > 1) {
       throw new Error(
         "Multiple services with the same name in one nonprofit found"
       );
     }
-    return resultData != null && resultData.length === 1;
+    return resultData !== null && resultData.length === 1;
   } catch (e) {
     next(e);
   }
@@ -39,7 +39,7 @@ export async function checkServiceId(id, nonprofit, next) {
         nonprofit_ID: nonprofit.id,
       },
     });
-    return resultData != null;
+    return resultData !== null;
   } catch (e) {
     next(e);
   }

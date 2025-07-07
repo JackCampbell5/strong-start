@@ -3,16 +3,20 @@ import ReactDOM from "react-dom";
 import "./Service.css";
 import PropTypes from "prop-types";
 
+/**
+ *  A service component that displays info about a specific service a nonprofit has added
+ * @param {object} data - Info on a specific service
+ */
 function Service({ data }) {
   return (
     <div className="Service">
       <h3>{data.name}</h3>
       {Object.entries(data).map((obj) => {
         let key = obj[0]; // gets the key from obj.entries
-        let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+        let info = obj[1]; // gets the string stored at the given key from obj.entries
         return key !== "id" && key !== "name" ? (
           <p key={key}>
-            <strong>{key}:</strong> {dict}
+            <strong>{key}:</strong> {info}
           </p>
         ) : null;
       })}
@@ -21,7 +25,7 @@ function Service({ data }) {
 }
 
 Service.propTypes = {
-  // data: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default Service;

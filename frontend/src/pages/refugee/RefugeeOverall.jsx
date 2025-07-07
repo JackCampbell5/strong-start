@@ -27,7 +27,7 @@ function RefugeeOverall() {
 
   return (
     <div className="RefugeeOverall">
-      <NavRefugee navSet={nav} />
+      <NavRefugee onNavigate={nav} />
       <div className="mainContent">
         <Routes>
           <Route path="/" element={<Home />} />

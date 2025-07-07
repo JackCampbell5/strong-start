@@ -14,7 +14,7 @@ import NonProfitSelector from "#components/NonProfitSelector/NonProfitSelector";
 function SubPageSelect({ changePage }) {
   // Make sure a nonprofit is selected before switching pages
   const location = useLocation();
-  function changePageHelper(page) {
+  function onRoleClick(page) {
     const params = new URLSearchParams(location.search);
     if (params.get("nonprofit") !== null) {
       changePage(page);
@@ -50,14 +50,14 @@ function SubPageSelect({ changePage }) {
           <div className="select-div">
             <div
               className="select-buttons"
-              onClick={() => changePageHelper("refugee")}
+              onClick={() => onRoleClick("refugee")}
             >
               <IoEarth />
               Refugee
             </div>
             <div
               className="select-buttons"
-              onClick={() => changePageHelper("nonprofit")}
+              onClick={() => onRoleClick("nonprofit")}
             >
               <FaHandsHelping />
               Non-Profit

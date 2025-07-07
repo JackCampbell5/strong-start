@@ -6,17 +6,11 @@ import "./SelectService.css";
 
 // Util functions
 import { fetchServiceNameList } from "#fetch/serviceFetchUtils";
-import { serviceNameInputDefault } from "#default-data/serviceDefaultData";
+import { serviceNameInputDefault } from "#default-data/serviceDefaultData.js";
 
 function SelectService({ setServiceID, setServiceName }) {
   {
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
-    function setServiceListHelper(data) {
-      if (data[0].id !== "default") {
-        data = [serviceNameInputDefault, ...data];
-      }
-      setServiceList(data);
-    }
 
     function onSelectChange(e) {
       const value = e.target.value;
@@ -27,7 +21,12 @@ function SelectService({ setServiceID, setServiceName }) {
     }
 
     useEffect(() => {
-      fetchServiceNameList(setServiceListHelper);
+      fetchServiceNameList().then((data) => {
+        if (data[0].id !== serviceNameInputDefault.id) {
+          data = [serviceNameInputDefault, ...data];
+        }
+        setServiceList(data);
+      });
     }, []);
     return (
       <div className="SelectService">
@@ -49,7 +48,8 @@ function SelectService({ setServiceID, setServiceName }) {
 }
 
 SelectService.propTypes = {
-  // data: PropTypes.func.isRequired,
+  setServiceID: PropTypes.func.isRequired,
+  setServiceName: PropTypes.func.isRequired,
 };
 
 export default SelectService;
