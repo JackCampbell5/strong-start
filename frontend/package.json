@@ -31,7 +31,8 @@
   },
   "imports": {
     "#utils/*": "./src/utils/*.js",
-    "#default-data/*": "./src/utils/default-data/*.js",
+    "#test-data/*": "./src/utils/test-data/*.json",
+    "#default-data/*": "./src/utils/default-data/*",
     "#fetch/*": "./src/utils/fetch/*.js",
     "#nonprofitPage/*": "./src/pages/nonprofit/*.jsx",
     "#refugeePage/*": "./src/pages/refugee/*.jsx",

@@ -14,7 +14,7 @@ export async function checkEmployeeUsername(username, nonprofit, next) {
       },
     });
     return (
-      resultData != null &&
+      resultData !== null &&
       (nonprofit.id === resultData.nonprofit_ID || !nonprofit)
     );
   } catch (e) {
@@ -34,7 +34,7 @@ export async function checkEmployeeId(id, nonprofit, next) {
         id: id,
       },
     });
-    return resultData != null && nonprofit.id === resultData.nonprofit_ID;
+    return resultData !== null && nonprofit.id === resultData.nonprofit_ID;
   } catch (e) {
     next(e);
   }

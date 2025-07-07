@@ -1,5 +1,5 @@
 import { getNonProfit } from "#utils/pathUtils";
-import { serviceInputDefaultData } from "#default-data/serviceDefaultData";
+import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 
 /**
@@ -7,9 +7,9 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
  * @param {string} id - The id to get the services for
  * @param {Function} after - Function to call with data fetched
  */
-export async function fetchServiceDetails(id, after) {
+export async function fetchServiceDetails(id) {
   let nonProfit = getNonProfit();
-  after(serviceInputDefaultData);
+  return serviceInputDefaultData;
   // Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/${id}`)
   //     .then((response) => {
@@ -34,7 +34,7 @@ export async function fetchServiceDetails(id, after) {
  */
 export async function fetchServiceNameList(after) {
   let nonProfit = getNonProfit();
-  after([{ id: 100, text: "Test Service" }]);
+  return [{ id: 100, text: "Test Service" }];
   // TODO Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/name-list`)
   //     .then((response) => {
@@ -61,7 +61,7 @@ export async function fetchServiceNameList(after) {
 export async function postService(info, after) {
   let nonProfit = getNonProfit();
   after(true);
-  //   // TODO when frontend connects to backend
+  //   // TODO will uncomment once frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
   //     method: "POST",
   //     headers: { "Content-Type": "application/json" },
@@ -93,7 +93,7 @@ export async function postService(info, after) {
 export async function putService(info, after) {
   let nonProfit = getNonProfit();
   after(true);
-  //   // TODO when frontend connects to backend
+  //   // TODO will uncomment once frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
   //     method: "PUT",
   //     headers: { "Content-Type": "application/json" },
