@@ -3,5 +3,6 @@
   "buildCommand": "npx prisma migrate deploy; npx prisma generate",
   "outputDirectory": ".",
   "installCommand": "npm install",
-  "devCommand": "node ./api/index.js"
+  "devCommand": "node --trace-deprecation ./api/index.js",
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }

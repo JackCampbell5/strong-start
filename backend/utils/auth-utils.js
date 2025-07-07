@@ -1,5 +1,5 @@
 import argon2 from "argon2";
-import PasswordHashFailed from "#errors/auth-errors.js";
+import { PasswordHashFailed } from "#errors/auth-errors.js";
 
 export async function hashPassword(plainPassword) {
   try {
