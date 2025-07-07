@@ -14,8 +14,8 @@ export async function checkNonProfitName(name, next) {
         name: name,
       },
     });
-    console.log(resultData != null);
-    return resultData != null;
+    console.log(resultData !== null);
+    return resultData !== null;
   } catch (e) {
     next(e);
   }
@@ -33,7 +33,7 @@ export async function checkNonProfitId(id, next) {
         id: id,
       },
     });
-    return resultData != null;
+    return resultData !== null;
   } catch (e) {
     next(e);
   }

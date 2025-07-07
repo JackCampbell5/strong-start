@@ -17,8 +17,4 @@ function RegisterPage() {
   }
 }
 
-RegisterPage.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
-
 export default RegisterPage;

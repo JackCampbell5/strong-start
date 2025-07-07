@@ -22,7 +22,7 @@ import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 // Utils
 import { NpPages } from "#utils/pathUtils";
 
-function NonProfitOverall({}) {
+function NonProfitOverall() {
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
   function nav(path) {
@@ -30,11 +30,10 @@ function NonProfitOverall({}) {
   }
   return (
     <div className="NonProfitOverall">
-      <NavNonProfit navSet={nav} />
+      <NavNonProfit onNavigate={nav} />
       <div className="mainContent">
         <Routes>
           <Route path="" element={<Dashboard />} />{" "}
-          {/* The default path will probably end up as the Log In or dashboard*/}
           <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
           <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
           <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
@@ -45,16 +44,11 @@ function NonProfitOverall({}) {
           <Route path={`/${NpPages.VIEWSERVICES}`} element={<ViewServices />} />
           <Route path={`/${NpPages.LOGIN}`} element={<LoginPage />} />
           <Route path={`/${NpPages.REGISTER}`} element={<RegisterPage />} />
-          {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
         </Routes>
       </div>
       <FooterNonProfit />
     </div>
   );
 }
-
-NonProfitOverall.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default NonProfitOverall;

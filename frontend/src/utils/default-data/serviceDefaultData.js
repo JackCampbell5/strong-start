@@ -17,106 +17,6 @@ import {
   MdOutlinePersonAddAlt,
 } from "react-icons/md";
 
-export const serviceInputDefaultData = [
-  {
-    id: "name",
-    name: "Name*",
-    value: "",
-    default: "Community Food Kitchen",
-    required: true,
-  },
-  {
-    id: "address",
-    name: "Address*",
-    value: "",
-    default: "123 Main St, Anytown, USA",
-    required: true,
-  },
-  {
-    id: "zipcode",
-    name: "Zip Code*",
-    value: "",
-    default: "12345",
-    required: true,
-  },
-  {
-    id: "description",
-    name: "Description*",
-    value: "",
-    default: "Providing free meals to those in need",
-    required: true,
-  },
-  {
-    id: "email",
-    name: "Email",
-    value: "",
-    default: "info@communityfoodkitchen.org",
-    required: false,
-  },
-  {
-    id: "phone",
-    name: "Phone",
-    value: "",
-    default: "(555) 555-5555",
-    required: false,
-  },
-  {
-    id: "website",
-    name: "Website*",
-    value: "",
-    default: "https://www.communityfoodkitchen.org",
-    required: true,
-  },
-  {
-    id: "hours",
-    name: "Hours",
-    value: "",
-    default: "Monday - Friday: 11am - 2pm, Saturday: 12pm - 3pm",
-    required: false,
-  },
-  {
-    id: "logo",
-    name: "Logo",
-    value: "",
-    default: "https://www.communityfoodkitchen.org/logo.png",
-    required: false,
-  },
-  {
-    id: "language",
-    name: "Language",
-    value: "",
-    default: "English",
-    required: false,
-  },
-  {
-    id: "date_needed",
-    name: "Date Needed",
-    value: "",
-    default: "As soon as possible",
-    required: false,
-  },
-  {
-    id: "services_offered",
-    name: "Services Offered*",
-    value: "",
-    default: "Free meals, food pantry, nutrition counseling",
-    required: true,
-  },
-  {
-    id: "restrictions",
-    name: "Restrictions",
-    value: "",
-    default: "None",
-    required: false,
-  },
-  {
-    id: "next_steps",
-    name: "Next Steps*",
-    value: "",
-    default: "Call or email to schedule an appointment",
-    required: true,
-  },
-];
 export const serviceInputDefaultValues = {
   name: { default: "Community Food Kitchen", icon: MdOutlinePerson },
   address: { default: "123 Main St, Anytown, USA", icon: MdOutlineLocationOn },
@@ -153,57 +53,15 @@ export const serviceInputDefaultValues = {
 };
 
 export const serviceNameInputDefault = {
-  id: "default",
+  id: "unselected",
   text: "Select a Service",
 };
 
-export const serviceSearchDefault = [
-  {
-    id: "address",
-    name: "Current Address*",
-    value: "",
-    default: "123 Main St, Anytown, USA",
-    required: true,
-    icon: MdOutlineLocationOn,
-  },
-  {
-    id: "services_needed",
-    name: "Services Required*",
-    value: "",
-    default: "None",
-    required: true,
-    icon: MdOutlineStopCircle,
-  },
-  {
-    id: "country_of_origin",
-    name: "Country of Origin",
-    value: "",
-    default: "Afghanistan",
-    required: false,
-    icon: MdAirplanemodeActive,
-  },
-  {
-    id: "language",
-    name: "Language Spoken",
-    value: "",
-    default: "Arabic",
-    required: false,
-    icon: MdOutlineSpatialAudioOff,
-  },
-  {
-    id: "date_entered",
-    name: "Date entered US",
-    value: "",
-    default: "2025-01-01",
-    required: false,
-    icon: MdDateRange,
-  },
-  {
-    id: "family_members",
-    name: "Family Size",
-    value: "",
-    default: "2",
-    required: false,
-    icon: MdOutlinePersonAddAlt,
-  },
-];
+export const serviceSearchIconMap = {
+  MdOutlineLocationOn: MdOutlineLocationOn,
+  MdOutlineStopCircle: MdOutlineStopCircle,
+  MdAirplanemodeActive: MdAirplanemodeActive,
+  MdOutlineSpatialAudioOff: MdOutlineSpatialAudioOff,
+  MdDateRange: MdDateRange,
+  MdOutlinePersonAddAlt: MdOutlinePersonAddAlt,
+};
