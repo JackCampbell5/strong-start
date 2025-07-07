@@ -19,7 +19,7 @@ function EditServicePage({}) {
         setServiceID={setServiceID}
         setServiceName={setServiceName}
       />
-      {serviceID != "default" ? (
+      {serviceID !== "default" ? (
         <div className="editOneService">
           <h1>Editing {serviceName}</h1> <EditService serviceID={serviceID} />{" "}
         </div>
