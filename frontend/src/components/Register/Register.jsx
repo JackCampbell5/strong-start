@@ -22,23 +22,28 @@ function Register() {
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function handleRegister() {
+  function registerButtonClicked() {
     setSuccessText("");
     setErrorText("");
-
-    let result = checkParams();
-    if (result) {
-      let user = {
-        username: username,
-        password: password,
-        email: email,
-      };
-      setLoading(true);
-      registerNonprofitEmployee(user, registerReturn);
+    let invalid = findValidationErrors();
+    if (invalid) {
+      setErrorText(invalid);
+    } else {
+      handleRegister();
     }
   }
 
-  function checkParams() {
+  function handleRegister() {
+    let user = {
+      username: username,
+      password: password,
+      email: email,
+    };
+    setLoading(true);
+    registerNonprofitEmployee(user, registerReturn);
+  }
+
+  function findValidationErrors() {
     let retString = "";
     if (username === "") {
       retString += "Username cannot be empty. ";
@@ -103,7 +108,7 @@ function Register() {
           />
           <div
             className="showPassword"
-            onClick={() => setShowPassword(!showPassword)}
+            onClick={() => setShowPassword((prev) => !prev)}
           >
             {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
           </div>
@@ -140,7 +145,7 @@ function Register() {
       </div>
       <LoadingButton
         loading={loading}
-        onClick={handleRegister}
+        onClick={registerButtonClicked}
         text="Register"
       />
       <p className="errorText">{errorText}</p>
