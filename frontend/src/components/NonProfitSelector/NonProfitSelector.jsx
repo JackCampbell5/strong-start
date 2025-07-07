@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 import {
   nonprofitDefaultOption,
-} from "#default-data/nonProfitDefaultData";
+} from "#default-data/nonProfitDefaultData.js";
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
 import { QueryParams } from "#utils/pathUtils";
 

@@ -1,4 +1,7 @@
 import { getNonProfit } from "#utils/pathUtils";
+import {
+  serviceSearchTestData,
+} from "#default-data/serviceDefaultData.js";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 
@@ -113,5 +116,31 @@ export async function putService(info, after) {
   //       console.error("Error fetching boards:", error);
   //       // Return more info on the error
   //       after();
+  //     });
+}
+
+/**
+ * Gets a list of all services for a nonprofit with just the name and id
+ * @param {Function} after - Function to call with data fetched
+ */
+export async function fetchSearch(data) {
+  let nonProfit = getNonProfit();
+  return { result: true, data: serviceSearchTestData };
+  // Add the data as query params
+  // TODO Temp until frontend connects to backend
+  // await fetch(`${serviceLink}/${nonProfit}/name-list`)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! status: ${response.status}`);
+  //       }
+  //       return response.json(); // Parse JSON data from the response
+  //     })
+  //     .then((data) => {
+  //       // Update the component with the data
+  //       after(data);
+  //     })
+  //     .catch((error) => {
+  //       // Handle error
+  //       console.error("Error fetching given service:", error);
   //     });
 }
