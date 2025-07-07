@@ -9,7 +9,7 @@ import ServiceList from "#components/ServiceList/ServiceList";
 // util functions
 import { fetchAllServices } from "#fetch/serviceFetchUtils";
 
-function ViewServices({}) {
+function ViewServices() {
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
   useEffect(() => {
@@ -30,9 +30,5 @@ function ViewServices({}) {
     </div>
   );
 }
-
-ViewServices.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default ViewServices;
