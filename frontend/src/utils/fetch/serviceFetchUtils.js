@@ -1,7 +1,5 @@
 import { getNonProfit } from "#utils/pathUtils";
-import {
-  serviceSearchTestData,
-} from "#default-data/serviceDefaultData.js";
+import serviceSearchTestData from "#test-data//serviceSearchTestData";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 
