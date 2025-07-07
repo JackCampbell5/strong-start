@@ -12,6 +12,9 @@ export const NpPages = Object.freeze({
   SIGNUP: "signup",
 });
 
+export const QueryParams = Object.freeze({
+  NONPROFIT: "nonprofit",
+});
 /**
  * Gets the last part of the url bar to help with highlighting the correct nav bar item
  * @returns The last part of the url bar
@@ -26,7 +29,7 @@ export function getLocation() {
  * @returns  The name gotten from the url bar
  */
 export function getNonProfit() {
-  const params = new URLSearchParams(location.search);
+  const params = new URLSearchParams(location.search); // Update later
   if (params.get("nonprofit") !== null) {
     return params.get("nonprofit");
   } else {

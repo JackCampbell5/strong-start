@@ -1,7 +1,11 @@
 // All nonprofit default data
+export const nonprofitDefaultOption = {
+  id: "unselected",
+  text: "Not Selected",
+};
+export const nonprofitDefaultID = "unselected";
 // TODO make blank before publish
 export const nonprofitAllDefault = [
-  { id: "unselected", text: "Not Selected" },
   { id: "mynonprofit", text: "My Non Profit" },
   { id: "mynonprofit2", text: "My Non Profit 2" },
   { id: "mynonprofit3", text: "My Non Profit 3" },

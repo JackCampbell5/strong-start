@@ -30,11 +30,10 @@ function NonProfitOverall({}) {
   }
   return (
     <div className="NonProfitOverall">
-      <NavNonProfit navSet={nav} />
+      <NavNonProfit onNavigate={nav} />
       <div className="mainContent">
         <Routes>
           <Route path="" element={<Dashboard />} />{" "}
-          {/* The default path will probably end up as the sign in or dashboard*/}
           <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
           <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
           <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
