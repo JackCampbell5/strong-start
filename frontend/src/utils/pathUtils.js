@@ -4,12 +4,12 @@ import { useLocation } from "react-router";
 // An enum for all of the pages to allow for easy navigation and prevent typos
 export const NpPages = Object.freeze({
   DASHBOARD: "dashboard",
-  EDITSERVICE: "editservice",
-  NEWSERVICE: "newservice",
-  SEARCHSERVICE: "searchservice",
-  VIEWSERVICES: "viewservices",
+  EDITSERVICE: "edit_service",
+  NEWSERVICE: "new_service",
+  SEARCHSERVICE: "search_service",
+  VIEWSERVICES: "view_services",
   LOGIN: "login",
-  SIGNUP: "signup",
+  REGISTER: "register",
 });
 
 export const QueryParams = Object.freeze({

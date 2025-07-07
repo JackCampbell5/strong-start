@@ -101,11 +101,11 @@ function NavNonProfit({ onNavigate }) {
             <button
               className={[
                 "navBarButton",
-                location === NpPages.SIGNUP ? "selected" : "unselected",
+                location === NpPages.REGISTER ? "selected" : "unselected",
               ].join(" ")}
-              onClick={() => onNavigate(NpPages.SIGNUP)}
+              onClick={() => navSet(NpPages.REGISTER)}
             >
-              Sign Up
+              Register
             </button>
           </div>
         </div>

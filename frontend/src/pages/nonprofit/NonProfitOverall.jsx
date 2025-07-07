@@ -9,11 +9,11 @@ import "./NonProfitOverall.css";
 import Account from "#nonprofitPage/Account/Account";
 import Dashboard from "#nonprofitPage/Dashboard/Dashboard";
 import EditService from "#nonprofitPage/EditServicePage/EditServicePage";
-import Login from "#nonprofitPage/Login/Login";
+import LoginPage from "#nonprofitPage/LoginPage/LoginPage";
 import NewService from "#nonprofitPage/NewService/NewService";
 import SearchService from "#nonprofitPage/SearchService/SearchService";
 import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
-import SignIn from "#components/SignIn/SignIn";
+import RegisterPage from "#nonprofitPage/RegisterPage/RegisterPage";
 
 //Other Components
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
@@ -22,7 +22,7 @@ import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 // Utils
 import { NpPages } from "#utils/pathUtils";
 
-function NonProfitOverall({}) {
+function NonProfitOverall() {
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
   function nav(path) {
@@ -42,18 +42,13 @@ function NonProfitOverall({}) {
             element={<SearchService />}
           />
           <Route path={`/${NpPages.VIEWSERVICES}`} element={<ViewServices />} />
-          <Route path={`/${NpPages.LOGIN}`} element={<Login />} />
-          <Route path={`/${NpPages.SIGNUP}`} element={<SignIn />} />
-          {/* <Route path="/refugee" element={<RefugeeOverall />} /> */}
+          <Route path={`/${NpPages.LOGIN}`} element={<LoginPage />} />
+          <Route path={`/${NpPages.REGISTER}`} element={<RegisterPage />} />
         </Routes>
       </div>
       <FooterNonProfit />
     </div>
   );
 }
-
-NonProfitOverall.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default NonProfitOverall;
