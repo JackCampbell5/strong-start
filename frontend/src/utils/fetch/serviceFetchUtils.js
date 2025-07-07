@@ -7,9 +7,9 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
  * @param {string} id - The id to get the services for
  * @param {Function} after - Function to call with data fetched
  */
-export async function fetchServiceDetails(id, after) {
+export async function fetchServiceDetails(id) {
   let nonProfit = getNonProfit();
-  after(serviceInputDefaultData);
+  return serviceInputDefaultData;
   // Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/${id}`)
   //     .then((response) => {

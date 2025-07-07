@@ -11,14 +11,7 @@ import { serviceNameInputDefault } from "#default-data/serviceDefaultData";
 function SelectService({ setServiceID, setServiceName }) {
   {
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
-    function setServiceListHelper(data) {
-      console.log(data);
-      if (data[0].id !== "default") {
-        data = [serviceNameInputDefault, ...data];
-      }
-      console.log(data[1]);
-      setServiceList(data);
-    }
+    function setServiceListHelper(data) {}
 
     function onSelectChange(e) {
       const value = e.target.value;
@@ -29,7 +22,12 @@ function SelectService({ setServiceID, setServiceName }) {
     }
 
     useEffect(() => {
-      fetchServiceNameList(setServiceListHelper);
+      fetchServiceNameList().then((data) => {
+        if (data[0].id !== "default") {
+          data = [serviceNameInputDefault, ...data];
+        }
+        setServiceList(data);
+      });
     }, []);
     return (
       <div className="SelectService">

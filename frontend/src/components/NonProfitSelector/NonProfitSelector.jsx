@@ -34,16 +34,15 @@ function NonProfitSelector({ errorText, setErrorText }) {
     }
 
     // Fetch the nonprofit list from the backend
-    const [nonprofitList, setNonprofitList] = useState(nonprofitAllDefault);
-    function setNonprofitListHelper(data) {
-      if (!data[0].key === "unselected") {
-        data = [{ id: "unselected", text: "Not Selected" }, ...data];
-      }
-      setNonprofitList(data);
-    }
+    const [nonprofitList, setNonprofitList] = useState([nonprofitAllDefault]);
 
     useEffect(() => {
-      fetchNonProfitList(setNonprofitListHelper);
+      fetchNonProfitList().then((data) => {
+        if (data[0].key !== "unselected") {
+          data = [nonprofitAllDefault, ...data];
+        }
+        setNonprofitList(data);
+      });
     }, []);
     return (
       <div className="NonProfitSelector">
