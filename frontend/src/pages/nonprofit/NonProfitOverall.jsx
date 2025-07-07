@@ -13,6 +13,7 @@ import Login from "#nonprofitPage/Login/Login";
 import NewService from "#nonprofitPage/NewService/NewService";
 import SearchService from "#nonprofitPage/SearchService/SearchService";
 import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
+import SignIn from "#components/SignIn/SignIn";
 
 //Other Components
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
@@ -20,7 +21,6 @@ import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 
 // Utils
 import { NpPages } from "#utils/pathUtils";
-import SignIn from "#components/SignIn/SignIn";
 
 function NonProfitOverall({}) {
   const priorPart = "/nonprofit/";

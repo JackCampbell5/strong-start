@@ -31,6 +31,7 @@
   border-left: 1px solid var(--border-mid);
   border-right: 1px solid var(--border-mid);
   border-bottom: var(--border-light) 1px solid;
+  color: var(--text);
   font-size: 100%;
   font-weight: bold;
   transition: background-color 0.3s ease-in-out;
