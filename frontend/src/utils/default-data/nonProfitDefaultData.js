@@ -1,5 +1,8 @@
 // All nonprofit default data
-export const nonprofitAllDefault = { id: "unselected", text: "Not Selected" };
+export const nonprofitDefaultOption = {
+  id: "unselected",
+  text: "Not Selected",
+};
 
 // Default data for the Stats of a Non Profit
 export const statsDefault = {

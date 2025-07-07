@@ -1,45 +1,41 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { useSearchParams } from "react-router-dom";
 import "./NonProfitSelector.css";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { nonprofitAllDefault } from "#default-data/nonProfitDefaultData";
+import {
+  nonprofitDefaultOption,
+} from "#default-data/nonProfitDefaultData";
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
+import { QueryParams } from "#utils/pathUtils";
 
 function NonProfitSelector({ errorText, setErrorText }) {
   {
+    let [searchParams, setSearchParams] = useSearchParams();
+
     // Add query params when the dropdown is changed
-    const navigate = useNavigate();
     function addNonProfit(e) {
       let val = e.target.value;
-      const params = new URLSearchParams(location.search);
-      if (val === "unselected") {
-        params.delete("nonprofit");
+      if (val === nonprofitDefaultOption.id) {
+        setSearchParams(searchParams.delete(QueryParams.NONPROFIT));
       } else {
-        params.set("nonprofit", val); // Set your query parameter here
+        searchParams.set(QueryParams.NONPROFIT, val); // Set your query parameter here
         setErrorText("");
       }
-      navigate(`?${params.toString()}`); // Update the URL with the new query parameter
-    }
-
-    // The default value of the selector should include th query params from the url if they exist
-    function setSelectorFromParams() {
-      const params = new URLSearchParams(location.search);
-      const nonprofit = params.get("nonprofit");
-      if (nonprofit !== null) {
-        return nonprofit;
-      }
+      setSearchParams(searchParams);
     }
 
     // Fetch the nonprofit list from the backend
-    const [nonprofitList, setNonprofitList] = useState([nonprofitAllDefault]);
+    const [nonprofitList, setNonprofitList] = useState([
+      nonprofitDefaultOption,
+    ]);
 
     useEffect(() => {
       fetchNonProfitList().then((data) => {
-        if (data[0].key !== "unselected") {
-          data = [nonprofitAllDefault, ...data];
+       if (!(data[0].id === nonprofitDefaultOption.id)) {
+        data = [nonprofitDefaultOption, ...data];
         }
         setNonprofitList(data);
       });
@@ -50,7 +46,7 @@ function NonProfitSelector({ errorText, setErrorText }) {
         <div className="select-nonprofit">
           <select
             onChange={addNonProfit}
-            defaultValue={setSelectorFromParams()}
+            defaultValue={searchParams.get(QueryParams.NONPROFIT)}
           >
             {nonprofitList.map((val) => {
               return (

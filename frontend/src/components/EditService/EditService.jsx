@@ -8,10 +8,8 @@ import PropTypes from "prop-types";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 // Util Methods
-import {
-  serviceInputDefaultData,
-  serviceInputDefaultValues,
-} from "#default-data/serviceDefaultData";
+import { serviceInputDefaultValues } from "#default-data/serviceDefaultData.js";
+import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 import {
   fetchServiceDetails,
   postService,
