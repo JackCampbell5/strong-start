@@ -11,7 +11,7 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 import {
   serviceInputDefaultData,
   serviceInputDefaultValues,
-} from "#default-data/serviceDefaultData";
+} from "#default-data/serviceDefaultData.js";
 import {
   fetchServiceDetails,
   postService,

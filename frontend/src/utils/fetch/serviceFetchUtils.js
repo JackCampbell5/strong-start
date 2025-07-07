@@ -2,7 +2,7 @@ import { getNonProfit } from "#utils/pathUtils";
 import {
   serviceInputDefaultData,
   serviceSearchTestData,
-} from "#default-data/serviceDefaultData";
+} from "#default-data/serviceDefaultData.js";
 import { data } from "react-router";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
 

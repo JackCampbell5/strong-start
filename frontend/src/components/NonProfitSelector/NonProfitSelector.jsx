@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { nonprofitAllDefault } from "#default-data/nonProfitDefaultData";
+import { nonprofitAllDefault } from "#default-data/nonProfitDefaultData.js";
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
 
 function NonProfitSelector({ errorText, setErrorText }) {

@@ -6,7 +6,7 @@ import "./SelectService.css";
 
 // Util functions
 import { fetchServiceNameList } from "#fetch/serviceFetchUtils";
-import { serviceNameInputDefault } from "#default-data/serviceDefaultData";
+import { serviceNameInputDefault } from "#default-data/serviceDefaultData.js";
 
 function SelectService({ setServiceID, setServiceName }) {
   {

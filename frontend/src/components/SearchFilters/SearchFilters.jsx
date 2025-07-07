@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import "./SearchFilters.css";
 
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 // Util Methods
-import { serviceSearchDefault } from "#default-data/serviceDefaultData";
+import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
+import { serviceSearchIconMap } from "#default-data/serviceDefaultData.js";
 import { reformatData } from "#utils/textUtils";
 
 function SearchFilters({ loading, searchFor }) {
@@ -68,7 +70,9 @@ function SearchFilters({ loading, searchFor }) {
         {searchInput.map((obj, index) => (
           <div className="searchParam" key={obj.id + "Class"}>
             <p className={obj.id + "P"}>{obj.name}:</p>
-            {obj.icon ? <obj.icon /> : null}
+            {obj.icon
+              ? React.createElement(serviceSearchIconMap[obj.icon], {})
+              : null}
             <input
               key={obj.id + "Input"}
               className={obj.id + "Input"}
@@ -92,7 +96,8 @@ function SearchFilters({ loading, searchFor }) {
 }
 
 SearchFilters.propTypes = {
-  // data: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  searchFor: PropTypes.func.isRequired,
 };
 
 export default SearchFilters;
