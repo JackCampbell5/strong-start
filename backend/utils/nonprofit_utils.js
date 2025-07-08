@@ -44,11 +44,11 @@ export async function checkNonProfitId(id, next) {
  * @param {String} name The name to search for
  * @returns The data associated with the nonprofit
  */
-async function getNonProfitData(name, next) {
+async function getNonProfitData(id, next) {
   try {
     return await prisma.nonprofit.findUnique({
       where: {
-        name: name,
+        id: id,
       },
     });
   } catch (e) {

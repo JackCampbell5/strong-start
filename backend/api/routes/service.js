@@ -32,6 +32,30 @@ serviceRouter.get("/all", async (req, res, next) => {
   }
 });
 
+// Get all services in dropdown format
+serviceRouter.get("/all/name-list", async (req, res, next) => {
+  try {
+    console.log("Getting all services in dropdown format");
+    const nonprofit = req.body.nonprofit;
+    const foundServices = await prisma.service.findMany({
+      where: {
+        nonprofit_ID: nonprofit.id,
+      },
+    });
+    if (foundServices.length !== 0) {
+      let after = foundServices.map((service) => ({
+        id: service.id,
+        text: service.name,
+      }));
+      res.status(200).json(after);
+    } else {
+      res.status(404).send("No services found");
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
 // Get one service by name
 serviceRouter.get("/:service_name", async (req, res, next) => {
   const { service_name } = req.params;

@@ -7,9 +7,11 @@ import "./SelectService.css";
 // Util functions
 import { fetchServiceNameList } from "#fetch/serviceFetchUtils";
 import { serviceNameInputDefault } from "#default-data/serviceDefaultData.js";
+import { getNonProfit } from "#utils/pathUtils";
 
 function SelectService({ setServiceID, setServiceName }) {
   {
+    let nonprofit = getNonProfit();
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
 
     function onSelectChange(e) {
@@ -21,7 +23,7 @@ function SelectService({ setServiceID, setServiceName }) {
     }
 
     useEffect(() => {
-      fetchServiceNameList().then((data) => {
+      fetchServiceNameList(nonprofit).then((data) => {
         if (data[0].id !== serviceNameInputDefault.id) {
           data = [serviceNameInputDefault, ...data];
         }

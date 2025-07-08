@@ -31,24 +31,22 @@ export async function fetchServiceDetails(id) {
  * Gets a list of all services for a nonprofit with just the name and id
  * @param {Function} after - Function to call with data fetched
  */
-export async function fetchServiceNameList(after) {
-  return [{ id: 100, text: "Test Service" }];
-  // TODO Temp until frontend connects to backend
-  // await fetch(`${serviceLink}/${nonProfit}/name-list`)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update the component with the data
-  //       after(data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching given service:", error);
-  //     });
+export async function fetchServiceNameList(nonProfit) {
+  return await fetch(`${serviceLink}/${nonProfit}/all/name-list`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return data;
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching given service:", error);
+    });
 }
 
 /**
