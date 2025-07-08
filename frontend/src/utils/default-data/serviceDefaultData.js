@@ -85,7 +85,7 @@ export const serviceInputDefaultValues = {
     required: false,
   },
   services_offered: {
-    name: "Services Offered*",
+    name: "Services Offered(Separated by comma)*",
     default: "Free meals, food pantry, nutrition counseling",
     icon: MdFilterList,
     required: true,

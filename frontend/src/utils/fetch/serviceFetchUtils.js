@@ -53,30 +53,28 @@ export async function fetchServiceNameList(nonProfit) {
  * @param {object} info - The info to post to the backend
  * @param {*} after  - Function to call with data fetched
  */
-export async function postService(info, after) {
-  after(true);
-  //   // TODO will uncomment once frontend connects to backend
-  //   await fetch(`${serviceLink}/${nonProfit}/add`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(info),
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update now that success
-  //       after("");
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching boards:", error);
-  //       // Return more info on the error
-  //       after();
-  //     });
+export async function postService(info, nonprofit) {
+  return await fetch(`${serviceLink}/${nonprofit}/add`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: info }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update now that success
+      return { result: true };
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching boards:", error);
+      // Return more info on the error
+      return { result: false, error };
+    });
 }
 
 /**

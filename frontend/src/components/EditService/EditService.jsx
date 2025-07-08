@@ -36,11 +36,10 @@ function EditService({ serviceID = null }) {
       setLoading(true);
 
       let data = reformatData(serviceInput);
-
-      if (!serviceID) {
-        putService(data, submitReturn);
+      if (serviceID) {
+        putService(data, nonprofit, serviceID).then(submitReturn);
       } else {
-        postService(data, submitReturn);
+        postService(data, nonprofit).then(submitReturn);
       }
     }
   }
@@ -55,6 +54,12 @@ function EditService({ serviceID = null }) {
     for (let a of data) {
       if (a.value === "" && a.required) {
         retStr += a.name + " is required. ";
+      } else if (
+        a.id === "zipcode" &&
+        a.value !== "" &&
+        !/^\d{5}$/.test(a.value)
+      ) {
+        retStr += "Zipcode must be 5 digits.";
       }
     }
     if (retStr !== "") {
@@ -73,15 +78,14 @@ function EditService({ serviceID = null }) {
    */
   function submitReturn(success) {
     setLoading(false);
-    if (success) {
-      // window.location.reload();
+    if (success.result) {
       setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
       }, 5000); // 5000 milliseconds = 5 seconds
     } else {
-      setErrorText(success);
+      setErrorText(success.error);
     }
   }
 
