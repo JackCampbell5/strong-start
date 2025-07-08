@@ -75,6 +75,11 @@ async function hashPasswordList(employees){
  * @returns A starting and ending index for each nonprofit's slice of objects
  */
 function distribute(arr, maxLength) {
+  //Make sure the total length of objects is less than the max length
+  while (arr.reduce((acc, val) => acc + val, 0) > maxLength) {
+    arr.pop();
+  }
+
   // Make sure there is an index for each nonprofit
   if( nonprofitList.length > arr.length){
     for (let i = arr.length; i < nonprofitList.length; i++) {
@@ -83,6 +88,7 @@ function distribute(arr, maxLength) {
   }else if (nonprofitList.length < arr.length){
     arr = arr.slice(0, nonprofitList.length);
   }
+
 
   // Make sure the full length of objects is assigned
   arr[arr.length-1] = maxLength - arr.slice(0,arr.length-1).reduce((acc, val) => acc + val, 0);
