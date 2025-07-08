@@ -26,10 +26,10 @@ export async function generateStats(nonprofit) {
 
   // What is being returned to the user
   let result = {
-    servicesNumber: { name: "Services #", key: servicesNumber },
-    servicesOffered: { name: "Services offered", key: serviceCount },
-    popularZipCode: { name: "Popular Zip Codes", key: popularZipCode },
-    servicePopular: { name: "Popular Services", key: servicePopular },
+    servicesNumber: { name: "Service #:", key: servicesNumber },
+    servicesOffered: { name: "Service Types #:", key: serviceCount },
+    popularZipCode: { name: "Popular Zip Codes:", key: popularZipCode },
+    servicePopular: { name: "Popular Service Types:", key: servicePopular },
   };
   return result;
 }
