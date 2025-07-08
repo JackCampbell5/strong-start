@@ -7,24 +7,23 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
  * Gets all of a specified services information
  * @param {string} id - The id to get the services for
  */
-export async function fetchServiceDetails(id) {
-  return serviceInputDefaultData;
-  // Temp until frontend connects to backend
-  // await fetch(`${serviceLink}/${nonProfit}/${id}`)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update the component with the data
-  //       after(data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching given service:", error);
-  //     });
+export async function fetchServiceDetails(nonProfit, id) {
+  return await fetch(`${serviceLink}/${nonProfit}/${id}/get-edit`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      console.log(data);
+      // Update the component with the data
+      return data;
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching given service:", error);
+    });
 }
 
 /**

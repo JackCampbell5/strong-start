@@ -57,7 +57,7 @@ serviceRouter.get("/all/name-list", async (req, res, next) => {
 });
 
 // Get one service by name
-serviceRouter.get("/:service_name", async (req, res, next) => {
+serviceRouter.get("/name/:service_name", async (req, res, next) => {
   const { service_name } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
@@ -85,7 +85,7 @@ serviceRouter.get("/:service_name", async (req, res, next) => {
 });
 
 // Get one service by id
-serviceRouter.get("/id/:service_id", async (req, res, next) => {
+serviceRouter.get("/:service_id", async (req, res, next) => {
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
@@ -97,6 +97,38 @@ serviceRouter.get("/id/:service_id", async (req, res, next) => {
     });
     if (findService) {
       res.status(200).json(findService);
+    } else {
+      throw new ServiceNotFoundError(service_id);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
+// Get one service by id
+serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
+  const { service_id } = req.params;
+  const nonprofit = req.body.nonprofit;
+  try {
+    const findService = await prisma.service.findUnique({
+      where: {
+        id: service_id,
+        nonprofit_ID: nonprofit.id,
+      },
+    });
+    if (findService) {
+      // Remove the nonprofit_ID and id from the object
+      delete findService.nonprofit_ID;
+      delete findService.id;
+
+      // Reformat for frontend
+      const keys = Object.keys(findService);
+      const values = Object.values(findService);
+      let after = keys.map((key, i) => ({
+        id: key,
+        value: values[i] ? values[i] : "",
+      }));
+      res.status(200).json(after);
     } else {
       throw new ServiceNotFoundError(service_id);
     }

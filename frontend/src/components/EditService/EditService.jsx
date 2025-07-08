@@ -16,8 +16,10 @@ import {
   putService,
 } from "#fetch/serviceFetchUtils";
 import { reformatData } from "#utils/textUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function EditService({ serviceID = null }) {
+  let nonprofit = getNonProfit();
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState("");
@@ -86,7 +88,7 @@ function EditService({ serviceID = null }) {
   useEffect(() => {
     if (serviceID) {
       setLoading(true);
-      fetchServiceDetails(serviceID).then((data) => {
+      fetchServiceDetails(nonprofit, serviceID).then((data) => {
         // Make sure the data that was sent back includes the icon and default values
         let retData = [];
         for (let a of data) {
@@ -97,6 +99,12 @@ function EditService({ serviceID = null }) {
             }
             if (!a.icon) {
               a.icon = serviceInputDefaultValues[key].icon;
+            }
+            if (!a.name) {
+              a.name = serviceInputDefaultValues[key].name;
+            }
+            if (!a.required) {
+              a.required = serviceInputDefaultValues[key].required;
             }
           }
           retData.push(a);
