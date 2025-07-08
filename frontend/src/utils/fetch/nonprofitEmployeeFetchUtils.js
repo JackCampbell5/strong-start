@@ -7,7 +7,6 @@ const serviceLink =
  * @param {object} info - The info to post to the backend
  */
 export async function loginNonprofitEmployee(username, password) {
-  let nonProfit = getNonProfit();
   return { success: true, message: "Logged in" };
   //   // Temp until frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/login`, {
@@ -38,7 +37,6 @@ export async function loginNonprofitEmployee(username, password) {
  * @param {object} info - The info to post to the backend
  */
 export async function registerNonprofitEmployee(data) {
-  let nonProfit = getNonProfit();
   return { success: true, message: "Register Success" };
   //   // Temp until frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/register`, {

@@ -8,7 +8,6 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
  * @param {string} id - The id to get the services for
  */
 export async function fetchServiceDetails(id) {
-  let nonProfit = getNonProfit();
   return serviceInputDefaultData;
   // Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/${id}`)
@@ -33,7 +32,6 @@ export async function fetchServiceDetails(id) {
  * @param {Function} after - Function to call with data fetched
  */
 export async function fetchServiceNameList(after) {
-  let nonProfit = getNonProfit();
   return [{ id: 100, text: "Test Service" }];
   // TODO Temp until frontend connects to backend
   // await fetch(`${serviceLink}/${nonProfit}/name-list`)
@@ -59,7 +57,6 @@ export async function fetchServiceNameList(after) {
  * @param {*} after  - Function to call with data fetched
  */
 export async function postService(info, after) {
-  let nonProfit = getNonProfit();
   after(true);
   //   // TODO will uncomment once frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
@@ -91,7 +88,6 @@ export async function postService(info, after) {
  * @param {*} after  - Function to call with data fetched
  */
 export async function putService(info, after) {
-  let nonProfit = getNonProfit();
   after(true);
   //   // TODO will uncomment once frontend connects to backend
   //   await fetch(`${serviceLink}/${nonProfit}/add`, {
@@ -122,7 +118,6 @@ export async function putService(info, after) {
  * @param {Function} after - Function to call with data fetched
  */
 export async function fetchSearch(data) {
-  let nonProfit = getNonProfit();
   return { valid: true, data: serviceSearchTestData };
   // Add the data as query params
   // TODO Temp until frontend connects to backend
@@ -148,7 +143,6 @@ export async function fetchSearch(data) {
  * @returns An object containing all the services in this non profits database
  */
 export async function fetchAllServices() {
-  let nonProfit = getNonProfit();
   return { valid: true, data: serviceSearchTestData };
   // Add the data as query params
   // TODO Temp until frontend connects to backend
