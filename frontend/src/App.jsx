@@ -12,6 +12,7 @@ import SubPageSelect from "#components/SubPageSelect/SubPageSelect";
 
 // Utils
 import { createPageNavigator } from "#utils/pathUtils";
+import { OverallPages } from "#utils/pathUtils";
 
 function App() {
   const navigate = useNavigate();
@@ -23,9 +24,9 @@ function App() {
   }
 
   function subPageChoose(subPage) {
-    if (subPage === "nonprofit") {
+    if (subPage === OverallPages.NONPROFIT) {
       navigateToPage("/nonprofit");
-    } else if (subPage === "refugee") {
+    } else if (subPage === OverallPages.REFUGEE) {
       navigateToPage("/refugee");
     } else {
       navigateToPage("/");
