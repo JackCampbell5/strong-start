@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import PropTypes from "prop-types";
 import "./NonProfitOverall.css";
 
@@ -21,12 +21,15 @@ import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 
 // Utils
 import { NpPages } from "#utils/pathUtils";
+import { createPageNavigator } from "#utils/pathUtils";
 
 function NonProfitOverall() {
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
+  const location = useLocation();
+  const pageNavigator = createPageNavigator(navigate, location);
   function nav(path) {
-    navigate(priorPart + path);
+    pageNavigator(priorPart + path);
   }
   return (
     <div className="NonProfitOverall">

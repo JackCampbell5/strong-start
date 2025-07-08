@@ -1,26 +1,34 @@
 import { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { useNavigate, useLocation } from "react-router";
 import "./App.css";
+
+// Other Pages
 import NonProfitOverall from "#nonprofitPage/NonProfitOverall";
 import RefugeeOverall from "#refugeePage/RefugeeOverall";
+
+// Other Components
 import SubPageSelect from "#components/SubPageSelect/SubPageSelect";
-// import Footer from "./components/footer/Footer";
-import { useEffect } from "react";
+
+// Utils
+import { createPageNavigator } from "#utils/pathUtils";
 
 function App() {
   const navigate = useNavigate();
-  // Set to root on reload (Will change in future just makes data less complicated for now)
-  useEffect(() => {
-    // navigate("/");
-  }, []);
+  const location = useLocation();
+  const pageNavigator = createPageNavigator(navigate, location);
+
+  function navigateToPage(page) {
+    pageNavigator(page);
+  }
+
   function subPageChoose(subPage) {
     if (subPage === "nonprofit") {
-      navigate("/nonprofit");
+      navigateToPage("/nonprofit");
     } else if (subPage === "refugee") {
-      navigate("/refugee");
+      navigateToPage("/refugee");
     } else {
-      navigate("/");
+      navigateToPage("/");
     }
   }
 

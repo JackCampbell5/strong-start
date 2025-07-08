@@ -42,3 +42,12 @@ export function getNonProfit() {
     return ""; // Figure out best way to handle this
   }
 }
+
+export function createPageNavigator(navigate, location) {
+  return (page) => {
+    navigate({
+      pathname: page,
+      search: location.search, // Preserves existing query params
+    });
+  };
+}

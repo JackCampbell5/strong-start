@@ -9,10 +9,13 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 //util functions
 import { loginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import { createPageNavigator } from "#utils/pathUtils";
 
 function Login({}) {
   const navigate = useNavigate();
-  let location = useLocation().pathname;
+  const location = useLocation();
+  const pageNavigator = createPageNavigator(navigate, location);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -44,10 +47,11 @@ function Login({}) {
   }
 
   function goToRegister() {
-    let allLocations = location.split("/");
+    let path = location.pathname;
+    let allLocations = path.split("/");
     let ending = allLocations[allLocations.length - 1];
-    let newPath = location.replace(ending, "register");
-    navigate(newPath);
+    let newPath = path.replace(ending, "register");
+    pageNavigator(newPath);
   }
 
   return (
