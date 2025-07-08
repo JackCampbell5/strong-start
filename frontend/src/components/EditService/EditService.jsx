@@ -31,8 +31,9 @@ function EditService({ serviceID = null }) {
    */
   function serviceSubmit() {
     // Check to make sure the data is valid and print and error message if it is not
-    let continueLoad = checkRequired(serviceInput);
-    if (continueLoad) {
+    let invalid = checkRequired(serviceInput);
+    if (!invalid) {
+      setErrorText("");
       setLoading(true);
 
       let data = reformatData(serviceInput);
@@ -41,6 +42,8 @@ function EditService({ serviceID = null }) {
       } else {
         postService(data, nonprofit).then(submitReturn);
       }
+    } else {
+      setErrorText(invalid);
     }
   }
 
@@ -64,12 +67,8 @@ function EditService({ serviceID = null }) {
     }
     if (retStr !== "") {
       retStr += "Please fill out the required fields and try again.";
-      setErrorText(retStr);
-      return false;
-    } else {
-      setErrorText("");
-      return true;
     }
+    return retStr;
   }
 
   /**

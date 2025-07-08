@@ -59,21 +59,19 @@ export async function postService(info, nonprofit) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: info }),
   })
-    .then((response) => {
+    .then(async (response) => {
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text(); // Read the response as text
+        throw new Error(`${errorText}`);
       }
-      return response.json(); // Parse JSON data from the response
-    })
-    .then((data) => {
-      // Update now that success
+      let data = response.json(); // Parse JSON data from the response
       return { result: true };
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching boards:", error);
       // Return more info on the error
-      return { result: false, error };
+      return { result: false, error: error.message };
     });
 }
 
