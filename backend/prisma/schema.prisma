@@ -18,7 +18,6 @@ model service{
   address               String
   zipcode               Int?
   description           String?
-  phone_number          String?
   email                 String?
   phone                 String?
   website               String
