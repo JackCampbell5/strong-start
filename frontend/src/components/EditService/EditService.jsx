@@ -78,7 +78,9 @@ function EditService({ serviceID = null }) {
   function submitReturn(success) {
     setLoading(false);
     if (success.result) {
-      setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
+      if (!serviceID) {
+        setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
+      }
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
@@ -116,7 +118,7 @@ function EditService({ serviceID = null }) {
         setLoading(false);
       });
     }
-  }, []);
+  }, [serviceID]);
 
   return (
     <div className="EditService">
