@@ -10,12 +10,14 @@ import EditService from "#components/EditService/EditService";
 // Helper functions
 import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
 import { statsDefault } from "#default-data/nonProfitDefaultData.js";
+import { getNonProfit } from "#utils/pathUtils";
 
 function Dashboard({}) {
+  let nonprofit = getNonProfit();
   const [siteStats, setSiteStats] = useState(statsDefault);
 
   useEffect(() => {
-    fetchNonProfitStats().then((data) => {
+    fetchNonProfitStats(nonprofit).then((data) => {
       setSiteStats(data);
     });
   }, []);
