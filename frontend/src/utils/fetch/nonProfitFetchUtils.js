@@ -1,7 +1,7 @@
 import { getNonProfit } from "#utils/pathUtils";
 import { statsDefault } from "#default-data/nonProfitDefaultData";
 import nonprofitAllTest from "#test-data/nonprofitAllTest";
-const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/nonprofit";
+const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/api/v1/nonprofit";
 
 export async function fetchNonProfitStats() {
   let nonProfit = getNonProfit();
