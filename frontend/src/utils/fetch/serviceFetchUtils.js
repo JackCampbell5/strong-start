@@ -1,7 +1,7 @@
 import { getNonProfit } from "#utils/pathUtils";
 import serviceSearchTestData from "#test-data//serviceSearchTestData";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
-const serviceLink = import.meta.env.VITE_BACKEND_API + "/service";
+const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
 
 /**
  * Gets all of a specified services information

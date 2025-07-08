@@ -2,12 +2,9 @@ import React from "react";
 import { useSearchParams } from "react-router-dom";
 import "./NonProfitSelector.css";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import {
-  nonprofitDefaultOption,
-} from "#default-data/nonProfitDefaultData.js";
+import { nonprofitDefaultOption } from "#default-data/nonProfitDefaultData.js";
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
 import { QueryParams } from "#utils/pathUtils";
 
@@ -34,8 +31,8 @@ function NonProfitSelector({ errorText, setErrorText }) {
 
     useEffect(() => {
       fetchNonProfitList().then((data) => {
-       if (!(data[0].id === nonprofitDefaultOption.id)) {
-        data = [nonprofitDefaultOption, ...data];
+        if (!(data[0].id === nonprofitDefaultOption.id)) {
+          data = [nonprofitDefaultOption, ...data];
         }
         setNonprofitList(data);
       });
@@ -46,7 +43,10 @@ function NonProfitSelector({ errorText, setErrorText }) {
         <div className="select-nonprofit">
           <select
             onChange={addNonProfit}
-            defaultValue={searchParams.get(QueryParams.NONPROFIT)}
+            value={
+              searchParams.get(QueryParams.NONPROFIT) ||
+              nonprofitDefaultOption.id
+            }
           >
             {nonprofitList.map((val) => {
               return (

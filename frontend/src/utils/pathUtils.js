@@ -18,6 +18,11 @@ export const RPages = Object.freeze({
   HELP: "help",
 });
 
+export const OverallPages = Object.freeze({
+  NONPROFIT: "nonprofit",
+  REFUGEE: "refugee",
+});
+
 export const QueryParams = Object.freeze({
   NONPROFIT: "nonprofit",
 });
@@ -35,10 +40,20 @@ export function getLocation() {
  * @returns  The name gotten from the url bar
  */
 export function getNonProfit() {
+  const location = useLocation();
   const params = new URLSearchParams(location.search); // Update later
-  if (params.get("nonprofit") !== null) {
-    return params.get("nonprofit");
+  if (params.get(QueryParams.NONPROFIT) !== null) {
+    return params.get(QueryParams.NONPROFIT);
   } else {
     return ""; // Figure out best way to handle this
   }
+}
+
+export function createPageNavigator(navigate, location) {
+  return (page) => {
+    navigate({
+      pathname: page,
+      search: location.search, // Preserves existing query params
+    });
+  };
 }

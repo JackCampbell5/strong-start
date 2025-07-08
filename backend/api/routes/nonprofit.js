@@ -26,6 +26,20 @@ nonprofitRouter.get("/all", async (req, res, next) => {
   }
 });
 
+// Get all nonprofits
+nonprofitRouter.get("/all/short", async (req, res, next) => {
+  try {
+    const foundNonProfits = await prisma.nonprofit.findMany();
+    let after = foundNonProfits.map((nonprofit) => ({
+      id: nonprofit.id,
+      text: nonprofit.name,
+    }));
+    res.status(200).json(after);
+  } catch (e) {
+    return next(e);
+  }
+});
+
 // Get one nonprofit by name
 nonprofitRouter.get("/:nonprofit_name", async (req, res, next) => {
   const { nonprofit_name } = req.params;

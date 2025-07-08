@@ -1,5 +1,6 @@
 import { getNonProfit } from "#utils/pathUtils";
-const serviceLink = import.meta.env.VITE_BACKEND_API + "/nonprofit-employee";
+const serviceLink =
+  import.meta.env.VITE_BACKEND_API + "/api/v1/nonprofit-employee";
 
 /**
  * Creates a new service for a nonprofit

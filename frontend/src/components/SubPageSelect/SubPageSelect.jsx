@@ -11,12 +11,15 @@ import PropTypes, { checkPropTypes } from "prop-types";
 // Other components
 import NonProfitSelector from "#components/NonProfitSelector/NonProfitSelector";
 
+// Utils
+import { QueryParams } from "#utils/pathUtils";
+
 function SubPageSelect({ changePage }) {
   // Make sure a nonprofit is selected before switching pages
   const location = useLocation();
   function onRoleClick(page) {
     const params = new URLSearchParams(location.search);
-    if (params.get("nonprofit") !== null) {
+    if (params.get(QueryParams.NONPROFIT) !== null) {
       changePage(page);
     } else {
       setErrorText("Please select a non-profit to continue");
