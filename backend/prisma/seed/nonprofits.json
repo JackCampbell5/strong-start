@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Green Earth Initiative",
+    "phone": "(555) 123-4567",
+    "email": "contact@greenearthinitiative.org",
+    "logo": "https://via.placeholder.com/150?text=Green+Earth+Initiative+Logo"
+  },
+  {
+    "name": "Hope for Tomorrow Foundation",
+    "phone": "(555) 234-5678",
+    "email": "info@hopefortomorrow.org",
+    "logo": "https://via.placeholder.com/150?text=Hope+for+Tomorrow+Logo"
+  },
+  {
+    "name": "Community Builders Network",
+    "phone": "(555) 345-6789",
+    "email": "support@communitybuilders.net",
+    "logo": "https://via.placeholder.com/150?text=Community+Builders+Logo"
+  },
+  {
+    "name": "Healthy Hearts Alliance",
+    "phone": "(555) 456-7890",
+    "email": "hello@healthyheartsalliance.org",
+    "logo": "https://via.placeholder.com/150?text=Healthy+Hearts+Logo"
+  }
+]
