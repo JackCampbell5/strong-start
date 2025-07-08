@@ -25,20 +25,21 @@ export async function fetchNonProfitStats() {
 }
 
 export async function fetchNonProfitList() {
-  return nonprofitAllTest;
-  // await fetch(`${nonProfitLink}/all`)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update the component with the data
-  //       after(data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching all non-profits :", error);
-  //     });
+  // return nonprofitAllTest;
+  return await fetch(`${nonProfitLink}/all/short`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      console.log("data", data);
+      return data;
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching all non-profits :", error);
+    });
 }
