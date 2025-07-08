@@ -5,10 +5,10 @@ import { getNonProfit } from "#utils/nonprofit_utils.js";
 import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
 
 // Import routes
-import employeeRouter from "./nonprofit-employee.js";
-import nonprofitRouter from "./nonprofit.js";
-import refugeeRouter from "./refugee.js";
-import serviceRouter from "./service.js";
+import employeeRouter from "#apiroutes/nonprofit-employee.js";
+import nonprofitRouter from "#apiroutes/nonprofit.js";
+import refugeeRouter from "#apiroutes/refugee.js";
+import serviceRouter from "#apiroutes/service.js";
 
 const prisma = new PrismaClient();
 const apiRouter = express.Router();

@@ -24,6 +24,7 @@
   "imports": {
     "#utils/*": "./utils/*",
     "#prisma/*": "./generated/prisma/*",
-    "#errors/*": "./middleware/errors/*"
+    "#errors/*": "./middleware/errors/*",
+    "#apiroutes/*": "./api/routes/*"
   }
 }
