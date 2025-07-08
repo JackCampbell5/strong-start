@@ -69,7 +69,6 @@ nonprofitRouter.get("/:nonprofit_id/stats", async (req, res, next) => {
         id: nonprofit_id,
       },
     });
-    console.log(findNonProfit);
     if (findNonProfit) {
       let stats = await generateStats(findNonProfit);
       res.status(200).json(stats);
