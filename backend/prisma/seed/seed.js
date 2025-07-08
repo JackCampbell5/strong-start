@@ -13,11 +13,11 @@ async function main() {
 
   // Get starting and ending indices for each nonprofit's slice of services
   const serviceDistribution = [20, 10, 5, 5]; // How to distribute services to nonprofits
-  let [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length);
+  let [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, nonprofitList.length);
 
   // Get starting and ending indices for each nonprofit's slice of employees
   const employeeDistribution = [10, 15, 10, 5]; // How to distribute employees to nonprofits
-  let [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length);
+  let [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitList.length);
 
   // Hash the passwords
   let employeeList = await hashPasswordList(employees); // Hash the passwords
@@ -70,31 +70,46 @@ async function hashPasswordList(employees){
 
 /**
  * Gives starting and ending indices for each nonprofit's slice of objects from a # per nonprofit
- * @param {Array} arr The number of objects per nonprofit
- * @param Int} maxLength The total length of objects
- * @returns A starting and ending index for each nonprofit's slice of objects
+ *  + If input arrays length is greater than the length of objects then the end is removed from the input array until the size is less
+ *  + If the input array is longer than the number of nonprofits then the array is truncated to the number of nonprofits
+ *  + If the input array is shorter than the number of nonprofits then the array is padded with 0s
+ *  + The last element of the array is set to the max length of objects
+ * Example Input: [20, 10, 5, 5]
+ * Example Output: [[0,20,30,35], [20,30,35,40]]
+ * @param {Array} arr -  The number of objects per nonprofit
+ * @param {Int} maxLength - maxLength The total length of objects
+ * @returns [Int Array, Int Array] - A starting and ending index for each nonprofit's slice of objects
  */
-function distribute(arr, maxLength) {
+function distribute(arr, maxLength, nonProfitLength) {
+  let arrCopy = [...arr];
   //Make sure the total length of objects is less than the max length
-  while (arr.reduce((acc, val) => acc + val, 0) > maxLength) {
-    arr.pop();
+  while (arrCopy.reduce((acc, val) => acc + val, 0) > maxLength) {
+    arrCopy.pop();
   }
 
   // Make sure there is an index for each nonprofit
-  if( nonprofitList.length > arr.length){
-    for (let i = arr.length; i < nonprofitList.length; i++) {
-      arr.push(0);
+  if( nonProfitLength > arrCopy.length){
+    for (let i = arrCopy.length; i < nonProfitLength; i++) {
+      arrCopy.push(0);
     }
-  }else if (nonprofitList.length < arr.length){
-    arr = arr.slice(0, nonprofitList.length);
+  }else if (nonProfitLength < arrCopy.length){
+    arrCopy = arrCopy.slice(0, nonProfitLength);
   }
 
 
   // Make sure the full length of objects is assigned
-  arr[arr.length-1] = maxLength - arr.slice(0,arr.length-1).reduce((acc, val) => acc + val, 0);
+  let arrStartTotal = arrCopy.slice(0,-1).reduce((acc, val) => acc + val, 0); // The total length of objects not including the last one
+  arrCopy[arrCopy.length-1] = maxLength - arrStartTotal // Makes the last index take the rest of the objects
+
   // The start and end indices of each nonprofit's slice of objects
-  const startArr = arr.map((val,num)=> arr.slice(0, num).reduce((acc, val) => acc + val, 0));
-  const endArr = arr.map((val,num)=> startArr[num]+arr[num]);
+  // Create the end array by adding the previous value to the current value
+  let endArr = [];
+  for (let a = 0; a < arrCopy.length; a++) {
+    let newVal = a===0 ? arrCopy[a]: endArr[a-1]+arrCopy[a];
+    endArr.push(newVal);
+  }
+  // Create the start array by adding 0 to the first value and the previous value to the current value
+  const startArr = [0, ...endArr.slice(0, -1)]
   return [startArr, endArr]
 }
 
