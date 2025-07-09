@@ -17,7 +17,7 @@
   },
   {
     "id": "country_of_origin",
-    "name": "Country of Origin*",
+    "name": "Country of Origin",
     "value": "",
     "default": "Afghanistan",
     "required": false,
@@ -25,7 +25,7 @@
   },
   {
     "id": "language",
-    "name": "Language Spoken*",
+    "name": "Language Spoken",
     "value": "",
     "default": "Arabic",
     "required": false,
@@ -33,7 +33,7 @@
   },
   {
     "id": "date_entered",
-    "name": "Date entered US*",
+    "name": "Date entered US",
     "value": "",
     "default": "2025-01-01",
     "required": false,
