@@ -1,6 +1,6 @@
 import { statsDefault } from "#default-data/nonProfitDefaultData";
 import nonprofitAllTest from "#test-data/nonprofitAllTest";
-import { errorReturn, successReturn } from "#utils/httpUtils";
+import { errorReturn, successReturn, MyHTTPError } from "#utils/httpUtils";
 const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/api/v1/nonprofit";
 
 export async function fetchNonProfitStats(nonprofit) {
@@ -8,7 +8,7 @@ export async function fetchNonProfitStats(nonprofit) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       return response.json(); // Parse JSON data from the response
     })
@@ -29,7 +29,7 @@ export async function fetchNonProfitList() {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       return response.json(); // Parse JSON data from the response
     })
