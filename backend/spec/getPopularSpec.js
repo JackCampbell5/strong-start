@@ -1,5 +1,5 @@
 import { getPopular } from "#utils/nonprofitStatUtils.js";
-describe("add function", () => {
+describe("getPopular function", () => {
   it("Output 3 and 2 as they are the most popular ", () => {
     expect(getPopular([1, 3, 3, 2, 2, 3])).toBe("3, 2");
   });
@@ -11,6 +11,11 @@ describe("add function", () => {
   it("Should also work on strings", () => {
     expect(getPopular(["Hi", "Hello", "Hi", "Bye", "Bye", "Hi"])).toBe(
       "Hi, Bye"
+    );
+  });
+  it("should throw an error with the expected message", () => {
+    expect(() => getPopular("[2, 1]")).toThrow(
+      new Error("List must be an array")
     );
   });
 });

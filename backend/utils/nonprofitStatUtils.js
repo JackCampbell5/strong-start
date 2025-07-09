@@ -53,6 +53,9 @@ function getPopularZipCode(allServices) {
  * @returns The top 2 most popular items in a string form separated by a comma
  */
 export function getPopular(list) {
+  if (Array.isArray(list) == false) {
+    throw new Error("List must be an array");
+  }
   // Count the number of times each zipcode appears
   let result = {};
   for (let a in list) {
