@@ -1,4 +1,5 @@
 import { getNonProfit } from "#utils/pathUtils";
+import { errorReturn, successReturn } from "#utils/httpUtils";
 import serviceSearchTestData from "#test-data//serviceSearchTestData";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
@@ -12,18 +13,18 @@ export async function fetchServiceDetails(nonProfit, id) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new Error({ status: response.status, message: errorText });
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error.message);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }
 
@@ -36,18 +37,18 @@ export async function fetchServiceNameList(nonProfit) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new Error({ status: response.status, message: errorText });
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error.message);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }
 
@@ -65,7 +66,7 @@ export async function postService(info, nonprofit) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new Error({ status: response.status, message: errorText });
       }
       let data = response.json(); // Parse JSON data from the response
       return { result: true };
@@ -92,7 +93,7 @@ export async function putService(info, nonprofit, serviceID) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new Error({ status: response.status, message: errorText });
       }
       let data = response.json(); // Parse JSON data from the response
       return { result: true };
@@ -116,18 +117,18 @@ export async function fetchSearch(nonprofit, data) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new Error({ status: response.status, message: errorText });
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }
 
@@ -141,17 +142,17 @@ export async function fetchAllServices(nonprofit) {
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new Error({ status: response.status, message: errorText });
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }

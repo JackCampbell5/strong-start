@@ -93,13 +93,13 @@ function EditService({ serviceID = null }) {
   useEffect(() => {
     if (serviceID) {
       setLoading(true);
-      fetchServiceDetails(nonprofit, serviceID).then((data) => {
+      fetchServiceDetails(nonprofit, serviceID).then((result) => {
         setLoading(false);
-        if (data.valid) {
+        if (result.valid) {
           setErrorText("");
           // Make sure the data that was sent back includes the icon and default values
           let retData = [];
-          for (let a of data) {
+          for (let a of result.data) {
             let key = a.id;
             if (serviceInputDefaultValues[key]) {
               if (!a.default) {
@@ -119,7 +119,7 @@ function EditService({ serviceID = null }) {
           }
           setServiceInput(retData);
         } else {
-          setErrorText(data.error);
+          setErrorText(result.error);
         }
       });
     }
