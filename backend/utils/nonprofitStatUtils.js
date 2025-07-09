@@ -54,7 +54,6 @@ function getPopularZipCode(allServices) {
  */
 function getPopular(list) {
   // Count the number of times each zipcode appears
-  console.log(list);
   let result = {};
   for (let a in list) {
     let key = list[a];
@@ -66,10 +65,12 @@ function getPopular(list) {
     }
   }
   // Sort the zipcodes by number of times they appear and return the top 3
-  let popularList = Object.keys(result)
-    .sort((a, b) => a - b)
+  let popularTypes = Object.entries(result)
+    .sort(([key1, a], [key2, b]) => a - b)
     .reverse();
-
+  console.log(popularTypes);
+  let popularList = popularTypes.map((type) => type[0]);
+  console.log(popularList);
   // Format the result and return
   let popular = "";
   for (let a = 0; a < popularList.length && a < 2; a++) {
