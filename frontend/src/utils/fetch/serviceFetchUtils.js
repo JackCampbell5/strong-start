@@ -23,7 +23,7 @@ export async function fetchServiceDetails(nonProfit, id) {
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error.message);
-      return { valid: false, data: error.message };
+      return { valid: false, error: error.message };
     });
 }
 
@@ -47,7 +47,7 @@ export async function fetchServiceNameList(nonProfit) {
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error.message);
-      return { valid: false, data: error.message };
+      return { valid: false, error: error.message };
     });
 }
 
@@ -127,7 +127,7 @@ export async function fetchSearch(nonprofit, data) {
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error);
-      return { valid: false, data: error.message };
+      return { valid: false, error: error.message };
     });
 }
 
@@ -152,6 +152,6 @@ export async function fetchAllServices(nonprofit) {
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error);
-      return { valid: false, data: error.message };
+      return { valid: false, error: error.message };
     });
 }

@@ -16,6 +16,7 @@ function ViewServices() {
   const [errorText, setErrorText] = useState("");
   useEffect(() => {
     fetchAllServices(nonprofit).then((results) => {
+      console.log(results);
       if (results.valid) {
         setErrorText("");
         setSearchResults(results.data);
