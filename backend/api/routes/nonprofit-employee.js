@@ -88,17 +88,15 @@ employeeRouter.post("/register", async (req, res, next) => {
 
 // Register a new non profit employee
 employeeRouter.post("/login", async (req, res, next) => {
-  const { username, password: plainPassword } = req.body;
+  const { username, password: plainPassword } = req.body.data;
   const nonprofit = req.body.nonprofit;
   try {
     const employeeData = await getEmployeeData(username, nonprofit, next);
     if (employeeData) {
       if (await verifyPassword(plainPassword, employeeData.password)) {
-        // TODO SESSION - Add when session is implemented
-        // req.session.user = user; // Added to session
-
         // Return the employee without the password
         const secureEmployee = secureEmployeeData(employeeData);
+        req.session.employee = secureEmployee; // Added to session
         res.status(201).json(secureEmployee);
       } else {
         throw new EmployeeLogInError(username);
