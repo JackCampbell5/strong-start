@@ -103,7 +103,7 @@ function NavNonProfit({ onNavigate }) {
                 "navBarButton",
                 location === NpPages.REGISTER ? "selected" : "unselected",
               ].join(" ")}
-              onClick={() => navSet(NpPages.REGISTER)}
+              onClick={() => onNavigate(NpPages.REGISTER)}
             >
               Register
             </button>
