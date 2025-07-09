@@ -10,8 +10,10 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 //util functions
 import { loginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { createPageNavigator } from "#utils/pathUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function Login({}) {
+  const nonprofit = getNonProfit();
   const navigate = useNavigate();
   const location = useLocation();
   const pageNavigator = createPageNavigator(navigate, location);
@@ -35,14 +37,14 @@ function Login({}) {
       return;
     }
     setLoading(true);
-    loginNonprofitEmployee(username, password).then(loginReturn);
+    loginNonprofitEmployee(nonprofit, username, password).then(loginReturn);
   }
-  function loginReturn(data) {
+  function loginReturn(result) {
     setLoading(false);
-    if (data.success) {
-      setSuccessText(data.message);
+    if (result.valid) {
+      setSuccessText(result.data);
     } else {
-      setErrorText(data.message);
+      setErrorText(result.error);
     }
   }
 
