@@ -37,7 +37,7 @@ function SearchFilters({ loading, searchFor }) {
    * @param {object} input The data to search for
    */
   function searchFromData(input) {
-    let reformatedData = reformatData(data);
+    let reformatedData = reformatData(input);
     searchFor(reformatedData);
   }
 
@@ -55,12 +55,8 @@ function SearchFilters({ loading, searchFor }) {
     }
     if (retStr !== "") {
       retStr += "Please fill out the required fields and try again.";
-      setErrorText(retStr);
-      return false;
-    } else {
-      setErrorText("");
-      return true;
     }
+    return retStr;
   }
 
   return (

@@ -7,6 +7,9 @@ export function formatVarName(varName) {
 export function reformatData(data) {
   let result = {};
   for (let a of data) {
+    if (a.value === "") {
+      continue;
+    }
     if (a.id === "zipcode") {
       result[a.id] = parseInt(a.value);
     } else if (a.id === "services_offered") {

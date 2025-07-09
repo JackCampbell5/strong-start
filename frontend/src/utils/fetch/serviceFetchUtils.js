@@ -105,25 +105,26 @@ export async function putService(info, nonprofit, serviceID) {
  * Gets a list of all services for a nonprofit with just the name and id
  * @param {Function} after - Function to call with data fetched
  */
-export async function fetchSearch(data) {
-  return { valid: true, data: serviceSearchTestData };
-  // Add the data as query params
-  // TODO Temp until frontend connects to backend
-  // await fetch(`${serviceLink}/${nonProfit}/name-list`)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update the component with the data
-  //       after(data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching given service:", error);
-  //     });
+export async function fetchSearch(nonprofit, data) {
+  // Construct the query params based on the search data
+  const params = new URLSearchParams(data);
+  return await fetch(`${serviceLink}/${nonprofit}/search?${params.toString()}`)
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new Error(`${errorText}`);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return { valid: true, data: data };
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching given service:", error);
+      return { valid: false, data: error.message };
+    });
 }
 
 /**
