@@ -110,6 +110,22 @@ employeeRouter.post("/login", async (req, res, next) => {
   }
 });
 
+// Register a new non profit employee
+employeeRouter.get("/login/test", async (req, res, next) => {
+  const nonprofit = req.body.nonprofit;
+  try {
+    if (req.session.employee) {
+      return res
+        .status(200)
+        .json(req.session.employee.username + " is currently logged in");
+    } else {
+      return res.status(200).json(null);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
 // Logout a user
 employeeRouter.post("/logout", (req, res, next) => {
   req.session.destroy((err) => {
