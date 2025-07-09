@@ -131,7 +131,7 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
 
 // Get one service by id
 serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
-  if (!req.session.employee.employee) {
+  if (!req.session.employee) {
     res.status(401).send("Unauthorized: Please log in");
     return;
   }
@@ -167,7 +167,7 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
 
 // Add a new service by id
 serviceRouter.post("/add", async (req, res, next) => {
-  if (!req.session.employee.employee) {
+  if (!req.session.employee) {
     res.status(401).send("Unauthorized: Please log in");
     return;
   }
@@ -192,7 +192,7 @@ serviceRouter.post("/add", async (req, res, next) => {
 
 // Edit a service by id
 serviceRouter.put("/:service_id/edit", async (req, res, next) => {
-  if (!req.session.employee.employee) {
+  if (!req.session.employee) {
     res.status(401).send("Unauthorized: Please log in");
     return;
   }
@@ -222,7 +222,7 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
 
 // Delete a service by id
 serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
-  if (!req.session.employee.employee) {
+  if (!req.session.employee) {
     res.status(401).send("Unauthorized: Please log in");
     return;
   }
