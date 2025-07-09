@@ -1,5 +1,6 @@
 import cors from "cors"; // Cross Origin Resource Sharing
 import express from "express"; // Express framework
+import session from "express-session"; // Session management
 
 // Import routes for the API
 import apiRouter from "#routes/api_v1.js";
@@ -7,8 +8,28 @@ import apiRouter from "#routes/api_v1.js";
 //Create Constants and setup app
 const app = express();
 app.use(express.json());
-app.use(cors()); // Enable CORS for all requests
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173", // Replace with your client's origin
+  })
+);
 const port = 3000;
+
+let sessionConfig = {
+  name: "sessionId",
+  secret: "keep it secret, keep it safe",
+  cookie: {
+    maxAge: 1000 * 60 * 5,
+    secure: false,
+    httpOnly: false,
+  },
+  resave: false,
+  saveUninitialized: false,
+};
+
+// app.set("trust proxy", 1); // works alongside "secure" cookie setting
+app.use(session(sessionConfig));
 
 // Default path
 app.get("/", (req, res) => {
