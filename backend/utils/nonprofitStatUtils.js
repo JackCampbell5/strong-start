@@ -49,10 +49,10 @@ function getPopularZipCode(allServices) {
 
 /**
  * Get the most popular items from a list and returns the top 2
- * @param {*} list The list of items to get the popular items from
+ * @param {object} list The list of items to get the popular items from. Duplicate items are allowed
  * @returns The top 2 most popular items in a string form separated by a comma
  */
-function getPopular(list) {
+export function getPopular(list) {
   // Count the number of times each zipcode appears
   let result = {};
   for (let a in list) {
@@ -68,15 +68,9 @@ function getPopular(list) {
   let popularTypes = Object.entries(result)
     .sort(([key1, a], [key2, b]) => a - b)
     .reverse();
-  console.log(popularTypes);
   let popularList = popularTypes.map((type) => type[0]);
-  console.log(popularList);
   // Format the result and return
-  let popular = "";
-  for (let a = 0; a < popularList.length && a < 2; a++) {
-    popular += popularList[a] + ", ";
-  }
-  popular = popular.slice(0, -2);
+  let popular = popularList.slice(0, 2).join(", ");
   return popular;
 }
 
