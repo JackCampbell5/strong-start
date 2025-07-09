@@ -63,28 +63,28 @@ export async function testLoginNonprofitEmployee(nonprofit) {
  * Creates a new service for a nonprofit
  * @param {object} info - The info to post to the backend
  */
-export async function registerNonprofitEmployee(data) {
-  return { success: true, message: "Register Success" };
-  //   // Temp until frontend connects to backend
-  //   await fetch(`${serviceLink}/${nonProfit}/register`, {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update now that success
-  //       after(data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching boards:", error);
-  //       // Return more info on the error
-  //       after();
-  //     });
+export async function registerNonprofitEmployee(nonprofit, data) {
+  return await fetch(`${serviceLink}/${nonprofit}/register`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: data }),
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update now that success
+      return successReturn("User created" + data.username);
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching boards:", error);
+      // Return more info on the error
+      return errorReturn(error);
+    });
 }
