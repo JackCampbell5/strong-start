@@ -94,28 +94,33 @@ function EditService({ serviceID = null }) {
     if (serviceID) {
       setLoading(true);
       fetchServiceDetails(nonprofit, serviceID).then((data) => {
-        // Make sure the data that was sent back includes the icon and default values
-        let retData = [];
-        for (let a of data) {
-          let key = a.id;
-          if (serviceInputDefaultValues[key]) {
-            if (!a.default) {
-              a.default = serviceInputDefaultValues[key].default;
-            }
-            if (!a.icon) {
-              a.icon = serviceInputDefaultValues[key].icon;
-            }
-            if (!a.name) {
-              a.name = serviceInputDefaultValues[key].name;
-            }
-            if (!a.required) {
-              a.required = serviceInputDefaultValues[key].required;
-            }
-          }
-          retData.push(a);
-        }
-        setServiceInput(retData);
         setLoading(false);
+        if (data.valid) {
+          setErrorText("");
+          // Make sure the data that was sent back includes the icon and default values
+          let retData = [];
+          for (let a of data) {
+            let key = a.id;
+            if (serviceInputDefaultValues[key]) {
+              if (!a.default) {
+                a.default = serviceInputDefaultValues[key].default;
+              }
+              if (!a.icon) {
+                a.icon = serviceInputDefaultValues[key].icon;
+              }
+              if (!a.name) {
+                a.name = serviceInputDefaultValues[key].name;
+              }
+              if (!a.required) {
+                a.required = serviceInputDefaultValues[key].required;
+              }
+            }
+            retData.push(a);
+          }
+          setServiceInput(retData);
+        } else {
+          setErrorText(data.error);
+        }
       });
     }
   }, [serviceID]);
