@@ -6,15 +6,14 @@ import session from "express-session"; // Session management
 import apiRouter from "#routes/api_v1.js";
 
 const dev = process.env.DEV === "true";
+console.log("Dev mode:", dev);
 //Create Constants and setup app
 const app = express();
 app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.DEV
-      ? "http://localhost:5173"
-      : process.env.FRONTEND_URL, // Replace with your client's origin
+    origin: dev ? "http://localhost:5173" : process.env.FRONTEND_URL, // Replace with your client's origin
   })
 );
 const port = 3000;
