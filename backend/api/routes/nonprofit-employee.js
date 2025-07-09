@@ -77,6 +77,7 @@ employeeRouter.post("/register", async (req, res, next) => {
 
       // Return the employee without the password
       const secureEmployee = secureEmployeeData(createEmployee);
+      req.session.employee = secureEmployee; // Added to session
       res.status(201).json(secureEmployee);
     } else {
       throw new EmployeeUsernameTakenError(username);
@@ -109,19 +110,18 @@ employeeRouter.post("/login", async (req, res, next) => {
   }
 });
 
-// TODO SESSION - Add when session is implemented
-// // Logout a user
-// employeeRouter.post("/logout", (req, res, next) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       console.log("Error destroying session:", err);
-//       next({ message: "Logout failed" });
-//     } else {
-//       res.clearCookie("sessionId");
-//       res.json({ message: "👋 Logged out" });
-//     }
-//   });
-// });
+// Logout a user
+employeeRouter.post("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("Error destroying session:", err);
+      next({ message: "Logout failed" });
+    } else {
+      res.clearCookie("sessionId");
+      res.json({ message: "👋 Logged out" });
+    }
+  });
+});
 
 // Edit a employee by name
 employeeRouter.put("/:employee_id/edit", async (req, res, next) => {
