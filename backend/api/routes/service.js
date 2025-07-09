@@ -105,7 +105,7 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
 });
 
 // Get one service by id
-serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
+serviceRouter.get("/:service_id/get-to-edit", async (req, res, next) => {
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
