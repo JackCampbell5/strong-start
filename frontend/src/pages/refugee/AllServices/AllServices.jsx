@@ -8,12 +8,14 @@ import PropTypes from "prop-types";
 import ServiceList from "#components/ServiceList/ServiceList";
 // util functions
 import { fetchAllServices } from "#fetch/serviceFetchUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function AllServices() {
+  let nonprofit = getNonProfit();
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
   useEffect(() => {
-    fetchAllServices().then((results) => {
+    fetchAllServices(nonprofit).then((results) => {
       if (results.valid) {
         setErrorText("");
         setSearchResults(results.data);
