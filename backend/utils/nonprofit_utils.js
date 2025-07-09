@@ -14,7 +14,6 @@ export async function checkNonProfitName(name, next) {
         name: name,
       },
     });
-    console.log(resultData !== null);
     return resultData !== null;
   } catch (e) {
     next(e);

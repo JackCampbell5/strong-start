@@ -35,7 +35,6 @@ serviceRouter.get("/all", async (req, res, next) => {
 // Get all services in dropdown format
 serviceRouter.get("/all/name-list", async (req, res, next) => {
   try {
-    console.log("Getting all services in dropdown format");
     const nonprofit = req.body.nonprofit;
     const foundServices = await prisma.service.findMany({
       where: {

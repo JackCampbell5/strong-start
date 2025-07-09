@@ -16,7 +16,6 @@ export async function fetchServiceDetails(nonProfit, id) {
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
-      console.log(data);
       // Update the component with the data
       return data;
     })

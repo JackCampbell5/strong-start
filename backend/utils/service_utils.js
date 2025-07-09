@@ -14,7 +14,6 @@ export async function checkServiceName(name, nonprofit, next) {
         nonprofit_ID: nonprofit.id,
       },
     });
-    console.log(resultData);
     if (resultData !== null && resultData.length > 1) {
       throw new Error(
         "Multiple services with the same name in one nonprofit found"
