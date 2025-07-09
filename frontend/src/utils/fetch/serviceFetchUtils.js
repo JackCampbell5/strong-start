@@ -130,23 +130,23 @@ export async function fetchSearch(data) {
  *
  * @returns An object containing all the services in this non profits database
  */
-export async function fetchAllServices() {
-  return { valid: true, data: serviceSearchTestData };
-  // Add the data as query params
-  // TODO Temp until frontend connects to backend
-  // await fetch(`${serviceLink}/${nonProfit}/name-list`)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error(`HTTP error! status: ${response.status}`);
-  //       }
-  //       return response.json(); // Parse JSON data from the response
-  //     })
-  //     .then((data) => {
-  //       // Update the component with the data
-  //       after(data);
-  //     })
-  //     .catch((error) => {
-  //       // Handle error
-  //       console.error("Error fetching given service:", error);
-  //     });
+export async function fetchAllServices(nonprofit) {
+  // return { valid: true, data: serviceSearchTestData };
+  return await fetch(`${serviceLink}/${nonprofit}/all`)
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new Error(`${errorText}`);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return { valid: true, data: data };
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching given service:", error);
+      return { valid: false, data: error.message };
+    });
 }
