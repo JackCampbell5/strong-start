@@ -1,6 +1,10 @@
+// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
 
+// Local Imports
 import { hashPassword } from "#utils/auth-utils.js";
+
+// Seed Data to import
 import serviceList from "#seed/services.json" with { type: "json" };
 import nonprofitList from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
