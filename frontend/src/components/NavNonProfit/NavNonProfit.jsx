@@ -108,8 +108,10 @@ function NavNonProfit({ onNavigate }) {
             Account <IoIosArrowDropdown className="dropdownArrow" />
           </button>
           <div
-            className="dropdown-content"
-            id={isAccountNavExpanded ? "shown" : "not-shown"}
+            className={[
+              "dropdown-content",
+              isAccountNavExpanded ? "dropdown-shown" : "dropdown-not-shown",
+            ].join(" ")}
           >
             <button
               className={[

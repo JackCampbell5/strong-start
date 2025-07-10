@@ -74,10 +74,10 @@
   vertical-align: middle;
 }
 
-.NavNonProfit #not-shown {
+.NavNonProfit .dropdown-not-shown {
   display: none;
 }
-.NavNonProfit #shown {
+.NavNonProfit .dropdown-shown {
   display: flex;
   flex-direction: column;
 }

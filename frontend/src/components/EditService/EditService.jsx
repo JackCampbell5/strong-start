@@ -139,12 +139,12 @@ function EditService({ serviceID = null }) {
         {serviceInput.map((obj, index) => {
           return (
             <div className="serviceParam" key={obj.id + "Class"}>
-              <p id={obj.id + "P"}>{obj.name}:</p>
+              <p className={obj.id + "P"}>{obj.name}:</p>
               {obj.icon ? <obj.icon /> : null}
               {obj.id === "description" ? (
                 <textarea
                   key={obj.id + "Input"}
-                  id={obj.id + "Input"}
+                  className={obj.id + "Input"}
                   type="text"
                   value={obj.value}
                   placeholder={obj.default}
@@ -158,7 +158,7 @@ function EditService({ serviceID = null }) {
               ) : (
                 <input
                   key={obj.id + "Input"}
-                  id={obj.id + "Input"}
+                  className={obj.id + "Input"}
                   type="text"
                   value={obj.value}
                   placeholder={obj.default}

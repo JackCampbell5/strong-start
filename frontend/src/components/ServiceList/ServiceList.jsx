@@ -19,9 +19,9 @@ function ServiceList({ data }) {
             })
           : null}
       </div>
-      <div id="ServiceTotal">
-        <p id="ServiceTotalNum">{num} </p>
-        <p id="ServiceTotalLabel"> Services Displayed</p>
+      <div className="ServiceTotal">
+        <p className="ServiceTotalNum">{num} </p>
+        <p className="ServiceTotalLabel"> Services Displayed</p>
       </div>
     </div>
   );
