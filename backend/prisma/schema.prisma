@@ -16,9 +16,8 @@ model service{
   id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name                  String
   address               String
-  zipcode               Int?
+  zipcode               String
   description           String?
-  phone_number          String?
   email                 String?
   phone                 String?
   website               String

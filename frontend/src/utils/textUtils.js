@@ -7,7 +7,11 @@ export function formatVarName(varName) {
 export function reformatData(data) {
   let result = {};
   for (let a of data) {
-    result[a.id] = a.value;
+    if (a.id === "services_offered") {
+      result[a.id] = a.value.split(",");
+    } else {
+      result[a.id] = a.value;
+    }
   }
   return result;
 }

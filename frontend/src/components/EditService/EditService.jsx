@@ -16,8 +16,10 @@ import {
   putService,
 } from "#fetch/serviceFetchUtils";
 import { reformatData } from "#utils/textUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function EditService({ serviceID = null }) {
+  let nonprofit = getNonProfit();
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState("");
@@ -29,17 +31,19 @@ function EditService({ serviceID = null }) {
    */
   function serviceSubmit() {
     // Check to make sure the data is valid and print and error message if it is not
-    let continueLoad = checkRequired(serviceInput);
-    if (continueLoad) {
+    let invalid = checkRequired(serviceInput);
+    if (!invalid) {
+      setErrorText("");
       setLoading(true);
 
       let data = reformatData(serviceInput);
-
-      if (!serviceID) {
-        putService(data, submitReturn);
+      if (serviceID) {
+        putService(data, nonprofit, serviceID).then(submitReturn);
       } else {
-        postService(data, submitReturn);
+        postService(data, nonprofit).then(submitReturn);
       }
+    } else {
+      setErrorText(invalid);
     }
   }
 
@@ -53,16 +57,18 @@ function EditService({ serviceID = null }) {
     for (let a of data) {
       if (a.value === "" && a.required) {
         retStr += a.name + " is required. ";
+      } else if (
+        a.id === "zipcode" &&
+        a.value !== "" &&
+        !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
+      ) {
+        retStr += "Zipcode must be in the form 12345 or 12345-6789.";
       }
     }
     if (retStr !== "") {
       retStr += "Please fill out the required fields and try again.";
-      setErrorText(retStr);
-      return false;
-    } else {
-      setErrorText("");
-      return true;
     }
+    return retStr;
   }
 
   /**
@@ -71,22 +77,23 @@ function EditService({ serviceID = null }) {
    */
   function submitReturn(success) {
     setLoading(false);
-    if (success) {
-      // window.location.reload();
-      setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
+    if (success.result) {
+      if (!serviceID) {
+        setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
+      }
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
       }, 5000); // 5000 milliseconds = 5 seconds
     } else {
-      setErrorText(success);
+      setErrorText(success.error);
     }
   }
 
   useEffect(() => {
     if (serviceID) {
       setLoading(true);
-      fetchServiceDetails(serviceID).then((data) => {
+      fetchServiceDetails(nonprofit, serviceID).then((data) => {
         // Make sure the data that was sent back includes the icon and default values
         let retData = [];
         for (let a of data) {
@@ -98,6 +105,12 @@ function EditService({ serviceID = null }) {
             if (!a.icon) {
               a.icon = serviceInputDefaultValues[key].icon;
             }
+            if (!a.name) {
+              a.name = serviceInputDefaultValues[key].name;
+            }
+            if (!a.required) {
+              a.required = serviceInputDefaultValues[key].required;
+            }
           }
           retData.push(a);
         }
@@ -105,7 +118,7 @@ function EditService({ serviceID = null }) {
         setLoading(false);
       });
     }
-  }, []);
+  }, [serviceID]);
 
   return (
     <div className="EditService">
