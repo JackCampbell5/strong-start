@@ -57,11 +57,11 @@ apiRouter.get("/service", (req, res) => {
 apiRouter.use("/service/:nonprofitname", getNonProfit, serviceRouter);
 
 apiRouter.use((err, req, res, next) => {
-  const retStr = `${err.name}: ${err.message}`;
+  const errorMessage = `${err.name}: ${err.message}`;
   if (err instanceof NonProfitNotFoundError) {
-    return res.status(404).send(retStr);
+    return res.status(404).send(errorMessage);
   } else {
-    return res.status(500).send(retStr);
+    return res.status(500).send(errorMessage);
   }
 });
 

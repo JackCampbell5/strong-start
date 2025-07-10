@@ -168,13 +168,13 @@ nonprofitRouter.delete("/:nonprofit_id/delete", async (req, res, next) => {
 });
 
 nonprofitRouter.use((err, req, res, next) => {
-  const retStr = `${err.name}: ${err.message}`;
+  const errorMessage = `${err.name}: ${err.message}`;
   if (err instanceof NonProfitNotFoundError) {
-    return res.status(404).send(retStr);
+    return res.status(404).send(errorMessage);
   } else if (err instanceof NonProfitAlreadyExistsError) {
-    return res.status(409).send(retStr);
+    return res.status(409).send(errorMessage);
   } else {
-    return res.status(500).send(retStr);
+    return res.status(500).send(errorMessage);
   }
 });
 

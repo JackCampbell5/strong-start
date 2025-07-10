@@ -227,13 +227,13 @@ serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
 });
 
 serviceRouter.use((err, req, res, next) => {
-  const retStr = `${err.name}: ${err.message}`;
+  const errorMessage = `${err.name}: ${err.message}`;
   if (err instanceof ServiceNotFoundError) {
-    return res.status(404).send(retStr);
+    return res.status(404).send(errorMessage);
   } else if (err instanceof ServiceAlreadyExistsError) {
-    return res.status(409).send(retStr);
+    return res.status(409).send(errorMessage);
   } else {
-    return res.status(500).send(retStr);
+    return res.status(500).send(errorMessage);
   }
 });
 
