@@ -49,30 +49,31 @@ function getPopularZipCode(allServices) {
 
 /**
  * Get the most popular items from a list and returns the top 2
- * @param {*} list The list of items to get the popular items from
- * @param {*} int Whether or not the list is an array of integers(For sorting purposes)
+ * @param {object} list The list of items to get the popular items from. Duplicate items are allowed
  * @returns The top 2 most popular items in a string form separated by a comma
  */
-function getPopular(list, int = true) {
-  // Count the number of times each zipcode appears
+export function getPopular(list) {
+  if (Array.isArray(list) == false) {
+    throw new Error("List must be an array");
+  }
+  // Count the number of times each value appears
   let result = {};
   for (let a in list) {
-    let key = int ? parseInt(list[a]) : list[a];
+    let key = list[a];
+    if (key == null) continue;
     if (result[key]) {
       result[key] += 1;
     } else {
       result[key] = 1;
     }
   }
-  // Sort the zipcodes by number of times they appear and return the top 3
-  let popularList = Object.keys(result).sort().reverse();
-
+  // Sort the values by number of times they appear and return the top 3
+  let popularTypes = Object.entries(result)
+    .sort(([key1, a], [key2, b]) => a - b)
+    .reverse();
+  let popularList = popularTypes.map((type) => type[0]);
   // Format the result and return
-  let popular = "";
-  for (let a = 0; a < popularList.length && a < 2; a++) {
-    popular += popularList[a] + ", ";
-  }
-  popular = popular.slice(0, -2);
+  let popular = popularList.slice(0, 2).join(", ");
   return popular;
 }
 
@@ -92,5 +93,5 @@ function getServiceCount(servicesOffered) {
  * @returns The most popular 2 services offered by a nonprofit
  */
 function getServicePopular(servicesOffered) {
-  return getPopular(servicesOffered, false);
+  return getPopular(servicesOffered);
 }

@@ -5,6 +5,8 @@ import {
   ServiceNotFoundError,
   ServiceAlreadyExistsError,
 } from "#errors/service-errors.js";
+import { createErrorReturn } from "#utils/errorUtils.js";
+
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
 
@@ -146,12 +148,14 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
     });
     if (findService) {
       // Remove the nonprofit_ID and id from the object
-      delete findService.nonprofit_ID;
-      delete findService.id;
-      findService.services_offered = findService.services_offered.join(", ");
+      let findServiceCopy = JSON.parse(JSON.stringify(findService));
+      delete findServiceCopy.nonprofit_ID;
+      delete findServiceCopy.id;
+      findServiceCopy.services_offered =
+        findServiceCopy.services_offered.join(", ");
       // Reformat for frontend
-      const keys = Object.keys(findService);
-      const values = Object.values(findService);
+      const keys = Object.keys(findServiceCopy);
+      const values = Object.values(findServiceCopy);
       let after = keys.map((key, i) => ({
         id: key,
         value: values[i] ? values[i] : "",
@@ -247,13 +251,12 @@ serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
 });
 
 serviceRouter.use((err, req, res, next) => {
-  const retStr = `${err.name}: ${err.message}`;
   if (err instanceof ServiceNotFoundError) {
-    return res.status(404).send(retStr);
+    return res.status(404).send(createErrorReturn(err));
   } else if (err instanceof ServiceAlreadyExistsError) {
-    return res.status(409).send(retStr);
+    return res.status(409).send(createErrorReturn(err));
   } else {
-    return res.status(500).send(retStr);
+    return res.status(500).send(createErrorReturn(err));
   }
 });
 

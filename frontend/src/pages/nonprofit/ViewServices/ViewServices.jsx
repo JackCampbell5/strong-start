@@ -16,7 +16,6 @@ function ViewServices() {
   const [errorText, setErrorText] = useState("");
   useEffect(() => {
     fetchAllServices(nonprofit).then((results) => {
-      console.log(results);
       if (results.valid) {
         setErrorText("");
         setSearchResults(results.data);
@@ -24,7 +23,7 @@ function ViewServices() {
         setErrorText(results.error);
       }
     });
-  });
+  }, []);
   return (
     <div className="ViewServices">
       <h1>All Services</h1>

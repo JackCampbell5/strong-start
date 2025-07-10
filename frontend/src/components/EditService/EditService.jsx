@@ -53,22 +53,22 @@ function EditService({ serviceID = null }) {
    * @returns
    */
   function checkRequired(data) {
-    let retStr = "";
+    let errorMessage = "";
     for (let a of data) {
       if (a.value === "" && a.required) {
-        retStr += a.name + " is required. ";
+        errorMessage += a.name + " is required. ";
       } else if (
         a.id === "zipcode" &&
         a.value !== "" &&
-        !/^\d{5}$/.test(a.value)
+        !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
       ) {
-        retStr += "Zipcode must be 5 digits.";
+        errorMessage += "Zipcode must be in the form 12345 or 12345-6789.";
       }
     }
-    if (retStr !== "") {
-      retStr += "Please fill out the required fields and try again.";
+    if (errorMessage !== "") {
+      errorMessage += "Please fill out the required fields and try again.";
     }
-    return retStr;
+    return errorMessage;
   }
 
   /**
@@ -98,7 +98,7 @@ function EditService({ serviceID = null }) {
         if (result.valid) {
           setErrorText("");
           // Make sure the data that was sent back includes the icon and default values
-          let retData = [];
+          let completeData = [];
           for (let a of result.data) {
             let key = a.id;
             if (serviceInputDefaultValues[key]) {
@@ -115,9 +115,9 @@ function EditService({ serviceID = null }) {
                 a.required = serviceInputDefaultValues[key].required;
               }
             }
-            retData.push(a);
+            completeData.push(a);
           }
-          setServiceInput(retData);
+          setServiceInput(completeData);
         } else {
           setErrorText(result.error);
         }

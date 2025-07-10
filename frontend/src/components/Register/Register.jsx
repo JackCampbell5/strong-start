@@ -46,20 +46,20 @@ function Register() {
   }
 
   function findValidationErrors() {
-    let retString = "";
+    let errorMessage = "";
     if (username === "") {
-      retString += "Username cannot be empty. ";
+      errorMessage += "Username cannot be empty. ";
     }
     if (password === "") {
-      retString += "Password cannot be empty. ";
+      errorMessage += "Password cannot be empty. ";
     }
     if (password !== passwordCheck) {
-      retString += "Passwords do not match. ";
+      errorMessage += "Passwords do not match. ";
     }
     if (email === "") {
-      retString += "Email cannot be empty. ";
+      errorMessage += "Email cannot be empty. ";
     }
-    return retString;
+    return errorMessage;
   }
 
   function registerReturn(result) {

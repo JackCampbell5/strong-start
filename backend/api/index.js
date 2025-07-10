@@ -3,8 +3,8 @@ import cors from "cors"; // Cross Origin Resource Sharing
 import express from "express"; // Express framework
 import session from "express-session"; // Session management
 
-// Local Imports
-import apiRouter from "#routes/api_v1.js";
+// Import routes for the API
+import apiRouter from "#apiroutes/api_v1.js";
 
 const dev = process.env.DEV === "true"; // Check if we are in development mode
 
@@ -19,6 +19,7 @@ app.use(
     origin: dev ? "http://localhost:5173" : process.env.FRONTEND_URL, // Replace with your client's origin
   })
 );
+
 const port = 3000;
 
 // Session Configuration

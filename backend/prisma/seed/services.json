@@ -2,7 +2,7 @@
   {
     "name": "Community Food Bank",
     "address": "123 Main St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Provides food assistance to individuals and families in need.",
     "phone": "555-123-4567",
     "email": "info@communityfoodbank.org",
@@ -18,7 +18,7 @@
   {
     "name": "Shelter Support Services",
     "address": "456 Elm St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Offers temporary housing and support services.",
     "phone": "555-234-5678",
     "email": "contact@sheltersupport.org",
@@ -34,7 +34,7 @@
   {
     "name": "Health Access Clinic",
     "address": "789 Oak St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Provides free health services to uninsured individuals.",
     "phone": "555-345-6789",
     "email": "appointments@healthaccess.org",
@@ -50,7 +50,7 @@
   {
     "name": "Legal Aid Society",
     "address": "101 Pine St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Provides free legal assistance to low-income individuals.",
     "phone": "555-456-7890",
     "email": "help@legalaid.org",
@@ -66,7 +66,7 @@
   {
     "name": "Job Placement Center",
     "address": "202 Maple St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Assists refugees in finding employment opportunities.",
     "phone": "555-567-8901",
     "email": "jobs@placementcenter.org",
@@ -82,7 +82,7 @@
   {
     "name": "Childcare Assistance Program",
     "address": "303 Birch St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Provides affordable childcare services for working parents.",
     "phone": "555-678-9012",
     "email": "info@childcareprogram.org",
@@ -98,7 +98,7 @@
   {
     "name": "Language Learning Center",
     "address": "404 Cedar St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Offers language classes for non-native speakers.",
     "phone": "555-789-0123",
     "email": "learn@languagecenter.org",
@@ -114,7 +114,7 @@
   {
     "name": "Mental Health Support",
     "address": "505 Walnut St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Provides mental health counseling and support groups.",
     "phone": "555-890-1234",
     "email": "support@mentalhealth.org",
@@ -130,7 +130,7 @@
   {
     "name": "Transportation Assistance",
     "address": "606 Cherry St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Provides transportation vouchers for low-income individuals.",
     "phone": "555-901-2345",
     "email": "transport@assistance.org",
@@ -146,7 +146,7 @@
   {
     "name": "Clothing Donation Center",
     "address": "707 Spruce St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Distributes free clothing to those in need.",
     "phone": "555-012-3456",
     "email": "donate@clothingcenter.org",
@@ -162,7 +162,7 @@
   {
     "name": "Educational Support Services",
     "address": "808 Willow St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Provides tutoring and educational resources for children.",
     "phone": "555-123-4567",
     "email": "education@supportservices.org",
@@ -178,7 +178,7 @@
   {
     "name": "Financial Counseling Center",
     "address": "909 Ash St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Offers financial advice and budgeting workshops.",
     "phone": "555-234-5678",
     "email": "counseling@financialcenter.org",
@@ -194,7 +194,7 @@
   {
     "name": "Immigration Resource Center",
     "address": "1010 Poplar St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Provides resources and support for immigration processes.",
     "phone": "555-345-6789",
     "email": "resources@immigrationcenter.org",
@@ -210,7 +210,7 @@
   {
     "name": "Women's Support Network",
     "address": "1111 Fir St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Offers support and resources for women in crisis.",
     "phone": "555-456-7890",
     "email": "support@womensnetwork.org",
@@ -226,7 +226,7 @@
   {
     "name": "Youth Empowerment Program",
     "address": "1212 Maple St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Provides mentorship and leadership programs for youth.",
     "phone": "555-567-8901",
     "email": "empower@youthprogram.org",
@@ -242,7 +242,7 @@
   {
     "name": "Elderly Care Services",
     "address": "1313 Pine St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Provides in-home care and support for elderly individuals.",
     "phone": "555-678-9012",
     "email": "care@elderlyservices.org",
@@ -258,7 +258,7 @@
   {
     "name": "Disability Support Center",
     "address": "1414 Oak St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Offers resources and support for individuals with disabilities.",
     "phone": "555-789-0123",
     "email": "support@disabilitycenter.org",
@@ -274,7 +274,7 @@
   {
     "name": "Technology Access Program",
     "address": "1515 Elm St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Provides access to computers and internet for job searching.",
     "phone": "555-890-1234",
     "email": "access@techprogram.org",
@@ -290,7 +290,7 @@
   {
     "name": "Cultural Integration Center",
     "address": "1616 Cedar St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Helps refugees integrate into the local community.",
     "phone": "555-901-2345",
     "email": "integration@culturalcenter.org",
@@ -306,7 +306,7 @@
   {
     "name": "Emergency Relief Fund",
     "address": "1717 Birch St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Provides financial assistance for emergency situations.",
     "phone": "555-012-3456",
     "email": "relief@emergencyfund.org",
@@ -322,7 +322,7 @@
   {
     "name": "Housing Assistance Program",
     "address": "1818 Maple St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Provides rental assistance and housing resources.",
     "phone": "555-123-4567",
     "email": "housing@assistanceprogram.org",
@@ -338,7 +338,7 @@
   {
     "name": "Family Support Center",
     "address": "1919 Oak St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Offers family counseling and support services.",
     "phone": "555-234-5678",
     "email": "support@familysupport.org",
@@ -354,7 +354,7 @@
   {
     "name": "Community Health Outreach",
     "address": "2020 Pine St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Provides health screenings and wellness education.",
     "phone": "555-345-6789",
     "email": "outreach@communityhealth.org",
@@ -370,7 +370,7 @@
   {
     "name": "Refugee Advocacy Group",
     "address": "2121 Elm St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Advocates for refugee rights and provides legal support.",
     "phone": "555-456-7890",
     "email": "advocacy@refugeegroup.org",
@@ -386,7 +386,7 @@
   {
     "name": "Nutrition Assistance Program",
     "address": "2222 Cedar St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Provides nutritional guidance and food vouchers.",
     "phone": "555-567-8901",
     "email": "nutrition@assistanceprogram.org",
@@ -402,7 +402,7 @@
   {
     "name": "Youth Sports League",
     "address": "2323 Birch St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Organizes sports activities for youth.",
     "phone": "555-678-9012",
     "email": "sports@youthleague.org",
@@ -418,7 +418,7 @@
   {
     "name": "Senior Activity Center",
     "address": "2424 Spruce St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Offers activities and social events for seniors.",
     "phone": "555-789-0123",
     "email": "activities@seniorcenter.org",
@@ -434,7 +434,7 @@
   {
     "name": "Women's Health Clinic",
     "address": "2525 Willow St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Provides health services specifically for women.",
     "phone": "555-890-1234",
     "email": "clinic@womenshealth.org",
@@ -450,7 +450,7 @@
   {
     "name": "Disaster Relief Services",
     "address": "2626 Ash St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Provides emergency relief and recovery assistance.",
     "phone": "555-901-2345",
     "email": "relief@disasterservices.org",
@@ -466,7 +466,7 @@
   {
     "name": "Veterans Support Group",
     "address": "2727 Poplar St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Offers support and resources for veterans.",
     "phone": "555-012-3456",
     "email": "support@veteransgroup.org",
@@ -482,7 +482,7 @@
   {
     "name": "Community Garden Project",
     "address": "2828 Fir St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Encourages community involvement through gardening.",
     "phone": "555-123-4567",
     "email": "garden@communityproject.org",
@@ -498,7 +498,7 @@
   {
     "name": "Digital Literacy Program",
     "address": "2929 Maple St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Teaches digital skills and computer literacy.",
     "phone": "555-234-5678",
     "email": "literacy@digitalprogram.org",
@@ -514,7 +514,7 @@
   {
     "name": "Art Therapy Center",
     "address": "3030 Oak St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Provides art therapy sessions for emotional healing.",
     "phone": "555-345-6789",
     "email": "therapy@artcenter.org",
@@ -530,7 +530,7 @@
   {
     "name": "Environmental Education Center",
     "address": "3131 Cedar St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Educates the community on environmental conservation.",
     "phone": "555-456-7890",
     "email": "education@environmentalcenter.org",
@@ -546,7 +546,7 @@
   {
     "name": "Crisis Hotline",
     "address": "3232 Elm St, Springfield",
-    "zipcode": 12345,
+    "zipcode": "12345",
     "description": "Provides 24/7 support for individuals in crisis.",
     "phone": "555-567-8901",
     "email": "hotline@crisissupport.org",
@@ -562,7 +562,7 @@
   {
     "name": "Pet Care Assistance",
     "address": "3333 Birch St, Springfield",
-    "zipcode": 24690,
+    "zipcode": "24690",
     "description": "Provides pet food and veterinary care for low-income families.",
     "phone": "555-678-9012",
     "email": "care@petassistance.org",
@@ -578,7 +578,7 @@
   {
     "name": "Cultural Heritage Center",
     "address": "3434 Spruce St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Celebrates and preserves cultural heritage through events and exhibits.",
     "phone": "555-789-0123",
     "email": "heritage@culturalcenter.org",
@@ -594,7 +594,7 @@
   {
     "name": "Community Mediation Services",
     "address": "3535 Willow St, Springfield",
-    "zipcode": 61725,
+    "zipcode": "61725",
     "description": "Offers mediation services to resolve community disputes.",
     "phone": "555-890-1234",
     "email": "mediation@communityservices.org",
@@ -610,7 +610,7 @@
   {
     "name": "Public Library Services",
     "address": "3636 Ash St, Springfield",
-    "zipcode": 37035,
+    "zipcode": "37035",
     "description": "Provides access to books, internet, and educational programs.",
     "phone": "555-901-2345",
     "email": "info@publiclibrary.org",
@@ -626,7 +626,7 @@
   {
     "name": "Volunteer Opportunities Network",
     "address": "3737 Poplar St, Springfield",
-    "zipcode": 49380,
+    "zipcode": "49380",
     "description": "Connects individuals with volunteer opportunities in the community.",
     "phone": "555-012-3456",
     "email": "volunteer@opportunitiesnetwork.org",
