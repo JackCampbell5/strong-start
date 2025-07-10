@@ -56,7 +56,7 @@ export function getPopular(list) {
   if (Array.isArray(list) == false) {
     throw new Error("List must be an array");
   }
-  // Count the number of times each zipcode appears
+  // Count the number of times each value appears
   let result = {};
   for (let a in list) {
     let key = list[a];
@@ -67,7 +67,7 @@ export function getPopular(list) {
       result[key] = 1;
     }
   }
-  // Sort the zipcodes by number of times they appear and return the top 3
+  // Sort the values by number of times they appear and return the top 3
   let popularTypes = Object.entries(result)
     .sort(([key1, a], [key2, b]) => a - b)
     .reverse();
