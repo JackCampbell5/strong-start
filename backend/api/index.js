@@ -22,7 +22,7 @@ let sessionConfig = {
   name: "sessionId",
   secret: process.env.SESSION_SECRET,
   cookie: {
-    maxAge: 1000 * 60 * 5,
+    maxAge: 1000 * 60 * 60 * 5, // 5 hours
     secure: dev ? false : true,
     httpOnly: true,
     sameSite: dev ? "lax" : "none",
