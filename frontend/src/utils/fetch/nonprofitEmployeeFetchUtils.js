@@ -8,7 +8,7 @@ const serviceLink =
  * @param {object} info - The info to post to the backend
  */
 export async function loginNonprofitEmployee(nonprofit, username, password) {
-  let data = { data: { username: username, password: password } };
+  const data = { data: { username: username, password: password } };
   return await fetch(`${serviceLink}/${nonprofit}/login`, {
     method: "POST",
     credentials: "include",

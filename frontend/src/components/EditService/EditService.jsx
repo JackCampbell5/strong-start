@@ -26,7 +26,7 @@ import { getNonProfit } from "#utils/pathUtils";
  */
 function EditService({ serviceID = null }) {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
 
   //State Variables
   const [errorText, setErrorText] = useState("");
@@ -39,12 +39,12 @@ function EditService({ serviceID = null }) {
    */
   function serviceSubmit() {
     // Check to make sure the data is valid and print and error message if it is not
-    let invalid = checkRequired(serviceInput);
+    const invalid = checkRequired(serviceInput);
     if (!invalid) {
       setErrorText("");
       setLoading(true);
 
-      let data = reformatData(serviceInput);
+      const data = reformatData(serviceInput);
       if (serviceID) {
         putService(data, nonprofit, serviceID).then(submitReturn);
       } else {
@@ -62,7 +62,7 @@ function EditService({ serviceID = null }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (let a of data) {
+    for (const a of data) {
       if (a.value === "" && a.required) {
         errorMessage += a.name + " is required. ";
       } else if (
@@ -107,8 +107,8 @@ function EditService({ serviceID = null }) {
           setErrorText("");
           // Make sure the data that was sent back includes the icon and default values
           let completeData = [];
-          for (let a of result.data) {
-            let key = a.id;
+          for (const a of result.data) {
+            const key = a.id;
             if (serviceInputDefaultValues[key]) {
               if (!a.default) {
                 a.default = serviceInputDefaultValues[key].default;

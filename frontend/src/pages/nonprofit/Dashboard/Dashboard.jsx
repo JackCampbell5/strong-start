@@ -38,15 +38,15 @@ function Dashboard() {
       <div className="siteStats">
         <div className="siteStatLeft">
           {Object.entries(siteStats).map((obj) => {
-            let key = obj[0]; // gets the key from obj.entries
-            let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+            const key = obj[0]; // gets the key from obj.entries
+            const dict = obj[1]; // gets the dict stored at the given key from obj.entries
             return <p key={key}>{dict.name}</p>;
           })}
         </div>
         <div className="siteStatRight">
           {Object.entries(siteStats).map((obj) => {
-            let key = obj[0]; // gets the key from obj.entries
-            let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+            const key = obj[0]; // gets the key from obj.entries
+            const dict = obj[1]; // gets the dict stored at the given key from obj.entries
             return <p key={key}>{dict.key}</p>;
           })}
         </div>

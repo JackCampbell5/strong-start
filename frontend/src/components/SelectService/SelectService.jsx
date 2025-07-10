@@ -13,7 +13,7 @@ import { getNonProfit } from "#utils/pathUtils";
 function SelectService({ setServiceID, setServiceName }) {
   {
     // Constant Variables
-    let nonprofit = getNonProfit();
+    const nonprofit = getNonProfit();
 
     // State Variables
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);

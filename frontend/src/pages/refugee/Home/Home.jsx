@@ -13,7 +13,7 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function Home() {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
 
   // State Variables
   const [loading, setLoading] = useState("");

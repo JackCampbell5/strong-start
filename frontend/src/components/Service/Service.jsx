@@ -14,8 +14,8 @@ function Service({ data }) {
     <div className="Service">
       <h3>{data.name}</h3>
       {Object.entries(data).map((obj) => {
-        let key = obj[0]; // gets the key from obj.entries
-        let info = obj[1]; // gets the string stored at the given key from obj.entries
+        const key = obj[0]; // gets the key from obj.entries
+        const info = obj[1]; // gets the string stored at the given key from obj.entries
         return key !== "id" && key !== "name" ? (
           <p key={key}>
             <strong>{key}:</strong> {info}

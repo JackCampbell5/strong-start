@@ -12,7 +12,7 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function ViewServices() {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
 
   // State Variables
   const [searchResults, setSearchResults] = useState([]);

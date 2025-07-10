@@ -62,10 +62,10 @@ function Login() {
    * Navigates to the register page
    */
   function goToRegister() {
-    let path = location.pathname;
-    let allLocations = path.split("/");
-    let ending = allLocations[allLocations.length - 1];
-    let newPath = path.replace(ending, "register");
+    const path = location.pathname;
+    const allLocations = path.split("/");
+    const ending = allLocations[allLocations.length - 1];
+    const newPath = path.replace(ending, "register");
     pageNavigator(newPath);
   }
 

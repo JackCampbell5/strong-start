@@ -23,8 +23,8 @@ function SearchFilters({ loading, searchFor }) {
    */
   function searchSubmit() {
     // Check to make sure the data is valid and print and error message if it is not
-    let data = searchInput;
-    let invalid = checkRequired(data);
+    const data = searchInput;
+    const invalid = checkRequired(data);
     if (invalid) {
       setErrorText(invalid);
     } else {
@@ -38,7 +38,7 @@ function SearchFilters({ loading, searchFor }) {
    * @param {object} input The data to search for
    */
   function searchFromData(input) {
-    let reformattedData = reformatData(input);
+    const reformattedData = reformatData(input);
     searchFor(reformattedData);
   }
 
@@ -49,7 +49,7 @@ function SearchFilters({ loading, searchFor }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (let a of data) {
+    for (const a of data) {
       if (a.value === "" && a.required) {
         errorMessage += a.name + " is required. ";
       }

@@ -14,9 +14,9 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function Register() {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
   const navigate = useNavigate();
-  let location = useLocation().pathname;
+  const location = useLocation();
 
   // State Variables
   const [username, setUsername] = useState("");
@@ -34,7 +34,7 @@ function Register() {
   function registerButtonClicked() {
     setSuccessText("");
     setErrorText("");
-    let invalid = findValidationErrors();
+    const invalid = findValidationErrors();
     if (invalid) {
       setErrorText(invalid);
     } else {
@@ -46,7 +46,7 @@ function Register() {
    * Handles the actual register request if all fields are valid
    */
   function handleRegister() {
-    let user = {
+    const user = {
       username: username,
       password: password,
       email: email,
@@ -93,9 +93,9 @@ function Register() {
    * Navigates to the login page
    */
   function goToLogin() {
-    let allLocations = location.split("/");
-    let ending = allLocations[allLocations.length - 1];
-    let newPath = location.replace(ending, "login");
+    const allLocations = location.pathname.split("/");
+    const ending = allLocations[allLocations.length - 1];
+    const newPath = location.pathname.replace(ending, "login");
     navigate(newPath);
   }
   return (

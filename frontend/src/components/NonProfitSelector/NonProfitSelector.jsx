@@ -14,11 +14,11 @@ import { QueryParams } from "#utils/pathUtils";
 function NonProfitSelector({ errorText, setErrorText }) {
   {
     // State Variables
-    let [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // Add query params when the dropdown is changed
     function addNonProfit(e) {
-      let val = e.target.value;
+      const val = e.target.value;
       if (val === nonprofitDefaultOption.id) {
         setSearchParams(searchParams.delete(QueryParams.NONPROFIT));
       } else {

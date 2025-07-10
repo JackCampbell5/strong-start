@@ -13,7 +13,7 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function NavNonProfit({ onNavigate }) {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
   const location = getLocation();
 
   // State Variables
