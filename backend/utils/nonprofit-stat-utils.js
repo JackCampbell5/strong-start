@@ -12,22 +12,22 @@ const prisma = new PrismaClient();
  */
 export async function generateStats(nonprofit) {
   // Gets all the services for a nonprofit
-  let allServices = await prisma.service.findMany({
+  const allServices = await prisma.service.findMany({
     where: { nonprofit_ID: nonprofit.id },
   });
 
-  let servicesNumber = allServices.length;
-  let popularZipCode = getPopularZipCode(allServices);
+  const servicesNumber = allServices.length;
+  const popularZipCode = getPopularZipCode(allServices);
 
   // Gets a list of all the services offered by the nonprofit
-  let servicesOffered = allServices.reduce((acc, service) => {
+  const servicesOffered = allServices.reduce((acc, service) => {
     return [...acc, ...service.services_offered];
   }, []);
-  let serviceCount = getServiceCount(servicesOffered);
-  let servicePopular = getServicePopular(servicesOffered);
+  const serviceCount = getServiceCount(servicesOffered);
+  const servicePopular = getServicePopular(servicesOffered);
 
   // What is being returned to the user
-  let result = {
+  const result = {
     servicesNumber: { name: "Service #:", key: servicesNumber },
     servicesOffered: { name: "Service Types #:", key: serviceCount },
     popularZipCode: { name: "Popular Zip Codes:", key: popularZipCode },
@@ -43,7 +43,7 @@ export async function generateStats(nonprofit) {
  */
 function getPopularZipCode(allServices) {
   // Get just the zipcodes from the services
-  let serviceZipCodes = allServices.reduce((acc, service) => {
+  const serviceZipCodes = allServices.reduce((acc, service) => {
     return [...acc, service.zipcode];
   }, []);
   return getPopular(serviceZipCodes);
@@ -60,8 +60,8 @@ export function getPopular(list) {
   }
   // Count the number of times each value appears
   let result = {};
-  for (let a in list) {
-    let key = list[a];
+  for (const a in list) {
+    const key = list[a];
     if (key == null) continue;
     if (result[key]) {
       result[key] += 1;
@@ -70,12 +70,12 @@ export function getPopular(list) {
     }
   }
   // Sort the values by number of times they appear and return the top 3
-  let popularTypes = Object.entries(result)
+  const popularTypes = Object.entries(result)
     .sort(([key1, a], [key2, b]) => a - b)
     .reverse();
-  let popularList = popularTypes.map((type) => type[0]);
+  const popularList = popularTypes.map((type) => type[0]);
   // Format the result and return
-  let popular = popularList.slice(0, 2).join(", ");
+  const popular = popularList.slice(0, 2).join(", ");
   return popular;
 }
 
@@ -85,7 +85,7 @@ export function getPopular(list) {
  * @returns The number of services offered by a nonprofit
  */
 function getServiceCount(servicesOffered) {
-  let serviceCount = [...new Set(servicesOffered)].length;
+  const serviceCount = [...new Set(servicesOffered)].length;
   return serviceCount;
 }
 

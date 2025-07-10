@@ -36,7 +36,7 @@ nonprofitRouter.get("/all", async (req, res, next) => {
 nonprofitRouter.get("/all/short", async (req, res, next) => {
   try {
     const foundNonProfits = await prisma.nonprofit.findMany();
-    let after = foundNonProfits.map((nonprofit) => ({
+    const after = foundNonProfits.map((nonprofit) => ({
       id: nonprofit.id,
       text: nonprofit.name,
     }));
@@ -79,7 +79,7 @@ nonprofitRouter.get("/:nonprofit_id/stats", async (req, res, next) => {
       },
     });
     if (findNonProfit) {
-      let stats = await generateStats(findNonProfit);
+      const stats = await generateStats(findNonProfit);
       res.status(200).json(stats);
     } else {
       throw new NonProfitNotFoundError(nonprofit_id);
