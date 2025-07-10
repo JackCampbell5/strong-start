@@ -13,6 +13,7 @@ function SelectService({ setServiceID, setServiceName }) {
   {
     let nonprofit = getNonProfit();
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
+    const [errorText, setErrorText] = useState("");
 
     function onSelectChange(e) {
       const value = e.target.value;
@@ -23,11 +24,17 @@ function SelectService({ setServiceID, setServiceName }) {
     }
 
     useEffect(() => {
-      fetchServiceNameList(nonprofit).then((data) => {
-        if (data[0].id !== serviceNameInputDefault.id) {
-          data = [serviceNameInputDefault, ...data];
+      fetchServiceNameList(nonprofit).then((result) => {
+        if (result.valid) {
+          let data = result.data;
+          setErrorText("");
+          if (data[0].id !== serviceNameInputDefault.id) {
+            data = [serviceNameInputDefault, ...data];
+          }
+          setServiceList(data);
+        } else {
+          setErrorText(result.error);
         }
-        setServiceList(data);
       });
     }, []);
     return (
@@ -44,6 +51,7 @@ function SelectService({ setServiceID, setServiceName }) {
             })}
           </select>
         </div>
+        <p className="errorText">{errorText}</p>
       </div>
     );
   }

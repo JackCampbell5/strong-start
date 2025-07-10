@@ -1,3 +1,14 @@
-/* .ServiceList{
+#ServiceTotal {
+  margin: 50px;
+}
 
-} */
+#ServiceTotalNum {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+#ServiceTotalLabel {
+  font-size: 25px;
+  margin: 10px;
+}

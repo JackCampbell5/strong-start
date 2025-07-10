@@ -5,6 +5,8 @@ import {
   ServiceNotFoundError,
   ServiceAlreadyExistsError,
 } from "#errors/service-errors.js";
+import { createErrorReturn } from "#utils/errorUtils.js";
+
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
 
@@ -17,6 +19,27 @@ serviceRouter.get("/", (req, res) => {
 serviceRouter.get("/all", async (req, res, next) => {
   try {
     const nonprofit = req.body.nonprofit;
+    const foundServices = await prisma.service.findMany({
+      where: {
+        nonprofit_ID: nonprofit.id,
+      },
+    });
+    if (foundServices.length !== 0) {
+      res.status(200).json(foundServices);
+    } else {
+      res.status(404).send("No services found");
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
+// Get all services
+serviceRouter.get("/search", async (req, res, next) => {
+  try {
+    const nonprofit = req.body.nonprofit;
+    let query = req.query;
+    // TODO make a search algorithm that uses these params to search
     const foundServices = await prisma.service.findMany({
       where: {
         nonprofit_ID: nonprofit.id,
@@ -208,13 +231,12 @@ serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
 });
 
 serviceRouter.use((err, req, res, next) => {
-  const retStr = `${err.name}: ${err.message}`;
   if (err instanceof ServiceNotFoundError) {
-    return res.status(404).send(retStr);
+    return res.status(404).send(createErrorReturn(err));
   } else if (err instanceof ServiceAlreadyExistsError) {
-    return res.status(409).send(retStr);
+    return res.status(409).send(createErrorReturn(err));
   } else {
-    return res.status(500).send(retStr);
+    return res.status(500).send(createErrorReturn(err));
   }
 });
 

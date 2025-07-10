@@ -53,22 +53,22 @@ function EditService({ serviceID = null }) {
    * @returns
    */
   function checkRequired(data) {
-    let retStr = "";
+    let errorMessage = "";
     for (let a of data) {
       if (a.value === "" && a.required) {
-        retStr += a.name + " is required. ";
+        errorMessage += a.name + " is required. ";
       } else if (
         a.id === "zipcode" &&
         a.value !== "" &&
         !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
       ) {
-        retStr += "Zipcode must be in the form 12345 or 12345-6789.";
+        errorMessage += "Zipcode must be in the form 12345 or 12345-6789.";
       }
     }
-    if (retStr !== "") {
-      retStr += "Please fill out the required fields and try again.";
+    if (errorMessage !== "") {
+      errorMessage += "Please fill out the required fields and try again.";
     }
-    return retStr;
+    return errorMessage;
   }
 
   /**
@@ -94,28 +94,33 @@ function EditService({ serviceID = null }) {
     if (serviceID) {
       setLoading(true);
       fetchServiceDetails(nonprofit, serviceID).then((data) => {
-        // Make sure the data that was sent back includes the icon and default values
-        let retData = [];
-        for (let a of data) {
-          let key = a.id;
-          if (serviceInputDefaultValues[key]) {
-            if (!a.default) {
-              a.default = serviceInputDefaultValues[key].default;
-            }
-            if (!a.icon) {
-              a.icon = serviceInputDefaultValues[key].icon;
-            }
-            if (!a.name) {
-              a.name = serviceInputDefaultValues[key].name;
-            }
-            if (!a.required) {
-              a.required = serviceInputDefaultValues[key].required;
-            }
-          }
-          retData.push(a);
-        }
-        setServiceInput(retData);
         setLoading(false);
+        if (data.valid) {
+          setErrorText("");
+          // Make sure the data that was sent back includes the icon and default values
+          let completeData = [];
+          for (let a of data.data) {
+            let key = a.id;
+            if (serviceInputDefaultValues[key]) {
+              if (!a.default) {
+                a.default = serviceInputDefaultValues[key].default;
+              }
+              if (!a.icon) {
+                a.icon = serviceInputDefaultValues[key].icon;
+              }
+              if (!a.name) {
+                a.name = serviceInputDefaultValues[key].name;
+              }
+              if (!a.required) {
+                a.required = serviceInputDefaultValues[key].required;
+              }
+            }
+            completeData.push(a);
+          }
+          setServiceInput(completeData);
+        } else {
+          setErrorText(data.error);
+        }
       });
     }
   }, [serviceID]);

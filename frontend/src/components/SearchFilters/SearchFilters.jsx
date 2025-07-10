@@ -37,8 +37,8 @@ function SearchFilters({ loading, searchFor }) {
    * @param {object} input The data to search for
    */
   function searchFromData(input) {
-    let reformatedData = reformatData(data);
-    searchFor(reformatedData);
+    let reformattedData = reformatData(input);
+    searchFor(reformattedData);
   }
 
   /**
@@ -47,20 +47,16 @@ function SearchFilters({ loading, searchFor }) {
    * @returns
    */
   function checkRequired(data) {
-    let retStr = "";
+    let errorMessage = "";
     for (let a of data) {
       if (a.value === "" && a.required) {
-        retStr += a.name + " is required. ";
+        errorMessage += a.name + " is required. ";
       }
     }
-    if (retStr !== "") {
-      retStr += "Please fill out the required fields and try again.";
-      setErrorText(retStr);
-      return false;
-    } else {
-      setErrorText("");
-      return true;
+    if (errorMessage !== "") {
+      errorMessage += "Please fill out the required fields and try again.";
     }
+    return errorMessage;
   }
 
   return (

@@ -10,15 +10,17 @@ import ServiceList from "#components/ServiceList/ServiceList";
 
 // utils
 import { fetchSearch } from "#fetch/serviceFetchUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function SearchService({}) {
+  let nonprofit = getNonProfit();
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
 
   function searchFor(data) {
     setLoading(true);
-    fetchSearch(data).then((results) => {
+    fetchSearch(nonprofit, data).then((results) => {
       setLoading(false);
       if (results.valid) {
         setSearchResults(results.data);
