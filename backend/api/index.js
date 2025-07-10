@@ -1,15 +1,18 @@
+// Node Module Imports
 import cors from "cors"; // Cross Origin Resource Sharing
 import express from "express"; // Express framework
 import session from "express-session"; // Session management
 
-// Import routes for the API
+// Local Imports
 import apiRouter from "#routes/api_v1.js";
 
-const dev = process.env.DEV === "true";
-console.log("Dev mode:", dev);
+const dev = process.env.DEV === "true"; // Check if we are in development mode
+
 //Create Constants and setup app
 const app = express();
 app.use(express.json());
+
+// Enable CORS
 app.use(
   cors({
     credentials: true,
@@ -18,6 +21,7 @@ app.use(
 );
 const port = 3000;
 
+// Session Configuration
 let sessionConfig = {
   name: "sessionId",
   secret: process.env.SESSION_SECRET,
@@ -32,7 +36,7 @@ let sessionConfig = {
 };
 
 app.set("trust proxy", true); // works alongside "secure" cookie setting
-app.use(session(sessionConfig));
+app.use(session(sessionConfig)); // Tell the app to use the session middleware
 
 // Default path
 app.get("/", (req, res) => {
