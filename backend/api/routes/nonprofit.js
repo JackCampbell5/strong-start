@@ -7,12 +7,12 @@ import {
   NonProfitNotFoundError,
   NonProfitAlreadyExistsError,
 } from "#errors/nonprofit-errors.js";
-import { createErrorReturn } from "#utils/errorUtils.js";
-import { generateStats } from "#utils/nonprofitStatUtils.js";
+import { createErrorReturn } from "#utils/error-utils.js";
+import { generateStats } from "#utils/nonprofit-stat-utils.js";
 import {
   checkNonProfitName,
   checkNonProfitId,
-} from "#utils/nonprofit_utils.js";
+} from "#utils/nonprofit-utils.js";
 
 const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();

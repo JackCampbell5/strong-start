@@ -11,7 +11,7 @@ import serviceRouter from "#apiroutes/service.js";
 
 // Errors/Utils
 import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
-import { getNonProfit } from "#utils/nonprofit_utils.js";
+import { getNonProfit } from "#utils/nonprofit-utils.js";
 
 const prisma = new PrismaClient();
 const apiRouter = express.Router();

@@ -15,7 +15,7 @@ import {
   secureEmployeeData,
   getEmployeeData,
 } from "#utils/employee-valid-utils.js";
-import { createErrorReturn } from "#utils/errorUtils.js";
+import { createErrorReturn } from "#utils/error-utils.js";
 
 const prisma = new PrismaClient();
 const employeeRouter = express.Router();

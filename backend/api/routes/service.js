@@ -7,8 +7,8 @@ import {
   ServiceNotFoundError,
   ServiceAlreadyExistsError,
 } from "#errors/service-errors.js";
-import { checkServiceName, checkServiceId } from "#utils/service_utils.js";
-import { createErrorReturn } from "#utils/errorUtils.js";
+import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
+import { createErrorReturn } from "#utils/error-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
