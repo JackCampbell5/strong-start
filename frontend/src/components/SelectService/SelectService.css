@@ -1,3 +1,4 @@
+/* The dropdown to select services from */
 .SelectService .selectService select {
   width: 40vw;
   background-color: var(--background-darker);

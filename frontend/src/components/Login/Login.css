@@ -10,6 +10,8 @@
 .Login .userInfo {
   margin: 10px;
 }
+
+/* Each individual field  */
 .Login .loginField {
   display: flex;
   flex-direction: row;
@@ -31,6 +33,7 @@
   font-size: 125%;
   height: 30px;
 }
+/* The show hide icon for password */
 .Login .showPassword svg {
   height: 30px;
   width: 30px;

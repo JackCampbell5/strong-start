@@ -26,6 +26,7 @@ main .welcomeText {
   width: 70vw;
 }
 
+/* The dropdown for the nonprofits */
 main .select-nonprofit select {
   width: 40vw;
   font-size: 150%;

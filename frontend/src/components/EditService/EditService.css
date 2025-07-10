@@ -4,6 +4,7 @@
   align-items: center;
 }
 
+/* Div containing all the params */
 .EditService .allServiceParams {
   display: flex;
   flex-direction: row;
@@ -15,6 +16,7 @@
   margin: 20px;
 }
 
+/* Div for each individual param */
 .EditService .serviceParam {
   display: flex;
   align-items: center;
@@ -22,9 +24,11 @@
   flex-wrap: wrap;
 }
 
+/* The label for each field */
 .EditService .allServiceParams p {
   font-size: 125%;
 }
+/* The input for each field */
 .EditService input,
 .EditService textarea {
   margin: 0px 10px;
@@ -36,16 +40,19 @@
   font-size: 125%;
   height: 30px;
 }
+/* The icon for each field */
 .EditService .serviceParam svg {
   height: 25px;
   width: 25px;
 }
 
+/* The input for the description field is larger to allow for more text */
 .EditService .serviceParam #descriptionInput {
   width: min(500px, calc(100vw - 100px));
   height: 100px;
 }
 
+/* Make the error text only fill up the middle 50% for readability */
 .EditService .errorText {
   width: 50%;
 }
