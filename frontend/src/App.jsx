@@ -1,35 +1,35 @@
-import { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+// Node Module Imports
+import { BrowserRouter as Route, Routes } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
-import "./App.css";
 
+// Local Imports
+import "./App.css";
 // Other Pages
 import NonProfitOverall from "#nonprofitPage/NonProfitOverall";
 import RefugeeOverall from "#refugeePage/RefugeeOverall";
-
 // Other Components
 import SubPageSelect from "#components/SubPageSelect/SubPageSelect";
-
-// Utils
+// Util Functions
 import { createPageNavigator } from "#utils/pathUtils";
 import { OverallPages } from "#utils/pathUtils";
 
 function App() {
+  // Constant Variables
   const navigate = useNavigate();
   const location = useLocation();
   const pageNavigator = createPageNavigator(navigate, location);
 
-  function navigateToPage(page) {
-    pageNavigator(page);
-  }
-
+  /**
+   * Routes to the given subpage.
+   * @param {string} subPage - The subpage to navigate to.
+   */
   function subPageChoose(subPage) {
     if (subPage === OverallPages.NONPROFIT) {
-      navigateToPage("/nonprofit");
+      pageNavigator("/nonprofit");
     } else if (subPage === OverallPages.REFUGEE) {
-      navigateToPage("/refugee");
+      pageNavigator("/refugee");
     } else {
-      navigateToPage("/");
+      pageNavigator("/");
     }
   }
 

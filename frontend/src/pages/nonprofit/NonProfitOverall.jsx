@@ -1,10 +1,10 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Route, Routes } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
-import PropTypes from "prop-types";
-import "./NonProfitOverall.css";
 
+// Local Imports
+import "./NonProfitOverall.css";
 // Other pages
 import Account from "#nonprofitPage/Account/Account";
 import Dashboard from "#nonprofitPage/Dashboard/Dashboard";
@@ -14,20 +14,24 @@ import NewService from "#nonprofitPage/NewService/NewService";
 import SearchService from "#nonprofitPage/SearchService/SearchService";
 import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
 import RegisterPage from "#nonprofitPage/RegisterPage/RegisterPage";
-
 //Other Components
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
 import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
-
-// Utils
+// Util Functions
 import { NpPages } from "#utils/pathUtils";
 import { createPageNavigator } from "#utils/pathUtils";
 
 function NonProfitOverall() {
+  // Constant Variables
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
   const location = useLocation();
   const pageNavigator = createPageNavigator(navigate, location);
+
+  /**
+   * Navigate to a new page.
+   * @param {string} path - The path to navigate to.
+   */
   function nav(path) {
     pageNavigator(priorPart + path);
   }

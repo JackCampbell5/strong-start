@@ -1,8 +1,9 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
+
+// Local Imports
 import "./LoginPage.css";
-import PropTypes from "prop-types";
-import Register from "#components/Register/Register";
+// Other Components
 import Login from "#components/Login/Login";
 
 function LoginPage() {

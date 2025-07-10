@@ -1,7 +1,10 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./Account.css";
 import PropTypes from "prop-types";
+
+// Local Imports
+import "./Account.css";
+// Other Components
 import AccountInfoChange from "#components/AccountInfoChange/AccountInfoChange";
 
 function Account({}) {

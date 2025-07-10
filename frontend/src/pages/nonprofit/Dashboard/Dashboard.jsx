@@ -1,9 +1,9 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
-import "./Dashboard.css";
-import PropTypes from "prop-types";
 
+// Local Imports
+import "./Dashboard.css";
 // Other components
 import EditService from "#components/EditService/EditService";
 
@@ -12,8 +12,11 @@ import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
 import { statsDefault } from "#default-data/nonProfitDefaultData.js";
 import { getNonProfit } from "#utils/pathUtils";
 
-function Dashboard({}) {
-  let nonprofit = getNonProfit();
+function Dashboard() {
+  // Constant Variables
+  const nonprofit = getNonProfit();
+
+  // State Variables
   const [siteStats, setSiteStats] = useState(statsDefault);
   const [errorText, setErrorText] = useState("");
 
@@ -54,9 +57,5 @@ function Dashboard({}) {
     </div>
   );
 }
-
-Dashboard.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default Dashboard;

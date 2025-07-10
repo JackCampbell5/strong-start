@@ -1,19 +1,23 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
-import "./AllServices.css";
-import PropTypes from "prop-types";
 
-// Other components
+// Local Imports
+import "./AllServices.css";
+// Other Components
 import ServiceList from "#components/ServiceList/ServiceList";
-// util functions
+// Util Functions
 import { fetchAllServices } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function AllServices() {
+  // Constant Variables
   let nonprofit = getNonProfit();
+
+  // State Variables
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
+
   useEffect(() => {
     fetchAllServices(nonprofit).then((results) => {
       if (results.valid) {

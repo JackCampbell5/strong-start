@@ -1,9 +1,9 @@
-import React, { use } from "react";
-import ReactDOM from "react-dom";
+// Node Module Imports
+import React from "react";
 import { useState, useEffect } from "react";
-import "./ViewServices.css";
-import PropTypes from "prop-types";
 
+// Local Imports
+import "./ViewServices.css";
 // Other components
 import ServiceList from "#components/ServiceList/ServiceList";
 // util functions
@@ -11,9 +11,13 @@ import { fetchAllServices } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function ViewServices() {
+  // Constant Variables
   let nonprofit = getNonProfit();
+
+  // State Variables
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
+
   useEffect(() => {
     fetchAllServices(nonprofit).then((results) => {
       if (results.valid) {
