@@ -1,13 +1,18 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./LoadingButton.css";
 import PropTypes from "prop-types";
+
+// Local Imports
+import "./LoadingButton.css";
 
 function LoadingButton({ loading, onClick, text }) {
   {
     return (
       <div className="LoadingButton">
-        <button onClick={onClick} className={"loading" + loading}>
+        <button
+          onClick={onClick}
+          className={loading ? "currentlyLoading" : "notLoading"}
+        >
           {loading ? (
             <div className="loadingInside">
               Loading

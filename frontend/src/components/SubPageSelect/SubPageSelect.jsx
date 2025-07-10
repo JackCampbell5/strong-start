@@ -1,22 +1,30 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./SubPageSelect.css";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import IconComp from "#components/IconComp/IconComp";
 import { IoEarth } from "react-icons/io5";
 import { FaHandsHelping } from "react-icons/fa";
-import PropTypes, { checkPropTypes } from "prop-types";
+import PropTypes from "prop-types";
 
-// Other components
+// Local Imports
+import "./SubPageSelect.css";
+// Other Components
 import NonProfitSelector from "#components/NonProfitSelector/NonProfitSelector";
-
-// Utils
+// Util Functions
 import { QueryParams } from "#utils/pathUtils";
 
 function SubPageSelect({ changePage }) {
-  // Make sure a nonprofit is selected before switching pages
+  // Constant Variables
   const location = useLocation();
+
+  // State Variables
+  const [errorText, setErrorText] = useState("");
+
+  /**
+   *  Changes the page to the given page if a non-profit is selected
+   * @param {string} page The page to change to
+   */
   function onRoleClick(page) {
     const params = new URLSearchParams(location.search);
     if (params.get(QueryParams.NONPROFIT) !== null) {
@@ -25,9 +33,6 @@ function SubPageSelect({ changePage }) {
       setErrorText("Please select a non-profit to continue");
     }
   }
-
-  // Error handling
-  const [errorText, setErrorText] = useState("");
 
   return (
     <div className="SubPageSelect">

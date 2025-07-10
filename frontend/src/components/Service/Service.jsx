@@ -1,7 +1,9 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./Service.css";
 import PropTypes from "prop-types";
+
+// Local Imports
+import "./Service.css";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added

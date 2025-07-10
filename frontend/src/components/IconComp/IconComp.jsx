@@ -1,7 +1,9 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./IconComp.css";
 import PropTypes from "prop-types";
+
+// Local Imports
+import "./IconComp.css";
 
 function IconComp() {
   return (

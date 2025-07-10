@@ -1,20 +1,24 @@
+// Node Module Imports
 import React from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import "./Register.css";
 import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
 
-// Other components
+// Local Imports
+import "./Register.css";
+// Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
-
-// util functions
+// Util Functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function Register() {
+  // Constant Variables
   let nonprofit = getNonProfit();
   const navigate = useNavigate();
   let location = useLocation().pathname;
+
+  // State Variables
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
@@ -24,6 +28,9 @@ function Register() {
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Handles the register button click
+   */
   function registerButtonClicked() {
     setSuccessText("");
     setErrorText("");
@@ -35,6 +42,9 @@ function Register() {
     }
   }
 
+  /**
+   * Handles the actual register request if all fields are valid
+   */
   function handleRegister() {
     let user = {
       username: username,
@@ -45,6 +55,10 @@ function Register() {
     registerNonprofitEmployee(nonprofit, user).then(registerReturn);
   }
 
+  /**
+   * Finds all validation errors
+   * @returns string of all validation errors or empty string if no errors
+   */
   function findValidationErrors() {
     let errorMessage = "";
     if (username === "") {
@@ -62,6 +76,10 @@ function Register() {
     return errorMessage;
   }
 
+  /**
+   * Processes the result of the register request
+   * @param {object} result - The result of the register request
+   */
   function registerReturn(result) {
     setLoading(false);
     if (result.valid) {
@@ -71,6 +89,9 @@ function Register() {
     }
   }
 
+  /**
+   * Navigates to the login page
+   */
   function goToLogin() {
     let allLocations = location.split("/");
     let ending = allLocations[allLocations.length - 1];

@@ -1,7 +1,9 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./FooterRefugee.css";
 import PropTypes from "prop-types";
+
+// Local Imports
+import "./FooterRefugee.css";
 
 function FooterRefugee() {
   return (

@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
-import "./Login.css";
 
+// Local Imports
+import "./Login.css";
 // Other components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
-
-//util functions
+//Util Functions
 import {
   loginNonprofitEmployee,
   testLoginNonprofitEmployee,
@@ -15,12 +15,14 @@ import {
 import { createPageNavigator } from "#utils/pathUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
-function Login({}) {
+function Login() {
+  // Constant Variables
   const nonprofit = getNonProfit();
   const navigate = useNavigate();
   const location = useLocation();
   const pageNavigator = createPageNavigator(navigate, location);
 
+  // State Variables
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -28,6 +30,11 @@ function Login({}) {
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Checks if the username and password are valid and attempts to log in the user
+   * If the login succeeds success text is set to the returned message if it fails
+   * error text is set to the returned error message
+   */
   function handleLogin() {
     setSuccessText("");
     setErrorText("");
@@ -51,6 +58,9 @@ function Login({}) {
     }
   }
 
+  /**
+   * Navigates to the register page
+   */
   function goToRegister() {
     let path = location.pathname;
     let allLocations = path.split("/");

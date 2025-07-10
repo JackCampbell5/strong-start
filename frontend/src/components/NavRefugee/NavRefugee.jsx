@@ -1,13 +1,15 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./NavRefugee.css";
 import PropTypes from "prop-types";
 
+// Local Imports
+import "./NavRefugee.css";
 // Other components
 import IconComp from "#components/IconComp/IconComp";
 import { getLocation, RPages } from "#utils/pathUtils";
 
 function NavRefugee({ onNavigate }) {
+  // Constant Variables
   const location = getLocation();
 
   return (
