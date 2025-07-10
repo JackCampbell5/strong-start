@@ -62,7 +62,7 @@ function EditService({ serviceID = null }) {
         a.value !== "" &&
         !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
       ) {
-        retStr += "Zipcode must be in the form 12345 or 12345-6789.";
+        errorMessage += "Zipcode must be in the form 12345 or 12345-6789.";
       }
     }
     if (errorMessage !== "") {

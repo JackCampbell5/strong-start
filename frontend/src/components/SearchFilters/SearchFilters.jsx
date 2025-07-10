@@ -47,16 +47,16 @@ function SearchFilters({ loading, searchFor }) {
    * @returns
    */
   function checkRequired(data) {
-    let retStr = "";
+    let errorMessage = "";
     for (let a of data) {
       if (a.value === "" && a.required) {
-        retStr += a.name + " is required. ";
+        errorMessage += a.name + " is required. ";
       }
     }
-    if (retStr !== "") {
-      retStr += "Please fill out the required fields and try again.";
+    if (errorMessage !== "") {
+      errorMessage += "Please fill out the required fields and try again.";
     }
-    return retStr;
+    return errorMessage;
   }
 
   return (
