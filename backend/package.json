@@ -28,6 +28,7 @@
     "#apiroutes/*": "./api/routes/*",
     "#errors/*": "./middleware/errors/*",
     "#utils/*": "./utils/*",
+    "#search/*": "./utils/search/*",
     "#seed/*": "./prisma/seed/*"
   },
   "prisma": {

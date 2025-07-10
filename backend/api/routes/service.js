@@ -9,6 +9,7 @@ import {
 } from "#errors/service-errors.js";
 import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
+import searchServices from "#search/search-services.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -42,16 +43,11 @@ serviceRouter.get("/search", async (req, res, next) => {
   try {
     const nonprofit = req.body.nonprofit;
     const query = req.query;
-    // TODO make a search algorithm that uses these params to search
-    const foundServices = await prisma.service.findMany({
-      where: {
-        nonprofit_ID: nonprofit.id,
-      },
-    });
-    if (foundServices.length !== 0) {
-      res.status(200).json(foundServices);
+    let result = await searchServices(query, nonprofit);
+    if (result.valid) {
+      res.status(200).json(result.data);
     } else {
-      res.status(404).send("No services found");
+      res.status(404).send(result.error);
     }
   } catch (e) {
     return next(e);
