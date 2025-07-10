@@ -11,13 +11,6 @@
   --border-mid: #0098f7;
   --border-dark: #007e87;
   --border-very-dark: #003b3f;
-
-  /* color-scheme: light dark; */
-
-  /* font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
 }
 
 *:focus {

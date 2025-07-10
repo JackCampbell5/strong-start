@@ -16,10 +16,12 @@
   font-size: 200%;
 }
 
+/* Overall Site Stats Container*/
 .Dashboard .siteStats {
   width: 75%;
   display: flex;
 }
+
 .Dashboard .siteStats .siteStatLeft {
   width: 75%;
 }
