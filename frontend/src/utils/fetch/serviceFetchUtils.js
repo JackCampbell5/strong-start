@@ -8,8 +8,8 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
  * @param {string} id - The id to get the services for
  */
 export async function fetchServiceDetails(nonProfit, id) {
-  return await fetch(`${serviceLink}/${nonProfit}/${id}/get-edit`)
-    .then(async (response) => {
+  return await fetch(`${serviceLink}/${nonProfit}/${id}/get-to-edit`)
+    .then((response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
         throw new Error(`${errorText}`);

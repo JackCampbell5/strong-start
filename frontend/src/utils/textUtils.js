@@ -10,9 +10,7 @@ export function reformatData(data) {
     if (a.value === "") {
       continue;
     }
-    if (a.id === "zipcode") {
-      result[a.id] = parseInt(a.value);
-    } else if (a.id === "services_offered") {
+    if (a.id === "services_offered") {
       result[a.id] = a.value.split(",");
     } else {
       result[a.id] = a.value;

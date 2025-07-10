@@ -126,7 +126,7 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
 });
 
 // Get one service by id
-serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
+serviceRouter.get("/:service_id/get-to-edit", async (req, res, next) => {
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
@@ -138,12 +138,14 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
     });
     if (findService) {
       // Remove the nonprofit_ID and id from the object
-      delete findService.nonprofit_ID;
-      delete findService.id;
-      findService.services_offered = findService.services_offered.join(", ");
+      let findServiceCopy = JSON.parse(JSON.stringify(findService));
+      delete findServiceCopy.nonprofit_ID;
+      delete findServiceCopy.id;
+      findServiceCopy.services_offered =
+        findServiceCopy.services_offered.join(", ");
       // Reformat for frontend
-      const keys = Object.keys(findService);
-      const values = Object.values(findService);
+      const keys = Object.keys(findServiceCopy);
+      const values = Object.values(findServiceCopy);
       let after = keys.map((key, i) => ({
         id: key,
         value: values[i] ? values[i] : "",

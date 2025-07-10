@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -19,13 +19,14 @@
     "pg": "^8.16.2"
   },
   "devDependencies": {
+    "jasmine": "^5.8.0",
     "prisma": "^6.10.1"
   },
   "imports": {
     "#utils/*": "./utils/*",
     "#prisma/*": "./generated/prisma/*",
     "#errors/*": "./middleware/errors/*",
-    "#routes/*": "./api/routes/*",
+    "#apiroutes/*": "./api/routes/*",
     "#seed/*": "./prisma/seed/*"
   },
   "prisma": {

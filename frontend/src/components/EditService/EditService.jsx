@@ -60,9 +60,9 @@ function EditService({ serviceID = null }) {
       } else if (
         a.id === "zipcode" &&
         a.value !== "" &&
-        !/^\d{5}$/.test(a.value)
+        !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
       ) {
-        errorMessage += "Zipcode must be 5 digits.";
+        retStr += "Zipcode must be in the form 12345 or 12345-6789.";
       }
     }
     if (errorMessage !== "") {
