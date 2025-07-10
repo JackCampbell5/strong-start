@@ -4,7 +4,11 @@ import { errorReturn, successReturn, MyHTTPError } from "#utils/httpUtils";
 const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/api/v1/nonprofit";
 
 export async function fetchNonProfitStats(nonprofit) {
-  return await fetch(`${nonProfitLink}/${nonprofit}/stats`)
+  return await fetch(`${nonProfitLink}/${nonprofit}/stats`, {
+    method: "GET",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+  })
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
