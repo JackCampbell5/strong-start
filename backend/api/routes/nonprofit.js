@@ -9,6 +9,8 @@ import {
   NonProfitNotFoundError,
   NonProfitAlreadyExistsError,
 } from "#errors/nonprofit-errors.js";
+import { createErrorReturn } from "#utils/errorUtils.js";
+
 const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();
 
@@ -168,13 +170,12 @@ nonprofitRouter.delete("/:nonprofit_id/delete", async (req, res, next) => {
 });
 
 nonprofitRouter.use((err, req, res, next) => {
-  const errorMessage = `${err.name}: ${err.message}`;
   if (err instanceof NonProfitNotFoundError) {
-    return res.status(404).send(errorMessage);
+    return res.status(404).send(createErrorReturn(err));
   } else if (err instanceof NonProfitAlreadyExistsError) {
-    return res.status(409).send(errorMessage);
+    return res.status(409).send(createErrorReturn(err));
   } else {
-    return res.status(500).send(errorMessage);
+    return res.status(500).send(createErrorReturn(err));
   }
 });
 

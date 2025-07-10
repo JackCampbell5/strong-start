@@ -5,6 +5,8 @@ import {
   ServiceNotFoundError,
   ServiceAlreadyExistsError,
 } from "#errors/service-errors.js";
+import { createErrorReturn } from "#utils/errorUtils.js";
+
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
 
@@ -229,13 +231,12 @@ serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
 });
 
 serviceRouter.use((err, req, res, next) => {
-  const errorMessage = `${err.name}: ${err.message}`;
   if (err instanceof ServiceNotFoundError) {
-    return res.status(404).send(errorMessage);
+    return res.status(404).send(createErrorReturn(err));
   } else if (err instanceof ServiceAlreadyExistsError) {
-    return res.status(409).send(errorMessage);
+    return res.status(409).send(createErrorReturn(err));
   } else {
-    return res.status(500).send(errorMessage);
+    return res.status(500).send(createErrorReturn(err));
   }
 });
 
