@@ -6,8 +6,8 @@ export const nonprofitDefaultOption = {
 
 // Default data for the Stats of a Non Profit
 export const statsDefault = {
-  servicesNumber: { name: "Services #", key: 20 },
-  servicesOffered: { name: "Services offered", key: 30 },
-  popularZipCode: { name: "Popular Zip Codes", key: 40 },
-  servicesOffered2: { name: "Cost", key: 40 },
+  servicesNumber: { name: "Services #", key: "null" },
+  servicesOffered: { name: "Services offered", key: "null" },
+  popularZipCode: { name: "Popular Zip Codes", key: "null" },
+  servicesOffered2: { name: "Cost", key: "null" },
 };

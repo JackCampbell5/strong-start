@@ -4,6 +4,7 @@ import {
   checkNonProfitName,
   checkNonProfitId,
 } from "#utils/nonprofit_utils.js";
+import { generateStats } from "#utils/nonprofitStatUtils.js";
 import {
   NonProfitNotFoundError,
   NonProfitAlreadyExistsError,
@@ -26,7 +27,7 @@ nonprofitRouter.get("/all", async (req, res, next) => {
   }
 });
 
-// Get all nonprofits
+// Get all nonprofits encoded for selector
 nonprofitRouter.get("/all/short", async (req, res, next) => {
   try {
     const foundNonProfits = await prisma.nonprofit.findMany();
@@ -53,6 +54,26 @@ nonprofitRouter.get("/:nonprofit_name", async (req, res, next) => {
       res.status(200).json(findNonProfit);
     } else {
       throw new NonProfitNotFoundError(nonprofit_name);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
+// Get stats for one nonprofit by id
+nonprofitRouter.get("/:nonprofit_id/stats", async (req, res, next) => {
+  const { nonprofit_id } = req.params;
+  try {
+    const findNonProfit = await prisma.nonprofit.findUnique({
+      where: {
+        id: nonprofit_id,
+      },
+    });
+    if (findNonProfit) {
+      let stats = await generateStats(findNonProfit);
+      res.status(200).json(stats);
+    } else {
+      throw new NonProfitNotFoundError(nonprofit_id);
     }
   } catch (e) {
     return next(e);
