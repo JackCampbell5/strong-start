@@ -37,8 +37,8 @@ function SearchFilters({ loading, searchFor }) {
    * @param {object} input The data to search for
    */
   function searchFromData(input) {
-    let reformatedData = reformatData(input);
-    searchFor(reformatedData);
+    let reformattedData = reformatData(input);
+    searchFor(reformattedData);
   }
 
   /**
