@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import "./NonProfitSelector.css";
 // Util Functions
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
-import { nonprofitDefaultOption } from "#default-data/nonProfitDefaultData.js";
+import nonprofitDefaultOption from "#default-data/nonprofitDefaultOption.json";
 import { QueryParams } from "#utils/pathUtils";
 
 function NonProfitSelector({ errorText, setErrorText }) {

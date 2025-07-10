@@ -9,7 +9,7 @@ import "./SearchFilters.css";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Methods
 import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
-import { serviceSearchIconMap } from "#default-data/serviceDefaultData.js";
+import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
 
 function SearchFilters({ loading, searchFor }) {

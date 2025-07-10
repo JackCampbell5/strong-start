@@ -1,4 +1,4 @@
-import { statsDefault } from "#default-data/nonProfitDefaultData";
+import statsDefault from "#default-data/statsDefault.json";
 import nonprofitAllTest from "#test-data/nonprofitAllTest";
 import { errorReturn, successReturn, MyHTTPError } from "#utils/httpUtils";
 const nonProfitLink = import.meta.env.VITE_BACKEND_API + "/api/v1/nonprofit";

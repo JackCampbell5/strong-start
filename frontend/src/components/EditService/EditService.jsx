@@ -8,8 +8,9 @@ import "./EditService.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
-import { serviceInputDefaultValues } from "#default-data/serviceDefaultData.js";
+import serviceInputDefaultValues from "#default-data/serviceInputDefaultValues.json";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
+import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import {
   fetchServiceDetails,
   postService,
@@ -146,7 +147,9 @@ function EditService({ serviceID = null }) {
           return (
             <div className="serviceParam" key={obj.id + "Class"}>
               <p className={obj.id + "P"}>{obj.name}:</p>
-              {obj.icon ? <obj.icon /> : null}
+              {obj.icon
+                ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                : null}{" "}
               {obj.id === "description" ? (
                 <textarea
                   key={obj.id + "Input"}

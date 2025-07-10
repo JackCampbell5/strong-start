@@ -7,7 +7,7 @@ import PropTypes, { func } from "prop-types";
 import "./SelectService.css";
 // Util functions
 import { fetchServiceNameList } from "#fetch/serviceFetchUtils";
-import { serviceNameInputDefault } from "#default-data/serviceDefaultData.js";
+import serviceNameInputDefault from "#default-data/serviceNameInputDefault.json";
 import { getNonProfit } from "#utils/pathUtils";
 
 function SelectService({ setServiceID, setServiceName }) {

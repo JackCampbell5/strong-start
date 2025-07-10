@@ -9,7 +9,7 @@ import "./EditServicePage.css";
 import EditService from "#components/EditService/EditService";
 import SelectService from "#components/SelectService/SelectService";
 //Util Functions
-import { serviceNameInputDefault } from "#default-data/serviceDefaultData";
+import serviceNameInputDefault from "#default-data/serviceNameInputDefault.json";
 
 function EditServicePage({}) {
   // State Variables

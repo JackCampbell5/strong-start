@@ -9,7 +9,7 @@ import EditService from "#components/EditService/EditService";
 
 // Helper functions
 import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
-import { statsDefault } from "#default-data/nonProfitDefaultData.js";
+import statsDefault from "#default-data/statsDefault.json";
 import { getNonProfit } from "#utils/pathUtils";
 
 function Dashboard() {
