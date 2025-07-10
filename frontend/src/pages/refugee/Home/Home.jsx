@@ -26,15 +26,21 @@ function Home() {
    */
   function searchFor(data) {
     setLoading(true);
-    fetchSearch(nonprofit, data).then((results) => {
-      setLoading(false);
-      if (results.valid) {
-        setErrorText("");
-        setSearchResults(results.data);
-      } else {
-        setErrorText(results.error);
-      }
-    });
+    fetchSearch(nonprofit, data).then(searchCallback);
+  }
+
+  /**
+   *  Sets the search results and error text based on the results of the fetchSearch function
+   * @param {object} results - Results from the fetchSearch function
+   */
+  function searchCallback(results) {
+    setLoading(false);
+    if (results.valid) {
+      setErrorText("");
+      setSearchResults(results.data);
+    } else {
+      setErrorText(results.error);
+    }
   }
   return (
     <div className="SearchService">

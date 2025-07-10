@@ -31,20 +31,27 @@ function SelectService({ setServiceID, setServiceName }) {
       setServiceName(selectedText);
     }
 
-    useEffect(() => {
-      fetchServiceNameList(nonprofit).then((result) => {
-        if (result.valid) {
-          let data = result.data;
-          setErrorText("");
-          if (data[0].id !== serviceNameInputDefault.id) {
-            data = [serviceNameInputDefault, ...data];
-          }
-          setServiceList(data);
-        } else {
-          setErrorText(result.error);
+    /**
+     * Updates the service list state variable with the result of the fetchServiceNameList function if valid and provides error if not
+     * @param {object} result - The result object from the fetchServiceNameList function
+     */
+    function serviceNameListCallback(result) {
+      if (result.valid) {
+        let data = result.data;
+        setErrorText("");
+        if (data[0].id !== serviceNameInputDefault.id) {
+          data = [serviceNameInputDefault, ...data];
         }
-      });
+        setServiceList(data);
+      } else {
+        setErrorText(result.error);
+      }
+    }
+
+    useEffect(() => {
+      fetchServiceNameList(nonprofit).then(serviceNameListCallback);
     }, []);
+
     return (
       <div className="SelectService">
         <h2>What Service would you like to edit?</h2>

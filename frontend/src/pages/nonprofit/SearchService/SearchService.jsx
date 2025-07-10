@@ -26,15 +26,22 @@ function SearchService() {
    */
   function searchFor(data) {
     setLoading(true);
-    fetchSearch(nonprofit, data).then((results) => {
-      setLoading(false);
-      if (results.valid) {
-        setSearchResults(results.data);
-      } else {
-        setErrorText(results.error);
-      }
-    });
+    fetchSearch(nonprofit, data).then(searchForCallback);
   }
+
+  /**
+   *  Callback function for fetchSearch that sets the results of sets the error
+   * @param {*} results - The result of searchForCallback
+   */
+  function searchForCallback(results) {
+    setLoading(false);
+    if (results.valid) {
+      setSearchResults(results.data);
+    } else {
+      setErrorText(results.error);
+    }
+  }
+
   return (
     <div className="SearchService">
       <h3>SearchService</h3>

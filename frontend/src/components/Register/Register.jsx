@@ -52,7 +52,7 @@ function Register() {
       email: email,
     };
     setLoading(true);
-    registerNonprofitEmployee(nonprofit, user).then(registerReturn);
+    registerNonprofitEmployee(nonprofit, user).then(registerCallback);
   }
 
   /**
@@ -80,7 +80,7 @@ function Register() {
    * Processes the result of the register request
    * @param {object} result - The result of the register request
    */
-  function registerReturn(result) {
+  function registerCallback(result) {
     setLoading(false);
     if (result.valid) {
       setSuccessText(result.data);

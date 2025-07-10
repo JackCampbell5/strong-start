@@ -33,18 +33,24 @@ function NonProfitSelector({ errorText, setErrorText }) {
       nonprofitDefaultOption,
     ]);
 
-    useEffect(() => {
-      fetchNonProfitList().then((result) => {
-        if (result.valid) {
-          let data = result.data;
-          if (!(data[0].id === nonprofitDefaultOption.id)) {
-            data = [nonprofitDefaultOption, ...data];
-          }
-          setNonprofitList(data);
-        } else {
-          setErrorText(result.errorText);
+    /**
+     * Callback function for the nonprofit list fetch that sets the list or provides an error
+     * @param {object} result - The result object from the fetchNonProfitList function
+     */
+    function nonprofitListCallback(result) {
+      if (result.valid) {
+        let data = result.data;
+        if (!(data[0].id === nonprofitDefaultOption.id)) {
+          data = [nonprofitDefaultOption, ...data];
         }
-      });
+        setNonprofitList(data);
+      } else {
+        setErrorText(result.errorText);
+      }
+    }
+
+    useEffect(() => {
+      fetchNonProfitList().then(nonprofitListCallback);
     }, []);
     return (
       <div className="NonProfitSelector">

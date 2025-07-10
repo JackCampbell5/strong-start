@@ -46,9 +46,9 @@ function EditService({ serviceID = null }) {
 
       const data = reformatData(serviceInput);
       if (serviceID) {
-        putService(data, nonprofit, serviceID).then(submitReturn);
+        putService(data, nonprofit, serviceID).then(submitCallback);
       } else {
-        postService(data, nonprofit).then(submitReturn);
+        postService(data, nonprofit).then(submitCallback);
       }
     } else {
       setErrorText(invalid);
@@ -83,7 +83,7 @@ function EditService({ serviceID = null }) {
    * Checks to see if the service was submitted successfully and reloads the page if it was and prints the error message if it wasn't
    * @param {string} success - Blank if successful and the error message if not
    */
-  function submitReturn(success) {
+  function submitCallback(success) {
     setLoading(false);
     if (success.result) {
       if (!serviceID) {
@@ -98,38 +98,44 @@ function EditService({ serviceID = null }) {
     }
   }
 
+  /**
+   * Callback for fetching the service details if one exists
+   * @param {*} result - The result of fetchServiceDetails
+   */
+  function fetchServiceCallback(result) {
+    setLoading(false);
+    if (result.valid) {
+      setErrorText("");
+      // Make sure the data that was sent back includes the icon and default values
+      let completeData = [];
+      for (const a of result.data) {
+        const key = a.id;
+        if (serviceInputDefaultValues[key]) {
+          if (!a.default) {
+            a.default = serviceInputDefaultValues[key].default;
+          }
+          if (!a.icon) {
+            a.icon = serviceInputDefaultValues[key].icon;
+          }
+          if (!a.name) {
+            a.name = serviceInputDefaultValues[key].name;
+          }
+          if (!a.required) {
+            a.required = serviceInputDefaultValues[key].required;
+          }
+        }
+        completeData.push(a);
+      }
+      setServiceInput(completeData);
+    } else {
+      setErrorText(result.error);
+    }
+  }
+
   useEffect(() => {
     if (serviceID) {
       setLoading(true);
-      fetchServiceDetails(nonprofit, serviceID).then((result) => {
-        setLoading(false);
-        if (result.valid) {
-          setErrorText("");
-          // Make sure the data that was sent back includes the icon and default values
-          let completeData = [];
-          for (const a of result.data) {
-            const key = a.id;
-            if (serviceInputDefaultValues[key]) {
-              if (!a.default) {
-                a.default = serviceInputDefaultValues[key].default;
-              }
-              if (!a.icon) {
-                a.icon = serviceInputDefaultValues[key].icon;
-              }
-              if (!a.name) {
-                a.name = serviceInputDefaultValues[key].name;
-              }
-              if (!a.required) {
-                a.required = serviceInputDefaultValues[key].required;
-              }
-            }
-            completeData.push(a);
-          }
-          setServiceInput(completeData);
-        } else {
-          setErrorText(result.error);
-        }
-      });
+      fetchServiceDetails(nonprofit, serviceID).then(fetchServiceCallback);
     }
   }, [serviceID]);
 

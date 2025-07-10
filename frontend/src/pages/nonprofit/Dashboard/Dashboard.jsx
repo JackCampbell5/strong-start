@@ -20,14 +20,19 @@ function Dashboard() {
   const [siteStats, setSiteStats] = useState(statsDefault);
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Provides the stats for the nonprofit or sets the error text
+   * @param {*} result - The result of the fetchNonProfitStats function
+   */
+  function statsCallback(result) {
+    if (result.valid) {
+      setSiteStats(result.data);
+    } else {
+      setErrorText(result.error);
+    }
+  }
   useEffect(() => {
-    fetchNonProfitStats(nonprofit).then((result) => {
-      if (result.valid) {
-        setSiteStats(result.data);
-      } else {
-        setErrorText(result.error);
-      }
-    });
+    fetchNonProfitStats(nonprofit).then(statsCallback);
   }, []);
   return (
     <div className="Dashboard">
