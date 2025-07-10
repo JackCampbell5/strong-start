@@ -31,7 +31,7 @@ let sessionConfig = {
   saveUninitialized: false,
 };
 
-// app.set("trust proxy", 1); // works alongside "secure" cookie setting
+app.set("trust proxy", true); // works alongside "secure" cookie setting
 app.use(session(sessionConfig));
 
 // Default path
