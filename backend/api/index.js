@@ -25,6 +25,7 @@ let sessionConfig = {
     maxAge: 1000 * 60 * 5,
     secure: dev ? false : true,
     httpOnly: true,
+    sameSite: dev ? "lax" : "none",
   },
   resave: false,
   saveUninitialized: false,
