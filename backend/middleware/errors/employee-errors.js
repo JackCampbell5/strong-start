@@ -27,7 +27,7 @@ export class EmployeeUsernameTakenError extends Error {
  */
 export class EmployeeLogInError extends Error {
   constructor(message) {
-    super(`Username: ${message}`);
+    super(`Password Incorrect for ${message}`);
     this.name = "EmployeeLogInError";
     this.statusCode = 400;
   }
