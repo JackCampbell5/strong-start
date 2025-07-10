@@ -23,7 +23,7 @@ function AllServices() {
         setErrorText(results.error);
       }
     });
-  });
+  }, []);
   return (
     <div className="ViewServices">
       <h1>All Services</h1>

@@ -25,15 +25,15 @@ function SelectService({ setServiceID, setServiceName }) {
 
     useEffect(() => {
       fetchServiceNameList(nonprofit).then((result) => {
-        if (results.valid) {
-          let data = results.data;
+        if (result.valid) {
+          let data = result.data;
           setErrorText("");
           if (data[0].id !== serviceNameInputDefault.id) {
             data = [serviceNameInputDefault, ...data];
           }
           setServiceList(data);
         } else {
-          setErrorText(results.error);
+          setErrorText(result.error);
         }
       });
     }, []);

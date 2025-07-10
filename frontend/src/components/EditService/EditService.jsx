@@ -99,7 +99,7 @@ function EditService({ serviceID = null }) {
           setErrorText("");
           // Make sure the data that was sent back includes the icon and default values
           let completeData = [];
-          for (let a of data) {
+          for (let a of data.data) {
             let key = a.id;
             if (serviceInputDefaultValues[key]) {
               if (!a.default) {
