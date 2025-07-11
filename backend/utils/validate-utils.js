@@ -8,7 +8,7 @@ export function getResultError(result) {
   return result.error;
 }
 export function errorReturn(error) {
-  return { valid: false, error: error.message };
+  return { valid: false, error: error };
 }
 
 export function successReturn(data) {
