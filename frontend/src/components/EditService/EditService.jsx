@@ -63,7 +63,7 @@ function EditService({ serviceID = null }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (const a of data) {
+    for (let a of data) {
       if (a.value === "" && a.required) {
         errorMessage += a.name + " is required. ";
       } else if (
@@ -109,7 +109,7 @@ function EditService({ serviceID = null }) {
       setErrorText("");
       // Make sure the data that was sent back includes the icon and default values
       let completeData = [];
-      for (const a of result.data) {
+      for (let a of result.data) {
         const key = a.id;
         if (serviceInputDefaultValues[key]) {
           if (!a.default) {

@@ -93,7 +93,7 @@ function distribute(arr, maxLength, nonProfitLength) {
 
   // Make sure there is an index for each nonprofit
   if( nonProfitLength > arrCopy.length){
-    for (const i = arrCopy.length; i < nonProfitLength; i++) {
+    for (let i = arrCopy.length; i < nonProfitLength; i++) {
       arrCopy.push(0);
     }
   }else if (nonProfitLength < arrCopy.length){
@@ -108,7 +108,7 @@ function distribute(arr, maxLength, nonProfitLength) {
   // The start and end indices of each nonprofit's slice of objects
   // Create the end array by adding the previous value to the current value
   let endArr = [];
-  for (const a = 0; a < arrCopy.length; a++) {
+  for (let a = 0; a < arrCopy.length; a++) {
     const newVal = a===0 ? arrCopy[a]: endArr[a-1]+arrCopy[a];
     endArr.push(newVal);
   }
