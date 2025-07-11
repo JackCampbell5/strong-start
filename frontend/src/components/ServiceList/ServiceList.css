@@ -1,15 +1,15 @@
 /* Formatting for the total */
-#ServiceTotal {
+.ServiceTotal {
   margin: 50px;
 }
 
-#ServiceTotalNum {
+.ServiceTotalNum {
   font-size: 60px;
   font-weight: bold;
   margin: 0px;
 }
 
-#ServiceTotalLabel {
+.ServiceTotalLabel {
   font-size: 25px;
   margin: 10px;
 }

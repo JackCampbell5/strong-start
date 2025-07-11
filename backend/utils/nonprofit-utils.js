@@ -13,7 +13,7 @@ const prisma = new PrismaClient();
  */
 export async function checkNonProfitName(name, next) {
   try {
-    let resultData = await prisma.nonprofit.findUnique({
+    const resultData = await prisma.nonprofit.findUnique({
       where: {
         name: name,
       },
@@ -31,7 +31,7 @@ export async function checkNonProfitName(name, next) {
  */
 export async function checkNonProfitId(id, next) {
   try {
-    let resultData = await prisma.nonprofit.findUnique({
+    const resultData = await prisma.nonprofit.findUnique({
       where: {
         id: id,
       },

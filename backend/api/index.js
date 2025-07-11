@@ -23,7 +23,7 @@ app.use(
 const port = 3000;
 
 // Session Configuration
-let sessionConfig = {
+const sessionConfig = {
   name: "sessionId",
   secret: process.env.SESSION_SECRET,
   cookie: {

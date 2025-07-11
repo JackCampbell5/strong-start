@@ -17,17 +17,17 @@ async function main() {
 
   // Get starting and ending indices for each nonprofit's slice of services
   const serviceDistribution = [20, 10, 5, 5]; // How to distribute services to nonprofits
-  let [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, nonprofitList.length);
+  const [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, nonprofitList.length);
 
   // Get starting and ending indices for each nonprofit's slice of employees
   const employeeDistribution = [10, 15, 10, 5]; // How to distribute employees to nonprofits
-  let [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitList.length);
+  const [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitList.length);
 
   // Hash the passwords
-  let employeeList = await hashPasswordList(employees); // Hash the passwords
+  const employeeList = await hashPasswordList(employees); // Hash the passwords
 
   // Create nonprofits with services and employees
-  let nonprofitlist = nonprofitList.map((nonprofit, num) => ({
+  const nonprofitlist = nonprofitList.map((nonprofit, num) => ({
     ...nonprofit,
     services:
       serviceList.slice(
@@ -68,7 +68,7 @@ async function deleteAll(){
  */
 async function hashPasswordList(employees){
   return await Promise.all(employees.map(async (employee) => {
-    let passwordHash = await hashPassword(employee.password);
+    const passwordHash = await hashPassword(employee.password);
     return {...employee, password: passwordHash}})) // Hash the passwords
   }
 
@@ -102,14 +102,14 @@ function distribute(arr, maxLength, nonProfitLength) {
 
 
   // Make sure the full length of objects is assigned
-  let arrStartTotal = arrCopy.slice(0,-1).reduce((acc, val) => acc + val, 0); // The total length of objects not including the last one
+  const arrStartTotal = arrCopy.slice(0,-1).reduce((acc, val) => acc + val, 0); // The total length of objects not including the last one
   arrCopy[arrCopy.length-1] = maxLength - arrStartTotal // Makes the last index take the rest of the objects
 
   // The start and end indices of each nonprofit's slice of objects
   // Create the end array by adding the previous value to the current value
   let endArr = [];
   for (let a = 0; a < arrCopy.length; a++) {
-    let newVal = a===0 ? arrCopy[a]: endArr[a-1]+arrCopy[a];
+    const newVal = a===0 ? arrCopy[a]: endArr[a-1]+arrCopy[a];
     endArr.push(newVal);
   }
   // Create the start array by adding 0 to the first value and the previous value to the current value

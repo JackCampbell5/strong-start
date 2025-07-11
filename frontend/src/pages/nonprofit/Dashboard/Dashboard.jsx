@@ -9,7 +9,7 @@ import EditService from "#components/EditService/EditService";
 
 // Helper functions
 import { fetchNonProfitStats } from "#fetch/nonProfitFetchUtils";
-import { statsDefault } from "#default-data/nonProfitDefaultData.js";
+import statsDefault from "#default-data/statsDefault.json";
 import { getNonProfit } from "#utils/pathUtils";
 
 function Dashboard() {
@@ -20,14 +20,19 @@ function Dashboard() {
   const [siteStats, setSiteStats] = useState(statsDefault);
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Provides the stats for the nonprofit or sets the error text
+   * @param {*} result - The result of the fetchNonProfitStats function
+   */
+  function statsCallback(result) {
+    if (result.valid) {
+      setSiteStats(result.data);
+    } else {
+      setErrorText(result.error);
+    }
+  }
   useEffect(() => {
-    fetchNonProfitStats(nonprofit).then((result) => {
-      if (result.valid) {
-        setSiteStats(result.data);
-      } else {
-        setErrorText(result.error);
-      }
-    });
+    fetchNonProfitStats(nonprofit).then(statsCallback);
   }, []);
   return (
     <div className="Dashboard">
@@ -38,15 +43,15 @@ function Dashboard() {
       <div className="siteStats">
         <div className="siteStatLeft">
           {Object.entries(siteStats).map((obj) => {
-            let key = obj[0]; // gets the key from obj.entries
-            let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+            const key = obj[0]; // gets the key from obj.entries
+            const dict = obj[1]; // gets the dict stored at the given key from obj.entries
             return <p key={key}>{dict.name}</p>;
           })}
         </div>
         <div className="siteStatRight">
           {Object.entries(siteStats).map((obj) => {
-            let key = obj[0]; // gets the key from obj.entries
-            let dict = obj[1]; // gets the dict stored at the given key from obj.entries
+            const key = obj[0]; // gets the key from obj.entries
+            const dict = obj[1]; // gets the dict stored at the given key from obj.entries
             return <p key={key}>{dict.key}</p>;
           })}
         </div>

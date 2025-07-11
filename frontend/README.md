@@ -44,3 +44,17 @@ npm run dev
 - Pages in React
 - React Components
 - Util Functions
+  - Fetch
+  - Default Data
+  - Test Data
+  - Overall Utils
+
+* // Node Module Imports
+  - Prisma
+  - Express
+  - Other imports
+  - // Local Imports
+    - Routes
+    - Errors
+    - Utils
+    - Seed

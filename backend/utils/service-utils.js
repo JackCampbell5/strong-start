@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
  */
 export async function checkServiceName(name, nonprofit, next) {
   try {
-    let resultData = await prisma.service.findMany({
+    const resultData = await prisma.service.findMany({
       where: {
         name: name,
         nonprofit_ID: nonprofit.id,
@@ -34,7 +34,7 @@ export async function checkServiceName(name, nonprofit, next) {
  */
 export async function checkServiceId(id, nonprofit, next) {
   try {
-    let resultData = await prisma.service.findUnique({
+    const resultData = await prisma.service.findUnique({
       where: {
         id: id,
         nonprofit_ID: nonprofit.id,

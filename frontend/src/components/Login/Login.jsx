@@ -47,9 +47,13 @@ function Login() {
       return;
     }
     setLoading(true);
-    loginNonprofitEmployee(nonprofit, username, password).then(loginReturn);
+    loginNonprofitEmployee(nonprofit, username, password).then(loginCallback);
   }
-  function loginReturn(result) {
+  /**
+   * Provides the error or success message from the login
+   * @param {object} result - The result of the login
+   */
+  function loginCallback(result) {
     setLoading(false);
     if (result.valid) {
       setSuccessText(result.data);
@@ -62,23 +66,29 @@ function Login() {
    * Navigates to the register page
    */
   function goToRegister() {
-    let path = location.pathname;
-    let allLocations = path.split("/");
-    let ending = allLocations[allLocations.length - 1];
-    let newPath = path.replace(ending, "register");
+    const path = location.pathname;
+    const allLocations = path.split("/");
+    const ending = allLocations[allLocations.length - 1];
+    const newPath = path.replace(ending, "register");
     pageNavigator(newPath);
   }
 
-  useEffect(() => {
-    checkEmployeeLoginStatus(nonprofit).then((result) => {
-      if (result.valid) {
-        if (result.data) {
-          setSuccessText(result.data);
-        }
-      } else {
-        setErrorText(result.error);
+  /**
+   *  If successful provides the username of the currently signed in employee and if not provides nothing
+   * @param {object} result - The result of the test login
+   */
+  function loginTestCallback(result) {
+    if (result.valid) {
+      if (result.data) {
+        setSuccessText(result.data);
       }
-    });
+    } else {
+      setErrorText(result.error);
+    }
+  }
+
+  useEffect(() => {
+    checkEmployeeLoginStatus(nonprofit).then(loginTestCallback);
   }, []);
 
   return (

@@ -41,7 +41,7 @@ serviceRouter.get("/all", async (req, res, next) => {
 serviceRouter.get("/search", async (req, res, next) => {
   try {
     const nonprofit = req.body.nonprofit;
-    let query = req.query;
+    const query = req.query;
     // TODO make a search algorithm that uses these params to search
     const foundServices = await prisma.service.findMany({
       where: {
@@ -72,7 +72,7 @@ serviceRouter.get("/all/name-list", async (req, res, next) => {
       },
     });
     if (foundServices.length !== 0) {
-      let after = foundServices.map((service) => ({
+      const after = foundServices.map((service) => ({
         id: service.id,
         text: service.name,
       }));
@@ -159,7 +159,7 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
       // Reformat for frontend
       const keys = Object.keys(findServiceCopy);
       const values = Object.values(findServiceCopy);
-      let after = keys.map((key, i) => ({
+      const after = keys.map((key, i) => ({
         id: key,
         value: values[i] ? values[i] : "",
       }));

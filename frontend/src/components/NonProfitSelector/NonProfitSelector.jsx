@@ -8,17 +8,17 @@ import PropTypes from "prop-types";
 import "./NonProfitSelector.css";
 // Util Functions
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
-import { nonprofitDefaultOption } from "#default-data/nonProfitDefaultData.js";
+import nonprofitDefaultOption from "#default-data/nonprofitDefaultOption.json";
 import { QueryParams } from "#utils/pathUtils";
 
 function NonProfitSelector({ errorText, setErrorText }) {
   {
     // State Variables
-    let [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // Add query params when the dropdown is changed
     function addNonProfit(e) {
-      let val = e.target.value;
+      const val = e.target.value;
       if (val === nonprofitDefaultOption.id) {
         setSearchParams(searchParams.delete(QueryParams.NONPROFIT));
       } else {
@@ -33,18 +33,24 @@ function NonProfitSelector({ errorText, setErrorText }) {
       nonprofitDefaultOption,
     ]);
 
-    useEffect(() => {
-      fetchNonProfitList().then((result) => {
-        if (result.valid) {
-          let data = result.data;
-          if (!(data[0].id === nonprofitDefaultOption.id)) {
-            data = [nonprofitDefaultOption, ...data];
-          }
-          setNonprofitList(data);
-        } else {
-          setErrorText(result.errorText);
+    /**
+     * Callback function for the nonprofit list fetch that sets the list or provides an error
+     * @param {object} result - The result object from the fetchNonProfitList function
+     */
+    function nonprofitListCallback(result) {
+      if (result.valid) {
+        let data = result.data;
+        if (!(data[0].id === nonprofitDefaultOption.id)) {
+          data = [nonprofitDefaultOption, ...data];
         }
-      });
+        setNonprofitList(data);
+      } else {
+        setErrorText(result.errorText);
+      }
+    }
+
+    useEffect(() => {
+      fetchNonProfitList().then(nonprofitListCallback);
     }, []);
     return (
       <div className="NonProfitSelector">

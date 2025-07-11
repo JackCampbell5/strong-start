@@ -12,21 +12,27 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function ViewServices() {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
 
   // State Variables
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Sets the results or the error text based on the results of the fetchAllServices() function
+   * @param {object} results - The results of the fetchAllServices() function
+   */
+  function allServicesCallback(results) {
+    if (results.valid) {
+      setErrorText("");
+      setSearchResults(results.data);
+    } else {
+      setErrorText(results.error);
+    }
+  }
+
   useEffect(() => {
-    fetchAllServices(nonprofit).then((results) => {
-      if (results.valid) {
-        setErrorText("");
-        setSearchResults(results.data);
-      } else {
-        setErrorText(results.error);
-      }
-    });
+    fetchAllServices(nonprofit).then(allServicesCallback);
   }, []);
   return (
     <div className="ViewServices">

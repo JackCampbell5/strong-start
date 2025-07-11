@@ -16,16 +16,21 @@ function NewService() {
   // State Variables
   const [errorText, setErrorText] = useState("");
 
-  useEffect(() => {
-    checkEmployeeLoginStatus(nonprofit).then((result) => {
-      if (result.valid) {
-        if (!result.data) {
-          setErrorText("No user signed in, please sign in to add a service");
-        }
-      } else {
-        setErrorText(result.error);
+  /**
+   * Callback function to print error message if user is not logged in
+   * @param {*} result - result of testLoginNonprofitEmployee
+   */
+  function testLoginCallback(result) {
+    if (result.valid) {
+      if (!result.data) {
+        setErrorText("No user signed in, please sign in to add a service");
       }
-    });
+    } else {
+      setErrorText(result.error);
+    }
+  }
+  useEffect(() => {
+    checkEmployeeLoginStatus(nonprofit).then(testLoginCallback);
   }, []);
   return (
     <div className="NewService">

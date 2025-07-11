@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
  */
 export async function checkEmployeeUsername(username, nonprofit, next) {
   try {
-    let resultData = await prisma.nonprofit_employee.findUnique({
+    const resultData = await prisma.nonprofit_employee.findUnique({
       where: {
         username: username,
       },
@@ -31,7 +31,7 @@ export async function checkEmployeeUsername(username, nonprofit, next) {
  */
 export async function checkEmployeeId(id, nonprofit, next) {
   try {
-    let resultData = await prisma.nonprofit_employee.findUnique({
+    const resultData = await prisma.nonprofit_employee.findUnique({
       where: {
         id: id,
       },

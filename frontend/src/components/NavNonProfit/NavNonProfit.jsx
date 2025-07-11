@@ -13,7 +13,7 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function NavNonProfit({ onNavigate }) {
   // Constant Variables
-  let nonprofit = getNonProfit();
+  const nonprofit = getNonProfit();
   const location = getLocation();
 
   // State Variables
@@ -34,13 +34,18 @@ function NavNonProfit({ onNavigate }) {
    * Logout the current user if one is logged in
    */
   function logout() {
-    logoutNonprofitEmployee(nonprofit).then((result) => {
-      if (result.valid) {
-        alert("You have been logged out");
-      } else {
-        alert("Error logging out" + result.error);
-      }
-    });
+    logoutNonprofitEmployee(nonprofit).then(logoutCallback);
+  }
+  /**
+   * Gives the user a message on whether the logout was successful or not
+   * @param {object} result - The result of the logout request
+   */
+  function logoutCallback(result) {
+    if (result.valid) {
+      alert("You have been logged out");
+    } else {
+      alert("Error logging out" + result.error);
+    }
   }
   // When account nav is expanded add the event listener to the window
   useEffect(
@@ -108,8 +113,10 @@ function NavNonProfit({ onNavigate }) {
             Account <IoIosArrowDropdown className="dropdownArrow" />
           </button>
           <div
-            className="dropdown-content"
-            id={isAccountNavExpanded ? "shown" : "not-shown"}
+            className={[
+              "dropdown-content",
+              isAccountNavExpanded ? "dropdown-shown" : "dropdown-not-shown",
+            ].join(" ")}
           >
             <button
               className={[

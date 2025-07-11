@@ -81,7 +81,7 @@ export async function postService(info, nonprofit) {
         const errorText = await response.text(); // Read the response as text
         throw new MyHTTPError(response.status, errorText);
       }
-      let data = response.json(); // Parse JSON data from the response
+      const data = response.json(); // Parse JSON data from the response
       return { result: true };
     })
     .catch((error) => {
@@ -109,7 +109,7 @@ export async function putService(info, nonprofit, serviceID) {
         const errorText = await response.text(); // Read the response as text
         throw new MyHTTPError(response.status, errorText);
       }
-      let data = response.json(); // Parse JSON data from the response
+      const data = response.json(); // Parse JSON data from the response
       return { result: true };
     })
     .catch((error) => {

@@ -31,8 +31,8 @@ export const QueryParams = Object.freeze({
  * @returns The last part of the url bar
  */
 export function getLocation() {
-  let location = useLocation().pathname;
-  let allLocations = location.split("/");
+  const location = useLocation().pathname;
+  const allLocations = location.split("/");
   return allLocations[allLocations.length - 1];
 }
 /**

@@ -7,13 +7,13 @@ import PropTypes, { func } from "prop-types";
 import "./SelectService.css";
 // Util functions
 import { fetchServiceNameList } from "#fetch/serviceFetchUtils";
-import { serviceNameInputDefault } from "#default-data/serviceDefaultData.js";
+import serviceNameInputDefault from "#default-data/serviceNameInputDefault.json";
 import { getNonProfit } from "#utils/pathUtils";
 
 function SelectService({ setServiceID, setServiceName }) {
   {
     // Constant Variables
-    let nonprofit = getNonProfit();
+    const nonprofit = getNonProfit();
 
     // State Variables
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
@@ -31,20 +31,27 @@ function SelectService({ setServiceID, setServiceName }) {
       setServiceName(selectedText);
     }
 
-    useEffect(() => {
-      fetchServiceNameList(nonprofit).then((result) => {
-        if (result.valid) {
-          let data = result.data;
-          setErrorText("");
-          if (data[0].id !== serviceNameInputDefault.id) {
-            data = [serviceNameInputDefault, ...data];
-          }
-          setServiceList(data);
-        } else {
-          setErrorText(result.error);
+    /**
+     * Updates the service list state variable with the result of the fetchServiceNameList function if valid and provides error if not
+     * @param {object} result - The result object from the fetchServiceNameList function
+     */
+    function serviceNameListCallback(result) {
+      if (result.valid) {
+        let data = result.data;
+        setErrorText("");
+        if (data[0].id !== serviceNameInputDefault.id) {
+          data = [serviceNameInputDefault, ...data];
         }
-      });
+        setServiceList(data);
+      } else {
+        setErrorText(result.error);
+      }
+    }
+
+    useEffect(() => {
+      fetchServiceNameList(nonprofit).then(serviceNameListCallback);
     }, []);
+
     return (
       <div className="SelectService">
         <h2>What Service would you like to edit?</h2>
