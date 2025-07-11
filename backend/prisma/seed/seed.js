@@ -8,7 +8,7 @@ import { hashPassword } from "#utils/auth-utils.js";
 import serviceJson from "#seed/services.json" with { type: "json" };
 import nonprofitJson from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
-import { formatAddress } from "#search/search-utils.js";
+import formatAddress from "#utils/search/format-address.js";
 import { getResultData, validResult } from "#utils/validate-utils.js";
 
 const prisma = new PrismaClient();
