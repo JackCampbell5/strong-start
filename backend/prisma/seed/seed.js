@@ -8,6 +8,7 @@ import { hashPassword } from "#utils/auth-utils.js";
 import serviceList from "#seed/services.json" with { type: "json" };
 import nonprofitList from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
+import { formatAddress } from "#search/search-utils.js";
 
 const prisma = new PrismaClient();
 
@@ -26,16 +27,24 @@ async function main() {
   // Hash the passwords
   const employeeList = await hashPasswordList(employees); // Hash the passwords
 
+
+
   // Create nonprofits with services and employees
-  const nonprofitlist = nonprofitList.map((nonprofit, num) => ({
+  const nonprofits = nonprofitList.map((nonprofit, num) => ({
     ...nonprofit,
     services: serviceList.slice(serviceStart[num], serviceEnd[num]),
     employees: [...employeeList.slice(employeeStart[num], employeeEnd[num]), adminEmployee(num)],
   }));
 
+  for (let i = 0; i < nonprofits.length; i++) {
+    let formatted = await formatAddress(nonprofits[i].address);
+    if (formatted) {
+      nonprofits[i].addressInfo = formatted;
+    }
+  }
   // Create nonprofits and adds to database
   await Promise.all(
-    nonprofitlist.map(async (profitInfo) => {
+    nonprofits.map(async (profitInfo) => {
       await prisma.nonprofit.create({
         data: {
           ...profitInfo,
@@ -46,7 +55,6 @@ async function main() {
     })
   );
 }
-
 /**
  *  Creates an admin employee
  * @param {Int} num - The number of the nonprofit
