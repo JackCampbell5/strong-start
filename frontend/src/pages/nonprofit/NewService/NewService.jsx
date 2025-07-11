@@ -1,18 +1,19 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import "./NewService.css";
 
+// Local Imports
+import "./NewService.css";
 // Components
 import EditService from "#components/EditService/EditService";
-
-//util functions
+//Util Functions
 import { checkEmployeeLoginStatus } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function NewService() {
+  // Constant Variables
   const nonprofit = getNonProfit();
+  // State Variables
   const [errorText, setErrorText] = useState("");
 
   useEffect(() => {

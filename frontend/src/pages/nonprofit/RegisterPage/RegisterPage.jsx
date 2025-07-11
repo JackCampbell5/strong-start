@@ -1,8 +1,8 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./RegisterPage.css";
-import PropTypes from "prop-types";
 
+// Local Imports
+import "./RegisterPage.css";
 // Other Components
 import Register from "#components/Register/Register";
 

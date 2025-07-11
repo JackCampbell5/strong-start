@@ -3,10 +3,13 @@
   border-radius: 10px;
   transition: background-color 0.3s ease-in-out;
 }
+/* The "logo" in itself */
 .IconComp h1 {
   margin: 0px;
   padding: 1px;
 }
+
+/* Fun effect on hover to show you can click it */
 .IconComp:hover {
   cursor: pointer;
   background: var(--background-hover);

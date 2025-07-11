@@ -1,7 +1,10 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./ServiceList.css";
 import PropTypes from "prop-types";
+
+// Local Imports
+import "./ServiceList.css";
+// Other Components
 import Service from "#components/Service/Service";
 
 function ServiceList({ data }) {
@@ -25,7 +28,7 @@ function ServiceList({ data }) {
 }
 
 ServiceList.propTypes = {
-  // data: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 export default ServiceList;

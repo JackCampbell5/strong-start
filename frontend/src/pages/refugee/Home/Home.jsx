@@ -1,28 +1,35 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState } from "react";
-import "./Home.css";
-import PropTypes from "prop-types";
 
+// Local Imports
+import "./Home.css";
 // Other components
 import SearchFilters from "#components/SearchFilters/SearchFilters";
 import ServiceList from "#components/ServiceList/ServiceList";
-
-// utils
+// Util Functions
 import { fetchSearch } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function Home() {
+  // Constant Variables
   let nonprofit = getNonProfit();
+
+  // State Variables
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Searches for services based on the given data and sets the results if valid and error text if not
+   * @param {object} data - The data to search for
+   */
   function searchFor(data) {
     setLoading(true);
     fetchSearch(nonprofit, data).then((results) => {
+      setLoading(false);
       if (results.valid) {
-        setLoading(false);
+        setErrorText("");
         setSearchResults(results.data);
       } else {
         setErrorText(results.error);

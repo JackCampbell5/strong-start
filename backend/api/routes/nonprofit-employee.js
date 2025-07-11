@@ -1,20 +1,21 @@
-// Imports from node_modules
+// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
 import express from "express";
-// Imports from my stuff
+
+// Local Imports
+import {
+  EmployeeNotFoundError,
+  EmployeeUsernameTakenError,
+  EmployeeLogInError,
+} from "#errors/employee-errors.js";
+import { hashPassword, verifyPassword } from "#utils/auth-utils.js";
 import {
   checkEmployeeUsername,
   checkEmployeeId,
   secureEmployeeData,
   getEmployeeData,
 } from "#utils/employee-valid-utils.js";
-import { hashPassword, verifyPassword } from "#utils/auth-utils.js";
-import {
-  EmployeeNotFoundError,
-  EmployeeUsernameTakenError,
-  EmployeeLogInError,
-} from "#errors/employee-errors.js";
-import { createErrorReturn } from "#utils/errorUtils.js";
+import { createErrorReturn } from "#utils/error-utils.js";
 
 const prisma = new PrismaClient();
 const employeeRouter = express.Router();

@@ -1,11 +1,14 @@
+// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
 import express from "express";
-import { checkServiceName, checkServiceId } from "#utils/service_utils.js";
+
+// Local Imports
 import {
   ServiceNotFoundError,
   ServiceAlreadyExistsError,
 } from "#errors/service-errors.js";
-import { createErrorReturn } from "#utils/errorUtils.js";
+import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
+import { createErrorReturn } from "#utils/error-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();

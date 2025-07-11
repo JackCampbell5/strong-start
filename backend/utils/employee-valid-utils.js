@@ -1,4 +1,6 @@
+// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
+
 const prisma = new PrismaClient();
 
 /**
@@ -40,6 +42,11 @@ export async function checkEmployeeId(id, nonprofit, next) {
   }
 }
 
+/**
+ * Secures an employee's data by removing their password
+ * @param {object} data - The data to secure
+ * @returns The secured data for an employee
+ */
 export function secureEmployeeData(data) {
   const { password, ...secureEmployee } = data;
   return secureEmployee;

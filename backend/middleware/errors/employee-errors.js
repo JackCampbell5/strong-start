@@ -1,5 +1,3 @@
-import express from "express";
-
 /**
  * Error to be thrown when the employee to be changed can not be found
  */

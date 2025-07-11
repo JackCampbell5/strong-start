@@ -1,23 +1,29 @@
-import React, { use } from "react";
-import ReactDOM from "react-dom";
-import { useState, useEffect } from "react";
-import "./SearchService.css";
-import PropTypes, { func } from "prop-types";
+// Node Module Imports
+import React from "react";
+import { useState } from "react";
 
+// Local Imports
+import "./SearchService.css";
 // Other components
 import SearchFilters from "#components/SearchFilters/SearchFilters";
 import ServiceList from "#components/ServiceList/ServiceList";
-
-// utils
+// Util Functions
 import { fetchSearch } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
-function SearchService({}) {
+function SearchService() {
+  // Constant Variables
   let nonprofit = getNonProfit();
+
+  // State Variables
   const [loading, setLoading] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Sends a request to the backend to search for services
+   * @param {object} data - The data to be sent to the backend and searched for
+   */
   function searchFor(data) {
     setLoading(true);
     fetchSearch(nonprofit, data).then((results) => {
@@ -38,9 +44,5 @@ function SearchService({}) {
     </div>
   );
 }
-
-SearchService.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default SearchService;

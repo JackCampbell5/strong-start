@@ -1,18 +1,19 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
-import "./SearchFilters.css";
 
+// Local Imports
+import "./SearchFilters.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
-
 // Util Methods
 import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
 import { serviceSearchIconMap } from "#default-data/serviceDefaultData.js";
 import { reformatData } from "#utils/textUtils";
 
 function SearchFilters({ loading, searchFor }) {
+  // State Variables
   const [errorText, setErrorText] = useState("");
   // Uses serviceSearchDefault which is a list of objects that contain the name, icon, and default value for each param
   const [searchInput, setSearchInput] = useState(serviceSearchDefault);

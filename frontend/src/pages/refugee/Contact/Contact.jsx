@@ -1,9 +1,10 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./Contact.css";
-import PropTypes from "prop-types";
 
-function Contact({}) {
+// Local Imports
+import "./Contact.css";
+
+function Contact() {
   return (
     <div className="Contact">
       <h1>Contact Us</h1>
@@ -18,9 +19,5 @@ function Contact({}) {
     </div>
   );
 }
-
-Contact.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default Contact;

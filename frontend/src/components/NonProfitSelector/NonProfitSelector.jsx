@@ -1,15 +1,19 @@
+// Node Module Imports
 import React from "react";
-import { data, useSearchParams } from "react-router-dom";
-import "./NonProfitSelector.css";
-import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { nonprofitDefaultOption } from "#default-data/nonProfitDefaultData.js";
+// Local Imports
+import "./NonProfitSelector.css";
+// Util Functions
 import { fetchNonProfitList } from "#fetch/nonProfitFetchUtils";
+import { nonprofitDefaultOption } from "#default-data/nonProfitDefaultData.js";
 import { QueryParams } from "#utils/pathUtils";
 
 function NonProfitSelector({ errorText, setErrorText }) {
   {
+    // State Variables
     let [searchParams, setSearchParams] = useSearchParams();
 
     // Add query params when the dropdown is changed

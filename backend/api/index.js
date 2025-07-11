@@ -4,7 +4,7 @@ import express from "express"; // Express framework
 import session from "express-session"; // Session management
 
 // Import routes for the API
-import apiRouter from "#apiroutes/api_v1.js";
+import apiRouter from "#apiroutes/api-v1.js";
 
 const dev = process.env.DEV === "true"; // Check if we are in development mode
 

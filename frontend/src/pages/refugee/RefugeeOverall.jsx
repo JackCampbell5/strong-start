@@ -1,29 +1,32 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
-import "./RefugeeOverall.css";
-import PropTypes from "prop-types";
 
+// Local Imports
+import "./RefugeeOverall.css";
 // Other pages
 import Contact from "#refugeePage/Contact/Contact";
 import Home from "#refugeePage/Home/Home";
 import AllServices from "#refugeePage/AllServices/AllServices";
 import Help from "#refugeePage/Help/Help";
-
 //Other Components
 import FooterRefugee from "#components/FooterRefugee/FooterRefugee";
 import NavRefugee from "#components/NavRefugee/NavRefugee";
-
 // Utils
 import { RPages } from "#utils/pathUtils";
 import { createPageNavigator } from "#utils/pathUtils";
 
 function RefugeeOverall() {
+  // Constant Variables
   const priorPart = "/refugee/";
   const navigate = useNavigate();
   const location = useLocation();
   const pageNavigator = createPageNavigator(navigate, location);
+
+  /**
+   * Navigate to a new page
+   * @param {string} path - The path to navigate to
+   */
   function nav(path) {
     pageNavigator(priorPart + path);
   }

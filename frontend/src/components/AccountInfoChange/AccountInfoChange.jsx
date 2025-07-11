@@ -1,7 +1,10 @@
+// Node Module Imports
 import React from "react";
 import ReactDOM from "react-dom";
-import './AccountInfoChange.css'
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+
+// Local Imports
+import "./AccountInfoChange.css";
 
 function AccountInfoChange({}) {
   return (
@@ -12,7 +15,7 @@ function AccountInfoChange({}) {
 }
 
 AccountInfoChange.propTypes = {
-    // data: PropTypes.func.isRequired,
+  // data: PropTypes.func.isRequired,
 };
 
 export default AccountInfoChange;

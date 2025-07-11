@@ -1,7 +1,8 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
+
+// Local Imports
 import "./Help.css";
-import PropTypes from "prop-types";
 
 function Help({}) {
   return (
@@ -16,9 +17,5 @@ function Help({}) {
     </div>
   );
 }
-
-Help.propTypes = {
-  // data: PropTypes.func.isRequired,
-};
 
 export default Help;

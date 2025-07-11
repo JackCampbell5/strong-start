@@ -1,9 +1,10 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import PropTypes, { func } from "prop-types";
-import "./SelectService.css";
 
+// Local Imports
+import "./SelectService.css";
 // Util functions
 import { fetchServiceNameList } from "#fetch/serviceFetchUtils";
 import { serviceNameInputDefault } from "#default-data/serviceDefaultData.js";
@@ -11,10 +12,17 @@ import { getNonProfit } from "#utils/pathUtils";
 
 function SelectService({ setServiceID, setServiceName }) {
   {
+    // Constant Variables
     let nonprofit = getNonProfit();
+
+    // State Variables
     const [serviceList, setServiceList] = useState([serviceNameInputDefault]);
     const [errorText, setErrorText] = useState("");
 
+    /**
+     * Handles the change event for the select service dropdown
+     * @param {Event} e - The event object for when the employee selects a service
+     */
     function onSelectChange(e) {
       const value = e.target.value;
       setServiceID(value);

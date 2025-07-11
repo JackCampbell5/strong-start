@@ -1,15 +1,18 @@
+// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
 import express from "express";
-import {
-  checkNonProfitName,
-  checkNonProfitId,
-} from "#utils/nonprofit_utils.js";
-import { generateStats } from "#utils/nonprofitStatUtils.js";
+
+// Local Imports
 import {
   NonProfitNotFoundError,
   NonProfitAlreadyExistsError,
 } from "#errors/nonprofit-errors.js";
-import { createErrorReturn } from "#utils/errorUtils.js";
+import { createErrorReturn } from "#utils/error-utils.js";
+import { generateStats } from "#utils/nonprofit-stat-utils.js";
+import {
+  checkNonProfitName,
+  checkNonProfitId,
+} from "#utils/nonprofit-utils.js";
 
 const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();

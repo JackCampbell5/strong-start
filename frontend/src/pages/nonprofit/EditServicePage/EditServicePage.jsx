@@ -1,17 +1,18 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
-import "./EditServicePage.css";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-// Components
+// Local Imports
+import "./EditServicePage.css";
+// Other Components
 import EditService from "#components/EditService/EditService";
 import SelectService from "#components/SelectService/SelectService";
-
-//Utils
+//Util Functions
 import { serviceNameInputDefault } from "#default-data/serviceDefaultData";
 
 function EditServicePage({}) {
+  // State Variables
   const [serviceID, setServiceID] = useState(serviceNameInputDefault.id);
   const [serviceName, setServiceName] = useState(serviceNameInputDefault.id);
 

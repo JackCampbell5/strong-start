@@ -1,13 +1,13 @@
+// Node Module Imports
 import React from "react";
-import ReactDOM from "react-dom";
 import { useState, useEffect } from "react";
-import "./EditService.css";
 import PropTypes from "prop-types";
 
+// Local Imports
+import "./EditService.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
-
-// Util Methods
+// Util Functions
 import { serviceInputDefaultValues } from "#default-data/serviceDefaultData.js";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 import {
@@ -18,12 +18,20 @@ import {
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
+/**
+ * Component for editing a service
+ * + If none is given then a new service will be created when the employee hits submit.
+ * @param {string} serviceID - The ID of the service to edit(If applicable)
+ * @returns
+ */
 function EditService({ serviceID = null }) {
+  // Constant Variables
   let nonprofit = getNonProfit();
+
+  //State Variables
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState("");
-
   const [serviceInput, setServiceInput] = useState(serviceInputDefaultData);
 
   /**

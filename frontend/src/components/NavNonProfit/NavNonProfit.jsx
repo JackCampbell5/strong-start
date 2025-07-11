@@ -1,27 +1,28 @@
-import React, { useEffect } from "react";
-import ReactDOM from "react-dom";
-import "./NavNonProfit.css";
-import PropTypes, { func } from "prop-types";
+// Node Module Imports
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import IconComp from "#components/IconComp/IconComp";
-import { useState } from "react";
 import { IoIosArrowDropdown } from "react-icons/io";
 
-// utils
+// Local Imports
+import "./NavNonProfit.css";
+// Util Functions
 import { getLocation, NpPages } from "#utils/pathUtils";
 import { logoutNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function NavNonProfit({ onNavigate }) {
+  // Constant Variables
   let nonprofit = getNonProfit();
-  // Get the location for sections in the nav bar
   const location = getLocation();
 
-  // Set the state of the dropdown menu
+  // State Variables
   const [isAccountNavExpanded, setIsAccountNavExpanded] = useState(false);
-  useEffect(
-    () => window.addEventListener("click", handleClickOutside),
-    [isAccountNavExpanded]
-  );
+
+  /**
+   * Retracts the account dropdown if the user clicks outside of it
+   * @param {Event} e -  the event object
+   */
   function handleClickOutside(e) {
     if (!e.target.closest(".dropdownActiveButton")) {
       if (isAccountNavExpanded) {
@@ -29,6 +30,9 @@ function NavNonProfit({ onNavigate }) {
       }
     }
   }
+  /**
+   * Logout the current user if one is logged in
+   */
   function logout() {
     logoutNonprofitEmployee(nonprofit).then((result) => {
       if (result.valid) {
@@ -38,7 +42,11 @@ function NavNonProfit({ onNavigate }) {
       }
     });
   }
-
+  // When account nav is expanded add the event listener to the window
+  useEffect(
+    () => window.addEventListener("click", handleClickOutside),
+    [isAccountNavExpanded]
+  );
   return (
     <div className="NavNonProfit">
       <div className="navLogo" onClick={() => onNavigate("")}>
@@ -134,9 +142,5 @@ function NavNonProfit({ onNavigate }) {
 NavNonProfit.propTypes = {
   onNavigate: PropTypes.func.isRequired, // Function to navigate to a different page every time a button is clicked
 };
-
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
 
 export default NavNonProfit;
