@@ -3,7 +3,14 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 // Local Imports
-import { validateAddress, extractZipcode } from "#search/search-utils.js";
+import formatAddress from "#utils/search/format-address.js";
+import {
+  errorReturn,
+  successReturn,
+  validResult,
+  getResultData,
+  getResultError,
+} from "#utils/validate-utils.js";
 
 export default async function searchServices(query, nonprofit) {
   // Params that can be used for search
@@ -14,22 +21,17 @@ export default async function searchServices(query, nonprofit) {
   const date_entered = query.date_entered;
   const family_members = query.family_members;
 
-  const zipCode = extractZipcode(address);
-  let errorMessage = "";
-  if (zipCode === null) {
-    errorMessage +=
-      "Invalid Zipcode. Please provide a zipcode in your address in the form of 12345 or 12345-1234.";
+  // Validate Address and print errors if they exist
+  const result = await formatAddress(address, nonprofit);
+  if (!validResult(result)) {
+    return errorReturn(getResultError(result));
   }
-  if (errorMessage !== "") {
-    console.log(errorMessage);
-    return { valid: false, error: errorMessage };
-  }
+  const addressValid = getResultData(result);
 
-  const addressValid = validateAddress(address);
   const foundServices = await prisma.service.findMany({
     where: {
       nonprofit_ID: nonprofit.id,
     },
   });
-  return { valid: true, data: foundServices };
+  return successReturn(foundServices);
 }
