@@ -38,6 +38,9 @@ model nonprofit {
   name                   String    @unique
   phone                  String?
   email                  String?
+  address                String?
+  addressInfo            Json?
+  website                String?
   logo                   String?
   services               service[]
   employees              nonprofit_employee[]

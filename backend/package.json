@@ -21,7 +21,7 @@
   },
   "devDependencies": {
     "jasmine": "^5.8.0",
-    "prisma": "^6.10.1"
+    "prisma": "^6.11.1"
   },
   "imports": {
     "#prisma/*": "./generated/prisma/*",
