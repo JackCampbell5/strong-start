@@ -9,8 +9,10 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 // util functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function Register() {
+  let nonprofit = getNonProfit();
   const navigate = useNavigate();
   let location = useLocation().pathname;
   const [username, setUsername] = useState("");
@@ -40,7 +42,7 @@ function Register() {
       email: email,
     };
     setLoading(true);
-    registerNonprofitEmployee(user).then(registerReturn);
+    registerNonprofitEmployee(nonprofit, user).then(registerReturn);
   }
 
   function findValidationErrors() {
@@ -60,12 +62,12 @@ function Register() {
     return errorMessage;
   }
 
-  function registerReturn(data) {
+  function registerReturn(result) {
     setLoading(false);
-    if (data.success) {
-      setSuccessText(data.message);
+    if (result.valid) {
+      setSuccessText(result.data);
     } else {
-      setErrorText(data.message);
+      setErrorText(result.error);
     }
   }
 

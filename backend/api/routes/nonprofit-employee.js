@@ -78,6 +78,7 @@ employeeRouter.post("/register", async (req, res, next) => {
 
       // Return the employee without the password
       const secureEmployee = secureEmployeeData(createEmployee);
+      req.session.employee = secureEmployee; // Added to session
       res.status(201).json(secureEmployee);
     } else {
       throw new EmployeeUsernameTakenError(username);
@@ -89,17 +90,15 @@ employeeRouter.post("/register", async (req, res, next) => {
 
 // Register a new non profit employee
 employeeRouter.post("/login", async (req, res, next) => {
-  const { username, password: plainPassword } = req.body;
+  const { username, password: plainPassword } = req.body.data;
   const nonprofit = req.body.nonprofit;
   try {
     const employeeData = await getEmployeeData(username, nonprofit, next);
     if (employeeData) {
       if (await verifyPassword(plainPassword, employeeData.password)) {
-        // TODO SESSION - Add when session is implemented
-        // req.session.user = user; // Added to session
-
         // Return the employee without the password
         const secureEmployee = secureEmployeeData(employeeData);
+        req.session.employee = secureEmployee; // Added to session
         res.status(201).json(secureEmployee);
       } else {
         throw new EmployeeLogInError(username);
@@ -112,19 +111,33 @@ employeeRouter.post("/login", async (req, res, next) => {
   }
 });
 
-// TODO SESSION - Add when session is implemented
-// // Logout a user
-// employeeRouter.post("/logout", (req, res, next) => {
-//   req.session.destroy((err) => {
-//     if (err) {
-//       console.log("Error destroying session:", err);
-//       next({ message: "Logout failed" });
-//     } else {
-//       res.clearCookie("sessionId");
-//       res.json({ message: "👋 Logged out" });
-//     }
-//   });
-// });
+// Register a new non profit employee
+employeeRouter.get("/login/test", async (req, res, next) => {
+  const nonprofit = req.body.nonprofit;
+  try {
+    if (req.session.employee) {
+      return res
+        .status(200)
+        .json(req.session.employee.username + " is currently logged in");
+    } else {
+      return res.status(200).json(null);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
+// Logout a user
+employeeRouter.post("/logout", (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) {
+      next({ message: "Logout failed" });
+    } else {
+      res.clearCookie("sessionId");
+      res.json({ message: "👋 Logged out" });
+    }
+  });
+});
 
 // Edit a employee by name
 employeeRouter.put("/:employee_id/edit", async (req, res, next) => {

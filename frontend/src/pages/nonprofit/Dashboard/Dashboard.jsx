@@ -15,10 +15,15 @@ import { getNonProfit } from "#utils/pathUtils";
 function Dashboard({}) {
   let nonprofit = getNonProfit();
   const [siteStats, setSiteStats] = useState(statsDefault);
+  const [errorText, setErrorText] = useState("");
 
   useEffect(() => {
-    fetchNonProfitStats(nonprofit).then((data) => {
-      setSiteStats(data);
+    fetchNonProfitStats(nonprofit).then((result) => {
+      if (result.valid) {
+        setSiteStats(result.data);
+      } else {
+        setErrorText(result.error);
+      }
     });
   }, []);
   return (
@@ -43,6 +48,7 @@ function Dashboard({}) {
           })}
         </div>
       </div>
+      <p className="errorText">{errorText}</p>
       <div className="dashHeader smallHeader">Create New Service</div>
       <EditService />
     </div>

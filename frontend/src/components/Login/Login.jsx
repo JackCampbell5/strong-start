@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
@@ -8,10 +8,15 @@ import "./Login.css";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 //util functions
-import { loginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import {
+  loginNonprofitEmployee,
+  checkEmployeeLoginStatus,
+} from "#fetch/nonprofitEmployeeFetchUtils";
 import { createPageNavigator } from "#utils/pathUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function Login({}) {
+  const nonprofit = getNonProfit();
   const navigate = useNavigate();
   const location = useLocation();
   const pageNavigator = createPageNavigator(navigate, location);
@@ -35,14 +40,14 @@ function Login({}) {
       return;
     }
     setLoading(true);
-    loginNonprofitEmployee(username, password).then(loginReturn);
+    loginNonprofitEmployee(nonprofit, username, password).then(loginReturn);
   }
-  function loginReturn(data) {
+  function loginReturn(result) {
     setLoading(false);
-    if (data.success) {
-      setSuccessText(data.message);
+    if (result.valid) {
+      setSuccessText(result.data);
     } else {
-      setErrorText(data.message);
+      setErrorText(result.error);
     }
   }
 
@@ -53,6 +58,18 @@ function Login({}) {
     let newPath = path.replace(ending, "register");
     pageNavigator(newPath);
   }
+
+  useEffect(() => {
+    checkEmployeeLoginStatus(nonprofit).then((result) => {
+      if (result.valid) {
+        if (result.data) {
+          setSuccessText(result.data);
+        }
+      } else {
+        setErrorText(result.error);
+      }
+    });
+  }, []);
 
   return (
     <div className="Login">

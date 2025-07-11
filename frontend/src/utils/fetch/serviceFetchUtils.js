@@ -1,4 +1,5 @@
 import { getNonProfit } from "#utils/pathUtils";
+import { errorReturn, successReturn, MyHTTPError } from "#utils/httpUtils";
 import serviceSearchTestData from "#test-data//serviceSearchTestData";
 import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
@@ -8,22 +9,28 @@ const serviceLink = import.meta.env.VITE_BACKEND_API + "/api/v1/service";
  * @param {string} id - The id to get the services for
  */
 export async function fetchServiceDetails(nonProfit, id) {
-  return await fetch(`${serviceLink}/${nonProfit}/${id}/get-to-edit`)
+  return await fetch(`${serviceLink}/${nonProfit}/${id}/get-edit`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error.message);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }
 
@@ -32,22 +39,28 @@ export async function fetchServiceDetails(nonProfit, id) {
  * @param {Function} after - Function to call with data fetched
  */
 export async function fetchServiceNameList(nonProfit) {
-  return await fetch(`${serviceLink}/${nonProfit}/all/name-list`)
+  return await fetch(`${serviceLink}/${nonProfit}/all/name-list`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error.message);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }
 
@@ -59,13 +72,14 @@ export async function fetchServiceNameList(nonProfit) {
 export async function postService(info, nonprofit) {
   return await fetch(`${serviceLink}/${nonprofit}/add`, {
     method: "POST",
+    credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: info }),
   })
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       let data = response.json(); // Parse JSON data from the response
       return { result: true };
@@ -86,13 +100,14 @@ export async function postService(info, nonprofit) {
 export async function putService(info, nonprofit, serviceID) {
   return await fetch(`${serviceLink}/${nonprofit}/${serviceID}/edit`, {
     method: "PUT",
+    credentials: "include",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ data: info }),
   })
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       let data = response.json(); // Parse JSON data from the response
       return { result: true };
@@ -112,22 +127,31 @@ export async function putService(info, nonprofit, serviceID) {
 export async function fetchSearch(nonprofit, data) {
   // Construct the query params based on the search data
   const params = new URLSearchParams(data);
-  return await fetch(`${serviceLink}/${nonprofit}/search?${params.toString()}`)
+  return await fetch(
+    `${serviceLink}/${nonprofit}/search?${params.toString()}`,
+    {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }
 
@@ -137,21 +161,27 @@ export async function fetchSearch(nonprofit, data) {
  */
 export async function fetchAllServices(nonprofit) {
   // return { valid: true, data: serviceSearchTestData };
-  return await fetch(`${serviceLink}/${nonprofit}/all`)
+  return await fetch(`${serviceLink}/${nonprofit}/all`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then(async (response) => {
       if (!response.ok) {
         const errorText = await response.text(); // Read the response as text
-        throw new Error(`${errorText}`);
+        throw new MyHTTPError(response.status, errorText);
       }
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
       // Update the component with the data
-      return { valid: true, data: data };
+      return successReturn(data);
     })
     .catch((error) => {
       // Handle error
       console.error("Error fetching given service:", error);
-      return { valid: false, error: error.message };
+      return errorReturn(error);
     });
 }

@@ -64,6 +64,10 @@ nonprofitRouter.get("/:nonprofit_name", async (req, res, next) => {
 
 // Get stats for one nonprofit by id
 nonprofitRouter.get("/:nonprofit_id/stats", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   const { nonprofit_id } = req.params;
   try {
     const findNonProfit = await prisma.nonprofit.findUnique({

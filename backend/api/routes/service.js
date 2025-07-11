@@ -57,6 +57,10 @@ serviceRouter.get("/search", async (req, res, next) => {
 
 // Get all services in dropdown format
 serviceRouter.get("/all/name-list", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   try {
     const nonprofit = req.body.nonprofit;
     const foundServices = await prisma.service.findMany({
@@ -128,7 +132,11 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
 });
 
 // Get one service by id
-serviceRouter.get("/:service_id/get-to-edit", async (req, res, next) => {
+serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
@@ -163,6 +171,10 @@ serviceRouter.get("/:service_id/get-to-edit", async (req, res, next) => {
 
 // Add a new service by id
 serviceRouter.post("/add", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   const serviceData = req.body.data;
   const name = serviceData.name;
   const nonprofit = req.body.nonprofit;
@@ -184,6 +196,10 @@ serviceRouter.post("/add", async (req, res, next) => {
 
 // Edit a service by id
 serviceRouter.put("/:service_id/edit", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   const { service_id } = req.params;
   const serviceData = req.body;
   const nonprofit = req.body.nonprofit;
@@ -210,6 +226,10 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
 
 // Delete a service by id
 serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {

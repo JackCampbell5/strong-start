@@ -1,5 +1,5 @@
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { data, useSearchParams } from "react-router-dom";
 import "./NonProfitSelector.css";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
@@ -30,11 +30,16 @@ function NonProfitSelector({ errorText, setErrorText }) {
     ]);
 
     useEffect(() => {
-      fetchNonProfitList().then((data) => {
-        if (!(data[0].id === nonprofitDefaultOption.id)) {
-          data = [nonprofitDefaultOption, ...data];
+      fetchNonProfitList().then((result) => {
+        if (result.valid) {
+          let data = result.data;
+          if (!(data[0].id === nonprofitDefaultOption.id)) {
+            data = [nonprofitDefaultOption, ...data];
+          }
+          setNonprofitList(data);
+        } else {
+          setErrorText(result.errorText);
         }
-        setNonprofitList(data);
       });
     }, []);
     return (

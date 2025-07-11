@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./NavNonProfit.css";
-import PropTypes from "prop-types";
+import PropTypes, { func } from "prop-types";
 import IconComp from "#components/IconComp/IconComp";
 import { useState } from "react";
 import { IoIosArrowDropdown } from "react-icons/io";
+
+// utils
 import { getLocation, NpPages } from "#utils/pathUtils";
+import { logoutNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function NavNonProfit({ onNavigate }) {
+  let nonprofit = getNonProfit();
   // Get the location for sections in the nav bar
   const location = getLocation();
 
@@ -23,6 +28,15 @@ function NavNonProfit({ onNavigate }) {
         setIsAccountNavExpanded(false);
       }
     }
+  }
+  function logout() {
+    logoutNonprofitEmployee(nonprofit).then((result) => {
+      if (result.valid) {
+        alert("You have been logged out");
+      } else {
+        alert("Error logging out" + result.error);
+      }
+    });
   }
 
   return (
@@ -103,9 +117,12 @@ function NavNonProfit({ onNavigate }) {
                 "navBarButton",
                 location === NpPages.REGISTER ? "selected" : "unselected",
               ].join(" ")}
-              onClick={() => navSet(NpPages.REGISTER)}
+              onClick={() => onNavigate(NpPages.REGISTER)}
             >
               Register
+            </button>
+            <button className={"navBarButton"} onClick={() => logout()}>
+              Logout
             </button>
           </div>
         </div>
