@@ -34,7 +34,7 @@ export async function loginNonprofitEmployee(nonprofit, username, password) {
     });
 }
 
-export async function testLoginNonprofitEmployee(nonprofit) {
+export async function checkEmployeeLoginStatus(nonprofit) {
   return await fetch(`${serviceLink}/${nonprofit}/login/test`, {
     method: "GET",
     credentials: "include",

@@ -7,7 +7,7 @@ import "./NewService.css";
 // Components
 import EditService from "#components/EditService/EditService";
 //Util Functions
-import { testLoginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import { checkEmployeeLoginStatus } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function NewService() {
@@ -30,7 +30,7 @@ function NewService() {
     }
   }
   useEffect(() => {
-    testLoginNonprofitEmployee(nonprofit).then(testLoginCallback);
+    checkEmployeeLoginStatus(nonprofit).then(testLoginCallback);
   }, []);
   return (
     <div className="NewService">
