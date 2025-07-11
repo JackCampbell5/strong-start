@@ -9,6 +9,7 @@ import serviceJson from "#seed/services.json" with { type: "json" };
 import nonprofitJson from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
 import { formatAddress } from "#search/search-utils.js";
+import { getResultData, validResult } from "#utils/validate-utils.js";
 
 const prisma = new PrismaClient();
 
@@ -31,12 +32,13 @@ async function main() {
   // Get the nonprofitData ready for seeding
   let nonprofitList = await addLocationInformation(nonprofitJson);  // Get address info for nonprofits
 
+  let adminEmployeeList = await Promise.all(nonprofitList.map(async (nonprofit, num) => (await adminEmployee(num)))); // Create admin employees for each nonprofit
 
   // Create nonprofits with services and employees
   nonprofitList = nonprofitJson.map((nonprofit, num) => ({
     ...nonprofit,
     services: serviceList.slice(serviceStart[num], serviceEnd[num]),
-    employees: [...employeeList.slice(employeeStart[num], employeeEnd[num]), adminEmployee(num)],
+    employees: [...employeeList.slice(employeeStart[num], employeeEnd[num]), adminEmployeeList[num]],
   }));
 
 
@@ -59,9 +61,9 @@ async function main() {
 async function addLocationInformation(arr){
   let returnArray = [...arr];
   for (let i = 0; i < returnArray.length; i++) {
-    let formatted = await formatAddress(returnArray[i].address);
-    if (formatted) {
-      returnArray[i].addressInfo = formatted;
+    let result = await  formatAddress(returnArray[i].address);
+    if (validResult(result)) {
+      returnArray[i].addressInfo = getResultData(result);
     }
   }
   return returnArray;
@@ -73,9 +75,9 @@ async function addLocationInformation(arr){
  * @param {Int} num - The number of the nonprofit
  * @returns
  */
-function adminEmployee(num){
+async function adminEmployee(num){
     return {username: `admin${num}`,
-     password: "admin",
+     password: await hashPassword("admin"),
      email: "admin@admin.com"}
    }
 
