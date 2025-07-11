@@ -132,7 +132,6 @@ employeeRouter.get("/login/test", async (req, res, next) => {
 employeeRouter.post("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
-      console.log("Error destroying session:", err);
       next({ message: "Logout failed" });
     } else {
       res.clearCookie("sessionId");

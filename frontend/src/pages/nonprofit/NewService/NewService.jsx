@@ -7,7 +7,7 @@ import "./NewService.css";
 // Components
 import EditService from "#components/EditService/EditService";
 //Util Functions
-import { testLoginNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
+import { checkEmployeeLoginStatus } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function NewService() {
@@ -17,7 +17,7 @@ function NewService() {
   const [errorText, setErrorText] = useState("");
 
   useEffect(() => {
-    testLoginNonprofitEmployee(nonprofit).then((result) => {
+    checkEmployeeLoginStatus(nonprofit).then((result) => {
       if (result.valid) {
         if (!result.data) {
           setErrorText("No user signed in, please sign in to add a service");

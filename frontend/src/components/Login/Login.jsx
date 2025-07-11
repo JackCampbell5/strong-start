@@ -10,7 +10,7 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 //Util Functions
 import {
   loginNonprofitEmployee,
-  testLoginNonprofitEmployee,
+  checkEmployeeLoginStatus,
 } from "#fetch/nonprofitEmployeeFetchUtils";
 import { createPageNavigator } from "#utils/pathUtils";
 import { getNonProfit } from "#utils/pathUtils";
@@ -70,7 +70,7 @@ function Login() {
   }
 
   useEffect(() => {
-    testLoginNonprofitEmployee(nonprofit).then((result) => {
+    checkEmployeeLoginStatus(nonprofit).then((result) => {
       if (result.valid) {
         if (result.data) {
           setSuccessText(result.data);
