@@ -208,10 +208,10 @@ serviceRouter.post("/add", async (req, res, next) => {
 
 // Edit a service by id
 serviceRouter.put("/:service_id/edit", async (req, res, next) => {
-  // if (!req.session.employee) {
-  //   res.status(401).send("Unauthorized: Please log in");
-  //   return;
-  // }
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   const updatedData = req.body.data;
