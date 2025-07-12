@@ -15,7 +15,7 @@ import {
   getResultData,
   getResultError,
 } from "#utils/validate-utils.js";
-import ßformatAddress from "#utils/search/format-address.js";
+import formatAddress from "#utils/search/format-address.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
