@@ -232,7 +232,6 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
         res.json(updateOne);
         res.status(200).send();
       } else {
-        console.log(addressInfo);
         throw new Error(getResultError(addressInfo));
       }
     } else {

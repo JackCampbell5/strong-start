@@ -95,7 +95,6 @@ function getSearchTextRequestBody(address, nonprofit) {
         location.longitude,
         50
       );
-      console.log(latLong);
       data.locationRestriction = { rectangle: latLong };
     }
   }
