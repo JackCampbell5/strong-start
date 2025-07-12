@@ -1,26 +1,34 @@
 [
   {
-    "name": "Green Earth Initiative",
-    "phone": "(555) 123-4567",
-    "email": "contact@greenearthinitiative.org",
-    "logo": "https://via.placeholder.com/150?text=Green+Earth+Initiative+Logo"
+    "name": "World Relief Sacramento",
+    "phone": "+1 916-978-2650",
+    "email": "wrsacramento@wr.org",
+    "address": "2233 Watt Ave Ste. 110, Sacramento, CA 95825, US",
+    "website": "http://www.worldrelief.org/sacramento",
+    "logo": null
   },
   {
-    "name": "Hope for Tomorrow Foundation",
-    "phone": "(555) 234-5678",
-    "email": "info@hopefortomorrow.org",
-    "logo": "https://via.placeholder.com/150?text=Hope+for+Tomorrow+Logo"
+    "name": "Global Refuge (formerly Lutheran Immigration and Refugee Service)",
+    "phone": "+1 410-983-4000",
+    "email": "outreach@globalrefuge.org",
+    "address": "700 Light St, Baltimore, MD 21230, US",
+    "website": "https://www.globalrefuge.org/",
+    "logo": "https://www.globalrefuge.org/wp-content/uploads/2024/01/Global-Refuge-Logo-Header.png"
   },
   {
-    "name": "Community Builders Network",
-    "phone": "(555) 345-6789",
-    "email": "support@communitybuilders.net",
-    "logo": "https://via.placeholder.com/150?text=Community+Builders+Logo"
+    "name": "Homes Not Borders",
+    "phone": "+1 301-349-1520",
+    "email": "info@homesnotborders.org",
+    "address": "3610 East St, North Englewood, MD 20785, US",
+    "website": "http://www.homesnotborders.org/",
+    "logo": null
   },
   {
-    "name": "Healthy Hearts Alliance",
-    "phone": "(555) 456-7890",
-    "email": "hello@healthyheartsalliance.org",
-    "logo": "https://via.placeholder.com/150?text=Healthy+Hearts+Logo"
+    "name": "International Rescue Committee in Phoenix",
+    "phone": "+1 602-433-2440",
+    "email": "VolunteerPhx@Rescue.org",
+    "address": "4425 W Olive Ave #400, Glendale, AZ 85302, US",
+    "website": "https://www.rescue.org/phoenix",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/f/fe/International_Rescue_Committee_Logo.svg"
   }
 ]

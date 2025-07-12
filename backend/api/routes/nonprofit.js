@@ -13,6 +13,8 @@ import {
   checkNonProfitName,
   checkNonProfitId,
 } from "#utils/nonprofit-utils.js";
+import formatAddress from "#search/format-address.js";
+import { getResultError } from "#utils/validate-utils.js";
 
 const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();
@@ -110,16 +112,22 @@ nonprofitRouter.get("/id/:nonprofit_id", async (req, res, next) => {
 
 // Add a new nonprofit by id
 nonprofitRouter.post("/add", async (req, res, next) => {
-  const nonProfitData = req.body;
+  let nonProfitData = req.body;
   const name = nonProfitData.name;
   try {
-    const exists = await checkNonProfitName(name, next);
+    const invalid = await checkNonProfitName(name, next);
+    let addressInfo = await formatAddress(nonProfitData.address);
 
-    if (!exists) {
-      const createNonProfit = await prisma.nonprofit.create({
-        data: nonProfitData,
-      });
-      res.status(201).json(createNonProfit);
+    if (!invalid) {
+      if (addressInfo.valid) {
+        nonProfitData.addressInfo = addressInfo.data;
+        const createNonProfit = await prisma.nonprofit.create({
+          data: nonProfitData,
+        });
+        res.status(201).json(createNonProfit);
+      } else {
+        throw new Error(getResultError(addressInfo));
+      }
     } else {
       throw new NonProfitAlreadyExistsError(name);
     }
