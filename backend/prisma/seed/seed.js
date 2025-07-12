@@ -57,7 +57,11 @@ async function main() {
   );
 }
 
-
+/**
+ *  Adds detailed location information to an array of objects with an address field
+ * @param {object} arr - The array of objects to add location information to
+ * @returns Array of objects with addressInfo field containing detailed location information
+ */
 async function addLocationInformation(arr){
   let returnArray = [...arr];
   for (let i = 0; i < returnArray.length; i++) {
