@@ -1,43 +1,8 @@
 // Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
+import data from "#utils/filter-default-data.json" with { type: "json" };
 
 const prisma = new PrismaClient();
-
-const data = [
-  {
-    id: "address",
-    name: "Current Address*",
-    value: "",
-    default: "123 Main St, Anytown, USA",
-    required: true,
-    icon: "MdOutlineLocationOn",
-  },
-  {
-    id: "services_needed",
-    name: "Services Required*",
-    options: [],
-    value: "",
-    default: "None",
-    required: true,
-    icon: "MdOutlineStopCircle",
-  },
-  {
-    id: "language",
-    name: "Language Spoken",
-    value: "",
-    default: "Arabic",
-    required: false,
-    icon: "MdOutlineSpatialAudioOff",
-  },
-  {
-    id: "date_entered",
-    name: "Date entered US",
-    value: "",
-    default: "2025-01-01",
-    required: false,
-    icon: "MdDateRange",
-  },
-];
 
 /**
  * Creates the filters for a given nonprofit based on their services
