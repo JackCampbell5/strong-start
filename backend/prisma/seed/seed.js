@@ -9,7 +9,6 @@ import serviceJson from "#seed/services.json" with { type: "json" };
 import nonprofitJson from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
 import formatAddress from "#utils/search/address-utils.js";
-import { getResultData, validResult } from "#utils/validate-utils.js";
 
 const prisma = new PrismaClient();
 
@@ -66,8 +65,8 @@ async function addLocationInformation(arrayNoLocationInfo){
   let arrayWithLocationInfo = [...arrayNoLocationInfo];
   for (let i = 0; i < arrayWithLocationInfo.length; i++) {
     let result = await  formatAddress(arrayWithLocationInfo[i].address);
-    if (validResult(result)) {
-      arrayWithLocationInfo[i].addressInfo = getResultData(result);
+    if (result.valid) {
+      arrayWithLocationInfo[i].addressInfo = result.data;
     }
   }
   return arrayWithLocationInfo;
