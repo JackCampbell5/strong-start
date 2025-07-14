@@ -86,11 +86,13 @@ function weightServices(foundServices, params) {
   for (const service of foundServices) {
     let ranking = 0;
 
-    // Add the address weight
-    const cords = getCords(service.addressInfo);
-    const distance = calcDistance(cords, refugeeCords);
-    if (distance < 20) {
-      ranking += ((20 - distance) / 20) * weights.address;
+    if (service.addressInfo) {
+      // Add the address weight
+      const cords = getCords(service.addressInfo);
+      const distance = calcDistance(cords, refugeeCords);
+      if (distance < 20) {
+        ranking += ((20 - distance) / 20) * weights.address;
+      }
     }
 
     // Add the services weight
@@ -100,11 +102,17 @@ function weightServices(foundServices, params) {
         ranking += weights.services;
       }
     }
+    // Make the services formatted nice in the return
+    service.services_offered = service.services_offered.join(", ");
 
     // Add the language weight
+    let languageList = service.language.split(",").map((language) => {
+      return language.trim().toLowerCase();
+    });
     if (
       !language ||
-      language === service.language.lowercase() ||
+      language === "english" ||
+      languageList.includes(language) ||
       service.language === null
     ) {
       ranking += weights.language;
@@ -153,7 +161,7 @@ async function validParams(query, nonprofit) {
 
   // Validate Language
   if (params.language) {
-    params.language = language_given.lowercase();
+    params.language = language_given.trim().toLowerCase();
   }
 
   // Validate Date
