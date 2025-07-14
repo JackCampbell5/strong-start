@@ -60,7 +60,7 @@ export function getPopular(list) {
   }
   // Count the number of times each value appears
   let result = {};
-  for (const a in list) {
+  for (let a in list) {
     const key = list[a];
     if (key == null) continue;
     if (result[key]) {
