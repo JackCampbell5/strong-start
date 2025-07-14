@@ -19,13 +19,11 @@ export default async function createFilter(nonprofit) {
 
   let uniqueFilters = getUniqueFilters(foundServices);
 
-  // Reformat the filters to match the format of the select component needs
-  const filterData = reformatForSelect(uniqueFilters);
 
   // Add the filters to the data array
   for (let a of data) {
     if (a.id === "services_needed") {
-      a.options = filterData;
+      a.options = uniqueFilters;
     }
   }
 
@@ -55,8 +53,11 @@ function getUniqueFilters(services) {
     return acc;
   }, []);
 
+  // Reformat the filters to match the format of the select component needs
+  const filterData = reformatForSelect(foundFilters);
+
   // Sort and remove duplicates from the array
-  const orderedFilters = foundFilters.sort();
+  const orderedFilters = filterData.sort((a, b) => a.label.localeCompare(b.label));
   return [...new Set(orderedFilters)];
 }
 
@@ -65,6 +66,6 @@ function getUniqueFilters(services) {
  * @param {string} title - The title to be reformatted
  * @returns The reformatted title
  */
-function reformatTitle(title) {
+export function reformatTitle(title) {
   return title.trim().replace(" ", "_").toLowerCase();
 }
