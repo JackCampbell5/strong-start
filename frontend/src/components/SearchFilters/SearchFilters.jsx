@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
 
@@ -8,15 +8,20 @@ import "./SearchFilters.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Methods
+import { fetchServiceFilters } from "#fetch/serviceFetchUtils";
 import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function SearchFilters({ loading, searchFor }) {
+  // Constant Variables
+  const nonprofit = getNonProfit();
+
   // State Variables
   const [errorText, setErrorText] = useState("");
   // Uses serviceSearchDefault which is a list of objects that contain the name, icon, and default value for each param
-  const [searchInput, setSearchInput] = useState(serviceSearchDefault);
+  const [searchInput, setSearchInput] = useState([]);
 
   /**
    * Submit the search to the backend
@@ -59,6 +64,18 @@ function SearchFilters({ loading, searchFor }) {
     }
     return errorMessage;
   }
+
+  function filterCallback(results) {
+    if (results.valid) {
+      setSearchInput(results.data);
+    } else {
+      setErrorText(results.console.error());
+    }
+  }
+
+  useEffect(() => {
+    fetchServiceFilters(nonprofit).then(filterCallback);
+  }, []);
 
   return (
     <div className="SearchFilters">
