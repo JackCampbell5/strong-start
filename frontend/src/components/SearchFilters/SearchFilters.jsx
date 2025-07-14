@@ -105,7 +105,7 @@ function SearchFilters({ loading, setLoading, searchFor }) {
                   let value = e;
                   if (e.length === 0) value = "";
                   const data = [...searchInput];
-                  data[index].value = value;
+                  data[index].value = JSON.stringify(value);
                   setSearchInput(data);
                 }}
               />
