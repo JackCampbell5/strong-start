@@ -1,3 +1,8 @@
+// Node Module Imports
+import { PrismaClient } from "#prisma/client.js";
+
+const prisma = new PrismaClient();
+
 const data = [
   {
     id: "address",
@@ -10,18 +15,7 @@ const data = [
   {
     id: "services_needed",
     name: "Services Required*",
-    options: [
-      { value: "ocean", label: "Ocean", color: "#00B8D9" },
-      { value: "blue", label: "Blue", color: "#0052CC" },
-      { value: "purple", label: "Purple", color: "#5243AA" },
-      { value: "red", label: "Red", color: "#FF5630" },
-      { value: "orange", label: "Orange", color: "#FF8B00" },
-      { value: "yellow", label: "Yellow", color: "#FFC400" },
-      { value: "green", label: "Green", color: "#36B37E" },
-      { value: "forest", label: "Forest", color: "#00875A" },
-      { value: "slate", label: "Slate", color: "#253858" },
-      { value: "silver", label: "Silver", color: "#666666" },
-    ],
+    options: [],
     value: "",
     default: "None",
     required: true,
@@ -61,6 +55,67 @@ const data = [
   },
 ];
 
-export default function createFilter(nonprofit) {
+/**
+ * Creates the filters for a given nonprofit based on their services
+ * @param {object} nonprofit - Nonprofit object
+ * @returns The filters for the nonprofit
+ */
+export default async function createFilter(nonprofit) {
+  // Get all of the services offered by the nonprofit
+  const foundServices = await prisma.service.findMany({
+    where: {
+      nonprofit_ID: nonprofit.id,
+    },
+  });
+
+  let uniqueFilters = getUniqueFilters(foundServices);
+
+  // Reformat the filters to match the format of the select component needs
+  const filterData = reformatForSelect(uniqueFilters);
+
+  // Add the filters to the data array
+  for (let a of data) {
+    if (a.id === "services_needed") {
+      a.options = filterData;
+    }
+  }
+
   return data;
+}
+
+/**
+ * Reformats the filters to match the format of the select component needs
+ * @param {object} data - The data to be reformatted
+ * @returns The reformatted data
+ */
+function reformatForSelect(data) {
+  // Reformat the filters to match the format of the select component needs
+  return data.map((filter) => {
+    return { value: reformatTitle(filter), label: filter };
+  });
+}
+
+/**
+ * Searches thru the given data and returns the unique filters
+ * @returns The unique filters from the nonprofit's services
+ */
+function getUniqueFilters(services) {
+  // Get an array of just the filters
+  const foundFilters = services.reduce((acc, service) => {
+    service.services_offered.forEach((filter) => acc.push(filter.trim()));
+    return acc;
+  }, []);
+
+  // Sort and remove duplicates from the array
+  const orderedFilters = foundFilters.sort();
+  return [...new Set(orderedFilters)];
+}
+
+/**
+ * Reformats the title to match the format of the select component needs
+ * @param {string} title - The title to be reformatted
+ * @returns The reformatted title
+ */
+function reformatTitle(title) {
+  return title.trim().replace(" ", "_").toLowerCase();
 }

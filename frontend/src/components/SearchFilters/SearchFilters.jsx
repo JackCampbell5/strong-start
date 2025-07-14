@@ -72,9 +72,9 @@ function SearchFilters({ loading, setLoading, searchFor }) {
     if (results.valid) {
       setLoading(false);
       let data = results.data;
-      setSearchInput(results.data);
+      setSearchInput(data);
     } else {
-      setErrorText(results.console.error());
+      setErrorText(results.error);
     }
   }
 
@@ -93,17 +93,14 @@ function SearchFilters({ loading, setLoading, searchFor }) {
             {obj.icon
               ? React.createElement(serviceSearchIconMap[obj.icon], {})
               : null}
-            {obj.id === "services_needed" ? (
-              (console.log(obj.options),
-              (
-                <Select
-                  classNamePrefix="custom-select"
-                  closeMenuOnSelect={false}
-                  isMulti={true}
-                  options={obj.options}
-                  components={animatedComponents}
-                />
-              ))
+            {obj.options ? (
+              <Select
+                classNamePrefix="custom-select"
+                closeMenuOnSelect={false}
+                isMulti={true}
+                options={obj.options}
+                components={animatedComponents}
+              />
             ) : (
               <input
                 key={obj.id + "Input"}

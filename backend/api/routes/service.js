@@ -49,7 +49,7 @@ serviceRouter.get("/all", async (req, res, next) => {
 serviceRouter.get("/filters", async (req, res, next) => {
   try {
     const nonprofit = req.body.nonprofit;
-    return res.status(200).json(createFilter(nonprofit));
+    return res.status(200).json(await createFilter(nonprofit));
   } catch (e) {
     return next(e);
   }
