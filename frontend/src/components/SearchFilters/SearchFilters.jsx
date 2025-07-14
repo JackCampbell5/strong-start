@@ -16,7 +16,7 @@ import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
-function SearchFilters({ loading, searchFor }) {
+function SearchFilters({ loading, setLoading, searchFor }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const animatedComponents = makeAnimated();
@@ -70,6 +70,7 @@ function SearchFilters({ loading, searchFor }) {
 
   function filterCallback(results) {
     if (results.valid) {
+      setLoading(false);
       let data = results.data;
       setSearchInput(results.data);
     } else {
@@ -78,6 +79,7 @@ function SearchFilters({ loading, searchFor }) {
   }
 
   useEffect(() => {
+    setLoading(true);
     fetchServiceFilters(nonprofit).then(filterCallback);
   }, []);
 

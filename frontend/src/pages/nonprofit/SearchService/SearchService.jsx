@@ -45,7 +45,11 @@ function SearchService() {
   return (
     <div className="SearchService">
       <h3>SearchService</h3>
-      <SearchFilters loading={loading} searchFor={searchFor} />
+      <SearchFilters
+        loading={loading}
+        setLoading={setLoading}
+        searchFor={searchFor}
+      />
       {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
     </div>
