@@ -50,8 +50,8 @@ function Home() {
         setLoading={setLoading}
         searchFor={searchFor}
       />
-      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
+      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
     </div>
   );
 }

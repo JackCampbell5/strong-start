@@ -36,6 +36,7 @@ function SearchService() {
   function searchForCallback(results) {
     setLoading(false);
     if (results.valid) {
+      setErrorText("");
       setSearchResults(results.data);
     } else {
       setErrorText(results.error);
@@ -50,8 +51,8 @@ function SearchService() {
         setLoading={setLoading}
         searchFor={searchFor}
       />
-      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
+      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
     </div>
   );
 }
