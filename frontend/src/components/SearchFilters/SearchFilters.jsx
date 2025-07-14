@@ -2,6 +2,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 // Local Imports
 import "./SearchFilters.css";
@@ -17,6 +19,7 @@ import { getNonProfit } from "#utils/pathUtils";
 function SearchFilters({ loading, searchFor }) {
   // Constant Variables
   const nonprofit = getNonProfit();
+  const animatedComponents = makeAnimated();
 
   // State Variables
   const [errorText, setErrorText] = useState("");
@@ -67,6 +70,7 @@ function SearchFilters({ loading, searchFor }) {
 
   function filterCallback(results) {
     if (results.valid) {
+      let data = results.data;
       setSearchInput(results.data);
     } else {
       setErrorText(results.console.error());
@@ -87,19 +91,32 @@ function SearchFilters({ loading, searchFor }) {
             {obj.icon
               ? React.createElement(serviceSearchIconMap[obj.icon], {})
               : null}
-            <input
-              key={obj.id + "Input"}
-              className={obj.id + "Input"}
-              type="text"
-              value={obj.value}
-              placeholder={obj.default}
-              onChange={(e) => {
-                const value = e.target.value;
-                const data = [...searchInput];
-                data[index].value = value;
-                setSearchInput(data);
-              }}
-            />
+            {obj.id === "services_needed" ? (
+              (console.log(obj.options),
+              (
+                <Select
+                  classNamePrefix="custom-select"
+                  closeMenuOnSelect={false}
+                  isMulti={true}
+                  options={obj.options}
+                  components={animatedComponents}
+                />
+              ))
+            ) : (
+              <input
+                key={obj.id + "Input"}
+                className={obj.id + "Input"}
+                type="text"
+                value={obj.value}
+                placeholder={obj.default}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const data = [...searchInput];
+                  data[index].value = value;
+                  setSearchInput(data);
+                }}
+              />
+            )}
           </div>
         ))}
       </div>
