@@ -57,8 +57,9 @@ function getUniqueFilters(services) {
   const filterData = reformatForSelect(foundFilters);
 
   // Sort and remove duplicates from the array
-  const orderedFilters = filterData.sort((a, b) => a.label.localeCompare(b.label));
-  return [...new Set(orderedFilters)];
+  const orderedFilters = filterData.sort((a, b) => a.value.localeCompare(b.value));
+  let uniqueValues =  [...new Set(orderedFilters.map((filter) => filter.value))]
+  return uniqueValues.map((value)=> {return {value:value, label:orderedFilters.find((filter)=>{return filter.value===value}).label}});
 }
 
 /**

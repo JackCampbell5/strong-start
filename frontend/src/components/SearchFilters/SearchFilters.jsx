@@ -102,8 +102,10 @@ function SearchFilters({ loading, setLoading, searchFor }) {
                 options={obj.options}
                 components={animatedComponents}
                 onChange={(e) => {
+                  let value = e;
+                  if (e.length === 0) value = "";
                   const data = [...searchInput];
-                  data[index].value = e;
+                  data[index].value = value;
                   setSearchInput(data);
                 }}
               />
