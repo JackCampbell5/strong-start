@@ -22,14 +22,6 @@ const data = [
     icon: "MdOutlineStopCircle",
   },
   {
-    id: "country_of_origin",
-    name: "Country of Origin",
-    value: "",
-    default: "Afghanistan",
-    required: false,
-    icon: "MdAirplanemodeActive",
-  },
-  {
     id: "language",
     name: "Language Spoken",
     value: "",
@@ -44,14 +36,6 @@ const data = [
     default: "2025-01-01",
     required: false,
     icon: "MdDateRange",
-  },
-  {
-    id: "family_members",
-    name: "Family Size",
-    value: "",
-    default: "2",
-    required: false,
-    icon: "MdOutlinePersonAddAlt",
   },
 ];
 

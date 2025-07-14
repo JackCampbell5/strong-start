@@ -15,6 +15,7 @@ import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import { fillMissingDataFields } from "#utils/selectUtils";
 
 function SearchFilters({ loading, setLoading, searchFor }) {
   // Constant Variables
@@ -71,7 +72,7 @@ function SearchFilters({ loading, setLoading, searchFor }) {
   function filterCallback(results) {
     if (results.valid) {
       setLoading(false);
-      let data = results.data;
+      let data = fillMissingDataFields(results.data, serviceSearchDefault);
       setSearchInput(data);
     } else {
       setErrorText(results.error);

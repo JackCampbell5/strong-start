@@ -18,6 +18,7 @@ import {
 } from "#fetch/serviceFetchUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import { fillMissingDataFields } from "#utils/selectUtils";
 
 /**
  * Component for editing a service
@@ -108,25 +109,10 @@ function EditService({ serviceID = null }) {
     if (result.valid) {
       setErrorText("");
       // Make sure the data that was sent back includes the icon and default values
-      let completeData = [];
-      for (const a of result.data) {
-        const key = a.id;
-        if (serviceInputDefaultValues[key]) {
-          if (!a.default) {
-            a.default = serviceInputDefaultValues[key].default;
-          }
-          if (!a.icon) {
-            a.icon = serviceInputDefaultValues[key].icon;
-          }
-          if (!a.name) {
-            a.name = serviceInputDefaultValues[key].name;
-          }
-          if (!a.required) {
-            a.required = serviceInputDefaultValues[key].required;
-          }
-        }
-        completeData.push(a);
-      }
+      let completeData = fillMissingDataFields(
+        result.data,
+        serviceInputDefaultValues
+      );
       setServiceInput(completeData);
     } else {
       setErrorText(result.error);
