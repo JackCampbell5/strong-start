@@ -58,3 +58,31 @@ export function getAreaAroundPoint(lat, long, radius) {
     },
   };
 }
+
+export function calcDistance(cords1, cords2) {
+  const earthRadiusMiles = 3958.76145808; // Approximate Earth radius in miles
+  const degreesToRadians = Math.PI / 180;
+  const lat1 = cords1.latitude;
+  const lon1 = cords1.longitude;
+  const lat2 = cords2.latitude;
+  const lon2 = cords2.longitude;
+
+  let dlat = (lat2 - lat1) * degreesToRadians;
+  let dlon = (lon2 - lon1) * degreesToRadians;
+
+  let lat1r = lat1 * degreesToRadians;
+  let lat2r = lat2 * degreesToRadians;
+
+  let a =
+    Math.pow(Math.sin(dlat / 2), 2) +
+    Math.pow(Math.sin(dlon / 2), 2) * (Math.cos(lat1r) * Math.cos(lat2r));
+  let c = 2 * Math.asin(Math.sqrt(a));
+  return earthRadiusMiles * c;
+}
+
+export function getCords(locationObj) {
+  let cords = locationObj.location;
+  let long = cords.longitude;
+  let lat = cords.latitude;
+  return { longitude: long, latitude: lat };
+}
