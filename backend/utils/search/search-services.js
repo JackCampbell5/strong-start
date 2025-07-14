@@ -8,6 +8,9 @@ import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { reformatTitle } from "#utils/filter-create-utils.js";
 
+/**
+ * The weights for each parameter as of now(Total = 100)
+ */
 const weights = {
   address: 30,
   services: 50,
@@ -15,62 +18,118 @@ const weights = {
   date: 10,
 };
 
+/**
+ * Gets the top 5 services based on the query parameters given
+ * @param {object} query - The query parameters given in the search
+ * @param {object} nonprofit - Object containing the nonprofit information
+ * @returns
+ */
 export default async function searchServices(query, nonprofit) {
+  // Validate the query params
   const params = await validParams(query, nonprofit);
   if (!params.valid) {
     return errorReturn(params.error);
   }
-  let paramData = params.data;
-  let address = paramData.address;
-  let services = paramData.services;
-  let language = paramData.language;
-  let date_entered = paramData.date_entered;
 
+  // Weight and return the top 5 services
+  const topData = await topServices(params.data, nonprofit);
+  if (!topData.valid) {
+    return errorReturn(topData.error);
+  }
+  return successReturn(topData.data);
+}
+
+/**
+ * Takes the services, ranks them, and returns the top 5 services
+ * @param {object} params - The valid query parameters given in the search
+ * @param {object} nonprofit - The nonprofit object containing the nonprofits id and other information
+ * @returns max 5 services with the highest ranking or an error
+ */
+async function topServices(params, nonprofit) {
+  // Get the services for a given nonprofit
   const foundServices = await prisma.service.findMany({
     where: {
       nonprofit_ID: nonprofit.id,
     },
   });
 
-  let rankingTotals = {};
-  let nonprofitCords = getCords(nonprofit.addressInfo);
+  const serviceWithWeight = weightServices(foundServices, params);
+
+  // Sort the services by ranking
+  const rankedOrder = serviceWithWeight.sort((a, b) => {
+    return b.ranking - a.ranking;
+  });
+
+  // Return the top 5 services by ranking
+  // TODO: do this via normal distribution for more accurate results and remove outliers
+  const top = rankedOrder.slice(0, 5);
+
+  return successReturn(top);
+}
+
+/**
+ * Search thru the different services and calculate the weights for each one based on global weights
+ * @param {object} foundServices - The services found in the database to search within
+ * @param {object} params - Object containing the parameters for the search
+ * @returns The list of services with their ranking
+ */
+function weightServices(foundServices, params) {
+  // Get the params
+  const address = params.address;
+  const services = params.services;
+  const language = params.language;
+  const date_entered = params.date_entered;
+
+  // Calculate the weights for each service
+  let weightTotals = [];
+  const refugeeCords = getCords(address);
   for (const service of foundServices) {
     let ranking = 0;
 
-    // Check address
-    let cords = getCords(service.addressInfo);
-    let distance = calcDistance(cords, nonprofitCords);
+    // Add the address weight
+    const cords = getCords(service.addressInfo);
+    const distance = calcDistance(cords, refugeeCords);
+    if (distance < 20) {
+      ranking += ((20 - distance) / 20) * weights.address;
+    }
 
-    // Check service offered
+    // Add the services weight
     for (const service_needed of service.services_offered) {
-      let encoded = reformatTitle(service_needed);
+      const encoded = reformatTitle(service_needed);
       if (services.includes(encoded)) {
         ranking += weights.services;
       }
     }
 
-    // Language Weight adding
+    // Add the language weight
     if (
-      language &&
-      (language === service.language.lowercase() || service.language === null)
+      !language ||
+      language === service.language.lowercase() ||
+      service.language === null
     ) {
       ranking += weights.language;
     }
 
-    // Date Entered weight adding
+    // Add the date weight
     if (
-      date_entered &&
-      (date_entered > new Date(service.date_created) ||
-        service.date_needed === null)
+      !date_entered ||
+      date_entered > new Date(service.date_created) ||
+      service.date_needed === null
     ) {
       ranking += weights.date;
     }
 
-    rankingTotals[service.id] = ranking;
+    weightTotals.push({ ...service, ranking: ranking });
   }
-  return successReturn(foundServices);
+  return weightTotals;
 }
 
+/**
+ * Validates the query parameters given if they exist. Returning errors if there are validation errors
+ * @param {object} query - The query parameters given in the search
+ * @param {object} nonprofit - The nonprofit object containing the nonprofits id and other information
+ * @returns The valid query parameters or an error
+ */
 async function validParams(query, nonprofit) {
   // Params that can be used for search
   const address_given = query.address;
@@ -89,7 +148,7 @@ async function validParams(query, nonprofit) {
 
   // Extract Services Needed
   params.services = services_needed_given.map((service) => {
-    service.id;
+    return service.value;
   });
 
   // Validate Language
@@ -100,7 +159,7 @@ async function validParams(query, nonprofit) {
   // Validate Date
   params.date_entered = "";
   if (date_entered_given) {
-    let date_valid = getAndValidateDate(date_entered_given);
+    const date_valid = getAndValidateDate(date_entered_given);
     if (!date_valid.valid) {
       return errorReturn(date_valid.error);
     }
@@ -111,12 +170,12 @@ async function validParams(query, nonprofit) {
 }
 
 function getAndValidateDate(date) {
-  let date_regex =
+  const date_regex =
     /^(?:((?:0?[1-9])|10|11|12)-(0?[1-9]|[12]\d|30|31)-(\d{4}))$/;
   if (!date_regex.test(date)) {
     return errorReturn("Invalid date format. Please use MM-DD-YYYY.");
   } else {
-    let dateParts = date.match(date_regex);
+    const dateParts = date.match(date_regex);
     return successReturn(
       new Date(dateParts[3], dateParts[1] - 1, dateParts[2])
     );
