@@ -47,9 +47,10 @@ export default async function formatAddress(address, nonprofit = null) {
 
 /**
  *  Validates the data returned from the search text API to see if any results were found
+ * + If multiple results are found, return an error with all possible addresses
  * @param {object} data - The data to validate and return if valid
  * @param {object} nonprofit - The nonprofit to search around
- * @returns
+ * @returns - If the data is valid, return the data, otherwise return an error object containing the error
  */
 function validateAndExtractSearchData(data, nonprofitGiven) {
   // If the address is not found, return an error
