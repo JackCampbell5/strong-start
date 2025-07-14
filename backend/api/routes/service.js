@@ -16,6 +16,7 @@ import {
   getResultError,
 } from "#utils/validate-utils.js";
 import formatAddress from "#utils/search/format-address.js";
+import createFilter from "#utils/filter-create-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -39,6 +40,16 @@ serviceRouter.get("/all", async (req, res, next) => {
     } else {
       res.status(404).send("No services found");
     }
+  } catch (e) {
+    return next(e);
+  }
+});
+
+// Get the service filters for a given nonprofit
+serviceRouter.get("/filters", async (req, res, next) => {
+  try {
+    const nonprofit = req.body.nonprofit;
+    return res.status(200).json(createFilter(nonprofit));
   } catch (e) {
     return next(e);
   }
