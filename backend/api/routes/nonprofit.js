@@ -13,8 +13,7 @@ import {
   checkNonProfitName,
   checkNonProfitId,
 } from "#utils/nonprofit-utils.js";
-import formatAddress from "#search/format-address.js";
-import { getResultError } from "#utils/validate-utils.js";
+import formatAddress from "#search/address-utils.js";
 
 const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();
@@ -126,7 +125,7 @@ nonprofitRouter.post("/add", async (req, res, next) => {
         });
         res.status(201).json(createNonProfit);
       } else {
-        throw new Error(getResultError(addressInfo));
+        throw new Error(addressInfo.error);
       }
     } else {
       throw new NonProfitAlreadyExistsError(name);

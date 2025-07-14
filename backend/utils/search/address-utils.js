@@ -37,7 +37,7 @@ export default async function formatAddress(address, nonprofit = null) {
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
-      return validateSearchTextData(data, nonprofitGiven);
+      return validateAndExtractSearchData(data, nonprofitGiven);
     })
     .catch((error) => {
       // Handle error
@@ -47,11 +47,12 @@ export default async function formatAddress(address, nonprofit = null) {
 
 /**
  *  Validates the data returned from the search text API to see if any results were found
+ * + If multiple results are found, return an error with all possible addresses
  * @param {object} data - The data to validate and return if valid
  * @param {object} nonprofit - The nonprofit to search around
- * @returns
+ * @returns - If the data is valid, return the data, otherwise return an error object containing the error
  */
-function validateSearchTextData(data, nonprofitGiven) {
+function validateAndExtractSearchData(data, nonprofitGiven) {
   // If the address is not found, return an error
   if (Object.keys(data).length === 0) {
     if (!nonprofitGiven) {

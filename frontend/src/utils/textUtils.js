@@ -6,7 +6,7 @@ export function formatVarName(varName) {
 
 export function reformatData(data) {
   let result = {};
-  for (const a of data) {
+  for (let a of data) {
     if (a.value === "") {
       continue;
     }

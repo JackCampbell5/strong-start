@@ -3,14 +3,8 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 // Local Imports
-import formatAddress from "#utils/search/format-address.js";
-import {
-  errorReturn,
-  successReturn,
-  validResult,
-  getResultData,
-  getResultError,
-} from "#utils/validate-utils.js";
+import formatAddress from "#utils/search/address-utils.js";
+import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 export default async function searchServices(query, nonprofit) {
   // Params that can be used for search
@@ -23,10 +17,10 @@ export default async function searchServices(query, nonprofit) {
 
   // Validate Address and print errors if they exist
   const result = await formatAddress(address, nonprofit);
-  if (!validResult(result)) {
-    return errorReturn(getResultError(result));
+  if (!result.valid) {
+    return errorReturn(result.error);
   }
-  const addressValid = getResultData(result);
+  const addressValid = result.data;
 
   const foundServices = await prisma.service.findMany({
     where: {

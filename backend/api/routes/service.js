@@ -10,13 +10,8 @@ import {
 import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
-import {
-  validResult,
-  getResultData,
-  getResultError,
-} from "#utils/validate-utils.js";
-import formatAddress from "#utils/search/format-address.js";
 import createFilter from "#utils/filter-create-utils.js";
+import formatAddress from "#utils/search/address-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -61,10 +56,10 @@ serviceRouter.get("/search", async (req, res, next) => {
     const nonprofit = req.body.nonprofit;
     const query = req.query;
     let result = await searchServices(query, nonprofit);
-    if (validResult(result)) {
-      res.status(200).json(getResultData(result));
+    if (result.valid) {
+      res.status(200).json(result.data);
     } else {
-      res.status(404).send(getResultError(result));
+      res.status(404).send(result.error);
     }
   } catch (e) {
     return next(e);
@@ -207,7 +202,7 @@ serviceRouter.post("/add", async (req, res, next) => {
         });
         res.status(201).json(createService);
       } else {
-        throw new Error(getResultError(addressInfo));
+        throw new Error(addressInfo.error);
       }
     } else {
       throw new ServiceAlreadyExistsError(name);
@@ -243,7 +238,7 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
         res.json(updateOne);
         res.status(200).send();
       } else {
-        throw new Error(getResultError(addressInfo));
+        throw new Error(addressInfo.error);
       }
     } else {
       throw new ServiceNotFoundError(service_id);

@@ -64,7 +64,7 @@ function EditService({ serviceID = null }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (const a of data) {
+    for (let a of data) {
       if (a.value === "" && a.required) {
         errorMessage += a.name + " is required. ";
       } else if (
