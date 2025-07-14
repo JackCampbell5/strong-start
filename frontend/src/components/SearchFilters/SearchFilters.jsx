@@ -101,6 +101,11 @@ function SearchFilters({ loading, setLoading, searchFor }) {
                 isMulti={true}
                 options={obj.options}
                 components={animatedComponents}
+                onChange={(e) => {
+                  const data = [...searchInput];
+                  data[index].value = e;
+                  setSearchInput(data);
+                }}
               />
             ) : (
               <input
