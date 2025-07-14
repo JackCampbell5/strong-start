@@ -3,7 +3,7 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 // Local Imports
-import formatAddress from "#utils/search/format-address.js";
+import formatAddress from "#utils/search/address-utils.js";
 import {
   errorReturn,
   successReturn,

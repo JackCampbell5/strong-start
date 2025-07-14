@@ -37,7 +37,7 @@ export default async function formatAddress(address, nonprofit = null) {
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
-      return validateSearchTextData(data, nonprofitGiven);
+      return validateAndExtractSearchData(data, nonprofitGiven);
     })
     .catch((error) => {
       // Handle error
@@ -51,7 +51,7 @@ export default async function formatAddress(address, nonprofit = null) {
  * @param {object} nonprofit - The nonprofit to search around
  * @returns
  */
-function validateSearchTextData(data, nonprofitGiven) {
+function validateAndExtractSearchData(data, nonprofitGiven) {
   // If the address is not found, return an error
   if (Object.keys(data).length === 0) {
     if (!nonprofitGiven) {

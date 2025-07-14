@@ -13,7 +13,7 @@ import {
   checkNonProfitName,
   checkNonProfitId,
 } from "#utils/nonprofit-utils.js";
-import formatAddress from "#search/format-address.js";
+import formatAddress from "#search/address-utils.js";
 import { getResultError } from "#utils/validate-utils.js";
 
 const prisma = new PrismaClient();
