@@ -9,6 +9,8 @@ import {
 } from "#errors/service-errors.js";
 import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
+import searchServices from "#search/search-services.js";
+import formatAddress from "#utils/search/address-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -42,16 +44,11 @@ serviceRouter.get("/search", async (req, res, next) => {
   try {
     const nonprofit = req.body.nonprofit;
     const query = req.query;
-    // TODO make a search algorithm that uses these params to search
-    const foundServices = await prisma.service.findMany({
-      where: {
-        nonprofit_ID: nonprofit.id,
-      },
-    });
-    if (foundServices.length !== 0) {
-      res.status(200).json(foundServices);
+    let result = await searchServices(query, nonprofit);
+    if (result.valid) {
+      res.status(200).json(result.data);
     } else {
-      res.status(404).send("No services found");
+      res.status(404).send(result.error);
     }
   } catch (e) {
     return next(e);
@@ -183,12 +180,19 @@ serviceRouter.post("/add", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     const exists = await checkServiceName(name, nonprofit, next);
+    let addressInfo = await formatAddress(serviceData.address, nonprofit);
 
     if (!exists) {
-      const createService = await prisma.service.create({
-        data: { ...serviceData, nonprofit_ID: nonprofit.id },
-      });
-      res.status(201).json(createService);
+      if (addressInfo.valid) {
+        serviceData.addressInfo = addressInfo.data;
+        serviceData.address = addressInfo.data.formattedAddress;
+        const createService = await prisma.service.create({
+          data: { ...serviceData, nonprofit_ID: nonprofit.id },
+        });
+        res.status(201).json(createService);
+      } else {
+        throw new Error(addressInfo.error);
+      }
     } else {
       throw new ServiceAlreadyExistsError(name);
     }
@@ -204,21 +208,27 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
     return;
   }
   const { service_id } = req.params;
-  const serviceData = req.body;
   const nonprofit = req.body.nonprofit;
   const updatedData = req.body.data;
   try {
     const exists = await checkServiceId(service_id, nonprofit, next);
+    let addressInfo = await formatAddress(updatedData.address, nonprofit);
 
     if (exists) {
-      const updateOne = await prisma.service.update({
-        where: {
-          id: service_id,
-        },
-        data: updatedData,
-      });
-      res.json(updateOne);
-      res.status(200).send();
+      if (addressInfo.valid) {
+        updatedData.addressInfo = addressInfo.data;
+        updatedData.address = addressInfo.data.formattedAddress;
+        const updateOne = await prisma.service.update({
+          where: {
+            id: service_id,
+          },
+          data: updatedData,
+        });
+        res.json(updateOne);
+        res.status(200).send();
+      } else {
+        throw new Error(addressInfo.error);
+      }
     } else {
       throw new ServiceNotFoundError(service_id);
     }

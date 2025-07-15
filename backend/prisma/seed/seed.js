@@ -5,9 +5,10 @@ import { PrismaClient } from "#prisma/client.js";
 import { hashPassword } from "#utils/auth-utils.js";
 
 // Seed Data to import
-import serviceList from "#seed/services.json" with { type: "json" };
-import nonprofitList from "#seed/nonprofits.json" with { type: "json" };
+import serviceJson from "#seed/services.json" with { type: "json" };
+import nonprofitJson from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
+import formatAddress from "#utils/search/address-utils.js";
 
 const prisma = new PrismaClient();
 
@@ -15,31 +16,35 @@ async function main() {
   // Delete all existing data
   await deleteAll();
 
+  // Get the Service Data ready for seeding
+  let serviceList = await addLocationInformation(serviceJson)  // Format the address info for services
   // Get starting and ending indices for each nonprofit's slice of services
-  const serviceDistribution = [20, 10, 5, 5]; // How to distribute services to nonprofits
-  const [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, nonprofitList.length);
+  const serviceDistribution = [20, 20, 20, 20]; // How to distribute services to nonprofits
+  const [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, serviceList.length);
 
+  // Get the Employee Data ready for seeding
+  const employeeList = await hashPasswordList(employees); // Hash the passwords
   // Get starting and ending indices for each nonprofit's slice of employees
   const employeeDistribution = [10, 15, 10, 5]; // How to distribute employees to nonprofits
-  const [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitList.length);
+  const [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitJson.length);
 
-  // Hash the passwords
-  const employeeList = await hashPasswordList(employees); // Hash the passwords
+  // Get the nonprofitData ready for seeding
+  let nonprofitList = await addLocationInformation(nonprofitJson);  // Get address info for nonprofits
+
+  let adminEmployeeList = await Promise.all(nonprofitList.map(async (nonprofit, num) => (await adminEmployee(num)))); // Create admin employees for each nonprofit
 
   // Create nonprofits with services and employees
-  const nonprofitlist = nonprofitList.map((nonprofit, num) => ({
+  nonprofitList = nonprofitJson.map((nonprofit, num) => ({
     ...nonprofit,
-    services:
-      serviceList.slice(
-        serviceStart[num],
-        serviceEnd[num]
-      ),
-    employees: employeeList.slice(employeeStart[num], employeeEnd[num]),
+    services: serviceList.slice(serviceStart[num], serviceEnd[num]),
+    employees: [...employeeList.slice(employeeStart[num], employeeEnd[num]), adminEmployeeList[num]],
   }));
+
+
 
   // Create nonprofits and adds to database
   await Promise.all(
-    nonprofitlist.map(async (profitInfo) => {
+    nonprofitList.map(async (profitInfo) => {
       await prisma.nonprofit.create({
         data: {
           ...profitInfo,
@@ -50,6 +55,34 @@ async function main() {
     })
   );
 }
+
+/**
+ *  Adds detailed location information to an array of objects with an address field
+ * @param {object} arr - The array of objects to add location information to
+ * @returns Array of objects with addressInfo field containing detailed location information
+ */
+async function addLocationInformation(arrayNoLocationInfo){
+  let arrayWithLocationInfo = [...arrayNoLocationInfo];
+  for (let i = 0; i < arrayWithLocationInfo.length; i++) {
+    let result = await  formatAddress(arrayWithLocationInfo[i].address);
+    if (result.valid) {
+      arrayWithLocationInfo[i].addressInfo = result.data;
+    }
+  }
+  return arrayWithLocationInfo;
+}
+
+
+/**
+ *  Creates an admin employee
+ * @param {Int} increment - The number of the nonprofit
+ * @returns An admin employee with a username, password, and email
+ */
+async function adminEmployee(increment){
+    return {username: `admin${increment}`,
+     password: await hashPassword("admin"),
+     email: "admin@admin.com"}
+   }
 
 /**
  * Deletes all existing data
@@ -80,36 +113,36 @@ async function hashPasswordList(employees){
  *  + The last element of the array is set to the max length of objects
  * Example Input: [20, 10, 5, 5]
  * Example Output: [[0,20,30,35], [20,30,35,40]]
- * @param {Array} arr -  The number of objects per nonprofit
+ * @param {Array} lensToDistribute -  The objects to distribute
  * @param {Int} maxLength - maxLength The total length of objects
  * @returns [Int Array, Int Array] - A starting and ending index for each nonprofit's slice of objects
  */
-function distribute(arr, maxLength, nonProfitLength) {
-  let arrCopy = [...arr];
+function distribute(lensToDistribute, maxLength, nonProfitLength) {
+  let distributeLens = [...lensToDistribute];
   //Make sure the total length of objects is less than the max length
-  while (arrCopy.reduce((acc, val) => acc + val, 0) > maxLength) {
-    arrCopy.pop();
+  while (distributeLens.reduce((acc, val) => acc + val, 0) > maxLength) {
+    distributeLens.pop();
   }
 
   // Make sure there is an index for each nonprofit
-  if( nonProfitLength > arrCopy.length){
-    for (let i = arrCopy.length; i < nonProfitLength; i++) {
-      arrCopy.push(0);
+  if( nonProfitLength > distributeLens.length){
+    for (let i = distributeLens.length; i < nonProfitLength; i++) {
+      distributeLens.push(0);
     }
-  }else if (nonProfitLength < arrCopy.length){
-    arrCopy = arrCopy.slice(0, nonProfitLength);
+  }else if (nonProfitLength < distributeLens.length){
+    distributeLens = distributeLens.slice(0, nonProfitLength);
   }
 
 
   // Make sure the full length of objects is assigned
-  const arrStartTotal = arrCopy.slice(0,-1).reduce((acc, val) => acc + val, 0); // The total length of objects not including the last one
-  arrCopy[arrCopy.length-1] = maxLength - arrStartTotal // Makes the last index take the rest of the objects
+  const arrStartTotal = distributeLens.slice(0,-1).reduce((acc, val) => acc + val, 0); // The total length of objects not including the last one
+  distributeLens[distributeLens.length-1] = maxLength - arrStartTotal // Makes the last index take the rest of the objects
 
   // The start and end indices of each nonprofit's slice of objects
   // Create the end array by adding the previous value to the current value
   let endArr = [];
-  for (let a = 0; a < arrCopy.length; a++) {
-    const newVal = a===0 ? arrCopy[a]: endArr[a-1]+arrCopy[a];
+  for (let a = 0; a < distributeLens.length; a++) {
+    const newVal = a===0 ? distributeLens[a]: endArr[a-1]+distributeLens[a];
     endArr.push(newVal);
   }
   // Create the start array by adding 0 to the first value and the previous value to the current value
