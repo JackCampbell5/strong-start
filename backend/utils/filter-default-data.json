@@ -6,7 +6,7 @@
     "default": "123 Main St. Anytown, 12345 MD USA",
     "required": true,
     "icon": "MdOutlineLocationOn",
-    "tooltip": "Address to search from(Can use nearby address for security. Apartment number not required"
+    "tooltip": "Address to search from(Can use nearby address for security). Apartment number not required"
   },
   {
     "id": "services_needed",
