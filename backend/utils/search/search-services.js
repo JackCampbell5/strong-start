@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
-import { reformatTitle } from "#utils/filter-create-utils.js";
 
 /**
  * The weights for each parameter as of now(Total = 100)
@@ -97,18 +96,13 @@ function weightServices(foundServices, params) {
 
     // Add the services weight
     for (const service_needed of service.services_offered) {
-      const encoded = reformatTitle(service_needed);
-      if (services.includes(encoded)) {
+      if (services.includes(service_needed)) {
         ranking += weights.services;
       }
     }
-    // Make the services formatted nice in the return
-    service.services_offered = service.services_offered.join(", ");
 
     // Add the language weight
-    let languageList = service.language.split(",").map((language) => {
-      return language.trim().toLowerCase();
-    });
+    let languageList = service.language;
     if (
       !language ||
       language === "english" ||

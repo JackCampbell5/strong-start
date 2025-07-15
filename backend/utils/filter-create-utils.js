@@ -1,6 +1,9 @@
 // Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
+
+// Local Imports
 import data from "#utils/filter-default-data.json" with { type: "json" };
+import {prettyPrintService} from "#utils/service-utils.js"
 
 const prisma = new PrismaClient();
 
@@ -38,7 +41,7 @@ export default async function createFilter(nonprofit) {
 function reformatForSelect(data) {
   // Reformat the filters to match the format of the select component needs
   return data.map((filter) => {
-    return { value: reformatTitle(filter), label: filter };
+    return { value: filter, label: prettyPrintService(filter) };
   });
 }
 
@@ -60,13 +63,4 @@ function getUniqueFilters(services) {
   const orderedFilters = filterData.sort((a, b) => a.value.localeCompare(b.value));
   let uniqueValues =  [...new Set(orderedFilters.map((filter) => filter.value))]
   return uniqueValues.map((value)=> {return {value:value, label:orderedFilters.find((filter)=>{return filter.value===value}).label}});
-}
-
-/**
- * Reformats the title to match the format of the select component needs
- * @param {string} title - The title to be reformatted
- * @returns The reformatted title
- */
-export function reformatTitle(title) {
-  return title.trim().replace(" ", "_").toLowerCase();
 }
