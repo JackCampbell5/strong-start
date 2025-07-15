@@ -30,7 +30,7 @@
   "date_entered": {
     "name": "Date entered US",
     "value": "",
-    "default": "2025-01-01",
+    "default": "01-01-2025",
     "required": false,
     "icon": "MdDateRange"
   },

@@ -89,10 +89,10 @@
     "id": "date_needed",
     "name": "Date Needed",
     "value": "",
-    "default": "As soon as possible",
+    "default": "1-1-2025",
     "icon": "MdDateRange",
     "required": false,
-    "tooltip": "The date that refugees must have entered the US after. If it does not matter leave blank"
+    "tooltip": "The date that refugees must have entered the US after. If it does not matter leave blank. In mm-dd-yyyy format. Ex: 01-01-2023"
   },
   "services_offered": {
     "id": "services_offered",
