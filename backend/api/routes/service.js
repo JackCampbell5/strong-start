@@ -232,7 +232,6 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   const updatedData = req.body.data;
-  console.log(updatedData);
   try {
     const exists = await checkServiceId(service_id, nonprofit, next);
     const validatedService = await validateAndFormatServiceData(
