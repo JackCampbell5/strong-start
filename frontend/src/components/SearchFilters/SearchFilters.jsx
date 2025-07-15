@@ -124,7 +124,7 @@ function SearchFilters({ loading, setLoading, searchFor }) {
                 }}
               />
             )}
-            <span class="tooltiptext">{obj.tooltip}</span>
+            <span className="tooltiptext">{obj.tooltip}</span>
           </div>
         ))}
       </div>
