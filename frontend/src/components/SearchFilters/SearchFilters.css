@@ -58,18 +58,18 @@
 /* Tooltips */
 .SearchFilters .searchParam .tooltiptext {
   visibility: hidden;
-  width: 50%;
+  width: 80%;
   background-color: var(--border-very-dark);
   color: var(--background);
   text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px;
 
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
   bottom: 100%;
-  left: 25%;
+  left: 10%;
 }
 
 .SearchFilters .searchParam:hover .tooltiptext {

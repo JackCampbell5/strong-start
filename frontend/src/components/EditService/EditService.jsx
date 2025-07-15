@@ -9,7 +9,6 @@ import "./EditService.css";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
 import serviceInputDefaultValues from "#default-data/serviceInputDefaultValues.json";
-import serviceInputDefaultData from "#default-data/serviceInputDefaultData.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import {
   fetchServiceDetails,
@@ -29,6 +28,7 @@ import { fillMissingDataFields } from "#utils/selectUtils";
 function EditService({ serviceID = null }) {
   // Constant Variables
   const nonprofit = getNonProfit();
+  const serviceInputDefaultData = Object.values(serviceInputDefaultValues);
 
   //State Variables
   const [errorText, setErrorText] = useState("");
@@ -164,6 +164,9 @@ function EditService({ serviceID = null }) {
                     setServiceInput(data);
                   }}
                 />
+              )}
+              {obj.tooltip && (
+                <span className="tooltiptext">{obj.tooltip}</span>
               )}
             </div>
           );
