@@ -1,13 +1,13 @@
-import { reformatTitle } from "#utils/filter-create-utils.js";
+import { prettyPrintService } from "#utils/service-utils.js";
 
-describe("reformatTitle function", () => {
-  it("Hi Hello", () => {
-    expect(reformatTitle("Hi Hello")).toBe("hi_hello");
+describe("prettyPrintService function", () => {
+  it("hi_hello", () => {
+    expect(prettyPrintService("hi_hello")).toBe("Hi Hello");
   });
-  it("Hi_Hello ", () => {
-    expect(reformatTitle("Hi_Hello")).toBe("hi_hello");
+  it("hi_hello_hi", () => {
+    expect(prettyPrintService("hi_hello_hi")).toBe("Hi Hello Hi");
   });
-  it("hi hello ", () => {
-    expect(reformatTitle("hi hello")).toBe("hi_hello");
+  it("hi ", () => {
+    expect(prettyPrintService("hi")).toBe("Hi");
   });
 });
