@@ -24,7 +24,7 @@ model service{
   website               String
   hours                 String?
   logo                  String?
-  language              String?
+  language              String[]
   date_needed           String?
   services_offered      String[]
   restrictions          String?
