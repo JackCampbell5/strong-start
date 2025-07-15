@@ -47,7 +47,7 @@
 }
 
 /* The input for the description field is larger to allow for more text */
-.EditService .serviceParam #descriptionInput {
+.EditService .serviceParam .descriptionInput {
   width: min(500px, calc(100vw - 100px));
   height: 100px;
 }

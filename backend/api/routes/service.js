@@ -15,7 +15,6 @@ import {
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
 import createFilter from "#utils/filter-create-utils.js";
-import formatAddress from "#search/address-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -166,6 +165,7 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
       let findServiceCopy = JSON.parse(JSON.stringify(findService));
       delete findServiceCopy.nonprofit_ID;
       delete findServiceCopy.id;
+      delete findServiceCopy.addressInfo;
       findServiceCopy.services_offered =
         findServiceCopy.services_offered.join(", ");
       findServiceCopy.language = findServiceCopy.language.join(", ");
