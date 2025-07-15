@@ -9,7 +9,7 @@
     "website": "https://www.sacramentofoodbank.org/",
     "hours": "Mon-Fri 8am-4pm (check website for specific program hours)",
     "logo": "https://www.sacramentofoodbank.org/wp-content/uploads/2019/08/logo-sfbfs.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Food Assistance",
@@ -31,7 +31,7 @@
     "website": "https://sacloaves.org/",
     "hours": "Varies by service (see website for details)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Meals",
@@ -55,7 +55,7 @@
     "website": "https://www.sspca.org/",
     "hours": "Varies by service (see website for details)",
     "logo": "https://www.sspca.org/wp-content/uploads/2021/04/sacramento-spca-logo-2021.png",
-    "language": "English",
+    "language": "Farci, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Animal Adoptions",
@@ -77,7 +77,7 @@
     "website": "http://www.rmhcnc.org/",
     "hours": "Open 24 hours for families staying at the house (see website for visitation hours)",
     "logo": "https://www.rmhcnc.org/wp-content/uploads/2020/09/rmhc-logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Lodging",
@@ -99,7 +99,7 @@
     "website": "https://www.crhs.org/",
     "hours": "Open 24 hours for children in need",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, English",
     "date_needed": null,
     "services_offered": [
       "Emergency Shelter",
@@ -122,7 +122,7 @@
     "website": "https://www.cffsacramento.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Parenting Classes",
@@ -144,7 +144,7 @@
     "website": "https://sacramentostepsforward.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Homeless Outreach",
@@ -189,7 +189,7 @@
     "website": "http://www.cityyear.org/sacramento",
     "hours": "School hours (follows school district calendar)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Academic Tutoring",
@@ -210,7 +210,7 @@
     "website": "http://teamgiving.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Farci, Pashto",
     "date_needed": null,
     "services_offered": [
       "Volunteer Placement",
@@ -232,7 +232,7 @@
     "website": "https://saccenter.org/",
     "hours": "Mon-Fri 10am-5pm (check website for specific program hours and events)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": null,
     "services_offered": [
       "Mental Health Services & Counseling",
@@ -255,7 +255,7 @@
     "website": "https://www.ecosacramento.net/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Advocacy for environmental issues",
@@ -296,7 +296,7 @@
     "website": "https://namisacramento.org/",
     "hours": "Warmline hours vary, see website for details",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, Pashto",
     "date_needed": null,
     "services_offered": [
       "Support Groups",
@@ -317,7 +317,7 @@
     "website": "https://www.agencyonaging4.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Information & Referral",
@@ -340,7 +340,7 @@
     "website": "https://wildlifecareassociation.com/",
     "hours": "Every Day 10 AM-6 PM (Intake Hours)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Wildlife Rescue",
@@ -361,7 +361,7 @@
     "website": "https://norcalartsinc.org/",
     "hours": "Varies by event and program (check website)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, English",
     "date_needed": null,
     "services_offered": [
       "Art Exhibitions",
@@ -383,7 +383,7 @@
     "website": "https://350sacramento.org/",
     "hours": "Varies by event and meeting schedule (check website)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Climate Advocacy",
@@ -426,7 +426,7 @@
     "website": "https://california.lgbt/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": null,
     "services_offered": [
       "Scholarship Programs",
@@ -447,7 +447,7 @@
     "website": "https://mdfoodbank.org/",
     "hours": "Mon-Fri 8:30am-4:30pm",
     "logo": "https://mdfoodbank.org/wp-content/uploads/2021/04/MFB_Logo_FullColor_RGB.png",
-    "language": "English",
+    "language": "Farci, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": ["Food assistance", "Food pantry support"],
     "restrictions": "Contact local food pantry for details",
@@ -463,7 +463,7 @@
     "website": "https://mfeast.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://mfeast.org/wp-content/themes/moveablefeast/assets/images/logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Meal delivery",
@@ -483,7 +483,7 @@
     "website": "https://www.mdspca.org/",
     "hours": "Vary by program, check website",
     "logo": "https://www.mdspca.org/wp-content/themes/mdspca/assets/images/mdspca-logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Animal adoption",
@@ -503,7 +503,7 @@
     "website": "https://www.stfranciscenter.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.stfranciscenter.org/wp-content/uploads/2016/04/st-francis-neighborhood-center-logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Education programs",
@@ -523,7 +523,7 @@
     "website": "https://www.cfuf.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.cfuf.org/wp-content/themes/cfuf/assets/images/logo.png",
-    "language": "English",
+    "language": "English, Spanish",
     "date_needed": "2025-07-11",
     "services_offered": ["Employment programs", "Mentoring", "Family support"],
     "restrictions": "Primarily serves men and returning citizens",
@@ -539,7 +539,7 @@
     "website": "http://www.uwcm.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.uwcm.org/wp-content/themes/uwcm/images/logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Community development",
@@ -559,7 +559,7 @@
     "website": "http://www.rmhcmaryland.org/",
     "hours": "Mon-Sun 9am-8:30pm",
     "logo": "https://www.rmhcmaryland.org/wp-content/uploads/2016/09/RMHC-Maryland-Logo.png",
-    "language": "English",
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": ["Lodging for families", "Support services"],
     "restrictions": "Requires referral from a hospital",
@@ -575,7 +575,7 @@
     "website": "http://www.associatedblackcharities.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.associatedblackcharities.org/wp-content/uploads/2021/04/associated-black-charities-logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Advocacy",
@@ -595,7 +595,7 @@
     "website": "http://www.catholiccharities-md.org/",
     "hours": "Mon-Fri 8:30am-4:30pm",
     "logo": "https://cc-md.org/wp-content/uploads/2016/09/Catholic-Charities-Baltimore-Logo.png",
-    "language": "English",
+    "language": "Arabic, Farci, English",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Mental health support",
@@ -616,7 +616,7 @@
     "website": "https://www.thejuliecommunitycenter.org/",
     "hours": "Mon-Fri 9am-5am",
     "logo": "https://www.thejuliecommunitycenter.org/wp-content/uploads/2018/02/JulieCommunityCenterLogo.png",
-    "language": "English",
+    "language": "Arabic, Farci, English",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Resource navigation",
@@ -636,7 +636,7 @@
     "website": "http://flogiving.org/",
     "hours": "Mon, Wed-Sun 9am-5pm, Tue Closed",
     "logo": "Not available",
-    "language": "English",
+    "language": "Farci, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Food assistance",
@@ -657,7 +657,7 @@
     "website": "http://www.communitygroupinc.org/",
     "hours": "Mon-Fri 11am-6pm, Sat 11am-2pm, Sun Closed",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Farci, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Mentoring for youth",
@@ -678,7 +678,7 @@
     "website": "http://www.namibaltimore.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Mental health education",
@@ -699,7 +699,7 @@
     "website": "http://www.habitatchesapeake.org/",
     "hours": "Tue-Sat 10am-6pm, Sun-Mon Closed",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Affordable housing development",
@@ -719,7 +719,7 @@
     "website": "http://www.healthcareaccessmaryland.org/",
     "hours": "Mon-Fri 8am-4:30pm",
     "logo": "Not available",
-    "language": "English",
+    "language": "English, Spanish",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Health insurance enrollment assistance",
@@ -739,7 +739,7 @@
     "website": "http://druidheights.com/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Community development initiatives",
@@ -759,7 +759,7 @@
     "website": "https://www.joybaltimore.org/",
     "hours": "Mon, Tue, Thu, Fri 3pm-7pm, Wed, Sat, Sun Closed",
     "logo": "Not available",
-    "language": "English",
+    "language": "English, Spanish",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Housing assistance for youth",
@@ -781,7 +781,7 @@
     "website": "http://blackmentalhealth.com/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Mental health training and consultation",
@@ -802,7 +802,7 @@
     "website": "https://www.promotionandarts.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Event production",
@@ -822,7 +822,7 @@
     "website": "http://www.catholiccharities-md.org/my-sisters-place/",
     "hours": "Mon-Sun 7:30am-5:30pm",
     "logo": "Not available",
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": "2025-07-11",
     "services_offered": [
       "Counseling",
@@ -844,7 +844,7 @@
     "website": "https://www.rmhcdc.org/",
     "hours": "Open 24 hours",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": null,
     "services_offered": ["Family Support", "Medical Assistance"],
     "restrictions": null,
@@ -860,7 +860,7 @@
     "website": "http://www.panfoundation.org/",
     "hours": "Mon-Fri 9am-5:30pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Financial Assistance",
@@ -880,7 +880,7 @@
     "website": "http://www.missiondc.org/",
     "hours": "7:30 AM–10 PM",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Emergency Shelter",
@@ -902,7 +902,7 @@
     "website": "http://www.thrivedc.org/",
     "hours": "Mon-Thu 10am-12pm, 1pm-3pm; Fri 8:30am-9:30am",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": null,
     "services_offered": ["Homelessness Prevention", "Support Services"],
     "restrictions": null,
@@ -918,7 +918,7 @@
     "website": "http://www.asylumworks.org/",
     "hours": null,
     "logo": null,
-    "language": null,
+    "language": "English, Spanish",
     "date_needed": null,
     "services_offered": [
       "Refugee Support",
@@ -939,7 +939,7 @@
     "website": "http://www.refugeesinternational.org/",
     "hours": null,
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, English",
     "date_needed": null,
     "services_offered": ["Advocacy for Refugees"],
     "restrictions": null,
@@ -955,7 +955,7 @@
     "website": "http://lssnca.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Refugee & Immigrant Resettlement",
@@ -977,7 +977,7 @@
     "website": "http://jrsusa.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, English, Pashto",
     "date_needed": null,
     "services_offered": ["Refugee Support", "Advocacy"],
     "restrictions": null,
@@ -993,7 +993,7 @@
     "website": "https://www.catholiccharitiesdc.org/program/share-food-network/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": ["Food Assistance"],
     "restrictions": null,
@@ -1009,7 +1009,7 @@
     "website": "http://harfordcaa.org/",
     "hours": "Mon-Fri 8am-12pm, 1pm-5pm",
     "logo": null,
-    "language": null,
+    "language": "Farci, English, Pashto",
     "date_needed": null,
     "services_offered": ["Food Pantry", "Community Assistance Programs"],
     "restrictions": null,
@@ -1025,7 +1025,7 @@
     "website": "http://www.capitalareafoodbank.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": ["Food Assistance", "Nutrition Education"],
     "restrictions": null,
@@ -1041,7 +1041,7 @@
     "website": "http://www.unitedwaynca.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": null,
+    "language": "Farci, Pashto",
     "date_needed": null,
     "services_offered": [
       "Health Programs",
@@ -1061,7 +1061,7 @@
     "website": "http://www.theurbanalliance.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, Pashto",
     "date_needed": null,
     "services_offered": [
       "Paid Internships",
@@ -1081,7 +1081,7 @@
     "website": "https://dccfh.org/",
     "hours": "Open 24 hours",
     "logo": null,
-    "language": null,
+    "language": "English, Spanish",
     "date_needed": null,
     "services_offered": [
       "Homeless Services",
@@ -1100,7 +1100,7 @@
     "website": "http://www.breadforthecity.org/",
     "hours": "Mon-Thu 9am-3pm",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Food Assistance",
@@ -1124,7 +1124,7 @@
     "website": "http://www.miriamskitchen.org/",
     "hours": "Mon-Fri 7am-10am (Breakfast), 11am-1pm (Lunch)",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": ["Meals", "Case Management", "Homeless Outreach"],
     "restrictions": null,
@@ -1140,7 +1140,7 @@
     "website": "http://www.dccentralkitchen.org/",
     "hours": null,
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Culinary Training",
@@ -1160,7 +1160,7 @@
     "website": "http://www.salvationarmyusa.org/",
     "hours": "Varies by program",
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, English",
     "date_needed": null,
     "services_offered": [
       "Homeless Services",
@@ -1182,7 +1182,7 @@
     "website": "http://some.org/",
     "hours": null,
     "logo": null,
-    "language": null,
+    "language": "English, Spanish",
     "date_needed": null,
     "services_offered": [
       "Housing",
@@ -1204,7 +1204,7 @@
     "website": "http://casadc.org/",
     "hours": null,
     "logo": null,
-    "language": null,
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": ["Advocacy for Children"],
     "restrictions": null,
@@ -1220,7 +1220,7 @@
     "website": "https://vsuw.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Education",
@@ -1241,7 +1241,7 @@
     "website": "https://rmhccnaz.org/",
     "hours": "Open 24 hours (limited information available on specific programs)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Support for families of hospitalized children",
@@ -1261,7 +1261,7 @@
     "website": "https://freshstartwomen.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, Pashto",
     "date_needed": null,
     "services_offered": [
       "Education",
@@ -1283,7 +1283,7 @@
     "website": "http://www.aznonprofits.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Advocacy for nonprofits",
@@ -1303,7 +1303,7 @@
     "website": "http://www.azfoundation.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Philanthropic services",
@@ -1343,7 +1343,7 @@
     "website": "https://phoenixrescuemission.org/hope-for-hunger",
     "hours": "Mon-Thurs 8am-12pm",
     "logo": null,
-    "language": "English",
+    "language": "English, Spanish",
     "date_needed": null,
     "services_offered": ["Food assistance"],
     "restrictions": null,
@@ -1359,7 +1359,7 @@
     "website": "http://www.fmsc.org/",
     "hours": "Mon, Wed, Thurs, Tues, Fri, Sat 8:45 AM-9 PM (Closed Sun)",
     "logo": null,
-    "language": "English",
+    "language": "English, Spanish",
     "date_needed": null,
     "services_offered": ["Food for malnourished children (global)"],
     "restrictions": null,
@@ -1375,7 +1375,7 @@
     "website": "http://www.freeartsaz.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Art programs",
@@ -1395,7 +1395,7 @@
     "website": "https://brighterviewfoundation.org/",
     "hours": "Mon-Fri 9am-5pm, Sat 10am-5pm (Closed Sun)",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, English, Pashto",
     "date_needed": null,
     "services_offered": [
       "Health and wellness education",
@@ -1438,7 +1438,7 @@
     "website": "http://harvestcompassioncenter.org/",
     "hours": "Tues-Wed-Thurs 10am-12pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Spanish, Pashto",
     "date_needed": null,
     "services_offered": [
       "Food Pantry",
@@ -1504,7 +1504,7 @@
     "website": "https://www.healingheartsanimalrescue.org/",
     "hours": "By appointment for adoptions and fosters",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, English",
     "date_needed": null,
     "services_offered": [
       "Animal Rescue",
@@ -1525,7 +1525,7 @@
     "website": "https://rebuildingtogetherphx.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, English",
     "date_needed": null,
     "services_offered": [
       "Critical Home Repairs",
@@ -1545,7 +1545,7 @@
     "website": "https://handsonphoenix.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English",
+    "language": "Arabic, Farci, Spanish, English",
     "date_needed": null,
     "services_offered": [
       "Volunteer Management",
@@ -1586,8 +1586,7 @@
     "website": "https://www.nativehealthphoenix.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English, Native Languages",
-    "date_needed": null,
+    "language": "English"d": null,
     "services_offered": [
       "Primary Care",
       "Behavioral Health",
