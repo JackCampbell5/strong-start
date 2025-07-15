@@ -1,11 +1,11 @@
-// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
+// Node Module Imports
 
 // Local Imports
 import { hashPassword } from "#utils/auth-utils.js";
 
 // Seed Data to import
-import serviceJson from "#seed/services.json" with { type: "json" };
+import serviceJson from "#seed/updatedServices.json" with { type: "json" };
 import nonprofitJson from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
 import formatAddress from "#utils/search/address-utils.js";
@@ -13,11 +13,14 @@ import formatAddress from "#utils/search/address-utils.js";
 const prisma = new PrismaClient();
 
 async function main() {
+  const currentServices = await prisma.service.findMany();
+  const currentNonprofits = await prisma.nonprofit.findMany();
+
   // Delete all existing data
   await deleteAll();
 
   // Get the Service Data ready for seeding
-  let serviceList = await addLocationInformation(serviceJson)  // Format the address info for services
+  let serviceList = await addLocationInformation(serviceJson, currentServices)  // Format the address info for services
   // Get starting and ending indices for each nonprofit's slice of services
   const serviceDistribution = [20, 20, 20, 20]; // How to distribute services to nonprofits
   const [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, serviceList.length);
@@ -29,7 +32,7 @@ async function main() {
   const [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitJson.length);
 
   // Get the nonprofitData ready for seeding
-  let nonprofitList = await addLocationInformation(nonprofitJson);  // Get address info for nonprofits
+  let nonprofitList = await addLocationInformation(nonprofitJson, currentNonprofits);  // Get address info for nonprofits
 
   let adminEmployeeList = await Promise.all(nonprofitList.map(async (nonprofit, num) => (await adminEmployee(num)))); // Create admin employees for each nonprofit
 
@@ -39,8 +42,6 @@ async function main() {
     services: serviceList.slice(serviceStart[num], serviceEnd[num]),
     employees: [...employeeList.slice(employeeStart[num], employeeEnd[num]), adminEmployeeList[num]],
   }));
-
-
 
   // Create nonprofits and adds to database
   await Promise.all(
@@ -61,17 +62,27 @@ async function main() {
  * @param {object} arr - The array of objects to add location information to
  * @returns Array of objects with addressInfo field containing detailed location information
  */
-async function addLocationInformation(arrayNoLocationInfo){
+async function addLocationInformation(arrayNoLocationInfo, currentData){
+  let addressInfo = {}
+  for(let a of currentData){
+    addressInfo[a.address] = a.addressInfo
+  }
+
   let arrayWithLocationInfo = [...arrayNoLocationInfo];
   for (let i = 0; i < arrayWithLocationInfo.length; i++) {
-    let result = await  formatAddress(arrayWithLocationInfo[i].address);
-    if (result.valid) {
-      arrayWithLocationInfo[i].addressInfo = result.data;
+    // See if we already have the info for that address and use it if we do
+    let addressName = arrayWithLocationInfo[i].address
+    if(addressInfo[addressName]){
+      arrayWithLocationInfo[i].addressInfo = addressInfo[addressName]
+    }else{
+      let result = await  formatAddress(arrayWithLocationInfo[i].address);
+      if (result.valid) {
+        arrayWithLocationInfo[i].addressInfo = result.data;
+      }
     }
   }
   return arrayWithLocationInfo;
 }
-
 
 /**
  *  Creates an admin employee
@@ -132,7 +143,6 @@ function distribute(lensToDistribute, maxLength, nonProfitLength) {
   }else if (nonProfitLength < distributeLens.length){
     distributeLens = distributeLens.slice(0, nonProfitLength);
   }
-
 
   // Make sure the full length of objects is assigned
   const arrStartTotal = distributeLens.slice(0,-1).reduce((acc, val) => acc + val, 0); // The total length of objects not including the last one
