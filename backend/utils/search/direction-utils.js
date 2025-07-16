@@ -6,7 +6,6 @@ export async function routeBetween(address1, address2) {
 
   // Data for the POST request
   let data = getRouteRequestBody(address1, address2);
-  console.log(data);
   let mask = getRouteRequestMask();
 
   return await fetch(`${routeUrl}`, {
@@ -78,7 +77,6 @@ export function directionBetweenLink(initialAddressObj, endingAddressObj) {
   params.append("api", 1);
   params.append("origin", initialAddress);
   params.append("destination", endingAddress);
-  console.log(directionsURL + params.toString());
   const queryString = params.toString();
   return `${directionsURL}?${queryString}`;
 }

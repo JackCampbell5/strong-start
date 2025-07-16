@@ -1,7 +1,6 @@
 const googleApiKey = process.env.MAPS_API_KEY;
 
 export async function formatAddress(address, nonprofit={}) {
-    console.log("Validating address: " + address);
     const searchURL = "https://places.googleapis.com/v1/places:searchText";
 
     let data = { textQuery: address, languageCode: "en", locationRestriction: nonprofit. }
