@@ -1,11 +1,18 @@
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 const googleApiKey = process.env.MAPS_API_KEY;
-export async function routeBetween(address1, address2) {
+
+/**
+ * Find the length of the route between two addresses in miles using the Google Maps API
+ * @param {*} initialAddress The address object for the starting point
+ * @param {*} endingAddress - The address object for the ending point
+ * @returns
+ */
+export async function routeBetween(initialAddress, endingAddress) {
   let routeUrl = "https://routes.googleapis.com/directions/v2:computeRoutes";
 
   // Data for the POST request
-  let data = getRouteRequestBody(address1, address2);
+  let data = getRouteRequestBody(initialAddress, endingAddress);
   let mask = getRouteRequestMask();
 
   return await fetch(`${routeUrl}`, {
@@ -35,6 +42,11 @@ export async function routeBetween(address1, address2) {
     });
 }
 
+/**
+ *  Takes the data object returned from the Google Maps API and extracts the route length in miles
+ * @param {object} data - The data object returned from the Google Maps API
+ * @returns The route length in miles as a string
+ */
 function validateAndExtractRouteLength(data) {
   const metersToMiles = 0.000621371; // Convert meters to miles
   const milesDist = data.routes[0].distanceMeters * metersToMiles;
@@ -59,7 +71,10 @@ function getRouteRequestBody(refugeeAddress, serviceAddress) {
     languageCode: "en-US",
   };
 }
-
+/**
+ * Creates a mask for the fields to be returned from the Google Maps API. Starts as a array of strings for easy viewing
+ * @returns A string of the fields to be returned from the Google Maps API
+ */
 function getRouteRequestMask() {
   let mask = [
     "routes.duration",
@@ -69,6 +84,12 @@ function getRouteRequestMask() {
   return mask.join(",");
 }
 
+/**
+ * Creates a link to the Google Maps directions page between two addresses
+ * @param {*} initialAddress The address object for the starting point
+ * @param {*} endingAddress - The address object for the ending point
+ * @returns The created link
+ */
 export function createDirectionLink(initialAddressObj, endingAddressObj) {
   let initialAddress = initialAddressObj.formattedAddress;
   let endingAddress = endingAddressObj.formattedAddress;

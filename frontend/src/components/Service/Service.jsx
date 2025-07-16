@@ -10,7 +10,6 @@ import "./Service.css";
  * @param {object} data - Info on a specific service
  */
 function Service({ data }) {
-  console.log(data);
   const noShow = ["id", "name", "addressInfo", "routeLink", "nonprofit_ID"];
   return (
     <div className="Service">
