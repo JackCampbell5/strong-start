@@ -12,12 +12,17 @@ import RecService from "#components/RecService/RecService";
 function RecList({ data }) {
   let num = 0;
   const [serviceList, setServiceList] = useState(data);
+  const [successText, setSuccessText] = useState("");
 
   function doneAdded(id) {
     let updatedData = [...data];
     for (let i = 0; i < updatedData.length; i++) {
       if (updatedData[i].id === id) {
         updatedData.splice(i, 1);
+        setSuccessText("Service Added Successfully");
+        setTimeout(() => {
+          setSuccessText("");
+        }, 5000);
         break;
       }
     }
@@ -26,6 +31,7 @@ function RecList({ data }) {
   return (
     <div className="RecList">
       <h3>RecList</h3>
+      <p className="successText">{successText}</p>
       <div className="allRecs">
         {serviceList
           ? serviceList.map((obj) => {
