@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
-import { routeBetween } from "#search/direction-utils.js";
+import { routeBetween, directionBetweenLink } from "#search/direction-utils.js";
 
 /**
  * The weights for each parameter as of now(Total = 100)
@@ -77,6 +77,7 @@ async function addRouteData(services, address) {
     let result = await routeBetween(service.addressInfo, address);
     if (result.valid) {
       service.routeLength = result.data;
+      service.routeLink = directionBetweenLink(service.addressInfo, address);
     } else {
       return errorReturn(result.error);
     }

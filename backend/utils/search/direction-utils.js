@@ -69,3 +69,16 @@ function getRouteRequestMask() {
   ];
   return mask.join(",");
 }
+
+export function directionBetweenLink(initialAddressObj, endingAddressObj) {
+  let initialAddress = initialAddressObj.formattedAddress;
+  let endingAddress = endingAddressObj.formattedAddress;
+  const directionsURL = "https://www.google.com/maps/dir/";
+  const params = new URLSearchParams();
+  params.append("api", 1);
+  params.append("origin", initialAddress);
+  params.append("destination", endingAddress);
+  console.log(directionsURL + params.toString());
+  const queryString = params.toString();
+  return `${directionsURL}?${queryString}`;
+}
