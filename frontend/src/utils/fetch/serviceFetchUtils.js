@@ -220,7 +220,7 @@ export async function fetchAllServices(nonprofit) {
  */
 export async function fetchRecs(nonprofit) {
   // TODO change from all to recommend when backend endpoint is created
-  return await fetch(`${serviceLink}/${nonprofit}/all`, {
+  return await fetch(`${serviceLink}/${nonprofit}/recommend`, {
     method: "GET",
     credentials: "include",
     headers: {
