@@ -25,7 +25,7 @@ import { fillMissingDataFields } from "#utils/selectUtils";
  * @param {string} serviceID - The ID of the service to edit(If applicable)
  * @returns
  */
-function EditService({ serviceID = null }) {
+function EditService({ serviceID = null, data = null, onValidAdd = () => {} }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const serviceInputDefaultData = Object.values(serviceInputDefaultValues);
@@ -91,6 +91,7 @@ function EditService({ serviceID = null }) {
       if (!serviceID) {
         setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
       }
+      onValidAdd();
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
@@ -120,9 +121,19 @@ function EditService({ serviceID = null }) {
   }
 
   useEffect(() => {
+    // If given a serviceID then fetch the service details
     if (serviceID) {
       setLoading(true);
       fetchServiceDetails(nonprofit, serviceID).then(fetchServiceCallback);
+    }
+    // If given data then fill in the serviceInput with the data
+    if (data) {
+      const completeData = serviceInputDefaultData.map((obj) => {
+        if (!data[obj.id]) return obj;
+        obj.value = data[obj.id];
+        return obj;
+      });
+      setServiceInput(completeData);
     }
   }, [serviceID]);
 
