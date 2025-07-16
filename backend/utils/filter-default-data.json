@@ -3,9 +3,10 @@
     "id": "address",
     "name": "Current Address*",
     "value": "",
-    "default": "123 Main St, Anytown, USA",
+    "default": "123 Main St. Anytown, 12345 MD USA",
     "required": true,
-    "icon": "MdOutlineLocationOn"
+    "icon": "MdOutlineLocationOn",
+    "tooltip": "Address to search from(Can use nearby address for security). Apartment number not required"
   },
   {
     "id": "services_needed",
@@ -14,7 +15,8 @@
     "value": "",
     "default": "None",
     "required": true,
-    "icon": "MdOutlineStopCircle"
+    "icon": "MdOutlineStopCircle",
+    "tooltip": "Select as many as are useful"
   },
   {
     "id": "language",
@@ -22,14 +24,16 @@
     "value": "",
     "default": "Arabic",
     "required": false,
-    "icon": "MdOutlineSpatialAudioOff"
+    "icon": "MdOutlineSpatialAudioOff",
+    "tooltip": "Language name in english form, comma separated. Ex: Arabic, English, Spanish"
   },
   {
     "id": "date_entered",
     "name": "Date entered US",
     "value": "",
-    "default": "2025-01-01",
+    "default": "01-01-2025",
     "required": false,
-    "icon": "MdDateRange"
+    "icon": "MdDateRange",
+    "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025"
   }
 ]

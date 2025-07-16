@@ -1,86 +1,124 @@
 {
   "name": {
+    "id": "name",
     "name": "Name*",
+    "value": "",
     "default": "Community Food Kitchen",
     "icon": "MdOutlinePerson",
-    "required": true
+    "required": true,
+    "tooltip": "Official Name of the Service"
   },
   "address": {
+    "id": "address",
     "name": "Address*",
+    "value": "",
     "default": "123 Main St, Anytown, USA",
     "icon": "MdOutlineLocationOn",
-    "required": true
+    "required": true,
+    "tooltip": "Complete address of the service(No PO BOX)"
   },
   "zipcode": {
+    "id": "zipcode",
     "name": "Zip Code*",
+    "value": "",
     "default": "12345",
     "icon": "MdNumbers",
     "required": true
   },
   "description": {
+    "id": "description",
     "name": "Description*",
+    "value": "",
     "default": "Providing free meals to those in need",
     "icon": "MdOutlineTextSnippet",
-    "required": true
+    "required": true,
+    "tooltip": "Explaining what the service does"
   },
   "email": {
+    "id": "email",
     "name": "Email",
+    "value": "",
     "default": "info@communityfoodkitchen.org",
     "icon": "MdEmail",
     "required": false
   },
   "phone": {
+    "id": "phone",
     "name": "Phone",
+    "value": "",
     "default": "(555) 555-5555",
     "icon": "MdLocalPhone",
     "required": false
   },
   "website": {
+    "id": "website",
     "name": "Website*",
+    "value": "",
     "default": "https://www.communityfoodkitchen.org",
     "icon": "MdLanguage",
     "required": true
   },
   "hours": {
+    "id": "hours",
     "name": "Hours",
+    "value": "",
     "default": "Monday - Friday: 11am - 2pm, Saturday: 12pm - 3pm",
     "icon": "MdHourglassBottom",
-    "required": false
+    "required": false,
+    "tooltip": "Hours of operation. Will be displayed as plain text."
   },
   "logo": {
+    "id": "logo",
     "name": "Logo",
+    "value": "",
     "default": "https://www.communityfoodkitchen.org/logo.png",
     "icon": "MdImage",
-    "required": false
+    "required": false,
+    "tooltip": "Link to just the logo of the service. Will be displayed as an image."
   },
   "language": {
+    "id": "language",
     "name": "Language",
+    "value": "",
     "default": "English",
     "icon": "MdOutlineSpatialAudioOff",
-    "required": false
+    "required": false,
+    "tooltip": "Languages that the service offers. Comma separated. Ex: English, Spanish"
   },
   "date_needed": {
+    "id": "date_needed",
     "name": "Date Needed",
-    "default": "As soon as possible",
+    "value": "",
+    "default": "1-1-2025",
     "icon": "MdDateRange",
-    "required": false
+    "required": false,
+    "tooltip": "The date that refugees must have entered the US after. If it does not matter leave blank. In mm-dd-yyyy format. Ex: 01-01-2023"
   },
   "services_offered": {
-    "name": "Services Offered(Separated by comma)*",
+    "id": "services_offered",
+    "name": "Services Offered*",
+    "value": "",
     "default": "Free meals, food pantry, nutrition counseling",
     "icon": "MdFilterList",
-    "required": true
+    "required": true,
+    "tooltip": "Services Offered by this service. Comma separated. Please be consistent across services for search Ex: Free meals, food pantry, nutrition counseling"
   },
   "restrictions": {
+    "id": "restrictions",
     "name": "Restrictions",
+    "value": "",
     "default": "None",
     "icon": "MdOutlineStopCircle",
-    "required": false
+    "required": false,
+    "tooltip": "Any restrictions on who can use the service. Ex: Must be 18+"
   },
   "next_steps": {
+    "id": "next_steps",
     "name": "Next Steps*",
+    "value": "",
     "default": "Call or email to schedule an appointment",
     "icon": "MdOutlineSkipNext",
-    "required": true
+    "required": true,
+    "tooltip": "What the refugee should do next. Ex: Call or email to schedule an appointment"
   }
 }
