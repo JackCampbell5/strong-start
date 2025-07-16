@@ -26,7 +26,7 @@ const weights = {
  */
 export default async function searchServices(query, nonprofit) {
   // Validate the query params
-  const params = await validParams(query, nonprofit);
+  const params = await isValidParams(query, nonprofit);
   if (!params.valid) {
     return errorReturn(params.error);
   }
@@ -138,7 +138,7 @@ function weightServices(foundServices, params) {
  * @param {object} nonprofit - The nonprofit object containing the nonprofits id and other information
  * @returns The valid query parameters or an error
  */
-async function validParams(query, nonprofit) {
+async function isValidParams(query, nonprofit) {
   // Params that can be used for search
   const address_given = query.address;
   const services_needed_given = JSON.parse(query.services_needed);
