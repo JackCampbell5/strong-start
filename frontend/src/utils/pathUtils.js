@@ -10,6 +10,7 @@ export const NpPages = Object.freeze({
   VIEWSERVICES: "view_services",
   LOGIN: "login",
   REGISTER: "register",
+  RECOMMEND: "recommend",
 });
 export const RPages = Object.freeze({
   CONTACT: "contact",

@@ -103,6 +103,15 @@ function NavNonProfit({ onNavigate }) {
         >
           ViewServices
         </button>
+        <button
+          className={[
+            "navBarButton",
+            location === NpPages.RECOMMEND ? "selected" : "unselected",
+          ].join(" ")}
+          onClick={() => onNavigate(NpPages.RECOMMEND)}
+        >
+          Recommend
+        </button>
         <div className="account-dropdown">
           <button
             className="navBarButton dropdownActiveButton"

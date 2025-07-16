@@ -14,6 +14,7 @@ import NewService from "#nonprofitPage/NewService/NewService";
 import SearchService from "#nonprofitPage/SearchService/SearchService";
 import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
 import RegisterPage from "#nonprofitPage/RegisterPage/RegisterPage";
+import Recommend from "#nonprofitPage/Recommend/Recommend";
 //Other Components
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
 import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
@@ -51,6 +52,7 @@ function NonProfitOverall() {
           <Route path={`/${NpPages.VIEWSERVICES}`} element={<ViewServices />} />
           <Route path={`/${NpPages.LOGIN}`} element={<LoginPage />} />
           <Route path={`/${NpPages.REGISTER}`} element={<RegisterPage />} />
+          <Route path={`/${NpPages.RECOMMEND}`} element={<Recommend />} />
         </Routes>
       </div>
       <FooterNonProfit />
