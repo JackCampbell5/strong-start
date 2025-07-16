@@ -22,10 +22,16 @@ import { fillMissingDataFields } from "#utils/selectUtils";
 /**
  * Component for editing a service
  * + If none is given then a new service will be created when the employee hits submit.
- * @param {string} serviceID - The ID of the service to edit(If applicable)
- * @returns
+ * @param {string} serviceID - The ID of the service to get the params to edit(Optional)
+ * @param {object} inputData - The data to fill in the service with(Optional)
+ * @param {function} onValidAdd - Callback for when the service is successfully added
+ * @returns - React element
  */
-function EditService({ serviceID = null, data = null, onValidAdd = () => {} }) {
+function EditService({
+  serviceID = null,
+  inputData = null,
+  onValidAdd = () => {},
+}) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const serviceInputDefaultData = Object.values(serviceInputDefaultValues);
@@ -127,10 +133,10 @@ function EditService({ serviceID = null, data = null, onValidAdd = () => {} }) {
       fetchServiceDetails(nonprofit, serviceID).then(fetchServiceCallback);
     }
     // If given data then fill in the serviceInput with the data
-    if (data) {
+    if (inputData) {
       const completeData = serviceInputDefaultData.map((obj) => {
-        if (!data[obj.id]) return obj;
-        obj.value = data[obj.id];
+        if (!inputData[obj.id]) return obj;
+        obj.value = inputData[obj.id];
         return obj;
       });
       setServiceInput(completeData);
