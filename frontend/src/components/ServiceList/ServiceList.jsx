@@ -15,7 +15,11 @@ function ServiceList({ data }) {
         {data
           ? data.map((obj) => {
               num++;
-              return <Service key={obj.id} data={obj} />;
+              return (
+                <div className="service">
+                  <Service key={obj.id} data={obj} />
+                </div>
+              );
             })
           : null}
       </div>

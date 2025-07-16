@@ -1,3 +1,6 @@
+.ServiceList .service {
+  margin: 3%;
+}
 /* Formatting for the total */
 .ServiceTotal {
   margin: 50px;
