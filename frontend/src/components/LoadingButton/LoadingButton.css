@@ -10,6 +10,7 @@
 
 .LoadingButton .currentlyLoading:hover {
   background-color: var(--background-darker);
+  cursor: wait;
 }
 
 /* Loading animation  */

@@ -6,11 +6,16 @@ import PropTypes from "prop-types";
 import "./LoadingButton.css";
 
 function LoadingButton({ loading, onClick, text, fit = false }) {
+  function handleClick() {
+    if (!loading) {
+      onClick();
+    }
+  }
   {
     return (
       <div className={["LoadingButton", fit ? "fitText" : "setSize"].join(" ")}>
         <button
-          onClick={onClick}
+          onClick={handleClick}
           className={loading ? "currentlyLoading" : "notLoading"}
         >
           {loading ? (
