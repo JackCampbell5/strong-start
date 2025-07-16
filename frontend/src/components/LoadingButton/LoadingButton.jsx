@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 // Local Imports
 import "./LoadingButton.css";
 
-function LoadingButton({ loading, onClick, text }) {
+function LoadingButton({ loading, onClick, text, fit = false }) {
   {
     return (
-      <div className="LoadingButton">
+      <div className={["LoadingButton", fit ? "fitText" : "setSize"].join(" ")}>
         <button
           onClick={onClick}
           className={loading ? "currentlyLoading" : "notLoading"}
