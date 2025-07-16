@@ -7,11 +7,16 @@ import {
   ServiceNotFoundError,
   ServiceAlreadyExistsError,
 } from "#errors/service-errors.js";
-import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
+import {
+  checkServiceName,
+  checkServiceId,
+  validateAndFormatServiceData,
+  prettyPrintServicesOfferedList,
+  reformatServiceForReturn,
+} from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
 import getFilter from "#utils/filter-create-utils.js";
-import formatAddress from "#utils/search/address-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -31,7 +36,8 @@ serviceRouter.get("/all", async (req, res, next) => {
       },
     });
     if (foundServices.length !== 0) {
-      res.status(200).json(foundServices);
+      const formattedService = reformatServiceForReturn(foundServices);
+      res.status(200).json(formattedService);
     } else {
       res.status(404).send("No services found");
     }
@@ -57,7 +63,8 @@ serviceRouter.get("/search", async (req, res, next) => {
     const query = req.query;
     let result = await searchServices(query, nonprofit);
     if (result.valid) {
-      res.status(200).json(result.data);
+      const formattedService = reformatServiceForReturn(result.data);
+      res.status(200).json(formattedService);
     } else {
       res.status(404).send(result.error);
     }
@@ -162,8 +169,11 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
       let findServiceCopy = JSON.parse(JSON.stringify(findService));
       delete findServiceCopy.nonprofit_ID;
       delete findServiceCopy.id;
-      findServiceCopy.services_offered =
-        findServiceCopy.services_offered.join(", ");
+      delete findServiceCopy.addressInfo;
+      findServiceCopy.services_offered = prettyPrintServicesOfferedList(
+        findServiceCopy.services_offered
+      );
+      findServiceCopy.language = findServiceCopy.language.join(", ");
       // Reformat for frontend
       const keys = Object.keys(findServiceCopy);
       const values = Object.values(findServiceCopy);
@@ -191,18 +201,19 @@ serviceRouter.post("/add", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     const exists = await checkServiceName(name, nonprofit, next);
-    let addressInfo = await formatAddress(serviceData.address, nonprofit);
+    const validatedService = await validateAndFormatServiceData(
+      serviceData,
+      nonprofit
+    );
 
     if (!exists) {
-      if (addressInfo.valid) {
-        serviceData.addressInfo = addressInfo.data;
-        serviceData.address = addressInfo.data.formattedAddress;
+      if (validatedService.valid) {
         const createService = await prisma.service.create({
-          data: { ...serviceData, nonprofit_ID: nonprofit.id },
+          data: { ...validatedService.data, nonprofit_ID: nonprofit.id },
         });
         res.status(201).json(createService);
       } else {
-        throw new Error(addressInfo.error);
+        throw new Error(validatedService.error);
       }
     } else {
       throw new ServiceAlreadyExistsError(name);
@@ -221,24 +232,26 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   const updatedData = req.body.data;
+  console.log(updatedData);
   try {
     const exists = await checkServiceId(service_id, nonprofit, next);
-    let addressInfo = await formatAddress(updatedData.address, nonprofit);
+    const validatedService = await validateAndFormatServiceData(
+      updatedData,
+      nonprofit
+    );
 
     if (exists) {
-      if (addressInfo.valid) {
-        updatedData.addressInfo = addressInfo.data;
-        updatedData.address = addressInfo.data.formattedAddress;
+      if (validatedService.valid) {
         const updateOne = await prisma.service.update({
           where: {
             id: service_id,
           },
-          data: updatedData,
+          data: validatedService.data,
         });
         res.json(updateOne);
         res.status(200).send();
       } else {
-        throw new Error(addressInfo.error);
+        throw new Error(validatedService.error);
       }
     } else {
       throw new ServiceNotFoundError(service_id);
