@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
  * @param {object} nonprofit - Nonprofit object
  * @returns The filters for the nonprofit
  */
-export default async function createFilter(nonprofit) {
+export default async function getFilter(nonprofit) {
   // Get all of the services offered by the nonprofit
   const foundServices = await prisma.service.findMany({
     where: {

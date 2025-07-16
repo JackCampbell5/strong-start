@@ -10,7 +10,7 @@ import {
 import { checkServiceName, checkServiceId } from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
-import createFilter from "#utils/filter-create-utils.js";
+import getFilter from "#utils/filter-create-utils.js";
 import formatAddress from "#utils/search/address-utils.js";
 
 const prisma = new PrismaClient();
@@ -44,7 +44,7 @@ serviceRouter.get("/all", async (req, res, next) => {
 serviceRouter.get("/filters", async (req, res, next) => {
   try {
     const nonprofit = req.body.nonprofit;
-    return res.status(200).json(await createFilter(nonprofit));
+    return res.status(200).json(await getFilter(nonprofit));
   } catch (e) {
     return next(e);
   }
