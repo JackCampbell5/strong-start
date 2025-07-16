@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
+import { routeBetween, createDirectionLink } from "#search/direction-utils.js";
 
 /**
  * The weights for each parameter as of now(Total = 100)
@@ -63,7 +64,31 @@ async function topServices(params, nonprofit) {
   // TODO: do this via normal distribution for more accurate results and remove outliers
   const top = rankedOrder.slice(0, 5);
 
-  return successReturn(top);
+  const result = await addRouteData(top, params.address);
+  if (!result.valid) {
+    return errorReturn(result.error);
+  }
+
+  return successReturn(result.data);
+}
+
+/**
+ * Takes all of the services and adds the route length and link to that route
+ * @param {Array} services - Array of services to add route data to
+ * @param {*} address - The address of the user
+ * @returns The services with the route data added or an error
+ */
+async function addRouteData(services, address) {
+  for (let service of services) {
+    let result = await routeBetween(address, service.addressInfo);
+    if (result.valid) {
+      service.routeLength = result.data;
+      service.routeLink = createDirectionLink(address, service.addressInfo);
+    } else {
+      return errorReturn(result.error);
+    }
+  }
+  return successReturn(services);
 }
 
 /**
@@ -171,6 +196,11 @@ async function isValidParams(query, nonprofit) {
   return successReturn(params);
 }
 
+/**
+ * Validates that the date is in the correct format of MM-DD-YYYY
+ * @param {string} date- The date to validate
+ * @returns A date object or an error
+ */
 export function getAndValidateDate(date) {
   const date_regex =
     /^(?:((?:0?[1-9])|10|11|12)-(0?[1-9]|[12]\d|30|31)-(\d{4}))$/;
