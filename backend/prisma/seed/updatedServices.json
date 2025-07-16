@@ -88,7 +88,7 @@
     "hours": "Open 24 hours for children in need",
     "logo": null,
     "language": ["arabic", "farci", "english"],
-    "date_needed": "1-/-20/23",
+    "date_needed": "1-20-2023",
     "services_offered": [
       "education",
       "refugee_&_immigrant_resettlement",
@@ -185,7 +185,7 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
     "language": ["farci", "pashto"],
-    "date_needed": "1-/-208/23",
+    "date_needed": "1-20-2023",
     "services_offered": [
       "mental_health_education",
       "food_assistance",
@@ -207,7 +207,7 @@
     "hours": "Mon-Fri 10am-5pm (check website for specific program hours and events)",
     "logo": null,
     "language": ["arabic", "spanish", "pashto"],
-    "date_needed": "1-/-208/23",
+    "date_needed": "1-20-2023",
     "services_offered": [
       "legal_assistance",
       "legal_assistance",
@@ -358,7 +358,7 @@
     "hours": "Varies by event and meeting schedule (check website)",
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
-    "date_needed": "1-/-203/22",
+    "date_needed": "1-3-2022",
     "services_offered": [
       "family_support",
       "immigrant_services",
@@ -380,7 +380,7 @@
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
     "language": ["english", "spanish"],
-    "date_needed": "1-/-209/23",
+    "date_needed": "1-9-2023",
     "services_offered": [
       "refugee_&_immigrant_resettlement",
       "education",
@@ -544,7 +544,7 @@
     "hours": "Mon-Sun 9am-8:30pm",
     "logo": "https://www.rmhcmaryland.org/wp-content/uploads/2016/09/RMHC-Maryland-Logo.png",
     "language": ["arabic", "spanish", "pashto"],
-    "date_needed": "1-/-203/22",
+    "date_needed": "1-3-2022",
     "services_offered": [
       "financial_assistance",
       "job_training",
@@ -601,7 +601,7 @@
     "hours": "Mon-Fri 9am-5am",
     "logo": "https://www.thejuliecommunitycenter.org/wp-content/uploads/2018/02/JulieCommunityCenterLogo.png",
     "language": ["arabic", "farci", "english"],
-    "date_needed": "1-/-203/24",
+    "date_needed": "1-3-2024",
     "services_offered": [
       "mentorship",
       "education",
@@ -734,7 +734,7 @@
     "hours": "Mon-Fri 8am-5pm",
     "logo": "Not available",
     "language": ["arabic", "spanish", "pashto"],
-    "date_needed": "1-/-203/22",
+    "date_needed": "1-3-2022",
     "services_offered": [
       "education",
       "family_support",
@@ -837,7 +837,7 @@
     "hours": "Open 24 hours",
     "logo": null,
     "language": ["arabic", "spanish", "pashto"],
-    "date_needed": "1-/-202/24",
+    "date_needed": "1-2-2024",
     "services_offered": [
       "mental_health_education",
       "immigrant_services",
@@ -878,7 +878,7 @@
     "hours": "7:30 AM–10 PM",
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
-    "date_needed": "1-/-208/23",
+    "date_needed": "1-20-2023",
     "services_offered": [
       "job_training",
       "mentorship",
@@ -1024,7 +1024,7 @@
     "hours": "Mon-Fri 8am-12pm, 1pm-5pm",
     "logo": null,
     "language": ["farci", "english", "pashto"],
-    "date_needed": "1-/-209/23",
+    "date_needed": "1-9-2023",
     "services_offered": [
       "legal_assistance",
       "job_training",
@@ -1045,7 +1045,7 @@
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
-    "date_needed": "1-/-202/24",
+    "date_needed": "1-2-2024",
     "services_offered": ["food_assistance", "legal_assistance", "job_training"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1061,7 +1061,7 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
     "language": ["farci", "pashto"],
-    "date_needed": "1-/-202/24",
+    "date_needed": "1-2-2024",
     "services_offered": [
       "refugee_&_immigrant_resettlement",
       "immigrant_services"
@@ -1080,7 +1080,7 @@
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
     "language": ["arabic", "farci", "spanish", "pashto"],
-    "date_needed": "1-/-20/24",
+    "date_needed": "1-20-2024",
     "services_offered": [
       "mentorship",
       "immigrant_services",
@@ -1208,7 +1208,7 @@
     "hours": null,
     "logo": null,
     "language": ["english", "spanish"],
-    "date_needed": "1-/-20/23",
+    "date_needed": "1-20-2023",
     "services_offered": [
       "education",
       "mentorship",
@@ -1267,7 +1267,7 @@
     "hours": "Open 24 hours (limited information available on specific programs)",
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
-    "date_needed": "1-/-20/22",
+    "date_needed": "1-20-2022",
     "services_offered": ["legal_assistance", "food_assistance"],
     "restrictions": null,
     "next_steps": "Contact them directly for more information on eligibility and how to access their services."
@@ -1327,7 +1327,7 @@
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english"],
-    "date_needed": "1-/-20/24",
+    "date_needed": "1-20-2024",
     "services_offered": ["family_support", "immigrant_services", "education"],
     "restrictions": null,
     "next_steps": "Contact them to learn more about ways to support Arizona communities."
@@ -1343,7 +1343,7 @@
     "hours": null,
     "logo": null,
     "language": ["english", "spanish"],
-    "date_needed": "1-/-203/24",
+    "date_needed": "1-3-2024",
     "services_offered": [
       "family_support",
       "mentorship",
@@ -1386,7 +1386,7 @@
     "hours": "Mon, Wed, Thurs, Tues, Fri, Sat 8:45 AM-9 PM (Closed Sun)",
     "logo": null,
     "language": ["english", "spanish"],
-    "date_needed": "1-/-20/24",
+    "date_needed": "1-20-2024",
     "services_offered": [
       "mentorship",
       "immigrant_services",
@@ -1475,7 +1475,7 @@
     "hours": "Tues-Wed-Thurs 10am-12pm",
     "logo": null,
     "language": ["arabic", "spanish", "pashto"],
-    "date_needed": "1-/-202/24",
+    "date_needed": "1-2-2024",
     "services_offered": [
       "refugee_&_immigrant_resettlement",
       "financial_assistance",
@@ -1495,7 +1495,7 @@
     "hours": "Vary by program, check website or call for details.",
     "logo": null,
     "language": ["english", "spanish"],
-    "date_needed": "1-/-20/23",
+    "date_needed": "1-20-2023",
     "services_offered": ["job_training", "immigrant_services"],
     "restrictions": null,
     "next_steps": "Contact them to learn more about programs and services offered."
@@ -1511,7 +1511,7 @@
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
     "language": ["english", "spanish"],
-    "date_needed": "1-/-203/22",
+    "date_needed": "1-3-2022",
     "services_offered": ["immigrant_services", "job_training", "education"],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly for program details and how to get help or support."
@@ -1547,7 +1547,7 @@
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
     "language": ["arabic", "farci", "english"],
-    "date_needed": "1-/-208/23",
+    "date_needed": "1-20-2023",
     "services_offered": [
       "legal_assistance",
       "financial_assistance",
