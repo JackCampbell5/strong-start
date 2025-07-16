@@ -74,7 +74,7 @@ async function topServices(params, nonprofit) {
 
 async function addRouteData(services, address) {
   for (let service of services) {
-    let result = await routeBetween(service.addressInfo, address);
+    let result = await routeBetween(address, service.addressInfo);
     if (result.valid) {
       service.routeLength = result.data;
       service.routeLink = directionBetweenLink(address, service.addressInfo);
