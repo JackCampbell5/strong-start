@@ -30,7 +30,6 @@ function RecList({ data }) {
   }
   return (
     <div className="RecList">
-      <h3>RecList</h3>
       <p className="successText">{successText}</p>
       <div className="allRecs">
         {serviceList
