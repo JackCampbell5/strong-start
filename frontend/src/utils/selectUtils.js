@@ -30,9 +30,6 @@ export function fillMissingDataFields(data, defaultData) {
       if (!field.tooltip && defaultData[key].tooltip) {
         field.tooltip = defaultData[key].tooltip;
       }
-      if (!a.tooltip && defaultData[key].tooltip) {
-        a.tooltip = defaultData[key].tooltip;
-      }
     }
     completeData.push(field);
   }
