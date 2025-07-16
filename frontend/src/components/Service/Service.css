@@ -5,3 +5,6 @@
   border: var(--border-mid) solid 10px;
   border-radius: 30px;
 }
+.Service .serviceParam {
+  display: flex;
+}

@@ -10,15 +10,24 @@ import "./Service.css";
  * @param {object} data - Info on a specific service
  */
 function Service({ data }) {
+  console.log(data);
+  const noShow = ["id", "name", "addressInfo", "routeLink", "nonprofit_ID"];
   return (
     <div className="Service">
       <h3>{data.name}</h3>
       {Object.entries(data).map((obj) => {
         const key = obj[0]; // gets the key from obj.entries
         const info = obj[1]; // gets the string stored at the given key from obj.entries
-        return key !== "id" && key !== "name" && key !== "addressInfo" ? (
-          <p key={key}>
-            <strong>{key}:</strong> {info}
+        return !noShow.includes(key) ? (
+          <p className="serviceParam" key={key} href={data.routeLink}>
+            <strong>{key}:</strong>{" "}
+            {key === "routeLength" ? (
+              <a href={data["routeLink"]} target="_blank">
+                {info}
+              </a>
+            ) : (
+              <div>{info}</div>
+            )}
           </p>
         ) : null;
       })}
