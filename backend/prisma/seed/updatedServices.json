@@ -9,14 +9,13 @@
     "website": "https://www.sacramentofoodbank.org/",
     "hours": "Mon-Fri 8am-4pm (check website for specific program hours)",
     "logo": "https://www.sacramentofoodbank.org/wp-content/uploads/2019/08/logo-sfbfs.png",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "5/6/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "5-6-2024",
     "services_offered": [
-      "Food Assistance",
-      "Nutrition Education",
-      "Emergency Services",
-      "Parenting Education",
-      "Clothes Closet"
+      "food_assistance",
+      "family_support",
+      "job_training",
+      "legal_assistance"
     ],
     "restrictions": "Proof of residency and income may be required for some services.",
     "next_steps": "Visit the website or call for information on services and how to apply."
@@ -31,17 +30,9 @@
     "website": "https://sacloaves.org/",
     "hours": "Varies by service (see website for details)",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "9/9/23",
-    "services_offered": [
-      "Meals",
-      "Showers",
-      "Laundry",
-      "Clothing",
-      "Mental Health Support",
-      "Case Management",
-      "Mail Services"
-    ],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "9-9-2023",
+    "services_offered": ["mental_health_education", "job_training"],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the campus during operating hours for assistance."
   },
@@ -55,14 +46,13 @@
     "website": "https://www.sspca.org/",
     "hours": "Varies by service (see website for details)",
     "logo": "https://www.sspca.org/wp-content/uploads/2021/04/sacramento-spca-logo-2021.png",
-    "language": "Farci, English, Pashto",
-    "date_needed": "8/30/23",
+    "language": ["farci", "english", "pashto"],
+    "date_needed": "8-30-2023",
     "services_offered": [
-      "Animal Adoptions",
-      "Veterinary Services",
-      "Animal Rescue",
-      "Humane Education",
-      "Spay/Neuter Services"
+      "education",
+      "immigrant_services",
+      "mental_health_education",
+      "mentorship"
     ],
     "restrictions": "Adoption fees apply. Spay/neuter services may have income restrictions.",
     "next_steps": "Visit the shelter during open hours or browse available animals online for adoption. Call for veterinary appointments."
@@ -77,14 +67,12 @@
     "website": "http://www.rmhcnc.org/",
     "hours": "Open 24 hours for families staying at the house (see website for visitation hours)",
     "logo": "https://www.rmhcnc.org/wp-content/uploads/2020/09/rmhc-logo.png",
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "5/22/23",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "5-22-2023",
     "services_offered": [
-      "Lodging",
-      "Meals",
-      "Support Services",
-      "Playroom",
-      "Laundry Facilities"
+      "mental_health_education",
+      "job_training",
+      "immigrant_services"
     ],
     "restrictions": "Families must have a child receiving medical care at a partner hospital.",
     "next_steps": "Contact the house directly or speak with hospital social workers to arrange a stay."
@@ -99,15 +87,15 @@
     "website": "https://www.crhs.org/",
     "hours": "Open 24 hours for children in need",
     "logo": null,
-    "language": "Arabic, Farci, English",
-    "date_needed": "12/8/23",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "1-20-2023",
     "services_offered": [
-      "Emergency Shelter",
-      "Counseling",
-      "Education",
-      "Recreational Activities",
-      "Medical Care",
-      "Family Reunification"
+      "education",
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance",
+      "mental_health_education",
+      "education",
+      "food_assistance"
     ],
     "restrictions": "Services are for children under the auspices of the Department of Health and Human Services and the Superior Court.",
     "next_steps": "Contact Child Protective Services or law enforcement if you are concerned about a child's safety. Contact the Receiving Home directly for information on their services."
@@ -122,14 +110,13 @@
     "website": "https://www.cffsacramento.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "5/12/23",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "5-12-2023",
     "services_offered": [
-      "Parenting Classes",
-      "Job Training",
-      "Mentorship",
-      "Support Groups",
-      "Family Counseling"
+      "job_training",
+      "mentorship",
+      "family_support",
+      "financial_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website or call for information on programs and enrollment."
@@ -144,14 +131,13 @@
     "website": "https://sacramentostepsforward.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, English, Pashto",
-    "date_needed": "3/13/23",
+    "language": ["arabic", "farci", "english", "pashto"],
+    "date_needed": "3-13-2023",
     "services_offered": [
-      "Homeless Outreach",
-      "Housing Assistance",
-      "Employment Support",
-      "Mental Health Services",
-      "Substance Use Treatment"
+      "education",
+      "job_training",
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance"
     ],
     "restrictions": "Clients must meet program eligibility requirements.",
     "next_steps": "If you are experiencing homelessness, call 2-1-1 or visit a Coordinated Access System (CAS) access point for assistance."
@@ -166,16 +152,9 @@
     "website": "https://www.altaregional.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "2/11/23",
-    "services_offered": [
-      "Case Management",
-      "Early Intervention",
-      "Respite Services",
-      "Employment Support",
-      "Day Programs",
-      "Independent Living Services"
-    ],
+    "language": ["english", "spanish"],
+    "date_needed": "2-11-2023",
+    "services_offered": ["financial_assistance", "education", "family_support"],
     "restrictions": "Must meet California's eligibility criteria for developmental disabilities services.",
     "next_steps": "Visit the website or call to begin the intake and assessment process."
   },
@@ -189,14 +168,9 @@
     "website": "http://www.cityyear.org/sacramento",
     "hours": "School hours (follows school district calendar)",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "4/2/23",
-    "services_offered": [
-      "Academic Tutoring",
-      "Mentorship",
-      "After-School Programs",
-      "Social-Emotional Learning Support"
-    ],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "4-2-2023",
+    "services_offered": ["mentorship", "legal_assistance", "food_assistance"],
     "restrictions": "Students must be enrolled in partner schools.",
     "next_steps": "Contact your child's school to inquire about City Year's presence and services."
   },
@@ -210,14 +184,14 @@
     "website": "http://teamgiving.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "Farci, Pashto",
-    "date_needed": "12/28/23",
+    "language": ["farci", "pashto"],
+    "date_needed": "1-20-2023",
     "services_offered": [
-      "Volunteer Placement",
-      "Nonprofit Support",
-      "Community Engagement",
-      "Volunteer Training",
-      "Event Management"
+      "mental_health_education",
+      "food_assistance",
+      "financial_assistance",
+      "job_training",
+      "immigrant_services"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website to browse volunteer opportunities and register as a volunteer."
@@ -232,22 +206,21 @@
     "website": "https://saccenter.org/",
     "hours": "Mon-Fri 10am-5pm (check website for specific program hours and events)",
     "logo": null,
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "11/18/23",
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "1-20-2023",
     "services_offered": [
-      "Mental Health Services & Counseling",
-      "HIV/STI Testing",
-      "Support Groups",
-      "Emergency Shelter",
-      "Legal Assistance",
-      "Social & Recreational Activities"
+      "legal_assistance",
+      "legal_assistance",
+      "education",
+      "financial_assistance",
+      "mental_health_education"
     ],
     "restrictions": "None mentioned for most services. Emergency shelter and some specific programs may have eligibility requirements.",
     "next_steps": "Visit the website or call for information on resources and programs"
   },
   {
     "name": "Environmental Council of Sacramento (ECOS)",
-    "address": "PO Box 1526, Sacramento, CA 95812",
+    "address": "909 12th St., Suite 203, Sacramento, CA 95814",
     "zipcode": "95812",
     "description": "A coalition that works to achieve regional sustainability, livable communities, environmental justice, and a healthy environment and economy in the Sacramento region.",
     "phone": "+1 916-444-6725",
@@ -255,12 +228,15 @@
     "website": "https://www.ecosacramento.net/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "2/21/23",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "2-21-2023",
     "services_offered": [
-      "Advocacy for environmental issues",
-      "Public education",
-      "Community organizing"
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "financial_assistance",
+      "education",
+      "job_training",
+      "legal_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website to learn about current initiatives, volunteer opportunities, and how to get involved."
@@ -275,13 +251,13 @@
     "website": "http://www.lsnc.net/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "1/17/24",
+    "language": ["english", "spanish"],
+    "date_needed": "1-17-2024",
     "services_offered": [
-      "Legal Representation",
-      "Legal Advice",
-      "Client Education",
-      "Advocacy for policy changes"
+      "legal_assistance",
+      "immigrant_services",
+      "mental_health_education",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Clients must meet income and residency requirements.",
     "next_steps": "Visit the website or call to learn more about eligibility and how to apply for legal assistance."
@@ -296,13 +272,13 @@
     "website": "https://namisacramento.org/",
     "hours": "Warmline hours vary, see website for details",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, Pashto",
-    "date_needed": "8/4/24",
+    "language": ["arabic", "farci", "spanish", "pashto"],
+    "date_needed": "8-4-2024",
     "services_offered": [
-      "Support Groups",
-      "Educational Programs",
-      "Advocacy for mental health services",
-      "Crisis support resources"
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "mentorship",
+      "legal_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website or call the Warmline for support and information."
@@ -317,15 +293,15 @@
     "website": "https://www.agencyonaging4.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "9/23/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "9-23-2024",
     "services_offered": [
-      "Information & Referral",
-      "CalFresh Enrollment Assistance",
-      "Caregiver Support",
-      "Transportation Assistance",
-      "Elder Abuse Prevention",
-      "Health & Wellness Programs"
+      "mental_health_education",
+      "job_training",
+      "food_assistance",
+      "legal_assistance",
+      "mentorship",
+      "financial_assistance"
     ],
     "restrictions": "Services may be limited to individuals 60 years or older or those with specific needs. Eligibility requirements may apply for some programs.",
     "next_steps": "Visit the website or call for information on available services and eligibility requirements."
@@ -340,13 +316,12 @@
     "website": "https://wildlifecareassociation.com/",
     "hours": "Every Day 10 AM-6 PM (Intake Hours)",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "7/25/24",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "7-25-2024",
     "services_offered": [
-      "Wildlife Rescue",
-      "Wildlife Rehabilitation",
-      "Community Education on Wildlife",
-      "Volunteer Opportunities"
+      "mental_health_education",
+      "mentorship",
+      "financial_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "If you find injured or orphaned wildlife, contact the hotline immediately. Visit the website to learn how to help or become a volunteer."
@@ -361,21 +336,20 @@
     "website": "https://norcalartsinc.org/",
     "hours": "Varies by event and program (check website)",
     "logo": null,
-    "language": "Arabic, Farci, English",
-    "date_needed": "2/6/24",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "2-6-2024",
     "services_offered": [
-      "Art Exhibitions",
-      "Art Classes",
-      "Workshops",
-      "Community Art Events",
-      "Art Education"
+      "family_support",
+      "immigrant_services",
+      "education",
+      "food_assistance"
     ],
     "restrictions": "Some classes or events may have fees or membership requirements.",
     "next_steps": "Visit the website for a schedule of events, classes, and exhibition information."
   },
   {
     "name": "350 Sacramento",
-    "address": "PO Box 19574, Sacramento, CA 95819",
+    "address": "4750 J St, Sacramento, CA 95819",
     "zipcode": "95819",
     "description": "A grassroots climate justice organization focused on collective action to create a safe global climate and accelerate the transition to a sustainable future.",
     "phone": null,
@@ -383,14 +357,14 @@
     "website": "https://350sacramento.org/",
     "hours": "Varies by event and meeting schedule (check website)",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "12/13/22",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "1-3-2022",
     "services_offered": [
-      "Climate Advocacy",
-      "Community Organizing",
-      "Public Education",
-      "Workshops on Climate Solutions",
-      "Environmental Justice Initiatives"
+      "family_support",
+      "immigrant_services",
+      "food_assistance",
+      "mentorship",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website to learn about current campaigns, attend meetings, or become a volunteer."
@@ -405,13 +379,13 @@
     "website": "https://www.capitalprobono.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "10/29/23",
+    "language": ["english", "spanish"],
+    "date_needed": "1-9-2023",
     "services_offered": [
-      "Civil Legal Services",
-      "Attorney Referrals",
-      "Legal Clinics",
-      "Advocacy"
+      "refugee_&_immigrant_resettlement",
+      "education",
+      "job_training",
+      "mentorship"
     ],
     "restrictions": "Clients must meet income and residency requirements.",
     "next_steps": "Visit the website or call for information on eligibility and how to apply for legal assistance."
@@ -426,14 +400,9 @@
     "website": "https://california.lgbt/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "4/26/24",
-    "services_offered": [
-      "Scholarship Programs",
-      "Community Events",
-      "Leadership Development",
-      "Advocacy for LGBTQ+ Rights"
-    ],
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "4-26-2024",
+    "services_offered": ["mental_health_education", "mentorship"],
     "restrictions": "Scholarship eligibility requirements may apply.",
     "next_steps": "Visit the website to learn about their initiatives, apply for scholarships, or get involved in community events."
   },
@@ -447,9 +416,16 @@
     "website": "https://mdfoodbank.org/",
     "hours": "Mon-Fri 8:30am-4:30pm",
     "logo": "https://mdfoodbank.org/wp-content/uploads/2021/04/MFB_Logo_FullColor_RGB.png",
-    "language": "Farci, Pashto",
-    "date_needed": "7/1/23",
-    "services_offered": ["Food assistance", "Food pantry support"],
+    "language": ["farci", "pashto"],
+    "date_needed": "7-1-2023",
+    "services_offered": [
+      "education",
+      "legal_assistance",
+      "family_support",
+      "mental_health_education",
+      "financial_assistance",
+      "food_assistance"
+    ],
     "restrictions": "Contact local food pantry for details",
     "next_steps": "Visit website or call for more information."
   },
@@ -463,12 +439,15 @@
     "website": "https://mfeast.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://mfeast.org/wp-content/themes/moveablefeast/assets/images/logo.png",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "7/11/23",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "7-11-2023",
     "services_offered": [
-      "Meal delivery",
-      "Grocery delivery",
-      "Nutritional counseling"
+      "family_support",
+      "legal_assistance",
+      "immigrant_services",
+      "mental_health_education",
+      "job_training",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Serves individuals with life-threatening illnesses like HIV/AIDS and cancer",
     "next_steps": "Visit website or call for details on receiving services."
@@ -483,13 +462,9 @@
     "website": "https://www.mdspca.org/",
     "hours": "Vary by program, check website",
     "logo": "https://www.mdspca.org/wp-content/themes/mdspca/assets/images/mdspca-logo.png",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "2/26/24",
-    "services_offered": [
-      "Animal adoption",
-      "Veterinary services",
-      "Humane education"
-    ],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "2-26-2024",
+    "services_offered": ["education", "mental_health_education"],
     "restrictions": "Vary by service",
     "next_steps": "Visit website or call for more information."
   },
@@ -503,12 +478,14 @@
     "website": "https://www.stfranciscenter.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.stfranciscenter.org/wp-content/uploads/2016/04/st-francis-neighborhood-center-logo.png",
-    "language": "Arabic, Farci, Spanish, Pashto",
-    "date_needed": "6/21/23",
+    "language": ["arabic", "farci", "spanish", "pashto"],
+    "date_needed": "6-21-2023",
     "services_offered": [
-      "Education programs",
-      "Social interventions",
-      "Community development"
+      "family_support",
+      "legal_assistance",
+      "mentorship",
+      "refugee_&_immigrant_resettlement",
+      "job_training"
     ],
     "restrictions": "Serves residents of West Baltimore",
     "next_steps": "Visit website or call for program details."
@@ -523,9 +500,16 @@
     "website": "https://www.cfuf.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.cfuf.org/wp-content/themes/cfuf/assets/images/logo.png",
-    "language": "English, Spanish",
-    "date_needed": "7/31/23",
-    "services_offered": ["Employment programs", "Mentoring", "Family support"],
+    "language": ["english", "spanish"],
+    "date_needed": "7-31-2023",
+    "services_offered": [
+      "family_support",
+      "legal_assistance",
+      "mentorship",
+      "family_support",
+      "food_assistance",
+      "refugee_&_immigrant_resettlement"
+    ],
     "restrictions": "Primarily serves men and returning citizens",
     "next_steps": "Visit website or call to learn more."
   },
@@ -539,12 +523,12 @@
     "website": "http://www.uwcm.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.uwcm.org/wp-content/themes/uwcm/images/logo.png",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "1/12/23",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "1-12-2023",
     "services_offered": [
-      "Community development",
-      "Educational programs",
-      "Financial assistance referrals"
+      "legal_assistance",
+      "immigrant_services",
+      "mentorship"
     ],
     "restrictions": "Vary by program",
     "next_steps": "Visit website or call for information on programs and services."
@@ -559,15 +543,20 @@
     "website": "http://www.rmhcmaryland.org/",
     "hours": "Mon-Sun 9am-8:30pm",
     "logo": "https://www.rmhcmaryland.org/wp-content/uploads/2016/09/RMHC-Maryland-Logo.png",
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "12/23/22",
-    "services_offered": ["Lodging for families", "Support services"],
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "1-3-2022",
+    "services_offered": [
+      "financial_assistance",
+      "job_training",
+      "food_assistance",
+      "immigrant_services"
+    ],
     "restrictions": "Requires referral from a hospital",
     "next_steps": "Visit website or call for information on eligibility and availability."
   },
   {
     "name": "Associated Black Charities Inc",
-    "address": "2 Hamill Road, 302 East Quadrangle, Baltimore, MD 21210, US",
+    "address": "2 Hamill Road, 302 East Quadrangle, Baltimore, MD 21210, USA, East Quadrangle Building",
     "zipcode": "21210",
     "description": "Associated Black Charities is a racial equity organization that works as an educator, advocate, supporter, and convener to address and eliminate the barriers created by structural racism and to advance long-term solutions that create new opportunities for Black people to thrive.",
     "phone": "+1 410-659-0000",
@@ -575,13 +564,9 @@
     "website": "http://www.associatedblackcharities.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "https://www.associatedblackcharities.org/wp-content/uploads/2021/04/associated-black-charities-logo.png",
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "3/7/24",
-    "services_offered": [
-      "Advocacy",
-      "Racial equity initiatives",
-      "Community support"
-    ],
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "3-7-2024",
+    "services_offered": ["mental_health_education", "legal_assistance"],
     "restrictions": "None",
     "next_steps": "Visit website to learn more about their initiatives."
   },
@@ -595,13 +580,12 @@
     "website": "http://www.catholiccharities-md.org/",
     "hours": "Mon-Fri 8:30am-4:30pm",
     "logo": "https://cc-md.org/wp-content/uploads/2016/09/Catholic-Charities-Baltimore-Logo.png",
-    "language": "Arabic, Farci, English",
-    "date_needed": "7/21/23",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "7-21-2023",
     "services_offered": [
-      "Mental health support",
-      "Senior services",
-      "Immigrant services",
-      "Poverty relief"
+      "immigrant_services",
+      "food_assistance",
+      "job_training"
     ],
     "restrictions": "Vary by program",
     "next_steps": "Visit website or call for information on specific programs."
@@ -616,12 +600,14 @@
     "website": "https://www.thejuliecommunitycenter.org/",
     "hours": "Mon-Fri 9am-5am",
     "logo": "https://www.thejuliecommunitycenter.org/wp-content/uploads/2018/02/JulieCommunityCenterLogo.png",
-    "language": "Arabic, Farci, English",
-    "date_needed": "10/23/24",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "1-3-2024",
     "services_offered": [
-      "Resource navigation",
-      "Community development",
-      "Anti-poverty initiatives"
+      "mentorship",
+      "education",
+      "financial_assistance",
+      "job_training",
+      "legal_assistance"
     ],
     "restrictions": "Serves residents of east/southeast Baltimore",
     "next_steps": "Visit website or call to learn more about programs."
@@ -636,13 +622,14 @@
     "website": "http://flogiving.org/",
     "hours": "Mon, Wed-Sun 9am-5pm, Tue Closed",
     "logo": "Not available",
-    "language": "Farci, English, Pashto",
-    "date_needed": "6/5/24",
+    "language": ["farci", "english", "pashto"],
+    "date_needed": "6-5-2024",
     "services_offered": [
-      "Food assistance",
-      "Clothing assistance",
-      "Furniture assistance",
-      "Support for homeless and veterans"
+      "job_training",
+      "mentorship",
+      "food_assistance",
+      "education",
+      "mental_health_education"
     ],
     "restrictions": "None",
     "next_steps": "Visit website or call for details on receiving services."
@@ -657,13 +644,15 @@
     "website": "http://www.communitygroupinc.org/",
     "hours": "Mon-Fri 11am-6pm, Sat 11am-2pm, Sun Closed",
     "logo": "Not available",
-    "language": "Arabic, Farci, English, Pashto",
-    "date_needed": "5/26/24",
+    "language": ["arabic", "farci", "english", "pashto"],
+    "date_needed": "5-26-2024",
     "services_offered": [
-      "Mentoring for youth",
-      "Career development",
-      "STEAM education",
-      "Community development"
+      "legal_assistance",
+      "refugee_&_immigrant_resettlement",
+      "job_training",
+      "mental_health_education",
+      "financial_assistance",
+      "family_support"
     ],
     "restrictions": "Serves youth ages 13-17 in Baltimore City",
     "next_steps": "Visit website or call to learn more about their programs."
@@ -678,13 +667,15 @@
     "website": "http://www.namibaltimore.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "Not available",
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "1/7/24",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "1-7-2024",
     "services_offered": [
-      "Mental health education",
-      "Advocacy",
-      "Support groups",
-      "Information resources"
+      "mental_health_education",
+      "mental_health_education",
+      "job_training",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "family_support"
     ],
     "restrictions": "None",
     "next_steps": "Visit website or call for more information."
@@ -699,12 +690,13 @@
     "website": "http://www.habitatchesapeake.org/",
     "hours": "Tue-Sat 10am-6pm, Sun-Mon Closed",
     "logo": "Not available",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "5/16/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "5-16-2024",
     "services_offered": [
-      "Affordable housing development",
-      "Homeownership programs",
-      "ReStore sales"
+      "mental_health_education",
+      "legal_assistance",
+      "job_training",
+      "education"
     ],
     "restrictions": "Serves families in specific counties in the Chesapeake Bay region",
     "next_steps": "Visit website or call to learn more about homeownership opportunities or to donate."
@@ -719,12 +711,14 @@
     "website": "http://www.healthcareaccessmaryland.org/",
     "hours": "Mon-Fri 8am-4:30pm",
     "logo": "Not available",
-    "language": "English, Spanish",
-    "date_needed": "5/2/23",
+    "language": ["english", "spanish"],
+    "date_needed": "5-2-2023",
     "services_offered": [
-      "Health insurance enrollment assistance",
-      "Healthcare navigation",
-      "Referrals to healthcare providers"
+      "mental_health_education",
+      "mentorship",
+      "family_support",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Serves Maryland residents",
     "next_steps": "Visit website or call for assistance with health insurance enrollment or healthcare access."
@@ -739,12 +733,15 @@
     "website": "http://druidheights.com/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": "Not available",
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "11/23/22",
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "1-3-2022",
     "services_offered": [
-      "Community development initiatives",
-      "Support for residents",
-      "Neighborhood revitalization"
+      "education",
+      "family_support",
+      "mentorship",
+      "financial_assistance",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Primarily serves the Penn-North neighborhood",
     "next_steps": "Visit website or call to learn more about their projects and programs."
@@ -759,15 +756,9 @@
     "website": "https://www.joybaltimore.org/",
     "hours": "Mon, Tue, Thu, Fri 3pm-7pm, Wed, Sat, Sun Closed",
     "logo": "Not available",
-    "language": "English, Spanish",
-    "date_needed": "6/1/23",
-    "services_offered": [
-      "Housing assistance for youth",
-      "Clothing and hygiene supplies",
-      "Job placement assistance",
-      "Mentoring",
-      "Vital records procurement"
-    ],
+    "language": ["english", "spanish"],
+    "date_needed": "6-1-2023",
+    "services_offered": ["legal_assistance", "education"],
     "restrictions": "Serves youth aged 12-26",
     "next_steps": "Visit website or call for more information on their programs and support."
   },
@@ -781,13 +772,12 @@
     "website": "http://blackmentalhealth.com/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "Not available",
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "4/16/24",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "4-16-2024",
     "services_offered": [
-      "Mental health training and consultation",
-      "Support groups",
-      "Resource referral",
-      "Educational resources on mental health"
+      "family_support",
+      "job_training",
+      "mental_health_education"
     ],
     "restrictions": "None",
     "next_steps": "Visit website or call to learn more about their services and resources."
@@ -802,12 +792,15 @@
     "website": "https://www.promotionandarts.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": "Not available",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "6/25/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "6-25-2024",
     "services_offered": [
-      "Event production",
-      "Arts funding and support",
-      "Filming permits"
+      "food_assistance",
+      "financial_assistance",
+      "education",
+      "job_training",
+      "mental_health_education",
+      "mentorship"
     ],
     "restrictions": "Serves artists, organizations, and residents of Baltimore City",
     "next_steps": "Visit website or call for information on arts and cultural events, or grant opportunities."
@@ -822,14 +815,13 @@
     "website": "http://www.catholiccharities-md.org/my-sisters-place/",
     "hours": "Mon-Sun 7:30am-5:30pm",
     "logo": "Not available",
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "4/12/23",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "4-12-2023",
     "services_offered": [
-      "Counseling",
-      "Documentation assistance",
-      "Showers",
-      "Meals",
-      "Referrals"
+      "education",
+      "financial_assistance",
+      "mental_health_education",
+      "immigrant_services"
     ],
     "restrictions": "Serves women in need",
     "next_steps": "Visit website or call for more information about services and support."
@@ -844,9 +836,13 @@
     "website": "https://www.rmhcdc.org/",
     "hours": "Open 24 hours",
     "logo": null,
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "12/12/24",
-    "services_offered": ["Family Support", "Medical Assistance"],
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "1-2-2024",
+    "services_offered": [
+      "mental_health_education",
+      "immigrant_services",
+      "legal_assistance"
+    ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -860,12 +856,13 @@
     "website": "http://www.panfoundation.org/",
     "hours": "Mon-Fri 9am-5:30pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "8/24/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "8-24-2024",
     "services_offered": [
-      "Financial Assistance",
-      "Healthcare Advocacy",
-      "Education"
+      "financial_assistance",
+      "education",
+      "immigrant_services",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -880,14 +877,15 @@
     "website": "http://www.missiondc.org/",
     "hours": "7:30 AM–10 PM",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "12/18/23",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "1-20-2023",
     "services_offered": [
-      "Emergency Shelter",
-      "Rehabilitation",
-      "Food & Clothing Distribution",
-      "Job Training",
-      "Housing Assistance"
+      "job_training",
+      "mentorship",
+      "food_assistance",
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "job_training"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -902,9 +900,13 @@
     "website": "http://www.thrivedc.org/",
     "hours": "Mon-Thu 10am-12pm, 1pm-3pm; Fri 8:30am-9:30am",
     "logo": null,
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "9/19/23",
-    "services_offered": ["Homelessness Prevention", "Support Services"],
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "9-19-2023",
+    "services_offered": [
+      "financial_assistance",
+      "food_assistance",
+      "mentorship"
+    ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -918,13 +920,15 @@
     "website": "http://www.asylumworks.org/",
     "hours": null,
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "3/3/23",
+    "language": ["english", "spanish"],
+    "date_needed": "3-3-2023",
     "services_offered": [
-      "Refugee Support",
-      "Immigrant Services",
-      "Legal Assistance",
-      "Employment Support"
+      "legal_assistance",
+      "mental_health_education",
+      "legal_assistance",
+      "food_assistance",
+      "refugee_&_immigrant_resettlement",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -939,9 +943,16 @@
     "website": "http://www.refugeesinternational.org/",
     "hours": null,
     "logo": null,
-    "language": "Arabic, Farci, English",
-    "date_needed": "3/17/24",
-    "services_offered": ["Advocacy for Refugees"],
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "3-17-2024",
+    "services_offered": [
+      "legal_assistance",
+      "financial_assistance",
+      "immigrant_services",
+      "job_training",
+      "mentorship",
+      "food_assistance"
+    ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -955,14 +966,12 @@
     "website": "http://lssnca.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "2/1/23",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "2-1-2023",
     "services_offered": [
-      "Refugee & Immigrant Resettlement",
-      "Workforce Development",
-      "Foster Care",
-      "Adoption Services",
-      "Health & Wellness"
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -977,9 +986,14 @@
     "website": "http://jrsusa.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, English, Pashto",
-    "date_needed": "9/29/23",
-    "services_offered": ["Refugee Support", "Advocacy"],
+    "language": ["arabic", "farci", "english", "pashto"],
+    "date_needed": "9-29-2023",
+    "services_offered": [
+      "financial_assistance",
+      "family_support",
+      "education",
+      "refugee_&_immigrant_resettlement"
+    ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -993,9 +1007,9 @@
     "website": "https://www.catholiccharitiesdc.org/program/share-food-network/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "3/23/23",
-    "services_offered": ["Food Assistance"],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "3-23-2023",
+    "services_offered": ["food_assistance", "legal_assistance"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1009,9 +1023,14 @@
     "website": "http://harfordcaa.org/",
     "hours": "Mon-Fri 8am-12pm, 1pm-5pm",
     "logo": null,
-    "language": "Farci, English, Pashto",
-    "date_needed": "10/19/23",
-    "services_offered": ["Food Pantry", "Community Assistance Programs"],
+    "language": ["farci", "english", "pashto"],
+    "date_needed": "1-9-2023",
+    "services_offered": [
+      "legal_assistance",
+      "job_training",
+      "family_support",
+      "education"
+    ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1025,9 +1044,9 @@
     "website": "http://www.capitalareafoodbank.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "11/12/24",
-    "services_offered": ["Food Assistance", "Nutrition Education"],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "1-2-2024",
+    "services_offered": ["food_assistance", "legal_assistance", "job_training"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1041,12 +1060,11 @@
     "website": "http://www.unitedwaynca.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "Farci, Pashto",
-    "date_needed": "12/22/24",
+    "language": ["farci", "pashto"],
+    "date_needed": "1-2-2024",
     "services_offered": [
-      "Health Programs",
-      "Education Programs",
-      "Financial Stability Programs"
+      "refugee_&_immigrant_resettlement",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1061,12 +1079,13 @@
     "website": "http://www.theurbanalliance.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, Pashto",
-    "date_needed": "12/2/24",
+    "language": ["arabic", "farci", "spanish", "pashto"],
+    "date_needed": "1-20-2024",
     "services_offered": [
-      "Paid Internships",
-      "Mentorship",
-      "Professional Development"
+      "mentorship",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1081,11 +1100,14 @@
     "website": "https://dccfh.org/",
     "hours": "Open 24 hours",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "1/22/23",
+    "language": ["english", "spanish"],
+    "date_needed": "1-22-2023",
     "services_offered": [
-      "Homeless Services",
-      "Support for Disadvantaged Populations"
+      "mentorship",
+      "legal_assistance",
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1100,16 +1122,12 @@
     "website": "http://www.breadforthecity.org/",
     "hours": "Mon-Thu 9am-3pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "7/5/24",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "7-5-2024",
     "services_offered": [
-      "Food Assistance",
-      "Clothing",
-      "Medical Care",
-      "Legal Services",
-      "Social Services",
-      "Community Organizing",
-      "Advocacy"
+      "food_assistance",
+      "financial_assistance",
+      "legal_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1124,9 +1142,16 @@
     "website": "http://www.miriamskitchen.org/",
     "hours": "Mon-Fri 7am-10am (Breakfast), 11am-1pm (Lunch)",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "4/6/24",
-    "services_offered": ["Meals", "Case Management", "Homeless Outreach"],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "4-6-2024",
+    "services_offered": [
+      "family_support",
+      "legal_assistance",
+      "immigrant_services",
+      "financial_assistance",
+      "education",
+      "mentorship"
+    ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1140,12 +1165,12 @@
     "website": "http://www.dccentralkitchen.org/",
     "hours": null,
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "8/10/23",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "8-10-2023",
     "services_offered": [
-      "Culinary Training",
-      "Meal Provision",
-      "Food Distribution"
+      "immigrant_services",
+      "legal_assistance",
+      "mentorship"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1160,14 +1185,14 @@
     "website": "http://www.salvationarmyusa.org/",
     "hours": "Varies by program",
     "logo": null,
-    "language": "Arabic, Farci, English",
-    "date_needed": "6/15/24",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "6-15-2024",
     "services_offered": [
-      "Homeless Services",
-      "Housing Assistance",
-      "Food Assistance",
-      "Emergency Services",
-      "Rehabilitation Programs"
+      "food_assistance",
+      "mentorship",
+      "refugee_&_immigrant_resettlement",
+      "food_assistance",
+      "financial_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1182,14 +1207,13 @@
     "website": "http://some.org/",
     "hours": null,
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "10/9/23",
+    "language": ["english", "spanish"],
+    "date_needed": "1-20-2023",
     "services_offered": [
-      "Housing",
-      "Education",
-      "Workforce Development",
-      "Healthcare",
-      "Addiction Recovery"
+      "education",
+      "mentorship",
+      "legal_assistance",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1204,9 +1228,9 @@
     "website": "http://casadc.org/",
     "hours": null,
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "9/13/24",
-    "services_offered": ["Advocacy for Children"],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "9-13-2024",
+    "services_offered": ["job_training", "food_assistance"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1220,13 +1244,14 @@
     "website": "https://vsuw.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "2/16/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "2-16-2024",
     "services_offered": [
-      "Education",
-      "Housing and Homelessness",
-      "Health",
-      "Workforce Development"
+      "education",
+      "job_training",
+      "legal_assistance",
+      "refugee_&_immigrant_resettlement",
+      "food_assistance"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to learn more about programs and opportunities to give or get involved."
@@ -1241,13 +1266,9 @@
     "website": "https://rmhccnaz.org/",
     "hours": "Open 24 hours (limited information available on specific programs)",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "12/3/22",
-    "services_offered": [
-      "Support for families of hospitalized children",
-      "Lodging",
-      "Meals"
-    ],
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "1-20-2022",
+    "services_offered": ["legal_assistance", "food_assistance"],
     "restrictions": null,
     "next_steps": "Contact them directly for more information on eligibility and how to access their services."
   },
@@ -1261,14 +1282,15 @@
     "website": "https://freshstartwomen.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, Pashto",
-    "date_needed": "1/27/24",
+    "language": ["arabic", "farci", "spanish", "pashto"],
+    "date_needed": "1-27-2024",
     "services_offered": [
-      "Education",
-      "Training",
-      "Employment Services",
-      "Career Services",
-      "Support Groups"
+      "education",
+      "job_training",
+      "family_support",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "mentorship"
     ],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly to learn more about programs and services offered."
@@ -1283,12 +1305,13 @@
     "website": "http://www.aznonprofits.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "3/27/24",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "3-27-2024",
     "services_offered": [
-      "Advocacy for nonprofits",
-      "Resources for nonprofits",
-      "Training and Networking"
+      "food_assistance",
+      "refugee_&_immigrant_resettlement",
+      "mentorship",
+      "immigrant_services"
     ],
     "restrictions": "Membership may be required for some services",
     "next_steps": "Visit their website to explore membership benefits and resources."
@@ -1303,13 +1326,9 @@
     "website": "http://www.azfoundation.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "10/3/24",
-    "services_offered": [
-      "Philanthropic services",
-      "Community investment",
-      "Grantmaking"
-    ],
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "1-20-2024",
+    "services_offered": ["family_support", "immigrant_services", "education"],
     "restrictions": null,
     "next_steps": "Contact them to learn more about ways to support Arizona communities."
   },
@@ -1323,12 +1342,13 @@
     "website": "https://www.catholiccharitiesaz.org/",
     "hours": null,
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "10/13/24",
+    "language": ["english", "spanish"],
+    "date_needed": "1-3-2024",
     "services_offered": [
-      "Preschool services",
-      "Family support",
-      "Resources for individuals in need"
+      "family_support",
+      "mentorship",
+      "food_assistance",
+      "job_training"
     ],
     "restrictions": null,
     "next_steps": "Contact them directly to inquire about services and eligibility."
@@ -1343,9 +1363,15 @@
     "website": "https://phoenixrescuemission.org/hope-for-hunger",
     "hours": "Mon-Thurs 8am-12pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "7/15/24",
-    "services_offered": ["Food assistance"],
+    "language": ["english", "spanish"],
+    "date_needed": "7-15-2024",
+    "services_offered": [
+      "mentorship",
+      "food_assistance",
+      "job_training",
+      "financial_assistance",
+      "legal_assistance"
+    ],
     "restrictions": null,
     "next_steps": "Visit the food bank during their operating hours to receive assistance."
   },
@@ -1359,9 +1385,14 @@
     "website": "http://www.fmsc.org/",
     "hours": "Mon, Wed, Thurs, Tues, Fri, Sat 8:45 AM-9 PM (Closed Sun)",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "11/2/24",
-    "services_offered": ["Food for malnourished children (global)"],
+    "language": ["english", "spanish"],
+    "date_needed": "1-20-2024",
+    "services_offered": [
+      "mentorship",
+      "immigrant_services",
+      "mental_health_education",
+      "family_support"
+    ],
     "restrictions": null,
     "next_steps": "Visit their website to learn about volunteering and donation opportunities."
   },
@@ -1375,12 +1406,14 @@
     "website": "http://www.freeartsaz.org/",
     "hours": "Mon-Fri 8:30am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English, Pashto",
-    "date_needed": "8/20/23",
+    "language": ["arabic", "farci", "spanish", "english", "pashto"],
+    "date_needed": "8-20-2023",
     "services_offered": [
-      "Art programs",
-      "Mentorship",
-      "Support for abused children"
+      "mentorship",
+      "education",
+      "legal_assistance",
+      "food_assistance",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to learn more about their programs and ways to support their work."
@@ -1395,12 +1428,15 @@
     "website": "https://brighterviewfoundation.org/",
     "hours": "Mon-Fri 9am-5pm, Sat 10am-5pm (Closed Sun)",
     "logo": null,
-    "language": "Arabic, Farci, English, Pashto",
-    "date_needed": "6/11/23",
+    "language": ["arabic", "farci", "english", "pashto"],
+    "date_needed": "6-11-2023",
     "services_offered": [
-      "Health and wellness education",
-      "Community engagement",
-      "Support services for people with disabilities and seniors"
+      "job_training",
+      "mentorship",
+      "refugee_&_immigrant_resettlement",
+      "immigrant_services",
+      "mental_health_education",
+      "food_assistance"
     ],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly to learn about their programs and how to get involved."
@@ -1415,15 +1451,15 @@
     "website": "https://umom.org/",
     "hours": "Open 24 hours (for shelter services, administrative hours may vary)",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "4/22/23",
+    "language": ["english", "spanish"],
+    "date_needed": "4-22-2023",
     "services_offered": [
-      "Emergency Shelter",
-      "Transitional Housing",
-      "Permanent Supportive Housing",
-      "Case Management",
-      "Employment Services",
-      "Child Care"
+      "refugee_&_immigrant_resettlement",
+      "food_assistance",
+      "legal_assistance",
+      "job_training",
+      "financial_assistance",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Contact them directly for eligibility and program information."
@@ -1438,13 +1474,12 @@
     "website": "http://harvestcompassioncenter.org/",
     "hours": "Tues-Wed-Thurs 10am-12pm",
     "logo": null,
-    "language": "Arabic, Spanish, Pashto",
-    "date_needed": "11/22/24",
+    "language": ["arabic", "spanish", "pashto"],
+    "date_needed": "1-2-2024",
     "services_offered": [
-      "Food Pantry",
-      "Clothing Bank",
-      "Hygiene Supplies",
-      "Referral Services"
+      "refugee_&_immigrant_resettlement",
+      "financial_assistance",
+      "family_support"
     ],
     "restrictions": null,
     "next_steps": "Visit during operating hours to receive assistance."
@@ -1459,15 +1494,9 @@
     "website": "https://www.stvincentdepaul.net/",
     "hours": "Vary by program, check website or call for details.",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "11/8/23",
-    "services_offered": [
-      "Meals",
-      "Food Pantry",
-      "Clothing",
-      "Housing Assistance",
-      "Medical Services"
-    ],
+    "language": ["english", "spanish"],
+    "date_needed": "1-20-2023",
+    "services_offered": ["job_training", "immigrant_services"],
     "restrictions": null,
     "next_steps": "Contact them to learn more about programs and services offered."
   },
@@ -1481,22 +1510,15 @@
     "website": "https://childcrisisaz.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "11/13/22",
-    "services_offered": [
-      "Crisis Nurseries",
-      "Foster Care",
-      "Adoption Services",
-      "Counseling",
-      "Parenting Classes",
-      "Prevention Programs"
-    ],
+    "language": ["english", "spanish"],
+    "date_needed": "1-3-2022",
+    "services_offered": ["immigrant_services", "job_training", "education"],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly for program details and how to get help or support."
   },
   {
     "name": "Healing Hearts Animal Rescue",
-    "address": "Phoenix, AZ (specific address may vary for fosters or events)",
+    "address": "4750 J St, Sacramento, CA 95819, US",
     "zipcode": "85020",
     "description": "Healing Hearts Animal Rescue is a non-profit organization dedicated to rescuing, rehabilitating, and rehoming abused, neglected, and abandoned animals in the Phoenix area.",
     "phone": null,
@@ -1504,13 +1526,12 @@
     "website": "https://www.healingheartsanimalrescue.org/",
     "hours": "By appointment for adoptions and fosters",
     "logo": null,
-    "language": "Arabic, Farci, English",
-    "date_needed": "8/14/24",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "8-14-2024",
     "services_offered": [
-      "Animal Rescue",
-      "Rehabilitation",
-      "Adoption Services",
-      "Foster Programs"
+      "mental_health_education",
+      "education",
+      "legal_assistance"
     ],
     "restrictions": "Adoption applications and vetting process required",
     "next_steps": "Visit their website to view available animals, apply to adopt or foster, or learn about volunteer opportunities."
@@ -1525,12 +1546,13 @@
     "website": "https://rebuildingtogetherphx.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, English",
-    "date_needed": "11/28/23",
+    "language": ["arabic", "farci", "english"],
+    "date_needed": "1-20-2023",
     "services_offered": [
-      "Critical Home Repairs",
-      "Accessibility Modifications",
-      "Home Safety Upgrades"
+      "legal_assistance",
+      "financial_assistance",
+      "mentorship",
+      "food_assistance"
     ],
     "restrictions": "Eligibility based on income, age, disability, and veteran status",
     "next_steps": "Visit their website to apply for assistance or learn about volunteer opportunities."
@@ -1545,12 +1567,13 @@
     "website": "https://handsonphoenix.org/",
     "hours": "Mon-Fri 9am-5pm",
     "logo": null,
-    "language": "Arabic, Farci, Spanish, English",
-    "date_needed": "9/3/24",
+    "language": ["arabic", "farci", "spanish", "english"],
+    "date_needed": "9-3-2024",
     "services_offered": [
-      "Volunteer Management",
-      "Community Service Projects",
-      "Volunteer Matching"
+      "legal_assistance",
+      "financial_assistance",
+      "education",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to find volunteer opportunities and sign up for projects."
@@ -1565,13 +1588,13 @@
     "website": "http://www.clothescabin.org/",
     "hours": "Tues-Fri 9am-2pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "1/1/25",
+    "language": ["english", "spanish"],
+    "date_needed": "1-1-2025",
     "services_offered": [
-      "Free Clothing",
-      "Shoes",
-      "Basic Necessities",
-      "Job Interview Attire"
+      "job_training",
+      "education",
+      "food_assistance",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Visit during operating hours to receive assistance."
@@ -1586,14 +1609,13 @@
     "website": "https://www.nativehealthphoenix.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English"d": null,
+    "language": ["english"],
     "services_offered": [
-      "Primary Care",
-      "Behavioral Health",
-      "Dental Care",
-      "Prenatal and Pediatric Care",
-      "Outreach Programs",
-      "Traditional Wellness"
+      "job_training",
+      "legal_assistance",
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "education"
     ],
     "restrictions": null,
     "next_steps": "Contact them to schedule an appointment or learn more about their services."
@@ -1608,15 +1630,15 @@
     "website": "https://ability360.org/",
     "hours": "Mon-Fri 8am-5pm",
     "logo": null,
-    "language": "English, Spanish",
-    "date_needed": "1/2/23",
+    "language": ["english", "spanish"],
+    "date_needed": "1-2-2023",
     "services_offered": [
-      "Peer Mentoring",
-      "Advocacy",
-      "Employment Services",
-      "Independent Living Skills Training",
-      "Recreational Programs",
-      "Assistive Technology"
+      "food_assistance",
+      "job_training",
+      "legal_assistance",
+      "financial_assistance",
+      "immigrant_services",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly to learn more about programs and resources."
