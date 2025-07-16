@@ -1,0 +1,7 @@
+.RecService {
+  width: auto;
+  height: auto;
+  margin: 10px;
+  border: var(--border-mid) 5px solid;
+  border-radius: 36px;
+}
