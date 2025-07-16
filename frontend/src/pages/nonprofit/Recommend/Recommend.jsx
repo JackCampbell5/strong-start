@@ -41,7 +41,7 @@ function Recommend() {
         <LoadingButton
           onClick={getRecs}
           loading={loading}
-          text={"Recommend"}
+          text={"Recommend Services for my NonProfit"}
           fit={true}
         />
       ) : (

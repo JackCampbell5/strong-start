@@ -13,10 +13,13 @@ function LoadingButton({ loading, onClick, text, fit = false }) {
   }
   {
     return (
-      <div className={["LoadingButton", fit ? "fitText" : "setSize"].join(" ")}>
+      <div className="LoadingButton">
         <button
           onClick={handleClick}
-          className={loading ? "currentlyLoading" : "notLoading"}
+          className={[
+            loading ? "currentlyLoading" : "notLoading",
+            fit ? "fitText" : "setSize",
+          ].join(" ")}
         >
           {loading ? (
             <div className="loadingInside">

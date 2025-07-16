@@ -1,11 +1,13 @@
 /* Size of the button may be auto based on the param given */
-.setSize button {
+.LoadingButton .setSize {
   width: 100px;
   height: 50px;
 }
-.fitText button {
-  width: auto;
-  height: 50px;
+.LoadingButton .fitText {
+  width: fit-content;
+  max-width: 200px;
+  padding: 10px;
+  height: fit-content;
 }
 
 .LoadingButton .currentlyLoading:hover {
