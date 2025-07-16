@@ -9,7 +9,7 @@ import "./Recommend.css";
 import ServiceList from "#components/ServiceList/ServiceList";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // util functions
-import { fetchRecommendations } from "#fetch/serviceFetchUtils";
+import { fetchRecs } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function Recommend() {
@@ -21,11 +21,11 @@ function Recommend() {
   const [errorText, setErrorText] = useState("");
   const [loading, setLoading] = useState(false);
 
-  function getRecommendations() {
+  function getRecs() {
     setLoading(true);
-    fetchRecommendations(nonprofit).then(fetchRecommendationsCallback);
+    fetchRecs(nonprofit).then(fetchRecsCallback);
   }
-  function fetchRecommendationsCallback(result) {
+  function fetchRecsCallback(result) {
     setLoading(false);
     if (!result.valid) {
       setErrorText(result.error);
@@ -36,16 +36,16 @@ function Recommend() {
 
   return (
     <div className="Recommend">
-      <h3>Recommend</h3>
+      <h1>Service Recommendations</h1>
       {searchResults.length === 0 ? (
         <LoadingButton
-          onClick={getRecommendations}
+          onClick={getRecs}
           loading={loading}
           text={"Recommend"}
           fit={true}
         />
       ) : (
-        <ServiceList services={searchResults} />
+        <ServiceList data={searchResults} />
       )}
       <p className="errorText">{errorText}</p>
     </div>

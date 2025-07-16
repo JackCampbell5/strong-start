@@ -218,8 +218,9 @@ export async function fetchAllServices(nonprofit) {
  * Gets a list of all services recommended for a given nonprofit
  * @returns An object containing all the services that are recommended for this non profit
  */
-export async function fetchRecommendations(nonprofit) {
-  return await fetch(`${serviceLink}/${nonprofit}/recommend`, {
+export async function fetchRecs(nonprofit) {
+  // TODO change from all to recommend when backend endpoint is created
+  return await fetch(`${serviceLink}/${nonprofit}/all`, {
     method: "GET",
     credentials: "include",
     headers: {
