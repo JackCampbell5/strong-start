@@ -9,7 +9,7 @@ import "./Recommend.css";
 import ServiceList from "#components/ServiceList/ServiceList";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // util functions
-import { fetchAllServices } from "#fetch/serviceFetchUtils";
+import { fetchRecommendations } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
 function Recommend() {

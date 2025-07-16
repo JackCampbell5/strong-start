@@ -185,12 +185,41 @@ export async function fetchSearch(nonprofit, data) {
 }
 
 /**
- *
+ * Gets a list of all services for a nonprofit
  * @returns An object containing all the services in this non profits database
  */
 export async function fetchAllServices(nonprofit) {
-  // return { valid: true, data: serviceSearchTestData };
   return await fetch(`${serviceLink}/${nonprofit}/all`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return successReturn(data);
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching given service:", error);
+      return errorReturn(error);
+    });
+}
+
+/**
+ * Gets a list of all services recommended for a given nonprofit
+ * @returns An object containing all the services that are recommended for this non profit
+ */
+export async function fetchRecommendations(nonprofit) {
+  return await fetch(`${serviceLink}/${nonprofit}/recommend`, {
     method: "GET",
     credentials: "include",
     headers: {
