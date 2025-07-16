@@ -59,6 +59,13 @@ export function getAreaAroundPoint(lat, long, radius) {
   };
 }
 
+/**
+ * Calculates the distance between two points in miles using the Haversine formula
+ * Formula for calculation: https://www.movable-type.co.uk/scripts/latlong.html
+ * @param {object} cords1 - The first point in the form {latitude: number, longitude: number}
+ * @param {object} cords2 - The second point in the form {latitude: number, longitude: number}
+ * @returns The distance between the two points in miles
+ */
 export function calcDistance(cords1, cords2) {
   const earthRadiusMiles = 3958.76145808; // Approximate Earth radius in miles
   const degreesToRadians = Math.PI / 180;
@@ -80,6 +87,11 @@ export function calcDistance(cords1, cords2) {
   return earthRadiusMiles * c;
 }
 
+/**
+ * Get the coordinates from a location object in a object with latitude and longitude keys
+ * @param {object} locationObj - The location object from the google maps api
+ * @returns The longitude and latitude of the location object in the form {longitude: number, latitude: number}
+ */
 export function getCords(locationObj) {
   let cords = locationObj.location;
   let long = cords.longitude;
