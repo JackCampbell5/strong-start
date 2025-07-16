@@ -7,4 +7,5 @@
 }
 .Service .serviceParam {
   display: flex;
+  gap: 10px;
 }
