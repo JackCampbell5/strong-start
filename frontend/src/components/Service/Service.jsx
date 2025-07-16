@@ -26,7 +26,7 @@ function Service({ data }) {
                 {info}
               </a>
             ) : (
-              <div>{info}</div>
+              <span>{info}</span>
             )}
           </p>
         ) : null;
