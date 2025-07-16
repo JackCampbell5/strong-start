@@ -21,9 +21,9 @@ export default async function createFilter(nonprofit) {
 
 
   // Add the filters to the data array
-  for (let a of data) {
-    if (a.id === "services_needed") {
-      a.options = uniqueFilters;
+  for (let filter of data) {
+    if (filter.id === "services_needed") {
+      filter.options = uniqueFilters;
     }
   }
 

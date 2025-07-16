@@ -30,8 +30,8 @@ employeeRouter.get("/", async (req, res, next) => {
 employeeRouter.get("/all", async (req, res, next) => {
   const findNonProfits = await prisma.nonprofit_employee.findMany();
   // Hide the password
-  for (let a of findNonProfits) {
-    a.password = "*********";
+  for (let employee of findNonProfits) {
+    employee.password = "*********";
   }
   res.status(200).json(findNonProfits);
 });

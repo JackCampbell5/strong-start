@@ -12,23 +12,23 @@
 export function fillMissingDataFields(data, defaultData) {
   // Make sure the data that was sent back includes the icon and default values
   let completeData = [];
-  for (const a of data) {
-    const key = a.id;
+  for (const field of data) {
+    const key = field.id;
     if (defaultData[key]) {
-      if (!a.default) {
-        a.default = defaultData[key].default;
+      if (!field.default) {
+        field.default = defaultData[key].default;
       }
-      if (!a.icon) {
-        a.icon = defaultData[key].icon;
+      if (!field.icon) {
+        field.icon = defaultData[key].icon;
       }
-      if (!a.name) {
-        a.name = defaultData[key].name;
+      if (!field.name) {
+        field.name = defaultData[key].name;
       }
-      if (!a.required) {
-        a.required = defaultData[key].required;
+      if (!field.required) {
+        field.required = defaultData[key].required;
       }
     }
-    completeData.push(a);
+    completeData.push(field);
   }
   return completeData;
 }

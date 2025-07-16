@@ -64,13 +64,13 @@ function EditService({ serviceID = null }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (let a of data) {
-      if (a.value === "" && a.required) {
-        errorMessage += a.name + " is required. ";
+    for (let param of data) {
+      if (param.value === "" && param.required) {
+        errorMessage += param.name + " is required. ";
       } else if (
-        a.id === "zipcode" &&
-        a.value !== "" &&
-        !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
+        param.id === "zipcode" &&
+        param.value !== "" &&
+        !/^\d{5}$|^\d{5}\-\d{4}$/.test(param.value)
       ) {
         errorMessage += "Zipcode must be in the form 12345 or 12345-6789.";
       }

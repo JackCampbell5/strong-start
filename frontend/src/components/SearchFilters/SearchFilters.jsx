@@ -58,9 +58,9 @@ function SearchFilters({ loading, setLoading, searchFor }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (let a of data) {
-      if (a.value === "" && a.required) {
-        errorMessage += a.name + " is required. ";
+    for (let param of data) {
+      if (param.value === "" && param.required) {
+        errorMessage += param.name + " is required. ";
       }
     }
     if (errorMessage !== "") {
