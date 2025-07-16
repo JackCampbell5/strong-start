@@ -43,3 +43,9 @@
   height: 25px;
   width: 25px;
 }
+
+.custom-select__control {
+  width: 70vw;
+  margin: 10px;
+  /* TODO make styles match the rest */
+}

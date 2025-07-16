@@ -18,6 +18,7 @@ import {
 } from "#fetch/serviceFetchUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import { fillMissingDataFields } from "#utils/selectUtils";
 
 /**
  * Component for editing a service
@@ -63,13 +64,13 @@ function EditService({ serviceID = null }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (let a of data) {
-      if (a.value === "" && a.required) {
-        errorMessage += a.name + " is required. ";
+    for (let param of data) {
+      if (param.value === "" && param.required) {
+        errorMessage += param.name + " is required. ";
       } else if (
-        a.id === "zipcode" &&
-        a.value !== "" &&
-        !/^\d{5}$|^\d{5}\-\d{4}$/.test(a.value)
+        param.id === "zipcode" &&
+        param.value !== "" &&
+        !/^\d{5}$|^\d{5}\-\d{4}$/.test(param.value)
       ) {
         errorMessage += "Zipcode must be in the form 12345 or 12345-6789.";
       }
@@ -108,25 +109,10 @@ function EditService({ serviceID = null }) {
     if (result.valid) {
       setErrorText("");
       // Make sure the data that was sent back includes the icon and default values
-      let completeData = [];
-      for (let a of result.data) {
-        const key = a.id;
-        if (serviceInputDefaultValues[key]) {
-          if (!a.default) {
-            a.default = serviceInputDefaultValues[key].default;
-          }
-          if (!a.icon) {
-            a.icon = serviceInputDefaultValues[key].icon;
-          }
-          if (!a.name) {
-            a.name = serviceInputDefaultValues[key].name;
-          }
-          if (!a.required) {
-            a.required = serviceInputDefaultValues[key].required;
-          }
-        }
-        completeData.push(a);
-      }
+      let completeData = fillMissingDataFields(
+        result.data,
+        serviceInputDefaultValues
+      );
       setServiceInput(completeData);
     } else {
       setErrorText(result.error);

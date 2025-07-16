@@ -65,6 +65,36 @@ export async function fetchServiceNameList(nonProfit) {
 }
 
 /**
+ * Gets a list of all filters for a given nonprofit
+ * @param {Function} nonprofit - The non profit to get the filters for
+ */
+export async function fetchServiceFilters(nonprofit) {
+  return await fetch(`${serviceLink}/${nonprofit}/filters`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return successReturn(data);
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching given service:", error.message);
+      return errorReturn(error);
+    });
+}
+
+/**
  * Creates a new service for a nonprofit
  * @param {object} info - The info to post to the backend
  * @param {*} after  - Function to call with data fetched

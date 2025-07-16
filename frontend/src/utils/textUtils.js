@@ -6,14 +6,14 @@ export function formatVarName(varName) {
 
 export function reformatData(data) {
   let result = {};
-  for (let a of data) {
-    if (a.value === "") {
+  for (let param of data) {
+    if (param.value === "") {
       continue;
     }
-    if (a.id === "services_offered") {
-      result[a.id] = a.value.split(",");
+    if (param.id === "services_offered") {
+      result[param.id] = param.value.split(",");
     } else {
-      result[a.id] = a.value;
+      result[param.id] = param.value;
     }
   }
   return result;

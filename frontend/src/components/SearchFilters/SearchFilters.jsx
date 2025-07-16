@@ -1,22 +1,31 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 
 // Local Imports
 import "./SearchFilters.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Methods
+import { fetchServiceFilters } from "#fetch/serviceFetchUtils";
 import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
+import { getNonProfit } from "#utils/pathUtils";
+import { fillMissingDataFields } from "#utils/selectUtils";
 
-function SearchFilters({ loading, searchFor }) {
+function SearchFilters({ loading, setLoading, searchFor }) {
+  // Constant Variables
+  const nonprofit = getNonProfit();
+  const animatedComponents = makeAnimated();
+
   // State Variables
   const [errorText, setErrorText] = useState("");
   // Uses serviceSearchDefault which is a list of objects that contain the name, icon, and default value for each param
-  const [searchInput, setSearchInput] = useState(serviceSearchDefault);
+  const [searchInput, setSearchInput] = useState([]);
 
   /**
    * Submit the search to the backend
@@ -49,9 +58,9 @@ function SearchFilters({ loading, searchFor }) {
    */
   function checkRequired(data) {
     let errorMessage = "";
-    for (let a of data) {
-      if (a.value === "" && a.required) {
-        errorMessage += a.name + " is required. ";
+    for (let param of data) {
+      if (param.value === "" && param.required) {
+        errorMessage += param.name + " is required. ";
       }
     }
     if (errorMessage !== "") {
@@ -59,6 +68,21 @@ function SearchFilters({ loading, searchFor }) {
     }
     return errorMessage;
   }
+
+  function filterCallback(results) {
+    if (results.valid) {
+      setLoading(false);
+      let data = fillMissingDataFields(results.data, serviceSearchDefault);
+      setSearchInput(data);
+    } else {
+      setErrorText(results.error);
+    }
+  }
+
+  useEffect(() => {
+    setLoading(true);
+    fetchServiceFilters(nonprofit).then(filterCallback);
+  }, []);
 
   return (
     <div className="SearchFilters">
@@ -70,19 +94,36 @@ function SearchFilters({ loading, searchFor }) {
             {obj.icon
               ? React.createElement(serviceSearchIconMap[obj.icon], {})
               : null}
-            <input
-              key={obj.id + "Input"}
-              className={obj.id + "Input"}
-              type="text"
-              value={obj.value}
-              placeholder={obj.default}
-              onChange={(e) => {
-                const value = e.target.value;
-                const data = [...searchInput];
-                data[index].value = value;
-                setSearchInput(data);
-              }}
-            />
+            {obj.options ? (
+              <Select
+                classNamePrefix="custom-select"
+                closeMenuOnSelect={false}
+                isMulti={true}
+                options={obj.options}
+                components={animatedComponents}
+                onChange={(e) => {
+                  let value = e;
+                  if (e.length === 0) value = "";
+                  const data = [...searchInput];
+                  data[index].value = value;
+                  setSearchInput(data);
+                }}
+              />
+            ) : (
+              <input
+                key={obj.id + "Input"}
+                className={obj.id + "Input"}
+                type="text"
+                value={obj.value}
+                placeholder={obj.default}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const data = [...searchInput];
+                  data[index].value = value;
+                  setSearchInput(data);
+                }}
+              />
+            )}
           </div>
         ))}
       </div>

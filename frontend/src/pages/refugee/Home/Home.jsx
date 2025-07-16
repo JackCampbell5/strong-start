@@ -45,7 +45,11 @@ function Home() {
   return (
     <div className="SearchService">
       <h3>Home</h3>
-      <SearchFilters loading={loading} searchFor={searchFor} />
+      <SearchFilters
+        loading={loading}
+        setLoading={setLoading}
+        searchFor={searchFor}
+      />
       {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
     </div>
