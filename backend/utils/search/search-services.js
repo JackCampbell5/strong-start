@@ -6,6 +6,7 @@ const prisma = new PrismaClient();
 import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
+import { routeBetween } from "#search/direction-utils.js";
 
 /**
  * The weights for each parameter as of now(Total = 100)
@@ -63,7 +64,24 @@ async function topServices(params, nonprofit) {
   // TODO: do this via normal distribution for more accurate results and remove outliers
   const top = rankedOrder.slice(0, 5);
 
+  let result = await addRouteData(top, params.address);
+  if (!result.valid) {
+    return errorReturn(result.error);
+  }
+
   return successReturn(top);
+}
+
+async function addRouteData(services, address) {
+  for (let service of services) {
+    let result = await routeBetween(service.addressInfo, address);
+    if (result.valid) {
+      service.routeLength = result.data;
+    } else {
+      return errorReturn(result.error);
+    }
+  }
+  return successReturn(services);
 }
 
 /**
