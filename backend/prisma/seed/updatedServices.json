@@ -12,10 +12,10 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "5-6-2024",
     "services_offered": [
-      "Food Assistance",
-      "Family support",
-      "Job Training",
-      "Legal Assistance"
+      "food_assistance",
+      "family_support",
+      "job_training",
+      "legal_assistance"
     ],
     "restrictions": "Proof of residency and income may be required for some services.",
     "next_steps": "Visit the website or call for information on services and how to apply."
@@ -32,7 +32,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "9-9-2023",
-    "services_offered": ["Mental health education", "Job Training"],
+    "services_offered": ["mental_health_education", "job_training"],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the campus during operating hours for assistance."
   },
@@ -49,10 +49,10 @@
     "language": ["farci", "english", "pashto"],
     "date_needed": "8-30-2023",
     "services_offered": [
-      "Education",
-      "Immigrant services",
-      "Mental health education",
-      "Mentorship"
+      "education",
+      "immigrant_services",
+      "mental_health_education",
+      "mentorship"
     ],
     "restrictions": "Adoption fees apply. Spay/neuter services may have income restrictions.",
     "next_steps": "Visit the shelter during open hours or browse available animals online for adoption. Call for veterinary appointments."
@@ -70,9 +70,9 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "5-22-2023",
     "services_offered": [
-      "Mental health education",
-      "Job Training",
-      "Immigrant services"
+      "mental_health_education",
+      "job_training",
+      "immigrant_services"
     ],
     "restrictions": "Families must have a child receiving medical care at a partner hospital.",
     "next_steps": "Contact the house directly or speak with hospital social workers to arrange a stay."
@@ -90,12 +90,12 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "1-/-20/23",
     "services_offered": [
-      "Education",
-      "Refugee & Immigrant Resettlement",
-      "Legal Assistance",
-      "Mental health education",
-      "Education",
-      "Food Assistance"
+      "education",
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance",
+      "mental_health_education",
+      "education",
+      "food_assistance"
     ],
     "restrictions": "Services are for children under the auspices of the Department of Health and Human Services and the Superior Court.",
     "next_steps": "Contact Child Protective Services or law enforcement if you are concerned about a child's safety. Contact the Receiving Home directly for information on their services."
@@ -113,10 +113,10 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "5-12-2023",
     "services_offered": [
-      "Job Training",
-      "Mentorship",
-      "Family support",
-      "Financial Assistance"
+      "job_training",
+      "mentorship",
+      "family_support",
+      "financial_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website or call for information on programs and enrollment."
@@ -134,10 +134,10 @@
     "language": ["arabic", "farci", "english", "pashto"],
     "date_needed": "3-13-2023",
     "services_offered": [
-      "Education",
-      "Job Training",
-      "Refugee & Immigrant Resettlement",
-      "Legal Assistance"
+      "education",
+      "job_training",
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance"
     ],
     "restrictions": "Clients must meet program eligibility requirements.",
     "next_steps": "If you are experiencing homelessness, call 2-1-1 or visit a Coordinated Access System (CAS) access point for assistance."
@@ -154,7 +154,7 @@
     "logo": null,
     "language": ["english", "spanish"],
     "date_needed": "2-11-2023",
-    "services_offered": ["Financial Assistance", "Education", "Family support"],
+    "services_offered": ["financial_assistance", "education", "family_support"],
     "restrictions": "Must meet California's eligibility criteria for developmental disabilities services.",
     "next_steps": "Visit the website or call to begin the intake and assessment process."
   },
@@ -170,7 +170,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "4-2-2023",
-    "services_offered": ["Mentorship", "Legal Assistance", "Food Assistance"],
+    "services_offered": ["mentorship", "legal_assistance", "food_assistance"],
     "restrictions": "Students must be enrolled in partner schools.",
     "next_steps": "Contact your child's school to inquire about City Year's presence and services."
   },
@@ -187,11 +187,11 @@
     "language": ["farci", "pashto"],
     "date_needed": "1-/-208/23",
     "services_offered": [
-      "Mental health education",
-      "Food Assistance",
-      "Financial Assistance",
-      "Job Training",
-      "Immigrant services"
+      "mental_health_education",
+      "food_assistance",
+      "financial_assistance",
+      "job_training",
+      "immigrant_services"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website to browse volunteer opportunities and register as a volunteer."
@@ -209,11 +209,11 @@
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "1-/-208/23",
     "services_offered": [
-      "Legal Assistance",
-      "Legal Assistance",
-      "Education",
-      "Financial Assistance",
-      "Mental health education"
+      "legal_assistance",
+      "legal_assistance",
+      "education",
+      "financial_assistance",
+      "mental_health_education"
     ],
     "restrictions": "None mentioned for most services. Emergency shelter and some specific programs may have eligibility requirements.",
     "next_steps": "Visit the website or call for information on resources and programs"
@@ -231,12 +231,12 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "2-21-2023",
     "services_offered": [
-      "Immigrant services",
-      "Refugee & Immigrant Resettlement",
-      "Financial Assistance",
-      "Education",
-      "Job Training",
-      "Legal Assistance"
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "financial_assistance",
+      "education",
+      "job_training",
+      "legal_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website to learn about current initiatives, volunteer opportunities, and how to get involved."
@@ -254,10 +254,10 @@
     "language": ["english", "spanish"],
     "date_needed": "1-17-2024",
     "services_offered": [
-      "Legal Assistance",
-      "Immigrant services",
-      "Mental health education",
-      "Refugee & Immigrant Resettlement"
+      "legal_assistance",
+      "immigrant_services",
+      "mental_health_education",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Clients must meet income and residency requirements.",
     "next_steps": "Visit the website or call to learn more about eligibility and how to apply for legal assistance."
@@ -275,10 +275,10 @@
     "language": ["arabic", "farci", "spanish", "pashto"],
     "date_needed": "8-4-2024",
     "services_offered": [
-      "Family support",
-      "Refugee & Immigrant Resettlement",
-      "Mentorship",
-      "Legal Assistance"
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "mentorship",
+      "legal_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website or call the Warmline for support and information."
@@ -296,12 +296,12 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "9-23-2024",
     "services_offered": [
-      "Mental health education",
-      "Job Training",
-      "Food Assistance",
-      "Legal Assistance",
-      "Mentorship",
-      "Financial Assistance"
+      "mental_health_education",
+      "job_training",
+      "food_assistance",
+      "legal_assistance",
+      "mentorship",
+      "financial_assistance"
     ],
     "restrictions": "Services may be limited to individuals 60 years or older or those with specific needs. Eligibility requirements may apply for some programs.",
     "next_steps": "Visit the website or call for information on available services and eligibility requirements."
@@ -319,9 +319,9 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "7-25-2024",
     "services_offered": [
-      "Mental health education",
-      "Mentorship",
-      "Financial Assistance"
+      "mental_health_education",
+      "mentorship",
+      "financial_assistance"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "If you find injured or orphaned wildlife, contact the hotline immediately. Visit the website to learn how to help or become a volunteer."
@@ -339,10 +339,10 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "2-6-2024",
     "services_offered": [
-      "Family support",
-      "Immigrant services",
-      "Education",
-      "Food Assistance"
+      "family_support",
+      "immigrant_services",
+      "education",
+      "food_assistance"
     ],
     "restrictions": "Some classes or events may have fees or membership requirements.",
     "next_steps": "Visit the website for a schedule of events, classes, and exhibition information."
@@ -360,11 +360,11 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "1-/-203/22",
     "services_offered": [
-      "Family support",
-      "Immigrant services",
-      "Food Assistance",
-      "Mentorship",
-      "Refugee & Immigrant Resettlement"
+      "family_support",
+      "immigrant_services",
+      "food_assistance",
+      "mentorship",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "None mentioned.",
     "next_steps": "Visit the website to learn about current campaigns, attend meetings, or become a volunteer."
@@ -382,10 +382,10 @@
     "language": ["english", "spanish"],
     "date_needed": "1-/-209/23",
     "services_offered": [
-      "Refugee & Immigrant Resettlement",
-      "Education",
-      "Job Training",
-      "Mentorship"
+      "refugee_&_immigrant_resettlement",
+      "education",
+      "job_training",
+      "mentorship"
     ],
     "restrictions": "Clients must meet income and residency requirements.",
     "next_steps": "Visit the website or call for information on eligibility and how to apply for legal assistance."
@@ -402,7 +402,7 @@
     "logo": null,
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "4-26-2024",
-    "services_offered": ["Mental health education", "Mentorship"],
+    "services_offered": ["mental_health_education", "mentorship"],
     "restrictions": "Scholarship eligibility requirements may apply.",
     "next_steps": "Visit the website to learn about their initiatives, apply for scholarships, or get involved in community events."
   },
@@ -419,12 +419,12 @@
     "language": ["farci", "pashto"],
     "date_needed": "7-1-2023",
     "services_offered": [
-      "Education",
-      "Legal Assistance",
-      "Family support",
-      "Mental health education",
-      "Financial Assistance",
-      "Food Assistance"
+      "education",
+      "legal_assistance",
+      "family_support",
+      "mental_health_education",
+      "financial_assistance",
+      "food_assistance"
     ],
     "restrictions": "Contact local food pantry for details",
     "next_steps": "Visit website or call for more information."
@@ -442,12 +442,12 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "7-11-2023",
     "services_offered": [
-      "Family support",
-      "Legal Assistance",
-      "Immigrant services",
-      "Mental health education",
-      "Job Training",
-      "Refugee & Immigrant Resettlement"
+      "family_support",
+      "legal_assistance",
+      "immigrant_services",
+      "mental_health_education",
+      "job_training",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Serves individuals with life-threatening illnesses like HIV/AIDS and cancer",
     "next_steps": "Visit website or call for details on receiving services."
@@ -464,7 +464,7 @@
     "logo": "https://www.mdspca.org/wp-content/themes/mdspca/assets/images/mdspca-logo.png",
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "2-26-2024",
-    "services_offered": ["Education", "Mental health education"],
+    "services_offered": ["education", "mental_health_education"],
     "restrictions": "Vary by service",
     "next_steps": "Visit website or call for more information."
   },
@@ -481,11 +481,11 @@
     "language": ["arabic", "farci", "spanish", "pashto"],
     "date_needed": "6-21-2023",
     "services_offered": [
-      "Family support",
-      "Legal Assistance",
-      "Mentorship",
-      "Refugee & Immigrant Resettlement",
-      "Job Training"
+      "family_support",
+      "legal_assistance",
+      "mentorship",
+      "refugee_&_immigrant_resettlement",
+      "job_training"
     ],
     "restrictions": "Serves residents of West Baltimore",
     "next_steps": "Visit website or call for program details."
@@ -503,12 +503,12 @@
     "language": ["english", "spanish"],
     "date_needed": "7-31-2023",
     "services_offered": [
-      "Family support",
-      "Legal Assistance",
-      "Mentorship",
-      "Family support",
-      "Food Assistance",
-      "Refugee & Immigrant Resettlement"
+      "family_support",
+      "legal_assistance",
+      "mentorship",
+      "family_support",
+      "food_assistance",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Primarily serves men and returning citizens",
     "next_steps": "Visit website or call to learn more."
@@ -526,9 +526,9 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "1-12-2023",
     "services_offered": [
-      "Legal Assistance",
-      "Immigrant services",
-      "Mentorship"
+      "legal_assistance",
+      "immigrant_services",
+      "mentorship"
     ],
     "restrictions": "Vary by program",
     "next_steps": "Visit website or call for information on programs and services."
@@ -546,10 +546,10 @@
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "1-/-203/22",
     "services_offered": [
-      "Financial Assistance",
-      "Job Training",
-      "Food Assistance",
-      "Immigrant services"
+      "financial_assistance",
+      "job_training",
+      "food_assistance",
+      "immigrant_services"
     ],
     "restrictions": "Requires referral from a hospital",
     "next_steps": "Visit website or call for information on eligibility and availability."
@@ -566,7 +566,7 @@
     "logo": "https://www.associatedblackcharities.org/wp-content/uploads/2021/04/associated-black-charities-logo.png",
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "3-7-2024",
-    "services_offered": ["Mental health education", "Legal Assistance"],
+    "services_offered": ["mental_health_education", "legal_assistance"],
     "restrictions": "None",
     "next_steps": "Visit website to learn more about their initiatives."
   },
@@ -583,9 +583,9 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "7-21-2023",
     "services_offered": [
-      "Immigrant services",
-      "Food Assistance",
-      "Job Training"
+      "immigrant_services",
+      "food_assistance",
+      "job_training"
     ],
     "restrictions": "Vary by program",
     "next_steps": "Visit website or call for information on specific programs."
@@ -603,11 +603,11 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "1-/-203/24",
     "services_offered": [
-      "Mentorship",
-      "Education",
-      "Financial Assistance",
-      "Job Training",
-      "Legal Assistance"
+      "mentorship",
+      "education",
+      "financial_assistance",
+      "job_training",
+      "legal_assistance"
     ],
     "restrictions": "Serves residents of east/southeast Baltimore",
     "next_steps": "Visit website or call to learn more about programs."
@@ -625,11 +625,11 @@
     "language": ["farci", "english", "pashto"],
     "date_needed": "6-5-2024",
     "services_offered": [
-      "Job Training",
-      "Mentorship",
-      "Food Assistance",
-      "Education",
-      "Mental health education"
+      "job_training",
+      "mentorship",
+      "food_assistance",
+      "education",
+      "mental_health_education"
     ],
     "restrictions": "None",
     "next_steps": "Visit website or call for details on receiving services."
@@ -647,12 +647,12 @@
     "language": ["arabic", "farci", "english", "pashto"],
     "date_needed": "5-26-2024",
     "services_offered": [
-      "Legal Assistance",
-      "Refugee & Immigrant Resettlement",
-      "Job Training",
-      "Mental health education",
-      "Financial Assistance",
-      "Family support"
+      "legal_assistance",
+      "refugee_&_immigrant_resettlement",
+      "job_training",
+      "mental_health_education",
+      "financial_assistance",
+      "family_support"
     ],
     "restrictions": "Serves youth ages 13-17 in Baltimore City",
     "next_steps": "Visit website or call to learn more about their programs."
@@ -670,12 +670,12 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "1-7-2024",
     "services_offered": [
-      "Mental health education",
-      "Mental health education",
-      "Job Training",
-      "Immigrant services",
-      "Refugee & Immigrant Resettlement",
-      "Family support"
+      "mental_health_education",
+      "mental_health_education",
+      "job_training",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "family_support"
     ],
     "restrictions": "None",
     "next_steps": "Visit website or call for more information."
@@ -693,10 +693,10 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "5-16-2024",
     "services_offered": [
-      "Mental health education",
-      "Legal Assistance",
-      "Job Training",
-      "Education"
+      "mental_health_education",
+      "legal_assistance",
+      "job_training",
+      "education"
     ],
     "restrictions": "Serves families in specific counties in the Chesapeake Bay region",
     "next_steps": "Visit website or call to learn more about homeownership opportunities or to donate."
@@ -714,11 +714,11 @@
     "language": ["english", "spanish"],
     "date_needed": "5-2-2023",
     "services_offered": [
-      "Mental health education",
-      "Mentorship",
-      "Family support",
-      "Immigrant services",
-      "Refugee & Immigrant Resettlement"
+      "mental_health_education",
+      "mentorship",
+      "family_support",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Serves Maryland residents",
     "next_steps": "Visit website or call for assistance with health insurance enrollment or healthcare access."
@@ -736,12 +736,12 @@
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "1-/-203/22",
     "services_offered": [
-      "Education",
-      "Family support",
-      "Mentorship",
-      "Financial Assistance",
-      "Immigrant services",
-      "Refugee & Immigrant Resettlement"
+      "education",
+      "family_support",
+      "mentorship",
+      "financial_assistance",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": "Primarily serves the Penn-North neighborhood",
     "next_steps": "Visit website or call to learn more about their projects and programs."
@@ -758,7 +758,7 @@
     "logo": "Not available",
     "language": ["english", "spanish"],
     "date_needed": "6-1-2023",
-    "services_offered": ["Legal Assistance", "Education"],
+    "services_offered": ["legal_assistance", "education"],
     "restrictions": "Serves youth aged 12-26",
     "next_steps": "Visit website or call for more information on their programs and support."
   },
@@ -775,9 +775,9 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "4-16-2024",
     "services_offered": [
-      "Family support",
-      "Job Training",
-      "Mental health education"
+      "family_support",
+      "job_training",
+      "mental_health_education"
     ],
     "restrictions": "None",
     "next_steps": "Visit website or call to learn more about their services and resources."
@@ -795,12 +795,12 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "6-25-2024",
     "services_offered": [
-      "Food Assistance",
-      "Financial Assistance",
-      "Education",
-      "Job Training",
-      "Mental health education",
-      "Mentorship"
+      "food_assistance",
+      "financial_assistance",
+      "education",
+      "job_training",
+      "mental_health_education",
+      "mentorship"
     ],
     "restrictions": "Serves artists, organizations, and residents of Baltimore City",
     "next_steps": "Visit website or call for information on arts and cultural events, or grant opportunities."
@@ -818,10 +818,10 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "4-12-2023",
     "services_offered": [
-      "Education",
-      "Financial Assistance",
-      "Mental health education",
-      "Immigrant services"
+      "education",
+      "financial_assistance",
+      "mental_health_education",
+      "immigrant_services"
     ],
     "restrictions": "Serves women in need",
     "next_steps": "Visit website or call for more information about services and support."
@@ -839,9 +839,9 @@
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "1-/-202/24",
     "services_offered": [
-      "Mental health education",
-      "Immigrant services",
-      "Legal Assistance"
+      "mental_health_education",
+      "immigrant_services",
+      "legal_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -859,10 +859,10 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "8-24-2024",
     "services_offered": [
-      "Financial Assistance",
-      "Education",
-      "Immigrant services",
-      "Mental health education"
+      "financial_assistance",
+      "education",
+      "immigrant_services",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -880,12 +880,12 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "1-/-208/23",
     "services_offered": [
-      "Job Training",
-      "Mentorship",
-      "Food Assistance",
-      "Family support",
-      "Refugee & Immigrant Resettlement",
-      "Job Training"
+      "job_training",
+      "mentorship",
+      "food_assistance",
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "job_training"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -903,9 +903,9 @@
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "9-19-2023",
     "services_offered": [
-      "Financial Assistance",
-      "Food Assistance",
-      "Mentorship"
+      "financial_assistance",
+      "food_assistance",
+      "mentorship"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -923,12 +923,12 @@
     "language": ["english", "spanish"],
     "date_needed": "3-3-2023",
     "services_offered": [
-      "Legal Assistance",
-      "Mental health education",
-      "Legal Assistance",
-      "Food Assistance",
-      "Refugee & Immigrant Resettlement",
-      "Immigrant services"
+      "legal_assistance",
+      "mental_health_education",
+      "legal_assistance",
+      "food_assistance",
+      "refugee_&_immigrant_resettlement",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -946,12 +946,12 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "3-17-2024",
     "services_offered": [
-      "Legal Assistance",
-      "Financial Assistance",
-      "Immigrant services",
-      "Job Training",
-      "Mentorship",
-      "Food Assistance"
+      "legal_assistance",
+      "financial_assistance",
+      "immigrant_services",
+      "job_training",
+      "mentorship",
+      "food_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -969,9 +969,9 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "2-1-2023",
     "services_offered": [
-      "Refugee & Immigrant Resettlement",
-      "Legal Assistance",
-      "Refugee & Immigrant Resettlement"
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -989,10 +989,10 @@
     "language": ["arabic", "farci", "english", "pashto"],
     "date_needed": "9-29-2023",
     "services_offered": [
-      "Financial Assistance",
-      "Family support",
-      "Education",
-      "Refugee & Immigrant Resettlement"
+      "financial_assistance",
+      "family_support",
+      "education",
+      "refugee_&_immigrant_resettlement"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1009,7 +1009,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "3-23-2023",
-    "services_offered": ["Food Assistance", "Legal Assistance"],
+    "services_offered": ["food_assistance", "legal_assistance"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1026,10 +1026,10 @@
     "language": ["farci", "english", "pashto"],
     "date_needed": "1-/-209/23",
     "services_offered": [
-      "Legal Assistance",
-      "Job Training",
-      "Family support",
-      "Education"
+      "legal_assistance",
+      "job_training",
+      "family_support",
+      "education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1046,7 +1046,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "1-/-202/24",
-    "services_offered": ["Food Assistance", "Legal Assistance", "Job Training"],
+    "services_offered": ["food_assistance", "legal_assistance", "job_training"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1063,8 +1063,8 @@
     "language": ["farci", "pashto"],
     "date_needed": "1-/-202/24",
     "services_offered": [
-      "Refugee & Immigrant Resettlement",
-      "Immigrant services"
+      "refugee_&_immigrant_resettlement",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1082,10 +1082,10 @@
     "language": ["arabic", "farci", "spanish", "pashto"],
     "date_needed": "1-/-20/24",
     "services_offered": [
-      "Mentorship",
-      "Immigrant services",
-      "Refugee & Immigrant Resettlement",
-      "Legal Assistance"
+      "mentorship",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "legal_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1103,11 +1103,11 @@
     "language": ["english", "spanish"],
     "date_needed": "1-22-2023",
     "services_offered": [
-      "Mentorship",
-      "Legal Assistance",
-      "Family support",
-      "Refugee & Immigrant Resettlement",
-      "Education"
+      "mentorship",
+      "legal_assistance",
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1125,9 +1125,9 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "7-5-2024",
     "services_offered": [
-      "Food Assistance",
-      "Financial Assistance",
-      "Legal Assistance"
+      "food_assistance",
+      "financial_assistance",
+      "legal_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1145,12 +1145,12 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "4-6-2024",
     "services_offered": [
-      "Family support",
-      "Legal Assistance",
-      "Immigrant services",
-      "Financial Assistance",
-      "Education",
-      "Mentorship"
+      "family_support",
+      "legal_assistance",
+      "immigrant_services",
+      "financial_assistance",
+      "education",
+      "mentorship"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1168,9 +1168,9 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "8-10-2023",
     "services_offered": [
-      "Immigrant services",
-      "Legal Assistance",
-      "Mentorship"
+      "immigrant_services",
+      "legal_assistance",
+      "mentorship"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1188,11 +1188,11 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "6-15-2024",
     "services_offered": [
-      "Food Assistance",
-      "Mentorship",
-      "Refugee & Immigrant Resettlement",
-      "Food Assistance",
-      "Financial Assistance"
+      "food_assistance",
+      "mentorship",
+      "refugee_&_immigrant_resettlement",
+      "food_assistance",
+      "financial_assistance"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1210,10 +1210,10 @@
     "language": ["english", "spanish"],
     "date_needed": "1-/-20/23",
     "services_offered": [
-      "Education",
-      "Mentorship",
-      "Legal Assistance",
-      "Mental health education"
+      "education",
+      "mentorship",
+      "legal_assistance",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
@@ -1230,7 +1230,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "9-13-2024",
-    "services_offered": ["Job Training", "Food Assistance"],
+    "services_offered": ["job_training", "food_assistance"],
     "restrictions": null,
     "next_steps": "Reach out to the organization"
   },
@@ -1247,11 +1247,11 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "2-16-2024",
     "services_offered": [
-      "Education",
-      "Job Training",
-      "Legal Assistance",
-      "Refugee & Immigrant Resettlement",
-      "Food Assistance"
+      "education",
+      "job_training",
+      "legal_assistance",
+      "refugee_&_immigrant_resettlement",
+      "food_assistance"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to learn more about programs and opportunities to give or get involved."
@@ -1268,7 +1268,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "1-/-20/22",
-    "services_offered": ["Legal Assistance", "Food Assistance"],
+    "services_offered": ["legal_assistance", "food_assistance"],
     "restrictions": null,
     "next_steps": "Contact them directly for more information on eligibility and how to access their services."
   },
@@ -1285,12 +1285,12 @@
     "language": ["arabic", "farci", "spanish", "pashto"],
     "date_needed": "1-27-2024",
     "services_offered": [
-      "Education",
-      "Job Training",
-      "Family support",
-      "Immigrant services",
-      "Refugee & Immigrant Resettlement",
-      "Mentorship"
+      "education",
+      "job_training",
+      "family_support",
+      "immigrant_services",
+      "refugee_&_immigrant_resettlement",
+      "mentorship"
     ],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly to learn more about programs and services offered."
@@ -1308,10 +1308,10 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "3-27-2024",
     "services_offered": [
-      "Food Assistance",
-      "Refugee & Immigrant Resettlement",
-      "Mentorship",
-      "Immigrant services"
+      "food_assistance",
+      "refugee_&_immigrant_resettlement",
+      "mentorship",
+      "immigrant_services"
     ],
     "restrictions": "Membership may be required for some services",
     "next_steps": "Visit their website to explore membership benefits and resources."
@@ -1328,7 +1328,7 @@
     "logo": null,
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "1-/-20/24",
-    "services_offered": ["Family support", "Immigrant services", "Education"],
+    "services_offered": ["family_support", "immigrant_services", "education"],
     "restrictions": null,
     "next_steps": "Contact them to learn more about ways to support Arizona communities."
   },
@@ -1345,10 +1345,10 @@
     "language": ["english", "spanish"],
     "date_needed": "1-/-203/24",
     "services_offered": [
-      "Family support",
-      "Mentorship",
-      "Food Assistance",
-      "Job Training"
+      "family_support",
+      "mentorship",
+      "food_assistance",
+      "job_training"
     ],
     "restrictions": null,
     "next_steps": "Contact them directly to inquire about services and eligibility."
@@ -1366,11 +1366,11 @@
     "language": ["english", "spanish"],
     "date_needed": "7-15-2024",
     "services_offered": [
-      "Mentorship",
-      "Food Assistance",
-      "Job Training",
-      "Financial Assistance",
-      "Legal Assistance"
+      "mentorship",
+      "food_assistance",
+      "job_training",
+      "financial_assistance",
+      "legal_assistance"
     ],
     "restrictions": null,
     "next_steps": "Visit the food bank during their operating hours to receive assistance."
@@ -1388,10 +1388,10 @@
     "language": ["english", "spanish"],
     "date_needed": "1-/-20/24",
     "services_offered": [
-      "Mentorship",
-      "Immigrant services",
-      "Mental health education",
-      "Family support"
+      "mentorship",
+      "immigrant_services",
+      "mental_health_education",
+      "family_support"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to learn about volunteering and donation opportunities."
@@ -1409,11 +1409,11 @@
     "language": ["arabic", "farci", "spanish", "english", "pashto"],
     "date_needed": "8-20-2023",
     "services_offered": [
-      "Mentorship",
-      "Education",
-      "Legal Assistance",
-      "Food Assistance",
-      "Mental health education"
+      "mentorship",
+      "education",
+      "legal_assistance",
+      "food_assistance",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to learn more about their programs and ways to support their work."
@@ -1431,12 +1431,12 @@
     "language": ["arabic", "farci", "english", "pashto"],
     "date_needed": "6-11-2023",
     "services_offered": [
-      "Job Training",
-      "Mentorship",
-      "Refugee & Immigrant Resettlement",
-      "Immigrant services",
-      "Mental health education",
-      "Food Assistance"
+      "job_training",
+      "mentorship",
+      "refugee_&_immigrant_resettlement",
+      "immigrant_services",
+      "mental_health_education",
+      "food_assistance"
     ],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly to learn about their programs and how to get involved."
@@ -1454,12 +1454,12 @@
     "language": ["english", "spanish"],
     "date_needed": "4-22-2023",
     "services_offered": [
-      "Refugee & Immigrant Resettlement",
-      "Food Assistance",
-      "Legal Assistance",
-      "Job Training",
-      "Financial Assistance",
-      "Immigrant services"
+      "refugee_&_immigrant_resettlement",
+      "food_assistance",
+      "legal_assistance",
+      "job_training",
+      "financial_assistance",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Contact them directly for eligibility and program information."
@@ -1477,9 +1477,9 @@
     "language": ["arabic", "spanish", "pashto"],
     "date_needed": "1-/-202/24",
     "services_offered": [
-      "Refugee & Immigrant Resettlement",
-      "Financial Assistance",
-      "Family support"
+      "refugee_&_immigrant_resettlement",
+      "financial_assistance",
+      "family_support"
     ],
     "restrictions": null,
     "next_steps": "Visit during operating hours to receive assistance."
@@ -1496,7 +1496,7 @@
     "logo": null,
     "language": ["english", "spanish"],
     "date_needed": "1-/-20/23",
-    "services_offered": ["Job Training", "Immigrant services"],
+    "services_offered": ["job_training", "immigrant_services"],
     "restrictions": null,
     "next_steps": "Contact them to learn more about programs and services offered."
   },
@@ -1512,7 +1512,7 @@
     "logo": null,
     "language": ["english", "spanish"],
     "date_needed": "1-/-203/22",
-    "services_offered": ["Immigrant services", "Job Training", "Education"],
+    "services_offered": ["immigrant_services", "job_training", "education"],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly for program details and how to get help or support."
   },
@@ -1529,9 +1529,9 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "8-14-2024",
     "services_offered": [
-      "Mental health education",
-      "Education",
-      "Legal Assistance"
+      "mental_health_education",
+      "education",
+      "legal_assistance"
     ],
     "restrictions": "Adoption applications and vetting process required",
     "next_steps": "Visit their website to view available animals, apply to adopt or foster, or learn about volunteer opportunities."
@@ -1549,10 +1549,10 @@
     "language": ["arabic", "farci", "english"],
     "date_needed": "1-/-208/23",
     "services_offered": [
-      "Legal Assistance",
-      "Financial Assistance",
-      "Mentorship",
-      "Food Assistance"
+      "legal_assistance",
+      "financial_assistance",
+      "mentorship",
+      "food_assistance"
     ],
     "restrictions": "Eligibility based on income, age, disability, and veteran status",
     "next_steps": "Visit their website to apply for assistance or learn about volunteer opportunities."
@@ -1570,10 +1570,10 @@
     "language": ["arabic", "farci", "spanish", "english"],
     "date_needed": "9-3-2024",
     "services_offered": [
-      "Legal Assistance",
-      "Financial Assistance",
-      "Education",
-      "Immigrant services"
+      "legal_assistance",
+      "financial_assistance",
+      "education",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Visit their website to find volunteer opportunities and sign up for projects."
@@ -1591,10 +1591,10 @@
     "language": ["english", "spanish"],
     "date_needed": "1-1-2025",
     "services_offered": [
-      "Job Training",
-      "Education",
-      "Food Assistance",
-      "Immigrant services"
+      "job_training",
+      "education",
+      "food_assistance",
+      "immigrant_services"
     ],
     "restrictions": null,
     "next_steps": "Visit during operating hours to receive assistance."
@@ -1611,11 +1611,11 @@
     "logo": null,
     "language": ["english"],
     "services_offered": [
-      "Job Training",
-      "Legal Assistance",
-      "Family support",
-      "Refugee & Immigrant Resettlement",
-      "Education"
+      "job_training",
+      "legal_assistance",
+      "family_support",
+      "refugee_&_immigrant_resettlement",
+      "education"
     ],
     "restrictions": null,
     "next_steps": "Contact them to schedule an appointment or learn more about their services."
@@ -1633,12 +1633,12 @@
     "language": ["english", "spanish"],
     "date_needed": "1-2-2023",
     "services_offered": [
-      "Food Assistance",
-      "Job Training",
-      "Legal Assistance",
-      "Financial Assistance",
-      "Immigrant services",
-      "Mental health education"
+      "food_assistance",
+      "job_training",
+      "legal_assistance",
+      "financial_assistance",
+      "immigrant_services",
+      "mental_health_education"
     ],
     "restrictions": null,
     "next_steps": "Visit their website or contact them directly to learn more about programs and resources."
