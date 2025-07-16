@@ -69,7 +69,7 @@ function getRouteRequestMask() {
   return mask.join(",");
 }
 
-export function directionBetweenLink(initialAddressObj, endingAddressObj) {
+export function createDirectionLink(initialAddressObj, endingAddressObj) {
   let initialAddress = initialAddressObj.formattedAddress;
   let endingAddress = endingAddressObj.formattedAddress;
   const directionsURL = "https://www.google.com/maps/dir/";
