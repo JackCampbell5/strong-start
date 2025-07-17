@@ -38,12 +38,18 @@ export function reformatServices(serviceDataGiven) {
  * @returns The reformatted hours as a string
  */
 function stringifyHours(hoursObj) {
+  // Check if obj is valid
   if (!hoursObj) return null;
+
+  const hours = hoursObj?.weekdayDescriptions; // Get the hours array
+
+  // Loop through hours and add them to a string
   let formattedHours = "";
-  let hours = hoursObj?.weekdayDescriptions;
   for (const hour of hours) {
     formattedHours += hour + ",   ";
   }
+
+  // Remove the last comma and space
   formattedHours = formattedHours.slice(0, -4);
   return formattedHours;
 }
@@ -54,7 +60,10 @@ function stringifyHours(hoursObj) {
  * @returns The whole word of that language
  */
 function convertLanguageCode(languageCode) {
+  // Check if languageCode is valid
   if (!languageCode) return null;
+
+  // Convert language code to whole word
   switch (languageCode) {
     case "en":
       return "English";
@@ -85,15 +94,25 @@ function convertLanguageCode(languageCode) {
  * @returns The reformatted reviews as a string
  */
 function reformatReviews(reviewDataGiven) {
+  // Check if reviewDataGiven is valid
   if (!reviewDataGiven) return null;
+  /**
+   * Helper function that checks if the text is valid and returns the text if it is, otherwise returns an empty string
+   * @param {string} text - The text to check if valid
+   * @returns The string if valid, otherwise an empty string
+   */
   function getText(text) {
     return text ? text : "";
   }
+
+  // Loop through reviews and add them to a string
   let formattedReviews = "";
   for (let review of reviewDataGiven) {
-    formattedReviews += `${getText(
-      review?.authorAttribution?.displayName
-    )}(${getText(review?.rating)} Stars): ${getText(review?.text?.text)}\n\n`;
+    const authorName = getText(review?.authorAttribution?.displayName);
+    const rating = getText(review?.rating);
+    const reviewText = getText(review?.text?.text);
+    formattedReviews += `${authorName}(${rating} Stars): ${reviewText}\n\n`;
+    if (formattedReviews.length > 600) break; // Break if the string is longer than 600 characters (to avoid crazy long descriptions)
   }
-  return formattedReviews.slice(0, 600);
+  return formattedReviews;
 }
