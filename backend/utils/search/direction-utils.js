@@ -61,7 +61,6 @@ function getRouteRequestBody(refugeeAddress, serviceAddress) {
     origin: encodedRefugeeAddress,
     destination: encodedServiceAddress,
     travelMode: "DRIVE",
-    routingPreference: "TRAFFIC_AWARE",
     computeAlternativeRoutes: false,
     routeModifiers: {
       avoidTolls: false,
