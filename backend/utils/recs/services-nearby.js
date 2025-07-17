@@ -2,7 +2,7 @@ import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 const googleApiKey = process.env.MAPS_API_KEY;
 /**
- * + API Used: https://developers.google.com/maps/documentation/places/web-service/nearby-search
+ * + API Used: https://developers.google.com/maps/documentation/places/web-service/text-search
  *  * @param {object} nonprofit - The nonprofit to get services around
  * @returns
  */
@@ -45,23 +45,32 @@ function getNearbyRequestBody(location) {
     locationBias: {
       circle: {
         center: location.location,
-        radius: 500,
+        radius: 5000, // 5km
       },
     },
-    maxResultCount: 10,
+    maxResultCount: 5,
     textQuery: "nonprofit",
   };
 }
 
+/**
+ *
+ * Still need to get "email, language, date_needed, services_offered, restrictions, next_steps"
+ * @returns
+ */
 function getNearbyRequestMask() {
   return [
-    "places.shortFormattedAddress",
-    "places.displayName",
-    "places.containingPlaces",
-    "places.formattedAddress",
-    "places.name",
-    "places.location",
-    "places.postalAddress",
-    "places.displayName",
+    "places.id", // ID
+    "places.displayName", // Name
+    "places.formattedAddress", // Address
+    "places.postalAddress", // Extract zipcode
+    "places.editorialSummary", // Description
+    "places.nationalPhoneNumber", //phone
+    "places.websiteUri", //website
+    "places.regularOpeningHours", //hours
+    "places.iconBackgroundColor", // Logo color
+    "places.iconMaskBaseUri", //logo
+    "places.types", //categories
+    "places.reviews",
   ].join(",");
 }
