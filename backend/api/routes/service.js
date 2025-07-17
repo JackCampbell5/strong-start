@@ -76,6 +76,10 @@ serviceRouter.get("/search", async (req, res, next) => {
 
 // Get all services
 serviceRouter.get("/recommend", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
   try {
     const nonprofit = req.body.nonprofit;
     let result = await recServices(nonprofit);
