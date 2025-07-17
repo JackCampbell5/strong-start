@@ -82,8 +82,11 @@ async function addRouteData(services, address) {
   for (let service of services) {
     let result = await routeBetween(address, service.addressInfo);
     if (result.valid) {
-      service.routeLength = result.data;
-      service.routeLink = createDirectionLink(address, service.addressInfo);
+      service.route_length = result.data;
+      let link = createDirectionLink(address, service.addressInfo);
+      service.links = service.links
+        ? { ...service.links, route: link }
+        : { route: link };
     } else {
       return errorReturn(result.error);
     }

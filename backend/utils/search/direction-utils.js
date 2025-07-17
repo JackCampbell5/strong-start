@@ -50,8 +50,8 @@ export async function routeBetween(initialAddress, endingAddress) {
 function validateAndExtractRouteLength(data) {
   const metersToMiles = 0.000621371; // Convert meters to miles
   const milesDist = data.routes[0].distanceMeters * metersToMiles;
-  const roundMiles = Math.round(milesDist * 100) / 100;
-  return roundMiles.toString() + " Miles";
+  const roundMiles = Math.round(milesDist * 10) / 10;
+  return roundMiles;
 }
 
 function getRouteRequestBody(refugeeAddress, serviceAddress) {
