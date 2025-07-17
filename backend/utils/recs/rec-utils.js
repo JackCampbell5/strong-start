@@ -95,5 +95,5 @@ function reformatReviews(reviewDataGiven) {
       review?.authorAttribution?.displayName
     )}(${getText(review?.rating)} Stars): ${getText(review?.text?.text)}\n\n`;
   }
-  return formattedReviews;
+  return formattedReviews.slice(0, 600);
 }
