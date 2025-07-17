@@ -8,7 +8,7 @@ import "./EditService.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
-import serviceInputDefaultValues from "#default-data/serviceInputDefaultValues.json";
+import serviceInputDefaultValuesJson from "#default-data/serviceInputDefaultValues.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import {
   fetchServiceDetails,
@@ -33,6 +33,9 @@ function EditService({
   onValidAdd = () => {},
 }) {
   // Constant Variables
+  const serviceInputDefaultValues = JSON.parse(
+    JSON.stringify(serviceInputDefaultValuesJson)
+  );
   const nonprofit = getNonProfit();
   const serviceInputDefaultData = Object.values(serviceInputDefaultValues);
 
