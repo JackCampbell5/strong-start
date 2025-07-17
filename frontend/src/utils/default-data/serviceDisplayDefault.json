@@ -1,0 +1,86 @@
+{
+  "name": {
+    "id": "name",
+    "name": "Name",
+    "value": "",
+    "icon": "MdOutlinePerson"
+  },
+  "address": {
+    "id": "address",
+    "name": "Address",
+    "value": "",
+    "icon": "MdOutlineLocationOn"
+  },
+  "zipcode": {
+    "id": "zipcode",
+    "name": "Zip Code",
+    "value": "",
+    "icon": "MdNumbers"
+  },
+  "description": {
+    "id": "description",
+    "name": "Description",
+    "value": "",
+    "icon": "MdOutlineTextSnippet"
+  },
+  "email": {
+    "id": "email",
+    "name": "Email",
+    "value": "",
+    "icon": "MdEmail"
+  },
+  "phone": {
+    "id": "phone",
+    "name": "Phone",
+    "value": "",
+    "icon": "MdLocalPhone"
+  },
+  "website": {
+    "id": "website",
+    "name": "Website",
+    "value": "",
+    "icon": "MdLanguage"
+  },
+  "hours": {
+    "id": "hours",
+    "name": "Hours",
+    "value": "",
+    "icon": "MdHourglassBottom"
+  },
+  "logo": {
+    "id": "logo",
+    "name": "Logo",
+    "value": "",
+    "icon": "MdImage"
+  },
+  "language": {
+    "id": "language",
+    "name": "Language",
+    "value": "",
+    "icon": "MdOutlineSpatialAudioOff"
+  },
+  "date_needed": {
+    "id": "date_needed",
+    "name": "Date Needed",
+    "value": "",
+    "icon": "MdDateRange"
+  },
+  "services_offered": {
+    "id": "services_offered",
+    "name": "Services Offered",
+    "value": "",
+    "icon": "MdFilterList"
+  },
+  "restrictions": {
+    "id": "restrictions",
+    "name": "Restrictions",
+    "value": "",
+    "icon": "MdOutlineStopCircle"
+  },
+  "next_steps": {
+    "id": "next_steps",
+    "name": "Next Steps",
+    "value": "",
+    "icon": "MdOutlineSkipNext"
+  }
+}
