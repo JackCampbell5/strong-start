@@ -7,6 +7,7 @@ export function reformatServices(serviceDataGiven) {
   let serviceData = [];
   for (let service of serviceDataGiven) {
     let serviceObj = {};
+    serviceObj.id = service?.id;
     serviceObj.name = service?.displayName?.text;
     serviceObj.address = service?.formattedAddress;
     serviceObj.zipcode = service?.postalAddress?.postalCode;
@@ -37,6 +38,7 @@ export function reformatServices(serviceDataGiven) {
  * @returns The reformatted hours as a string
  */
 function stringifyHours(hoursObj) {
+  if (!hoursObj) return null;
   let formattedHours = "";
   let hours = hoursObj?.weekdayDescriptions;
   for (const hour of hours) {
