@@ -1,35 +1,110 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { MdArrowDropDownCircle } from "react-icons/md";
 
 // Local Imports
 import "./Service.css";
+// Util Functions
+import { fillMissingDataFields } from "#utils/selectUtils";
+import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added
  * @param {object} data - Info on a specific service
  */
 function Service({ data }) {
-  const noShow = ["id", "name", "addressInfo", "routeLink", "nonprofit_ID"];
+  // Constant Variables
+  const noShow = ["id", "addressInfo", "links", "nonprofit_ID"];
+  const topFields = ["name", "description", "route_length", "ranking"];
+  // State Variables
+  const [serviceData, setServiceData] = useState({ bottom: [], top: [] });
+  const [links, setLinks] = useState({});
+  const [expanded, setExpanded] = useState(false);
+
+  function divideData(data) {
+    let topData = [];
+    let bottomData = [];
+    for (const field in data) {
+      if (topFields.includes(field)) {
+        topData.push({ id: field, value: data[field] });
+      } else if (!noShow.includes(field)) {
+        bottomData.push({ id: field, value: data[field] });
+      }
+    }
+    let links = data.links;
+    return [topData, bottomData, links];
+  }
+
+  useEffect(() => {
+    const [topData, bottomData, links] = divideData(data);
+    const completeTop = fillMissingDataFields(topData, serviceDisplayDefault);
+    const completeBottom = fillMissingDataFields(
+      bottomData,
+      serviceDisplayDefault
+    );
+    let updatedTopData = completeTop.reduce((acc, obj) => {
+      return { ...acc, [obj.id]: obj.value };
+    }, {});
+    const completeData = { top: updatedTopData, bottom: completeBottom };
+    setServiceData(completeData);
+    setLinks(links);
+  }, [data]);
   return (
     <div className="Service">
-      {data.name ? <h3>{data.name}</h3> : null}
-      {Object.entries(data).map((obj) => {
-        const key = obj[0]; // gets the key from obj.entries
-        const info = obj[1]; // gets the string stored at the given key from obj.entries
-        return !noShow.includes(key) && info ? (
-          <p className="serviceParam" key={key} href={data.routeLink}>
-            <strong>{key}:</strong>{" "}
-            {key === "routeLength" ? (
-              <a href={data["routeLink"]} target="_blank">
-                {info}
-              </a>
-            ) : (
-              <span>{info}</span>
-            )}
-          </p>
-        ) : null;
-      })}
+      <div className="serviceTop">
+        <div className="topLeft">
+          {serviceData.top.name ? <h3>{serviceData.top.name}</h3> : null}
+          {serviceData.top.description ? (
+            <p className="serviceDescription">{serviceData.top.description}</p>
+          ) : null}
+        </div>
+        <div className="topRight">
+          {serviceData.top.route_length ? (
+            <div className="topParam">
+              <div className="bigText">{serviceData.top.route_length}</div>
+              <div className="smallText">Miles</div>
+            </div>
+          ) : null}
+          {serviceData.top.ranking ? (
+            <div className="topParam">
+              <div className="bigText">
+                {Math.round(serviceData.top.ranking)}%
+              </div>
+              <div className="smallText">Match</div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className="serviceMid">
+        <div
+          onClick={() => setExpanded((pre) => !pre)}
+          className={[
+            "moreDetails",
+            expanded ? "expanded" : "notExpanded",
+          ].join(" ")}
+        >
+          More Details <MdArrowDropDownCircle />
+        </div>
+      </div>
+      {expanded ? (
+        <div className="serviceBottom">
+          {serviceData.bottom.map((obj) => {
+            return obj.value ? (
+              <p className="serviceParam" key={obj.id}>
+                <strong>{obj.name}:</strong>{" "}
+                {obj.id === "address" ? (
+                  <a href={links.route} target="_blank">
+                    {obj.value}
+                  </a>
+                ) : (
+                  <span>{obj.value}</span>
+                )}
+              </p>
+            ) : null;
+          })}
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -1,10 +1,77 @@
 .Service {
-  padding: 0 3% 0% 3%;
   text-align: left;
   border: var(--border-mid) solid 10px;
   border-radius: 30px;
 }
-.Service .serviceParam {
+.Service .serviceTop {
   display: flex;
-  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 15px;
+  padding: 0 3% 0% 3%;
+}
+/* The top section  */
+.Service .serviceTop .topLeft {
+  /* width: 75%; */
+}
+.Service .serviceTop .topRight {
+  margin: 5px 0 5px 20px;
+  text-align: center;
+  font-size: 25px;
+}
+.Service .serviceTop .topRight .topParam {
+  padding: 10px;
+  border: var(--border-light) solid 5px;
+  border-radius: 50px;
+}
+
+.Service .serviceTop .topRight .topParam .bigText {
+  font-size: 30px;
+}
+.Service .serviceTop .topRight .topParam .smallText {
+  font-size: 15px;
+}
+
+/* Mid Container */
+.Service .serviceMid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+/* Middle Container */
+.Service .serviceMid .moreDetails {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  border: var(--border-light) solid 2px;
+  border-radius: 10px;
+}
+
+.Service .serviceMid .moreDetails:hover {
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.Service .serviceMid .expanded {
+  color: var(--text-dark);
+  cursor: pointer;
+  font-weight: bolder;
+}
+.Service .serviceMid .expanded:hover {
+  color: var(--text);
+}
+
+.Service .serviceMid svg {
+  width: 25px;
+  height: 25px;
+}
+
+/* Bottom section  */
+.Service .serviceBottom {
+  padding: 0 3% 0% 3%;
+  border-top: var(--border-light) solid 2px;
 }
