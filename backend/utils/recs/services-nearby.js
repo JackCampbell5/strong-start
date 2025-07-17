@@ -2,9 +2,10 @@ import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 const googleApiKey = process.env.MAPS_API_KEY;
 /**
+ * Searches nearby the nonprofits current headquarters for other nonprofits to possible add as services
  * + API Used: https://developers.google.com/maps/documentation/places/web-service/text-search
  *  * @param {object} nonprofit - The nonprofit to get services around
- * @returns
+ * @returns {object} - The response from the API containing the services suggested
  */
 export default async function servicesNearby(nonprofit) {
   const searchURL = "https://places.googleapis.com/v1/places:searchText";
@@ -40,6 +41,11 @@ export default async function servicesNearby(nonprofit) {
     });
 }
 
+/**
+ * Creates the body of the POST request to the searchText API
+ * @param {object} location-  The location to search around (Usually the nonprofit's address) in the format {location: {latitude: number, longitude: number}}
+ * @returns The body of the POST request to the nearby search API
+ */
 function getNearbyRequestBody(location) {
   return {
     locationBias: {
@@ -54,9 +60,9 @@ function getNearbyRequestBody(location) {
 }
 
 /**
- *
+ * Creates the mask of the POST request to the searchText API
  * Still need to get "email, language, date_needed, services_offered, restrictions, next_steps"
- * @returns
+ * @returns The mask as a string
  */
 function getNearbyRequestMask() {
   return [

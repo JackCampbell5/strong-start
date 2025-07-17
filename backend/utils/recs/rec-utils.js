@@ -1,3 +1,8 @@
+/**
+ * Takes the services objects from googles API and reformats them into a format that can be used by the frontend
+ * @param {Array} serviceDataGiven - An array of services objects from googles API response
+ * @returns The reformatted service data as an Array
+ */
 export function reformatServices(serviceDataGiven) {
   let serviceData = [];
   for (let service of serviceDataGiven) {
@@ -26,6 +31,11 @@ export function reformatServices(serviceDataGiven) {
   return serviceData;
 }
 
+/**
+ * Takes the hours object from the google API response and reformats it into a string that can be used by the frontend
+ * @param {object} hoursObj - The hours object from the google API response
+ * @returns The reformatted hours as a string
+ */
 function stringifyHours(hoursObj) {
   let formattedHours = "";
   let hours = hoursObj?.weekdayDescriptions;
@@ -36,6 +46,11 @@ function stringifyHours(hoursObj) {
   return formattedHours;
 }
 
+/**
+ * Takes a 2 digit language code and converts it to the whole word
+ * @param {String} languageCode - The language code from the google API response
+ * @returns The whole word of that language
+ */
 function convertLanguageCode(languageCode) {
   if (!languageCode) return null;
   switch (languageCode) {
@@ -62,6 +77,11 @@ function convertLanguageCode(languageCode) {
   }
 }
 
+/**
+ * Takes the reviews object from the google API response and reformats it into a string that can be used by the frontend
+ * @param {object} reviewDataGiven - The review data from the google API response
+ * @returns The reformatted reviews as a string
+ */
 function reformatReviews(reviewDataGiven) {
   if (!reviewDataGiven) return null;
   function getText(text) {
