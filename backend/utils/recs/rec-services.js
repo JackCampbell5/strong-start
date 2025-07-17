@@ -22,13 +22,16 @@ export default async function recServices(nonprofit) {
 
   const apiServices = result.data.places;
 
-  // Remove Duplicates Services Already in Database
-  const servicesNoDups = await removeServiceDuplicates(apiServices, nonprofit);
-
   // Reformat the services
-  const reformattedServices = reformatServices(servicesNoDups);
+  const reformattedServices = reformatServices(apiServices);
 
-  return successReturn(reformattedServices);
+  // Remove Duplicates Services Already in Database
+  const servicesNoDups = await removeServiceDuplicates(
+    reformattedServices,
+    nonprofit
+  );
+
+  return successReturn(servicesNoDups);
 }
 
 /**
@@ -47,16 +50,16 @@ async function removeServiceDuplicates(apiServices, nonprofit) {
       nonprofit_ID: nonprofit.id,
     },
   });
-  const existedZipcodes = getAllOfKey(existedServices, "zipcode");
+  const existedPhoneNumbers = getAllOfKey(existedServices, "phone_number");
   const existedNames = getAllOfKey(existedServices, "name");
   const existedAddresses = getAllOfKey(existedServices, "address");
 
   let servicesNoDups = [];
   for (const service of apiServices) {
     if (
-      !existedZipcodes.includes(service.zipcode) &&
-      !existedNames.includes(service?.displayName?.text) &&
-      !existedAddresses.includes(service.formattedAddress)
+      !existedPhoneNumbers.includes(service.phone_number) &&
+      !existedNames.includes(service.name) &&
+      !existedAddresses.includes(service.address)
     ) {
       servicesNoDups.push(service);
     }
