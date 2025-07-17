@@ -1,12 +1,12 @@
 export function reformatServices(serviceDataGiven) {
   let serviceData = [];
   for (let service of serviceDataGiven) {
-    console.log(serviceDataGiven);
     let serviceObj = {};
     serviceObj.name = service?.displayName?.text;
     serviceObj.address = service?.formattedAddress;
     serviceObj.zipcode = service?.postalAddress?.postalCode;
-    serviceObj.description = serviceObj.email = null;
+    serviceObj.description = reformatReviews(service?.reviews);
+    serviceObj.email = null;
     serviceObj.phone = service?.nationalPhoneNumber;
     serviceObj.website = service?.websiteUri;
     serviceObj.hours = stringifyHours(service?.regularOpeningHours);
@@ -37,7 +37,7 @@ function stringifyHours(hoursObj) {
 }
 
 function convertLanguageCode(languageCode) {
-  if (languageCode == null) return null;
+  if (!languageCode) return null;
   switch (languageCode) {
     case "en":
       return "English";
@@ -60,4 +60,18 @@ function convertLanguageCode(languageCode) {
     default:
       return null;
   }
+}
+
+function reformatReviews(reviewDataGiven) {
+  if (!reviewDataGiven) return null;
+  function getText(text) {
+    return text ? text : "";
+  }
+  let formattedReviews = "";
+  for (let review of reviewDataGiven) {
+    formattedReviews += `${getText(
+      review?.authorAttribution?.displayName
+    )}(${getText(review?.rating)} Stars): ${getText(review?.text?.text)}\n\n`;
+  }
+  return formattedReviews;
 }
