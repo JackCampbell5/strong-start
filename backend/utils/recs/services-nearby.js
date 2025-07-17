@@ -54,7 +54,7 @@ function getNearbyRequestBody(location) {
         radius: 5000, // 5km
       },
     },
-    maxResultCount: 5,
+    maxResultCount: 20,
     textQuery: "nonprofit",
   };
 }
