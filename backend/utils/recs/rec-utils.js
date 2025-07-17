@@ -1,6 +1,7 @@
 export function reformatServices(serviceDataGiven) {
   let serviceData = [];
   for (let service of serviceDataGiven) {
+    console.log(serviceDataGiven);
     let serviceObj = {};
     serviceObj.name = service?.displayName?.text;
     serviceObj.address = service?.formattedAddress;
@@ -9,8 +10,10 @@ export function reformatServices(serviceDataGiven) {
     serviceObj.phone = service?.nationalPhoneNumber;
     serviceObj.website = service?.websiteUri;
     serviceObj.hours = stringifyHours(service?.regularOpeningHours);
-    serviceObj.logo = service?.iconMaskBaseUri;
-    serviceObj.language = null;
+    serviceObj.logo = service?.iconMaskBaseUri + ".svg"; // Links come without a tag
+    serviceObj.language = convertLanguageCode(
+      service?.displayName?.languageCode
+    );
     serviceObj.date_needed = null;
     serviceObj.services_offered = null;
     serviceObj.restrictions = null;
@@ -31,4 +34,30 @@ function stringifyHours(hoursObj) {
   }
   formattedHours = formattedHours.slice(0, -4);
   return formattedHours;
+}
+
+function convertLanguageCode(languageCode) {
+  if (languageCode == null) return null;
+  switch (languageCode) {
+    case "en":
+      return "English";
+    case "es":
+      return "Spanish";
+    case "fr":
+      return "French";
+    case "ps":
+      return "Pashto";
+    case "ar":
+      return "Arabic";
+    case "ur":
+      return "Urdu";
+    case "hi":
+      return "Hindi";
+    case "bn":
+      return "Bengali";
+    case "fa":
+      return "Farsi";
+    default:
+      return null;
+  }
 }
