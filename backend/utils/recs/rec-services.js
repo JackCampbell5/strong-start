@@ -20,18 +20,15 @@ export default async function recServices(nonprofit) {
   if (!result.valid) {
     return errorReturn(result.error);
   }
-
   const apiServices = result.data.places;
 
   // Reformat the services
   const reformattedServices = reformatServices(apiServices);
-
   // Remove Duplicates Services Already in Database
   const servicesNoDups = await removeServiceDuplicates(
     reformattedServices,
     nonprofit
   );
-
   // Rank the services by keyword
   const serviceKeywordRanked = await rankServicesByKeyword(servicesNoDups);
 
@@ -54,10 +51,13 @@ async function removeServiceDuplicates(apiServices, nonprofit) {
       nonprofit_ID: nonprofit.id,
     },
   });
+
+  // Get all of the values of the keys in existing services
   const existedPhoneNumbers = getAllOfKey(existedServices, "phone_number");
   const existedNames = getAllOfKey(existedServices, "name");
   const existedAddresses = getAllOfKey(existedServices, "address");
 
+  // Loop through added services and make sure they do not match any of the existing services
   let servicesNoDups = [];
   for (const service of apiServices) {
     if (
