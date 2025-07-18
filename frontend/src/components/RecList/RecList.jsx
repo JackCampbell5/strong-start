@@ -14,18 +14,17 @@ function RecList({ data }) {
   const [serviceList, setServiceList] = useState(data);
   const [successText, setSuccessText] = useState("");
 
-  function doneAdded(id) {
-    let updatedData = [...data];
-    for (let i = 0; i < updatedData.length; i++) {
-      if (updatedData[i].id === id) {
-        updatedData.splice(i, 1);
-        setSuccessText("Service Added Successfully");
-        setTimeout(() => {
-          setSuccessText("");
-        }, 5000);
-        break;
-      }
-    }
+  /**
+   * Removes the service from the list of services using the id of the service
+   * + This will show a success message for 5 seconds and no longer show the service
+   * @param {string} id - The id of the service that was added
+   */
+  function serviceAddedSuccessfully(id) {
+    let updatedData = data.filter((item) => item.id !== id);
+    setSuccessText("Service Added Successfully");
+    setTimeout(() => {
+      setSuccessText("");
+    }, 5000);
     setServiceList(updatedData);
   }
   return (
@@ -36,7 +35,11 @@ function RecList({ data }) {
           ? serviceList.map((obj) => {
               num++;
               return (
-                <RecService key={obj.id} data={obj} doneAdded={doneAdded} />
+                <RecService
+                  key={obj.id}
+                  data={obj}
+                  serviceAddedSuccessfully={serviceAddedSuccessfully}
+                />
               );
             })
           : null}

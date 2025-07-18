@@ -11,12 +11,15 @@ import "./RecService.css";
 import Service from "#components/Service/Service";
 import EditService from "#components/EditService/EditService";
 
-function RecService({ data, doneAdded }) {
+function RecService({ data, serviceAddedSuccessfully }) {
   const name = data?.name ?? "No Name Provided";
   const [isExpanded, setIsExpanded] = useState(false);
 
-  function successAdded() {
-    doneAdded(data.id);
+  /**
+   * If the employee successfully adds a service, we want to remove it from the recommended list so we call the function passed in from the parent list component
+   */
+  function onValidAdd() {
+    serviceAddedSuccessfully(data.id);
   }
 
   return (
@@ -26,7 +29,7 @@ function RecService({ data, doneAdded }) {
         <MdAddHome onClick={() => setIsExpanded((prev) => !prev)} />
       </div>
       <Service data={{ ...data, name: undefined }} />
-      {isExpanded && <EditService inputData={data} onValidAdd={successAdded} />}
+      {isExpanded && <EditService inputData={data} onValidAdd={onValidAdd} />}
     </div>
   );
 }
