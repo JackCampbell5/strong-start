@@ -28,7 +28,7 @@ function RecService({ data, serviceAddedSuccessfully }) {
         <h3 className="serviceTitle">{name}</h3>
         <MdAddHome onClick={() => setIsExpanded((prev) => !prev)} />
       </div>
-      <Service data={{ ...data, name: undefined }} />
+      <Service inputData={{ ...data, name: undefined }} />
       {isExpanded && <EditService inputData={data} onValidAdd={onValidAdd} />}
     </div>
   );

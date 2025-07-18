@@ -15,7 +15,7 @@ function ServiceList({ data }) {
           ? data.map((obj) => {
               return (
                 <div className="service">
-                  <Service key={obj.id} data={obj} />
+                  <Service key={obj.id} inputData={obj} />
                 </div>
               );
             })
