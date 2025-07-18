@@ -8,7 +8,7 @@ import "./EditService.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
-import serviceInputDefaultValues from "#default-data/serviceInputDefaultValues.json";
+import serviceInputDefaultValuesJson from "#default-data/serviceInputDefaultValues.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import {
   fetchServiceDetails,
@@ -21,12 +21,24 @@ import { fillMissingDataFields } from "#utils/selectUtils";
 
 /**
  * Component for editing a service
- * + If none is given then a new service will be created when the employee hits submit.
- * @param {string} serviceID - The ID of the service to edit(If applicable)
- * @returns
+ * + If inputData is given then the service will be filled in with the data
+ * + If serviceID is given then the service will be fetched and the params will be filled in
+ * + If both are given, the input data will be used to edit the service and no data will be fetched
+ * + If neither is given then a new service will be created when the employee hits submit.
+ * @param {string} serviceID - The ID of the service to get the params to edit(Optional)
+ * @param {object} inputData - The data to fill in the service with(Optional)
+ * @param {function} onValidAdd - Callback for when the service is successfully added
+ * @returns - React element
  */
-function EditService({ serviceID = null }) {
+function EditService({
+  serviceID = null,
+  inputData = null,
+  onValidAdd = () => {},
+}) {
   // Constant Variables
+  const serviceInputDefaultValues = JSON.parse(
+    JSON.stringify(serviceInputDefaultValuesJson)
+  );
   const nonprofit = getNonProfit();
   const serviceInputDefaultData = Object.values(serviceInputDefaultValues);
 
@@ -91,6 +103,7 @@ function EditService({ serviceID = null }) {
       if (!serviceID) {
         setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
       }
+      onValidAdd();
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
@@ -120,7 +133,16 @@ function EditService({ serviceID = null }) {
   }
 
   useEffect(() => {
-    if (serviceID) {
+    // If given data then fill in the serviceInput with the data
+    if (inputData) {
+      const completeData = serviceInputDefaultData.map((obj) => {
+        if (!inputData[obj.id]) return obj;
+        obj.value = inputData[obj.id];
+        return obj;
+      });
+      setServiceInput(completeData);
+    } else if (serviceID) {
+      // If given a serviceID then fetch the service details
       setLoading(true);
       fetchServiceDetails(nonprofit, serviceID).then(fetchServiceCallback);
     }

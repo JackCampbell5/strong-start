@@ -6,7 +6,7 @@ import { useState } from "react";
 // Local imports
 import "./Recommend.css";
 // Other components
-import ServiceList from "#components/ServiceList/ServiceList";
+import RecList from "#components/RecList/RecList";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // util functions
 import { fetchRecs } from "#fetch/serviceFetchUtils";
@@ -51,7 +51,7 @@ function Recommend() {
           fit={true}
         />
       ) : (
-        <ServiceList data={searchResults} />
+        <RecList data={searchResults} />
       )}
       <p className="errorText">{errorText}</p>
     </div>

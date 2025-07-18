@@ -1,18 +1,20 @@
-.ServiceList .service {
-  margin: 3%;
+.RecList {
+  width: auto;
+  height: auto;
 }
+
 /* Formatting for the total */
-.ServiceTotal {
+.RecTotal {
   margin: 50px;
 }
 
-.ServiceTotalNum {
+.RecTotalNum {
   font-size: 60px;
   font-weight: bold;
   margin: 0px;
 }
 
-.ServiceTotalLabel {
+.RecTotalLabel {
   font-size: 25px;
   margin: 10px;
 }
