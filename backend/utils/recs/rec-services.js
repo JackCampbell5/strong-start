@@ -7,6 +7,7 @@ import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import servicesNearby from "#recs/services-nearby.js";
 import { reformatServices } from "#recs/rec-utils.js";
 import rankServicesByKeyword from "#recs/rank-by-keyword.js";
+import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 
 /**
  * Takes a nonprofit and finds additional services nearby
@@ -32,7 +33,9 @@ export default async function recServices(nonprofit) {
   // Rank the services by keyword
   const serviceKeywordRanked = await rankServicesByKeyword(servicesNoDups);
 
-  return successReturn(serviceKeywordRanked);
+  const normalizedServices = normalizeServiceFromRank(serviceKeywordRanked);
+
+  return successReturn(normalizedServices);
 }
 
 /**

@@ -35,8 +35,9 @@ export default function rankServicesByKeyword(servicesGiven) {
  */
 function addRankingInformation(services, keywordCount) {
   let rankedServices = [];
+  let totalLength = keywordCount.length;
   for (let service of services) {
-      service.ranking = 100-keywordCount.indexOf(service.services_offered.total);
+      service.ranking = totalLength-keywordCount.indexOf(service.services_offered.total);
     // Add the keyword count to the ranked list
     service.services_offered = getPopularKeywords(service.services_offered);
     // If they offer any services, add them to the ranked list
@@ -78,7 +79,7 @@ function getKeywordCounts(serviceGiven) {
   } // end if description exists
 
   // Update the services offered field with the results
-  service.services_offered = results;
+  service.services_offered = keywordCounts;
   return service;
 }
 
