@@ -30,7 +30,13 @@ function Recommend() {
     if (!result.valid) {
       setErrorText(result.error);
     } else {
-      setSearchResults(result.data);
+      // If the data is valid but empty return an error
+      if (result.data.length === 0) {
+        setErrorText("No recommended services found for this nonprofit");
+      } else {
+        setErrorText("");
+        setSearchResults(result.data);
+      }
     }
   }
 
