@@ -21,8 +21,10 @@
   font-size: 25px;
 }
 .Service .serviceTop .topRight .topParam {
+  margin: 2px 0 0 0;
   padding: 10px;
-  border: var(--border-light) solid 5px;
+  border-width: 5px;
+  border-style: solid;
   border-radius: 50px;
 }
 
@@ -31,6 +33,16 @@
 }
 .Service .serviceTop .topRight .topParam .smallText {
   font-size: 15px;
+}
+
+.Service .serviceTop .topRight .redOutline {
+  border-color: red;
+}
+.Service .serviceTop .topRight .yellowOutline {
+  border-color: darkgoldenrod;
+}
+.Service .serviceTop .topRight .greenOutline {
+  border-color: green;
 }
 
 /* Mid Container */
@@ -74,4 +86,33 @@
 .Service .serviceBottom {
   padding: 0 3% 0% 3%;
   border-top: var(--border-light) solid 2px;
+}
+
+.Service .serviceParam {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 15px 0px;
+}
+/* .Service .serviceParam .serviceParamDesc {
+  flex: 1;
+} */
+.Service .serviceParam span,
+.Service .serviceParam a {
+  margin: 0 0 0 20px;
+}
+
+.Service .serviceParam a:link {
+  color: var(--text-mid);
+}
+.Service .serviceParam a:link:hover,
+.Service .serviceParam a:visited:hover {
+  color: var(--text-light);
+}
+.Service .serviceParam a:visited {
+  color: var(--text-dark);
+}
+
+.Service .serviceBottom svg {
+  height: 25px;
+  width: 25px;
 }

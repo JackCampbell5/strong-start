@@ -7,13 +7,14 @@ import { MdArrowDropDownCircle } from "react-icons/md";
 import "./Service.css";
 // Util Functions
 import { fillMissingDataFields } from "#utils/selectUtils";
+import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added
  * @param {object} data - Info on a specific service
  */
-function Service({ data }) {
+function Service({ inputData }) {
   // Constant Variables
   const noShow = ["id", "addressInfo", "links", "nonprofit_ID"];
   const topFields = ["name", "description", "route_length", "ranking"];
@@ -22,7 +23,9 @@ function Service({ data }) {
   const [links, setLinks] = useState({});
   const [expanded, setExpanded] = useState(false);
 
-  function divideData(data) {
+  function divideData(dataObj) {
+    console.log(dataObj);
+    let data = JSON.parse(JSON.stringify(dataObj));
     let topData = [];
     let bottomData = [];
     for (const field in data) {
@@ -37,7 +40,7 @@ function Service({ data }) {
   }
 
   useEffect(() => {
-    const [topData, bottomData, links] = divideData(data);
+    const [topData, bottomData, links] = divideData(inputData);
     const completeTop = fillMissingDataFields(topData, serviceDisplayDefault);
     const completeBottom = fillMissingDataFields(
       bottomData,
@@ -49,7 +52,7 @@ function Service({ data }) {
     const completeData = { top: updatedTopData, bottom: completeBottom };
     setServiceData(completeData);
     setLinks(links);
-  }, [data]);
+  }, [inputData]);
   return (
     <div className="Service">
       <div className="serviceTop">
@@ -61,13 +64,31 @@ function Service({ data }) {
         </div>
         <div className="topRight">
           {serviceData.top.route_length ? (
-            <div className="topParam">
+            <div
+              className={[
+                "topParam",
+                serviceData.top.route_length < 10
+                  ? "greenOutline"
+                  : serviceData.top.route_length < 20
+                  ? "yellowOutline"
+                  : "redOutline",
+              ].join(" ")}
+            >
               <div className="bigText">{serviceData.top.route_length}</div>
               <div className="smallText">Miles</div>
             </div>
           ) : null}
           {serviceData.top.ranking ? (
-            <div className="topParam">
+            <div
+              className={[
+                "topParam",
+                serviceData.top.ranking > 75
+                  ? "greenOutline"
+                  : serviceData.top.ranking > 50
+                  ? "yellowOutline"
+                  : "redOutline",
+              ].join(" ")}
+            >
               <div className="bigText">
                 {Math.round(serviceData.top.ranking)}%
               </div>
@@ -90,17 +111,25 @@ function Service({ data }) {
       {expanded ? (
         <div className="serviceBottom">
           {serviceData.bottom.map((obj) => {
-            return obj.value ? (
-              <p className="serviceParam" key={obj.id}>
-                <strong>{obj.name}:</strong>{" "}
+            return obj?.value ? (
+              <div className="serviceParam" key={obj.id}>
+                <strong>{obj.name}</strong>
+                {obj.icon
+                  ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                  : null}
+                {":"}
                 {obj.id === "address" ? (
-                  <a href={links.route} target="_blank">
+                  <a href={links?.route} target="_blank">
+                    {obj.value}
+                  </a>
+                ) : obj.id === "website" ? (
+                  <a href={obj.value} target="_blank">
                     {obj.value}
                   </a>
                 ) : (
                   <span>{obj.value}</span>
                 )}
-              </p>
+              </div>
             ) : null;
           })}
         </div>
