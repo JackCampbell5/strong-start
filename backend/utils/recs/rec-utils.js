@@ -102,17 +102,19 @@ function reformatReviews(reviewDataGiven) {
    * @returns The string if valid, otherwise an empty string
    */
   function getText(text) {
-    return text ? text : "";
+    return text || "";
   }
 
   // Loop through reviews and add them to a string
-  let formattedReviews = "";
+  let formattedReviews = [];
+  let totalChars = 0;
   for (let review of reviewDataGiven) {
     const authorName = getText(review?.authorAttribution?.displayName);
     const rating = getText(review?.rating);
     const reviewText = getText(review?.text?.text);
-    formattedReviews += `${authorName}(${rating} Stars): ${reviewText}\n\n`;
-    if (formattedReviews.length > 600) break; // Break if the string is longer than 600 characters (to avoid crazy long descriptions)
+    totalChars += reviewText.length;
+    formattedReviews.push(`${authorName}(${rating} Stars): ${reviewText}`);
+    if (totalChars > 600) break; // Break if the string is longer than 600 characters (to avoid crazy
   }
-  return formattedReviews;
+  return formattedReviews.join("\n\n");
 }
