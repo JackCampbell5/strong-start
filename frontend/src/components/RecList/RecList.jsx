@@ -10,7 +10,6 @@ import "./RecList.css";
 import RecService from "#components/RecService/RecService";
 
 function RecList({ data }) {
-  let num = 0;
   const [serviceList, setServiceList] = useState(data);
   const [successText, setSuccessText] = useState("");
 
@@ -33,7 +32,6 @@ function RecList({ data }) {
       <div className="allRecs">
         {serviceList
           ? serviceList.map((obj) => {
-              num++;
               return (
                 <RecService
                   key={obj.id}
@@ -45,7 +43,7 @@ function RecList({ data }) {
           : null}
       </div>
       <div className="ServiceTotal">
-        <p className="ServiceTotalNum">{num} </p>
+        <p className="ServiceTotalNum">{serviceList.length} </p>
         <p className="ServiceTotalLabel"> Services Displayed</p>
       </div>
     </div>

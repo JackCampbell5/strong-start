@@ -8,13 +8,11 @@ import "./ServiceList.css";
 import Service from "#components/Service/Service";
 
 function ServiceList({ data }) {
-  let num = 0;
   return (
     <div className="ServiceList">
       <div className="allServices">
         {data
           ? data.map((obj) => {
-              num++;
               return (
                 <div className="service">
                   <Service key={obj.id} data={obj} />
@@ -24,7 +22,7 @@ function ServiceList({ data }) {
           : null}
       </div>
       <div className="ServiceTotal">
-        <p className="ServiceTotalNum">{num} </p>
+        <p className="ServiceTotalNum">{data.length} </p>
         <p className="ServiceTotalLabel"> Services Displayed</p>
       </div>
     </div>
