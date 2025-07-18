@@ -19,10 +19,9 @@ export default function rankServicesByKeyword(servicesGiven) {
     .map((keyword) => keyword.services_offered.total)
     .sort((a, b) => b - a);
 
-
   // Add the ranking information to the services, if they offer any services.
   let rankedServices = addRankingInformation(services, keywordCount);
-  rankedServices.sort((a, b) => b.ranking- a.ranking);
+  rankedServices.sort((a, b) => b.ranking - a.ranking);
   return rankedServices;
 }
 
@@ -37,7 +36,8 @@ function addRankingInformation(services, keywordCount) {
   let rankedServices = [];
   let totalLength = keywordCount.length;
   for (let service of services) {
-      service.ranking = totalLength-keywordCount.indexOf(service.services_offered.total);
+    service.ranking =
+      totalLength - keywordCount.indexOf(service.services_offered.total);
     // Add the keyword count to the ranked list
     service.services_offered = getPopularKeywords(service.services_offered);
     // If they offer any services, add them to the ranked list
@@ -66,16 +66,17 @@ function getKeywordCounts(serviceGiven) {
     // Loop thru each service type from the keywords file
     for (const serviceType in serviceTypeKeywords) {
       const keywords = serviceTypeKeywords[serviceType];
-
-      // Loop thru each keyword and check against the description
-      for (const keyword of keywords) {
-        // Update the counts in the keywordCounts object if included
-        if (reviewsString.includes(keyword)) {
-          keywordCounts[serviceType] = (keywordCounts[serviceType] || 0) + 1;
-          keywordCounts.total++;
-        } // end if keyword is in reviews
-      } // end for each keyword
+      // Loop thru each keyword in the service type and check how many times it appears in the description
+      keywordCounts[serviceType] = keywords.filter((keyword) =>
+        reviewsString.includes(keyword)
+      ).length;
     } // end for each serviceType
+
+    // Add the total number of keywords to the keywordCounts
+    keywordCounts.total = Object.values(keywordCounts).reduce(
+      (a, b) => a + b,
+      0
+    );
   } // end if description exists
 
   // Update the services offered field with the results
@@ -85,16 +86,15 @@ function getKeywordCounts(serviceGiven) {
 
 /**
  * Get any keyword categories that occurred more than 3 times in the description and add them to the result string
- * @param {*} keywords -  The keywords object to check
+ * @param {object} keywords -  The keywords object to check
  * @returns A string with the popular keywords
  */
 function getPopularKeywords(keywords) {
-  let resultString = "";
+  let popularKeywords =[] ;
   for (const keyword in keywords) {
     if (keywords[keyword] > 3 && keyword !== "total") {
-      resultString += prettyPrintService(keyword) + ", ";
+      popularKeywords.push(prettyPrintService(keyword));
     }
   }
-  resultString = resultString.slice(0, -2);
-  return resultString;
+  return popularKeywords.join(", ");
 }
