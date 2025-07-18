@@ -21,7 +21,10 @@ import { fillMissingDataFields } from "#utils/selectUtils";
 
 /**
  * Component for editing a service
- * + If none is given then a new service will be created when the employee hits submit.
+ * + If inputData is given then the service will be filled in with the data
+ * + If serviceID is given then the service will be fetched and the params will be filled in
+ * + If both are given, the input data will be used to edit the service and no data will be fetched
+ * + If neither is given then a new service will be created when the employee hits submit.
  * @param {string} serviceID - The ID of the service to get the params to edit(Optional)
  * @param {object} inputData - The data to fill in the service with(Optional)
  * @param {function} onValidAdd - Callback for when the service is successfully added
@@ -130,11 +133,6 @@ function EditService({
   }
 
   useEffect(() => {
-    // If given a serviceID then fetch the service details
-    if (serviceID) {
-      setLoading(true);
-      fetchServiceDetails(nonprofit, serviceID).then(fetchServiceCallback);
-    }
     // If given data then fill in the serviceInput with the data
     if (inputData) {
       const completeData = serviceInputDefaultData.map((obj) => {
@@ -143,6 +141,10 @@ function EditService({
         return obj;
       });
       setServiceInput(completeData);
+    } else if (serviceID) {
+      // If given a serviceID then fetch the service details
+      setLoading(true);
+      fetchServiceDetails(nonprofit, serviceID).then(fetchServiceCallback);
     }
   }, [serviceID]);
 
