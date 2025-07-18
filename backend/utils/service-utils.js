@@ -144,11 +144,13 @@ export async function validateAndFormatServiceData(
   }
 
   // Validate the date
-  let date = getAndValidateDate(updatedService.date_needed);
-  if (!date.valid) {
-    errorMessage += date.error + ", ";
-  } else {
-    updatedService.date_needed = date.data.toISOString();
+  if (updatedService.date_needed) {
+    let date = getAndValidateDate(updatedService.date_needed);
+    if (!date.valid) {
+      errorMessage += date.error + ", ";
+    } else {
+      updatedService.date_needed = date.data.toISOString();
+    }
   }
 
   updatedService.services_offered = updatedService.services_offered.map(

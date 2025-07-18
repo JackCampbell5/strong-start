@@ -205,7 +205,9 @@ export function getAndValidateDate(date) {
   const date_regex =
     /^(?:((?:0?[1-9])|10|11|12)-(0?[1-9]|[12]\d|30|31)-(\d{4}))$/;
   if (!date_regex.test(date)) {
-    return errorReturn("Invalid date format. Please use MM-DD-YYYY.");
+    return errorReturn(
+      "Invalid date format. Please use MM-DD-YYYY or leave blank."
+    );
   } else {
     const dateParts = date.match(date_regex);
     return successReturn(

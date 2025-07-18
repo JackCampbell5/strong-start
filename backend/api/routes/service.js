@@ -17,6 +17,7 @@ import {
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
 import getFilter from "#utils/filter-create-utils.js";
+import recServices from "#recs/rec-services.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -65,6 +66,25 @@ serviceRouter.get("/search", async (req, res, next) => {
     if (result.valid) {
       const formattedService = reformatServiceForReturn(result.data);
       res.status(200).json(formattedService);
+    } else {
+      res.status(404).send(result.error);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+
+// Get all services
+serviceRouter.get("/recommend", async (req, res, next) => {
+  if (!req.session.employee) {
+    res.status(401).send("Unauthorized: Please log in");
+    return;
+  }
+  try {
+    const nonprofit = req.body.nonprofit;
+    let result = await recServices(nonprofit);
+    if (result.valid) {
+      res.status(200).json(result.data);
     } else {
       res.status(404).send(result.error);
     }

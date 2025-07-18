@@ -29,6 +29,7 @@
     "#errors/*": "./middleware/errors/*",
     "#utils/*": "./utils/*",
     "#search/*": "./utils/search/*",
+    "#recs/*": "./utils/recs/*",
     "#seed/*": "./prisma/seed/*"
   },
   "prisma": {
