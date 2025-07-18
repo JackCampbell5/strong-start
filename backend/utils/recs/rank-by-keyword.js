@@ -39,7 +39,7 @@ function addRankingInformation(services, keywordCount) {
     service.services_offered = getPopularKeywords(service.services_offered);
     // If they offer any services, add them to the ranked list
     if (service.services_offered) {
-      service.score = keywordCount.indexOf(service.total) + 1;
+      service.ranking = keywordCount.indexOf(service.total) + 1;
       rankedServices.push(service);
     }
   }
