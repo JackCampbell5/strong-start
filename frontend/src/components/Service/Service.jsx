@@ -70,7 +70,7 @@ function Service({ inputData }) {
     restructureData(inputData);
   }, [inputData]);
   return (
-    <div className="Service">
+    <div className={["Service", serviceData.top.name && "borderYes"].join(" ")}>
       <div className="serviceTop">
         <div className="topLeft">
           {serviceData.top.name ? <h3>{serviceData.top.name}</h3> : null}

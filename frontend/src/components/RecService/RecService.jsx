@@ -26,10 +26,17 @@ function RecService({ data, serviceAddedSuccessfully }) {
     <div className="RecService">
       <div className="serviceHeader">
         <h3 className="serviceTitle">{name}</h3>
-        <MdAddHome onClick={() => setIsExpanded((prev) => !prev)} />
+        <MdAddHome
+          title="Edit/Add Service to Database"
+          onClick={() => setIsExpanded((prev) => !prev)}
+        />
       </div>
       <Service inputData={{ ...data, name: undefined }} />
-      {isExpanded && <EditService inputData={data} onValidAdd={onValidAdd} />}
+      {isExpanded && (
+        <div className="editTopDivider">
+          <EditService inputData={data} onValidAdd={onValidAdd} />
+        </div>
+      )}
     </div>
   );
 }

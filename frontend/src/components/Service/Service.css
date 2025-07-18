@@ -1,8 +1,12 @@
 .Service {
   text-align: left;
-  border: var(--border-mid) solid 10px;
   border-radius: 30px;
 }
+
+.borderYes {
+  border: var(--border-mid) solid 10px;
+}
+
 /* The entire top section  */
 .Service .serviceTop {
   display: flex;
