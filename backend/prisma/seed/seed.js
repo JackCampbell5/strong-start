@@ -22,13 +22,13 @@ async function main() {
   // Get the Service Data ready for seeding
   let serviceList = await addLocationInformation(serviceJson, currentServices)  // Format the address info for services
   // Get starting and ending indices for each nonprofit's slice of services
-  const serviceDistribution = [20, 20, 20, 20]; // How to distribute services to nonprofits
+  const serviceDistribution = [20, 20, 20, 20, 20]; // How to distribute services to nonprofits
   const [serviceStart, serviceEnd] = distribute(serviceDistribution, serviceList.length, serviceList.length);
 
   // Get the Employee Data ready for seeding
   const employeeList = await hashPasswordList(employees); // Hash the passwords
   // Get starting and ending indices for each nonprofit's slice of employees
-  const employeeDistribution = [10, 15, 10, 5]; // How to distribute employees to nonprofits
+  const employeeDistribution = [10, 15, 10, 5, 0]; // How to distribute employees to nonprofits
   const [employeeStart, employeeEnd] = distribute(employeeDistribution, employees.length, nonprofitJson.length);
 
   // Get the nonprofitData ready for seeding

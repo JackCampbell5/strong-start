@@ -30,5 +30,13 @@
     "address": "4425 W Olive Ave #400, Glendale, AZ 85302, US",
     "website": "https://www.rescue.org/phoenix",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/f/fe/International_Rescue_Committee_Logo.svg"
+  },
+  {
+    "name": "International Rescue Committee in Silver Spring",
+    "phone": "+1 301-562-8633",
+    "email": "SilverSpring@Rescue.org",
+    "address": "8737 Colesville Road, Suite 1200, Silver Spring, MD 20910, US",
+    "website": "https://www.rescue.org/united-states/silver-spring-md",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/International_Rescue_Committee_Logo.svg/640px-International_Rescue_Committee_Logo.svg.png"
   }
 ]
