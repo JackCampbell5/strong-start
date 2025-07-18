@@ -7,11 +7,16 @@
 .Service .serviceTop {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: flex-end;
   border-radius: 15px;
   padding: 0 3% 0% 3%;
 }
+/* Top left with title and description  */
+.Service .serviceTop .topLeft {
+  width: 100%;
+}
+
 /* The top right with the big values (If they exist) */
 .Service .serviceTop .topRight {
   margin: 5px 0 5px 20px;
