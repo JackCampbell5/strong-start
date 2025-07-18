@@ -3,6 +3,7 @@
   border: var(--border-mid) solid 10px;
   border-radius: 30px;
 }
+/* The entire top section  */
 .Service .serviceTop {
   display: flex;
   flex-direction: row;
@@ -11,15 +12,13 @@
   border-radius: 15px;
   padding: 0 3% 0% 3%;
 }
-/* The top section  */
-.Service .serviceTop .topLeft {
-  /* width: 75%; */
-}
+/* The top right with the big values (If they exist) */
 .Service .serviceTop .topRight {
   margin: 5px 0 5px 20px;
   text-align: center;
   font-size: 25px;
 }
+/* Each individual param in the top right */
 .Service .serviceTop .topRight .topParam {
   margin: 2px 0 0 0;
   padding: 10px;
@@ -27,7 +26,7 @@
   border-style: solid;
   border-radius: 50px;
 }
-
+/* Make the number bigger and the text smaller */
 .Service .serviceTop .topRight .topParam .bigText {
   font-size: 30px;
 }
@@ -35,6 +34,7 @@
   font-size: 15px;
 }
 
+/* Change the color based on the value */
 .Service .serviceTop .topRight .redOutline {
   border-color: red;
 }
@@ -45,7 +45,7 @@
   border-color: green;
 }
 
-/* Mid Container */
+/* Middle Container */
 .Service .serviceMid {
   width: 100%;
   display: flex;
@@ -53,7 +53,6 @@
   margin: 10px;
 }
 
-/* Middle Container */
 .Service .serviceMid .moreDetails {
   display: flex;
   align-items: center;
@@ -61,6 +60,11 @@
   padding: 4px;
   border: var(--border-light) solid 2px;
   border-radius: 10px;
+}
+/* Dropdown icon */
+.Service .serviceMid svg {
+  width: 25px;
+  height: 25px;
 }
 
 .Service .serviceMid .moreDetails:hover {
@@ -77,39 +81,22 @@
   color: var(--text);
 }
 
-.Service .serviceMid svg {
-  width: 25px;
-  height: 25px;
-}
-
 /* Bottom section  */
 .Service .serviceBottom {
   padding: 0 3% 0% 3%;
   border-top: var(--border-light) solid 2px;
 }
 
+/*  Each individual param  */
 .Service .serviceParam {
   display: flex;
   flex-wrap: wrap;
   margin: 15px 0px;
 }
-/* .Service .serviceParam .serviceParamDesc {
-  flex: 1;
-} */
+/* Split the params apart from each other  */
 .Service .serviceParam span,
 .Service .serviceParam a {
   margin: 0 0 0 20px;
-}
-
-.Service .serviceParam a:link {
-  color: var(--text-mid);
-}
-.Service .serviceParam a:link:hover,
-.Service .serviceParam a:visited:hover {
-  color: var(--text-light);
-}
-.Service .serviceParam a:visited {
-  color: var(--text-dark);
 }
 
 .Service .serviceBottom svg {

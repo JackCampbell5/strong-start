@@ -9,6 +9,7 @@ import "./Service.css";
 import { fillMissingDataFields } from "#utils/selectUtils";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
+import { data } from "react-router";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added
@@ -23,9 +24,13 @@ function Service({ inputData }) {
   const [links, setLinks] = useState({});
   const [expanded, setExpanded] = useState(false);
 
+  /**
+   * Divides the data based on what is on the topFields or not. Also makes sure the noShow does not make into either array
+   * @param {object} dataObj - The object to divide
+   * @returns The divided data in the form [top, bottom, links]
+   */
   function divideData(dataObj) {
-    console.log(dataObj);
-    let data = JSON.parse(JSON.stringify(dataObj));
+    const data = JSON.parse(JSON.stringify(dataObj));
     let topData = [];
     let bottomData = [];
     for (const field in data) {
@@ -35,23 +40,34 @@ function Service({ inputData }) {
         bottomData.push({ id: field, value: data[field] });
       }
     }
-    let links = data.links;
-    return [topData, bottomData, links];
+    return [topData, bottomData, data.links];
   }
 
-  useEffect(() => {
-    const [topData, bottomData, links] = divideData(inputData);
+  /**
+   * Restructure the input data for display and then sets the data to that value
+   * @param {obj} data - The data to restructure and then set
+   */
+  function restructureData(data) {
+    // Divide the data
+    const [topData, bottomData, links] = divideData(data);
+    setLinks(links); // Set the links
+
+    // Fill the fields to add icon and name
     const completeTop = fillMissingDataFields(topData, serviceDisplayDefault);
     const completeBottom = fillMissingDataFields(
       bottomData,
       serviceDisplayDefault
     );
+    // Restructure the top for easier form to get
     let updatedTopData = completeTop.reduce((acc, obj) => {
       return { ...acc, [obj.id]: obj.value };
     }, {});
     const completeData = { top: updatedTopData, bottom: completeBottom };
     setServiceData(completeData);
-    setLinks(links);
+  }
+
+  useEffect(() => {
+    restructureData(data);
   }, [inputData]);
   return (
     <div className="Service">
