@@ -16,12 +16,13 @@ export default function rankServicesByKeyword(servicesGiven) {
   }
   // Sort the keyword counts by total
   let keywordCount = services
-    .map((keyword) => keyword.total)
+    .map((keyword) => keyword.services_offered.total)
     .sort((a, b) => b - a);
+
 
   // Add the ranking information to the services, if they offer any services.
   let rankedServices = addRankingInformation(services, keywordCount);
-  rankedServices.sort((a, b) => a.score - b.score);
+  rankedServices.sort((a, b) => b.ranking- a.ranking);
   return rankedServices;
 }
 
@@ -35,11 +36,11 @@ export default function rankServicesByKeyword(servicesGiven) {
 function addRankingInformation(services, keywordCount) {
   let rankedServices = [];
   for (let service of services) {
+      service.ranking = 100-keywordCount.indexOf(service.services_offered.total);
     // Add the keyword count to the ranked list
     service.services_offered = getPopularKeywords(service.services_offered);
     // If they offer any services, add them to the ranked list
     if (service.services_offered) {
-      service.ranking = keywordCount.indexOf(service.total) + 1;
       rankedServices.push(service);
     }
   }
