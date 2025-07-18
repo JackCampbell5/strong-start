@@ -1,10 +1,18 @@
-.LoadingButton button {
+/* Size of the button may be auto based on the param given */
+.LoadingButton .setSize {
   width: 100px;
   height: 50px;
+}
+.LoadingButton .fitText {
+  width: fit-content;
+  max-width: 200px;
+  padding: 10px;
+  height: fit-content;
 }
 
 .LoadingButton .currentlyLoading:hover {
   background-color: var(--background-darker);
+  cursor: wait;
 }
 
 /* Loading animation  */

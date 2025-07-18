@@ -61,7 +61,7 @@ function NavNonProfit({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === NpPages.DASHBOARD ? "selected" : "unselected",
+            location === NpPages.DASHBOARD && "selected",
           ].join(" ")}
           onClick={() => onNavigate(NpPages.DASHBOARD)}
         >
@@ -70,7 +70,7 @@ function NavNonProfit({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === NpPages.EDITSERVICE ? "selected" : "unselected",
+            location === NpPages.EDITSERVICE && "selected",
           ].join(" ")}
           onClick={() => onNavigate(NpPages.EDITSERVICE)}
         >
@@ -79,7 +79,7 @@ function NavNonProfit({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === NpPages.NEWSERVICE ? "selected" : "unselected",
+            location === NpPages.NEWSERVICE && "selected",
           ].join(" ")}
           onClick={() => onNavigate(NpPages.NEWSERVICE)}
         >
@@ -88,7 +88,7 @@ function NavNonProfit({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === NpPages.SEARCHSERVICE ? "selected" : "unselected",
+            location === NpPages.SEARCHSERVICE && "selected",
           ].join(" ")}
           onClick={() => onNavigate(NpPages.SEARCHSERVICE)}
         >
@@ -97,11 +97,20 @@ function NavNonProfit({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === NpPages.VIEWSERVICES ? "selected" : "unselected",
+            location === NpPages.VIEWSERVICES && "selected",
           ].join(" ")}
           onClick={() => onNavigate(NpPages.VIEWSERVICES)}
         >
           ViewServices
+        </button>
+        <button
+          className={[
+            "navBarButton",
+            location === NpPages.RECOMMEND && "selected",
+          ].join(" ")}
+          onClick={() => onNavigate(NpPages.RECOMMEND)}
+        >
+          Recommend
         </button>
         <div className="account-dropdown">
           <button
@@ -121,7 +130,7 @@ function NavNonProfit({ onNavigate }) {
             <button
               className={[
                 "navBarButton",
-                location === NpPages.LOGIN ? "selected" : "unselected",
+                location === NpPages.LOGIN && "selected",
               ].join(" ")}
               onClick={() => onNavigate(NpPages.LOGIN)}
             >
@@ -130,7 +139,7 @@ function NavNonProfit({ onNavigate }) {
             <button
               className={[
                 "navBarButton",
-                location === NpPages.REGISTER ? "selected" : "unselected",
+                location === NpPages.REGISTER && "selected",
               ].join(" ")}
               onClick={() => onNavigate(NpPages.REGISTER)}
             >
