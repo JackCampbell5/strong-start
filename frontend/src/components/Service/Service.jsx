@@ -1,35 +1,155 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { MdArrowDropDownCircle } from "react-icons/md";
 
 // Local Imports
 import "./Service.css";
+// Util Functions
+import { fillMissingDataFields } from "#utils/selectUtils";
+import { serviceSearchIconMap } from "#utils/serviceIconUtils";
+import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
+import { data } from "react-router";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added
  * @param {object} data - Info on a specific service
  */
-function Service({ data }) {
-  const noShow = ["id", "name", "addressInfo", "routeLink", "nonprofit_ID"];
+function Service({ inputData }) {
+  // Constant Variables
+  const hiddenFields = ["id", "addressInfo", "links", "nonprofit_ID"];
+  const topFields = ["name", "description", "route_length", "ranking"];
+  // State Variables
+  const [serviceData, setServiceData] = useState({ bottom: [], top: [] });
+  const [links, setLinks] = useState({});
+  const [expanded, setExpanded] = useState(false);
+
+  /**
+   * Divides the data based on what is on the topFields or not. Also makes sure the hiddenFields does not make into either array
+   * @param {object} dataObj - The object to divide
+   * @returns The divided data in the form [top, bottom, links]
+   */
+  function divideData(dataObj) {
+    const data = JSON.parse(JSON.stringify(dataObj));
+    let topData = [];
+    let bottomData = [];
+    for (const field in data) {
+      if (topFields.includes(field)) {
+        topData.push({ id: field, value: data[field] });
+      } else if (!hiddenFields.includes(field)) {
+        bottomData.push({ id: field, value: data[field] });
+      }
+    }
+    return [topData, bottomData, data.links];
+  }
+
+  /**
+   * Restructure the input data for display and then sets the data to that value
+   * @param {obj} data - The data to restructure and then set
+   */
+  function restructureData(data) {
+    // Divide the data
+    const [topData, bottomData, links] = divideData(data);
+    setLinks(links); // Set the links
+
+    // Fill the fields to add icon and name
+    const completeTop = fillMissingDataFields(topData, serviceDisplayDefault);
+    const completeBottom = fillMissingDataFields(
+      bottomData,
+      serviceDisplayDefault
+    );
+    // Restructure the top for easier form to get
+    let updatedTopData = completeTop.reduce((acc, obj) => {
+      return { ...acc, [obj.id]: obj.value };
+    }, {});
+    const completeData = { top: updatedTopData, bottom: completeBottom };
+    setServiceData(completeData);
+  }
+
+  useEffect(() => {
+    restructureData(inputData);
+  }, [inputData]);
   return (
-    <div className="Service">
-      {data.name ? <h3>{data.name}</h3> : null}
-      {Object.entries(data).map((obj) => {
-        const key = obj[0]; // gets the key from obj.entries
-        const info = obj[1]; // gets the string stored at the given key from obj.entries
-        return !noShow.includes(key) && info ? (
-          <p className="serviceParam" key={key} href={data.routeLink}>
-            <strong>{key}:</strong>{" "}
-            {key === "routeLength" ? (
-              <a href={data["routeLink"]} target="_blank">
-                {info}
-              </a>
-            ) : (
-              <span>{info}</span>
-            )}
-          </p>
-        ) : null;
-      })}
+    <div className={["Service", serviceData.top.name && "borderYes"].join(" ")}>
+      <div className="serviceTop">
+        <div className="topLeft">
+          {serviceData.top.name ? <h3>{serviceData.top.name}</h3> : null}
+          {serviceData.top.description ? (
+            <p className="serviceDescription">{serviceData.top.description}</p>
+          ) : null}
+        </div>
+        <div className="topRight">
+          {serviceData.top.route_length ? (
+            <div
+              className={[
+                "topParam",
+                serviceData.top.route_length < 10
+                  ? "greenOutline"
+                  : serviceData.top.route_length < 20
+                  ? "yellowOutline"
+                  : "redOutline",
+              ].join(" ")}
+            >
+              <div className="bigText">{serviceData.top.route_length}</div>
+              <div className="smallText">Miles</div>
+            </div>
+          ) : null}
+          {serviceData.top.ranking ? (
+            <div
+              className={[
+                "topParam",
+                serviceData.top.ranking > 75
+                  ? "greenOutline"
+                  : serviceData.top.ranking > 50
+                  ? "yellowOutline"
+                  : "redOutline",
+              ].join(" ")}
+            >
+              <div className="bigText">
+                {Math.round(serviceData.top.ranking)}%
+              </div>
+              <div className="smallText">Match</div>
+            </div>
+          ) : null}
+        </div>
+      </div>
+      <div className="serviceMid">
+        <div
+          onClick={() => setExpanded((pre) => !pre)}
+          className={[
+            "moreDetails",
+            expanded ? "expanded" : "notExpanded",
+          ].join(" ")}
+        >
+          More Details <MdArrowDropDownCircle />
+        </div>
+      </div>
+      {expanded ? (
+        <div className="serviceBottom">
+          {serviceData.bottom.map((obj) => {
+            return obj?.value ? (
+              <div className="serviceParam" key={obj.id}>
+                <strong>{obj.name}</strong>
+                {obj.icon
+                  ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                  : null}
+                {":"}
+                {obj.id === "address" ? (
+                  <a href={links?.route} target="_blank">
+                    {obj.value}
+                  </a>
+                ) : obj.id === "website" ? (
+                  <a href={obj.value} target="_blank">
+                    {obj.value}
+                  </a>
+                ) : (
+                  <span>{obj.value}</span>
+                )}
+              </div>
+            ) : null;
+          })}
+        </div>
+      ) : null}
     </div>
   );
 }

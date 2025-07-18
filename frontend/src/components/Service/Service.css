@@ -1,10 +1,114 @@
 .Service {
-  padding: 0 3% 0% 3%;
   text-align: left;
-  border: var(--border-mid) solid 10px;
   border-radius: 30px;
 }
+
+.borderYes {
+  border: var(--border-mid) solid 10px;
+}
+
+/* The entire top section  */
+.Service .serviceTop {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  border-radius: 15px;
+  padding: 0 3% 0% 3%;
+}
+/* Top left with title and description  */
+.Service .serviceTop .topLeft {
+  width: 100%;
+}
+
+/* The top right with the big values (If they exist) */
+.Service .serviceTop .topRight {
+  margin: 5px 0 5px 20px;
+  text-align: center;
+  font-size: 25px;
+}
+/* Each individual param in the top right */
+.Service .serviceTop .topRight .topParam {
+  margin: 2px 0 0 0;
+  padding: 10px;
+  border-width: 5px;
+  border-style: solid;
+  border-radius: 50px;
+}
+/* Make the number bigger and the text smaller */
+.Service .serviceTop .topRight .topParam .bigText {
+  font-size: 30px;
+}
+.Service .serviceTop .topRight .topParam .smallText {
+  font-size: 15px;
+}
+
+/* Change the color based on the value */
+.Service .serviceTop .topRight .redOutline {
+  border-color: red;
+}
+.Service .serviceTop .topRight .yellowOutline {
+  border-color: darkgoldenrod;
+}
+.Service .serviceTop .topRight .greenOutline {
+  border-color: green;
+}
+
+/* Middle Container */
+.Service .serviceMid {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+
+.Service .serviceMid .moreDetails {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px;
+  border: var(--border-light) solid 2px;
+  border-radius: 10px;
+}
+/* Dropdown icon */
+.Service .serviceMid svg {
+  width: 25px;
+  height: 25px;
+}
+
+.Service .serviceMid .moreDetails:hover {
+  color: var(--text-dark);
+  cursor: pointer;
+}
+
+.Service .serviceMid .expanded {
+  color: var(--text-dark);
+  cursor: pointer;
+  font-weight: bolder;
+}
+.Service .serviceMid .expanded:hover {
+  color: var(--text);
+}
+
+/* Bottom section  */
+.Service .serviceBottom {
+  padding: 0 3% 0% 3%;
+  border-top: var(--border-light) solid 2px;
+}
+
+/*  Each individual param  */
 .Service .serviceParam {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  margin: 15px 0px;
+}
+/* Split the params apart from each other  */
+.Service .serviceParam span,
+.Service .serviceParam a {
+  margin: 0 0 0 20px;
+}
+
+.Service .serviceBottom svg {
+  height: 25px;
+  width: 25px;
 }

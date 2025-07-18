@@ -48,10 +48,23 @@ export async function routeBetween(initialAddress, endingAddress) {
  * @returns The route length in miles as a string
  */
 function validateAndExtractRouteLength(data) {
-  const metersToMiles = 0.000621371; // Convert meters to miles
-  const milesDist = data.routes[0].distanceMeters * metersToMiles;
-  const roundMiles = Math.round(milesDist * 100) / 100;
-  return roundMiles.toString() + " Miles";
+  const milesDist = metersToMiles(data.routes[0].distanceMeters, 1);
+  return milesDist;
+}
+
+/**
+ * Converts meters to miles with the given number of decimal places
+ * @param {number} meters - The number of meters to convert to miles
+ * @param {number} places - The number of decimal places to round to
+ * @returns
+ */
+function metersToMiles(meters, places) {
+  const metersToMilesConversion = 0.000621371; // Convert meters to miles
+  let inMiles = meters * metersToMilesConversion;
+  if (places) {
+    inMiles = inMiles.toFixed(places);
+  }
+  return inMiles;
 }
 
 function getRouteRequestBody(refugeeAddress, serviceAddress) {

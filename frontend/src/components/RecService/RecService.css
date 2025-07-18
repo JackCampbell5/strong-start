@@ -6,6 +6,7 @@
   border-radius: 36px;
 }
 
+/* The entire header section */
 .RecService .serviceHeader {
   padding: 0px 10px;
   display: flex;
@@ -16,13 +17,19 @@
   text-align: left;
 }
 
-.RecService svg {
+/* The icon */
+.RecService .serviceHeader svg {
   width: 50px;
   height: 50px;
   margin: 0px 10px;
 }
 
-.RecService svg:hover {
+.RecService .serviceHeader svg:hover {
   color: var(--border-dark);
   cursor: pointer;
+}
+
+/* The edit service section */
+.RecService .editTopDivider {
+  border-top: var(--border-mid) 5px solid;
 }

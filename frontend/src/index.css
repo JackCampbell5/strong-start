@@ -4,6 +4,9 @@
   font-weight: 400;
   --background: #effeff;
   --text: #00292c;
+  --text-dark: #00747d;
+  --text-mid: #00c2d0;
+  --text-light: #51f3ff;
   --background-darker: #c4faff;
   --background-hover: #77f4ff;
   --background-selected: #84c2c8;
@@ -46,4 +49,15 @@ button:hover {
 .successText {
   color: green;
   font-weight: bold;
+}
+/* Make the links consistent with site style */
+a:link {
+  color: var(--text-mid);
+}
+a:link:hover,
+a:visited:hover {
+  color: var(--text-light);
+}
+a:visited {
+  color: var(--text-dark);
 }
