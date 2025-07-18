@@ -280,6 +280,30 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
   }
 });
 
+// Add a view to a service by id
+serviceRouter.put("/:service_id/view-add", async (req, res) => {
+  const nonprofit = req.body.nonprofit;
+  const { service_id } = req.params;
+
+  try {
+    const updateOne = await prisma.service.update({
+      where: {
+        id: service_id,
+        nonprofit_ID: nonprofit.id,
+      },
+
+      data: {
+        view_count: {
+          increment: 1,
+        },
+      },
+    });
+    res.status(204).send();
+  } catch {
+    res.status(404).send("Service not found");
+  }
+});
+
 // Delete a service by id
 serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
   if (!req.session.employee) {
