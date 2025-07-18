@@ -6,10 +6,11 @@ import { MdArrowDropDownCircle } from "react-icons/md";
 // Local Imports
 import "./Service.css";
 // Util Functions
+import { addServiceView } from "#fetch/serviceFetchUtils";
+import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
 import { fillMissingDataFields } from "#utils/selectUtils";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
-import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
-import { data } from "react-router";
+import { getNonProfit } from "#utils/pathUtils";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added
@@ -17,12 +18,18 @@ import { data } from "react-router";
  */
 function Service({ inputData }) {
   // Constant Variables
+  const nonprofit = getNonProfit();
   const hiddenFields = ["id", "addressInfo", "links", "nonprofit_ID"];
   const topFields = ["name", "description", "route_length", "ranking"];
   // State Variables
   const [serviceData, setServiceData] = useState({ bottom: [], top: [] });
   const [links, setLinks] = useState({});
   const [expanded, setExpanded] = useState(false);
+
+  function onMoreDetailsClick() {
+    setExpanded((pre) => !pre);
+    addServiceView(nonprofit, inputData.id);
+  }
 
   /**
    * Divides the data based on what is on the topFields or not. Also makes sure the hiddenFields does not make into either array
@@ -115,7 +122,7 @@ function Service({ inputData }) {
       </div>
       <div className="serviceMid">
         <div
-          onClick={() => setExpanded((pre) => !pre)}
+          onClick={onMoreDetailsClick}
           className={[
             "moreDetails",
             expanded ? "expanded" : "notExpanded",
