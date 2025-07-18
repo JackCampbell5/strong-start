@@ -29,6 +29,7 @@ model service{
   services_offered      String[]
   restrictions          String?
   next_steps            String
+  view_count            Int @default(0)
   nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
