@@ -22,7 +22,7 @@ function NavRefugee({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === RPages.HOME ? "selected" : "unselected",
+            location === RPages.HOME && "selected",
           ].join(" ")}
           onClick={() => onNavigate(RPages.HOME)}
         >
@@ -31,7 +31,7 @@ function NavRefugee({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === RPages.ALLSERVICES ? "selected" : "unselected",
+            location === RPages.ALLSERVICES && "selected",
           ].join(" ")}
           onClick={() => onNavigate(RPages.ALLSERVICES)}
         >
@@ -40,7 +40,7 @@ function NavRefugee({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === RPages.CONTACT ? "selected" : "unselected",
+            location === RPages.CONTACT && "selected",
           ].join(" ")}
           onClick={() => onNavigate(RPages.CONTACT)}
         >
@@ -49,7 +49,7 @@ function NavRefugee({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === RPages.HELP ? "selected" : "unselected",
+            location === RPages.HELP && "selected",
           ].join(" ")}
           onClick={() => onNavigate(RPages.HELP)}
         >

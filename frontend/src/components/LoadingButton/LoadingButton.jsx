@@ -17,7 +17,7 @@ function LoadingButton({ loading, onClick, text, fit = false }) {
         <button
           onClick={handleClick}
           className={[
-            loading ? "currentlyLoading" : "notLoading",
+            loading && "currentlyLoading",
             fit ? "fitText" : "setSize",
           ].join(" ")}
         >
