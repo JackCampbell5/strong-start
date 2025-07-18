@@ -17,7 +17,7 @@ import { data } from "react-router";
  */
 function Service({ inputData }) {
   // Constant Variables
-  const noShow = ["id", "addressInfo", "links", "nonprofit_ID"];
+  const hiddenFields = ["id", "addressInfo", "links", "nonprofit_ID"];
   const topFields = ["name", "description", "route_length", "ranking"];
   // State Variables
   const [serviceData, setServiceData] = useState({ bottom: [], top: [] });
@@ -25,7 +25,7 @@ function Service({ inputData }) {
   const [expanded, setExpanded] = useState(false);
 
   /**
-   * Divides the data based on what is on the topFields or not. Also makes sure the noShow does not make into either array
+   * Divides the data based on what is on the topFields or not. Also makes sure the hiddenFields does not make into either array
    * @param {object} dataObj - The object to divide
    * @returns The divided data in the form [top, bottom, links]
    */
@@ -36,7 +36,7 @@ function Service({ inputData }) {
     for (const field in data) {
       if (topFields.includes(field)) {
         topData.push({ id: field, value: data[field] });
-      } else if (!noShow.includes(field)) {
+      } else if (!hiddenFields.includes(field)) {
         bottomData.push({ id: field, value: data[field] });
       }
     }
