@@ -67,7 +67,7 @@ function Service({ inputData }) {
   }
 
   useEffect(() => {
-    restructureData(data);
+    restructureData(inputData);
   }, [inputData]);
   return (
     <div className="Service">
