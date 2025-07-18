@@ -3,7 +3,7 @@ import serviceTypeKeywords from "#recs/serviceTypeKeywords.json" with { type: "j
 import { prettyPrintService } from "#utils/service-utils.js";
 
 /**
- * Rank services based how many services they offer based on keyword matches
+ * Rank services based how many serviceTypes they offer based on keyword matches
  * + The keyword matches are weighted by how many times they appear in the description(Currently a sum of all user ratings of a place on google maps)
  * @param {Array} servicesGiven -  Array of services to rank based on keyword matches
  * @returns The services sorted by ranking with an updated services offered field
@@ -55,7 +55,7 @@ function addRankingInformation(services, keywordCount) {
  */
 function getKeywordCounts(serviceGiven) {
   let service = JSON.parse(JSON.stringify(serviceGiven));
-  let results = { total: 0 };
+  let keywordCounts = { total: 0 };
 
   // If it has a description, check for keywords
   if (serviceGiven.description) {
@@ -68,14 +68,10 @@ function getKeywordCounts(serviceGiven) {
 
       // Loop thru each keyword and check against the description
       for (const keyword of keywords) {
-        // Update the counts in the results object if included
+        // Update the counts in the keywordCounts object if included
         if (reviewsString.includes(keyword)) {
-          if (results[serviceType] == undefined) {
-            results[serviceType] = 1;
-          } else {
-            results[serviceType] += 1;
-          }
-          results.total++;
+          keywordCounts[serviceType] = (keywordCounts[serviceType] || 0) + 1;
+          keywordCounts.total++;
         } // end if keyword is in reviews
       } // end for each keyword
     } // end for each serviceType
