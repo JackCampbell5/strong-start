@@ -156,6 +156,33 @@ export async function putService(info, nonprofit, serviceID) {
 }
 
 /**
+ * Adds a view to a service
+ * @param {object} nonprofit - The nonprofit containing the service to add a view to
+ * @param {String} serviceID - The id of the service to add a view to
+ * @returns
+ */
+export async function addServiceView(nonprofit, serviceID) {
+  return await fetch(`${serviceLink}/${nonprofit}/${serviceID}/view-add`, {
+    method: "PUT",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return { result: true };
+    })
+    .catch((error) => {
+      // Handle error
+      console.error("Error fetching boards:", error);
+      // Return more info on the error
+      return { result: false, error: error.message };
+    });
+}
+
+/**
  * Gets a list of all services for a nonprofit with just the name and id
  * @param {object} nonProfit - The non profit to search for services in
  * @param {object} data - The data to search for as query params
