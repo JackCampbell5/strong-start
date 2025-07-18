@@ -28,7 +28,9 @@ function Service({ inputData }) {
 
   function onMoreDetailsClick() {
     setExpanded((pre) => !pre);
-    addServiceView(nonprofit, inputData.id);
+    if (inputData.nonprofit_ID) {
+      addServiceView(nonprofit, inputData.id);
+    }
   }
 
   /**
