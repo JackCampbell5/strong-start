@@ -49,7 +49,7 @@ export async function routeBetween(initialAddress, endingAddress) {
  */
 function validateAndExtractRouteLength(data) {
   const milesDist = metersToMiles(data.routes[0].distanceMeters, 1);
-  return milesDist.toString() + " Miles";
+  return milesDist;
 }
 
 /**
