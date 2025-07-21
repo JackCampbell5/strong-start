@@ -29,9 +29,9 @@ model service{
   services_offered      String[]
   restrictions          String?
   next_steps            String
-  view_count            Int @default(0)
   nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
+  web_logs              web_log[]
 }
 
 // The non profit associated with a certain database of services.
@@ -47,6 +47,7 @@ model nonprofit {
   services               service[]
   employees              nonprofit_employee[]
   refugees               refugee[]
+  web_logs               web_log[]
   refugee_logs           refugee_log[]
 }
 
@@ -84,4 +85,17 @@ model refugee_log{
   refugee_ID            String  @db.Uuid
   nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
+}
+
+model web_log{
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  session_token         String
+  timestamp             DateTime  @default(now())
+  user_type             Int // 0 = employee, 1 = refugee
+  page_id               String
+  action                String
+  nonprofit_ID          String  @db.Uuid
+  nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
+  service_ID            String  @db.Uuid
+  service               service @relation(fields: [service_ID], references: [id])
 }
