@@ -193,7 +193,7 @@ async function isValidParams(query, nonprofit) {
     if (!date_valid.valid) {
       return errorReturn(date_valid.error);
     }
-    date_entered = date_valid.data;
+    params.date_entered = date_valid.data;
   }
 
   return successReturn(params);
