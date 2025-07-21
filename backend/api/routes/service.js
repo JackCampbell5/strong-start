@@ -18,7 +18,7 @@ import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
 import getFilter from "#utils/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
-import { checkSession } from "#utils/session-utils.js";
+import { checkSession, checkLogin } from "#utils/session-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -33,8 +33,7 @@ serviceRouter.get("/all", async (req, res, next) => {
   // if(!req.session.employee) {
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
-    if (res.statusCode === 401) return;
+    req = checkSession(req);
 
     const nonprofit = req.body.nonprofit;
     const foundServices = await prisma.service.findMany({
@@ -57,8 +56,7 @@ serviceRouter.get("/all", async (req, res, next) => {
 serviceRouter.get("/filters", async (req, res, next) => {
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
-    if (res.statusCode === 401) return;
+    req = checkSession(req);
 
     const nonprofit = req.body.nonprofit;
     return res.status(200).json(await getFilter(nonprofit));
@@ -71,8 +69,7 @@ serviceRouter.get("/filters", async (req, res, next) => {
 serviceRouter.get("/search", async (req, res, next) => {
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
-    if (res.statusCode === 401) return;
+    req = checkSession(req);
 
     const nonprofit = req.body.nonprofit;
     const query = req.query;
@@ -92,7 +89,7 @@ serviceRouter.get("/search", async (req, res, next) => {
 serviceRouter.get("/recommend", async (req, res, next) => {
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const nonprofit = req.body.nonprofit;
@@ -111,7 +108,7 @@ serviceRouter.get("/recommend", async (req, res, next) => {
 serviceRouter.get("/all/name-list", async (req, res, next) => {
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const nonprofit = req.body.nonprofit;
@@ -140,7 +137,7 @@ serviceRouter.get("/name/:service_name", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const findService = await prisma.service.findMany({
@@ -172,7 +169,7 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
     const findService = await prisma.service.findUnique({
       where: {
@@ -196,7 +193,7 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const findService = await prisma.service.findUnique({
@@ -238,7 +235,7 @@ serviceRouter.post("/add", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const exists = await checkServiceName(name, nonprofit, next);
@@ -271,7 +268,7 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
   const updatedData = req.body.data;
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const exists = await checkServiceId(service_id, nonprofit, next);
@@ -308,8 +305,7 @@ serviceRouter.put("/:service_id/view-add", async (req, res) => {
 
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
-    if (res.statusCode === 401) return;
+    req = checkSession(req);
 
     await prisma.service.update({
       where: {
@@ -335,7 +331,7 @@ serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     // Make sure the session is valid if it exists
-    [req, res] = checkSession(req);
+    [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
     const exists = await checkServiceId(service_id, nonprofit, next);

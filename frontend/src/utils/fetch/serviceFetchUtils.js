@@ -176,7 +176,7 @@ export async function addServiceView(nonprofit, serviceID) {
     })
     .catch((error) => {
       // Handle error
-      console.error("Error fetching boards:", error);
+      console.error("Error adding view:", error);
       // Return more info on the error
       return { result: false, error: error.message };
     });
