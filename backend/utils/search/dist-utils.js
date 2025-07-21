@@ -98,3 +98,40 @@ export function getCords(locationObj) {
   let lat = cords.latitude;
   return { longitude: long, latitude: lat };
 }
+
+/**
+ * Checks 2 radius's overlap with each other
+ * + Both params in the form {low: {latitude, longitude}, high: {latitude, longitude}}
+ * @param {object} mainRange - Cords of the main nonprofit to check against
+ * @param {object} checkRange - Location object to check against
+ * @returns True if the 2 radius's overlap, false if they do not
+ */
+export function radiusOverlap(mainRange, checkRange) {
+  if (
+    ((checkRange.low.latitude >= mainRange.low.latitude &&
+      checkRange.low.latitude <= mainRange.high.latitude) ||
+      (checkRange.low.longitude >= mainRange.low.longitude &&
+        checkRange.low.longitude <= mainRange.high.longitude)) &&
+    ((checkRange.high.latitude <= mainRange.high.latitude &&
+      checkRange.high.latitude >= mainRange.low.latitude) ||
+      (checkRange.high.longitude <= mainRange.high.longitude &&
+        checkRange.high.longitude >= mainRange.low.longitude))
+  ) {
+    return true;
+  } else return false;
+}
+
+/**
+ * Checks if a service is in the radius
+ * @param {*} range - The range to check if the service is in, in the form of {low: {latitude, longitude}, high: {latitude, longitude}}
+ * @param {object} service - The service to check if it is in the radius
+ * @returns true if the service is in the radius, false if it is not
+ */
+export function serviceInRadius(range, loc) {
+  return (
+    loc.latitude >= range.low.latitude &&
+    loc.latitude <= range.high.latitude &&
+    loc.longitude >= range.low.longitude &&
+    loc.longitude <= range.high.longitude
+  );
+}
