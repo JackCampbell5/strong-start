@@ -97,9 +97,9 @@ function EditService({
    * Checks to see if the service was submitted successfully and reloads the page if it was and prints the error message if it wasn't
    * @param {string} success - Blank if successful and the error message if not
    */
-  function submitCallback(success) {
+  function submitCallback(result) {
     setLoading(false);
-    if (success.result) {
+    if (result.valid) {
       if (!serviceID) {
         setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
       }
@@ -109,7 +109,7 @@ function EditService({
         setSuccessText("");
       }, 5000); // 5000 milliseconds = 5 seconds
     } else {
-      setErrorText(success.error);
+      setErrorText(result.error);
     }
   }
 
