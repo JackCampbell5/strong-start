@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { use, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { useState } from "react";
@@ -11,7 +11,15 @@ import RecService from "#components/RecService/RecService";
 
 function RecList({ data }) {
   const [serviceList, setServiceList] = useState(data);
+  const [currentServices, setCurrentServices] = useState([]);
   const [successText, setSuccessText] = useState("");
+  const [page, setPage] = useState(0);
+
+  function changePage(newPage) {
+    setPage(newPage);
+    console.log(newPage);
+    setCurrentServices(serviceList.slice(newPage * 10 - 10, newPage * 10));
+  }
 
   /**
    * Removes the service from the list of services using the id of the service
@@ -26,12 +34,15 @@ function RecList({ data }) {
     }, 5000);
     setServiceList(updatedData);
   }
+  useEffect(() => {
+    changePage(1);
+  }, []);
   return (
     <div className="RecList">
       <p className="successText">{successText}</p>
       <div className="allRecs">
-        {serviceList
-          ? serviceList.map((obj) => {
+        {currentServices
+          ? currentServices.map((obj) => {
               return (
                 <RecService
                   key={obj.id}
@@ -43,8 +54,33 @@ function RecList({ data }) {
           : null}
       </div>
       <div className="ServiceTotal">
-        <p className="ServiceTotalNum">{serviceList.length} </p>
-        <p className="ServiceTotalLabel"> Services Displayed</p>
+        <p className="ServiceTotalNum">{currentServices.length} </p>
+        <p className="ServiceTotalLabel"> Services on This Page</p>
+      </div>
+      <div className="pagination">
+        <button
+          className={page <= 1 && "disabled"}
+          onClick={() => {
+            if (page > 1) {
+              changePage(page - 1);
+            }
+          }}
+        >
+          Prev
+        </button>
+        <button
+          className={page >= serviceList.length / 10 && "disabled"}
+          onClick={() => {
+            if (page < serviceList.length / 10) {
+              changePage(page + 1);
+            }
+          }}
+        >
+          Next
+        </button>
+        <div>
+          Page {page} of {Math.ceil(serviceList.length / 10)}{" "}
+        </div>
       </div>
     </div>
   );
