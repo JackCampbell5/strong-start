@@ -110,12 +110,12 @@ export function radiusOverlap(mainRange, checkRange) {
   if (
     ((checkRange.low.latitude >= mainRange.low.latitude &&
       checkRange.low.latitude <= mainRange.high.latitude) ||
+      (checkRange.high.latitude <= mainRange.high.latitude &&
+        checkRange.high.latitude >= mainRange.low.latitude)) &&
+    ((checkRange.high.longitude <= mainRange.high.longitude &&
+      checkRange.high.longitude >= mainRange.low.longitude) ||
       (checkRange.low.longitude >= mainRange.low.longitude &&
-        checkRange.low.longitude <= mainRange.high.longitude)) &&
-    ((checkRange.high.latitude <= mainRange.high.latitude &&
-      checkRange.high.latitude >= mainRange.low.latitude) ||
-      (checkRange.high.longitude <= mainRange.high.longitude &&
-        checkRange.high.longitude >= mainRange.low.longitude))
+        checkRange.low.longitude <= mainRange.high.longitude))
   ) {
     return true;
   } else return false;
@@ -123,7 +123,7 @@ export function radiusOverlap(mainRange, checkRange) {
 
 /**
  * Checks if a service is in the radius
- * @param {*} range - The range to check if the service is in, in the form of {low: {latitude, longitude}, high: {latitude, longitude}}
+ * @param {object} range - The range to check if the service is in, in the form of {low: {latitude, longitude}, high: {latitude, longitude}}
  * @param {object} service - The service to check if it is in the radius
  * @returns true if the service is in the radius, false if it is not
  */
