@@ -8,6 +8,7 @@ import servicesNearby from "#recs/services-nearby.js";
 import { reformatServices } from "#recs/rec-utils.js";
 import rankServicesByKeyword from "#recs/rank-by-keyword.js";
 import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
+import getOtherServicesWithinRadius from "#recs/rec-existing.js";
 
 /**
  * Takes a nonprofit and finds additional services nearby
@@ -16,25 +17,38 @@ import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
  * @returns {Array} - The reformatted services nearby
  */
 export default async function recServices(nonprofit) {
-  // Find nearby services
-  let result = await servicesNearby(nonprofit);
-  if (!result.valid) {
-    return errorReturn(result.error);
+  // Get other services within this nonprofit's radius
+  let otherServices = await getOtherServicesWithinRadius(nonprofit);
+
+  // If there are less than 10 services, find nearby services using google places API
+  if (otherServices.length < 10) {
+    // Find nearby services
+    let result = await servicesNearby(nonprofit);
+    if (!result.valid) {
+      return errorReturn(result.error);
+    }
+    const apiServices = result.data.places;
+
+    // Reformat the services
+    const reformattedServices = reformatServices(apiServices);
+    // Remove Duplicates Services Already in Database
+    const servicesNoDups = await removeServiceDuplicates(
+      reformattedServices,
+      nonprofit
+    );
+    // Rank the services by keyword
+    const serviceKeywordRanked = await rankServicesByKeyword(servicesNoDups);
+
+    // Put the services in the database at a higher ranking for now
+    // TODO put in a real ranking system
+    let highRanking = serviceKeywordRanked[0].ranking + 2;
+    otherServices.forEach((service) => (service.ranking = highRanking));
+    otherServices = otherServices.concat(serviceKeywordRanked);
+  } else {
+    // As the services are from another nonprofit, they can all be ranked 1
+    otherServices.forEach((service) => (service.ranking = 1));
   }
-  const apiServices = result.data.places;
-
-  // Reformat the services
-  const reformattedServices = reformatServices(apiServices);
-  // Remove Duplicates Services Already in Database
-  const servicesNoDups = await removeServiceDuplicates(
-    reformattedServices,
-    nonprofit
-  );
-  // Rank the services by keyword
-  const serviceKeywordRanked = await rankServicesByKeyword(servicesNoDups);
-
-  const normalizedServices = normalizeServiceFromRank(serviceKeywordRanked);
-
+  const normalizedServices = normalizeServiceFromRank(otherServices);
   return successReturn(normalizedServices);
 }
 
