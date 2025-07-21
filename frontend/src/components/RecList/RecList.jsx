@@ -79,7 +79,9 @@ function RecList({ data }) {
           Next
         </button>
         <div>
-          Page {page} of {Math.ceil(serviceList.length / 10)}{" "}
+          Page {page} of {Math.ceil(serviceList.length / 10)}
+          <br />
+          Total Services: {serviceList.length}
         </div>
       </div>
     </div>
