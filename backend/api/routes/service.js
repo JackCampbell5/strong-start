@@ -303,26 +303,40 @@ serviceRouter.put("/:service_id/view-add", async (req, res) => {
   const nonprofit = req.body.nonprofit;
   const { service_id } = req.params;
 
-  try {
-    // Make sure the session is valid if it exists
-    req = checkSession(req);
+  // try {
+  // Make sure the session is valid if it exists
+  req = checkSession(req);
 
-    await prisma.service.update({
-      where: {
-        id: service_id,
-        nonprofit_ID: nonprofit.id,
+  const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+  const exists = await prisma.web_log.findMany({
+    where: {
+      nonprofit_ID: nonprofit.id,
+      service_ID: service_id,
+      timestamp: {
+        gte: tenMinutesAgo,
       },
-
+    },
+  });
+  if (exists.length === 0) {
+    await prisma.web_log.create({
       data: {
-        view_count: {
-          increment: 1,
+        session_token: req.session.sessionUUID,
+        user_type: 0, // TODO - get user type when more logging is added
+        page_id: "null", // TODO - Will have page id when more logging is added
+        action: "moreDetails",
+        nonprofit: {
+          connect: { id: nonprofit.id },
+        },
+        service: {
+          connect: { id: service_id },
         },
       },
     });
-    res.status(204).send();
-  } catch {
-    res.status(404).send("Service not found");
   }
+  res.status(204).send();
+  // } catch URIError{
+  //   res.status(404).send("Service not found");
+  // }
 });
 
 // Delete a service by id
