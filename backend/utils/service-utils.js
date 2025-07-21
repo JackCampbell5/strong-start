@@ -128,7 +128,7 @@ export async function validateAndFormatServiceData(
   let addressInfo = await formatAddress(updatedService.address, nonprofit);
 
   if (!addressInfo.valid) {
-    errorMessage += addressInfo.errorMessage + ", ";
+    errorMessage += addressInfo.error + ", ";
   } else {
     updatedService.addressInfo = addressInfo.data;
     updatedService.address = addressInfo.data.formattedAddress;
