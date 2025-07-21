@@ -59,7 +59,7 @@ function RecList({ data }) {
       </div>
       <div className="pagination">
         <button
-          className={page <= 1 && "disabled"}
+          className={page <= 1 ? "disabled" : undefined}
           onClick={() => {
             if (page > 1) {
               changePage(page - 1);
@@ -69,7 +69,7 @@ function RecList({ data }) {
           Prev
         </button>
         <button
-          className={page >= serviceList.length / 10 && "disabled"}
+          className={page >= serviceList.length / 10 ? "disabled" : undefined}
           onClick={() => {
             if (page < serviceList.length / 10) {
               changePage(page + 1);
