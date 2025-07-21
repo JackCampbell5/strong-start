@@ -7,13 +7,14 @@ const googleApiKey = process.env.MAPS_API_KEY;
  *  * @param {object} nonprofit - The nonprofit to get services around
  * @returns {object} - The response from the API containing the services suggested
  */
-export default async function servicesNearby(nonprofit) {
+export default async function servicesNearby(nonprofit, pageToken = null) {
   const searchURL = "https://places.googleapis.com/v1/places:searchText";
   const nonprofitGiven = nonprofit !== null;
 
   // Data for the POST request
-  let data = getNearbyRequestBody(nonprofit.addressInfo);
+  let data = getNearbyRequestBody(nonprofit.addressInfo, pageToken);
   let mask = getNearbyRequestMask();
+  // let queryParams = new URLSearchParams({ queryString });
 
   return await fetch(`${searchURL}`, {
     method: "POST",
@@ -46,15 +47,15 @@ export default async function servicesNearby(nonprofit) {
  * @param {object} location-  The location to search around (Usually the nonprofit's address) in the format {location: {latitude: number, longitude: number}}
  * @returns The body of the POST request to the nearby search API
  */
-function getNearbyRequestBody(location) {
+function getNearbyRequestBody(location, pageToken = null) {
   return {
     locationBias: {
       circle: {
         center: location.location,
-        radius: 5000, // 5km
+        radius: 50000, // 5km
       },
     },
-    maxResultCount: 20,
+    pageToken: pageToken,
     textQuery: "nonprofit",
   };
 }
@@ -66,6 +67,7 @@ function getNearbyRequestBody(location) {
  */
 function getNearbyRequestMask() {
   return [
+    "nextPageToken",
     "places.id", // ID
     "places.displayName", // Name
     "places.formattedAddress", // Address
