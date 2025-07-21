@@ -18,6 +18,7 @@ import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
 import getFilter from "#utils/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
+import { checkSession, checkLogin } from "#utils/session-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -29,7 +30,11 @@ serviceRouter.get("/", (req, res) => {
 
 // Get all services
 serviceRouter.get("/all", async (req, res, next) => {
+  // if(!req.session.employee) {
   try {
+    // Make sure the session is valid if it exists
+    req = checkSession(req);
+
     const nonprofit = req.body.nonprofit;
     const foundServices = await prisma.service.findMany({
       where: {
@@ -50,6 +55,9 @@ serviceRouter.get("/all", async (req, res, next) => {
 // Get the service filters for a given nonprofit
 serviceRouter.get("/filters", async (req, res, next) => {
   try {
+    // Make sure the session is valid if it exists
+    req = checkSession(req);
+
     const nonprofit = req.body.nonprofit;
     return res.status(200).json(await getFilter(nonprofit));
   } catch (e) {
@@ -60,6 +68,9 @@ serviceRouter.get("/filters", async (req, res, next) => {
 // Get all services
 serviceRouter.get("/search", async (req, res, next) => {
   try {
+    // Make sure the session is valid if it exists
+    req = checkSession(req);
+
     const nonprofit = req.body.nonprofit;
     const query = req.query;
     let result = await searchServices(query, nonprofit);
@@ -76,11 +87,11 @@ serviceRouter.get("/search", async (req, res, next) => {
 
 // Get all services
 serviceRouter.get("/recommend", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const nonprofit = req.body.nonprofit;
     let result = await recServices(nonprofit);
     if (result.valid) {
@@ -95,11 +106,11 @@ serviceRouter.get("/recommend", async (req, res, next) => {
 
 // Get all services in dropdown format
 serviceRouter.get("/all/name-list", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const nonprofit = req.body.nonprofit;
     const foundServices = await prisma.service.findMany({
       where: {
@@ -125,6 +136,10 @@ serviceRouter.get("/name/:service_name", async (req, res, next) => {
   const { service_name } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const findService = await prisma.service.findMany({
       where: {
         name: service_name,
@@ -153,6 +168,9 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
     const findService = await prisma.service.findUnique({
       where: {
         id: service_id,
@@ -171,13 +189,13 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
 
 // Get one service by id
 serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const findService = await prisma.service.findUnique({
       where: {
         id: service_id,
@@ -212,14 +230,14 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
 
 // Add a new service by id
 serviceRouter.post("/add", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
   const serviceData = req.body.data;
   const name = serviceData.name;
   const nonprofit = req.body.nonprofit;
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const exists = await checkServiceName(name, nonprofit, next);
     const validatedService = await validateAndFormatServiceData(
       serviceData,
@@ -245,14 +263,14 @@ serviceRouter.post("/add", async (req, res, next) => {
 
 // Edit a service by id
 serviceRouter.put("/:service_id/edit", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   const updatedData = req.body.data;
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const exists = await checkServiceId(service_id, nonprofit, next);
     const validatedService = await validateAndFormatServiceData(
       updatedData,
@@ -280,15 +298,56 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
   }
 });
 
+// Add a view to a service by id
+serviceRouter.put("/:service_id/view-add", async (req, res) => {
+  const nonprofit = req.body.nonprofit;
+  const { service_id } = req.params;
+
+  // try {
+  // Make sure the session is valid if it exists
+  req = checkSession(req);
+
+  const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000);
+  const exists = await prisma.web_log.findMany({
+    where: {
+      nonprofit_ID: nonprofit.id,
+      service_ID: service_id,
+      timestamp: {
+        gte: tenMinutesAgo,
+      },
+    },
+  });
+  if (exists.length === 0) {
+    await prisma.web_log.create({
+      data: {
+        session_token: req.session.sessionUUID,
+        user_type: 0, // TODO - get user type when more logging is added
+        page_id: "null", // TODO - Will have page id when more logging is added
+        action: "moreDetails",
+        nonprofit: {
+          connect: { id: nonprofit.id },
+        },
+        service: {
+          connect: { id: service_id },
+        },
+      },
+    });
+  }
+  res.status(204).send();
+  // } catch URIError{
+  //   res.status(404).send("Service not found");
+  // }
+});
+
 // Delete a service by id
 serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
   const { service_id } = req.params;
   const nonprofit = req.body.nonprofit;
   try {
+    // Make sure the session is valid if it exists
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
     const exists = await checkServiceId(service_id, nonprofit, next);
 
     if (exists) {
