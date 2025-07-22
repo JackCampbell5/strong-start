@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { use, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { useState } from "react";
@@ -10,8 +10,26 @@ import "./RecList.css";
 import RecService from "#components/RecService/RecService";
 
 function RecList({ data }) {
+  // Constant Variables
+  const pageSize = 10;
+  let highestPage = Math.ceil(data.length / pageSize);
+
+  // State Variables
   const [serviceList, setServiceList] = useState(data);
+  const [currentServices, setCurrentServices] = useState([]);
   const [successText, setSuccessText] = useState("");
+  const [page, setPage] = useState(0);
+
+  /**
+   * Changes the page to the new page
+   * @param {number} newPage - The page to change to
+   */
+  function changePage(newPage) {
+    setPage(newPage);
+    setCurrentServices(
+      serviceList.slice(newPage * pageSize - pageSize, newPage * pageSize)
+    );
+  }
 
   /**
    * Removes the service from the list of services using the id of the service
@@ -24,14 +42,19 @@ function RecList({ data }) {
     setTimeout(() => {
       setSuccessText("");
     }, 5000);
+
+    // Update the data/vars
     setServiceList(updatedData);
   }
+  useEffect(() => {
+    changePage(1);
+  }, []);
   return (
     <div className="RecList">
       <p className="successText">{successText}</p>
       <div className="allRecs">
-        {serviceList
-          ? serviceList.map((obj) => {
+        {currentServices
+          ? currentServices.map((obj) => {
               return (
                 <RecService
                   key={obj.id}
@@ -43,8 +66,35 @@ function RecList({ data }) {
           : null}
       </div>
       <div className="ServiceTotal">
-        <p className="ServiceTotalNum">{serviceList.length} </p>
-        <p className="ServiceTotalLabel"> Services Displayed</p>
+        <p className="ServiceTotalNum">{currentServices.length} </p>
+        <p className="ServiceTotalLabel"> Services on This Page</p>
+      </div>
+      <div className="pagination">
+        <button
+          className={page <= 1 ? "disabled" : undefined}
+          onClick={() => {
+            if (page > 1) {
+              changePage(page - 1);
+            }
+          }}
+        >
+          Prev
+        </button>
+        <button
+          className={page >= highestPage ? "disabled" : undefined}
+          onClick={() => {
+            if (page < highestPage) {
+              changePage(page + 1);
+            }
+          }}
+        >
+          Next
+        </button>
+        <div>
+          Page {page} of {highestPage}
+          <br />
+          Total Services: {serviceList.length}
+        </div>
       </div>
     </div>
   );

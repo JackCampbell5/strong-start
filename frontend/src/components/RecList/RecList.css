@@ -18,3 +18,13 @@
   font-size: 25px;
   margin: 10px;
 }
+
+.RecList .pagination button {
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.RecList .pagination .disabled {
+  background-color: var(--background-greyer);
+  cursor: not-allowed;
+}

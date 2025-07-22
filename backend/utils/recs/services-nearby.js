@@ -1,3 +1,5 @@
+// Local Imports
+import { googleAPIMaxPageNumber } from "#utils/constants.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 const googleApiKey = process.env.MAPS_API_KEY;
@@ -8,11 +10,32 @@ const googleApiKey = process.env.MAPS_API_KEY;
  * @returns {object} - The response from the API containing the services suggested
  */
 export default async function servicesNearby(nonprofit) {
+  // Find nearby services (Look thru the 3 pages that google places API returns)
+  let apiServices = [];
+  let pageToken = null;
+  for (let a = 0; a < googleAPIMaxPageNumber; a++) {
+    let result = await getServicesNearbyPage(nonprofit, pageToken);
+    if (!result.valid) {
+      return errorReturn(result.error);
+    } else {
+      apiServices = apiServices.concat(result.data.places);
+      pageToken = result.data.nextPageToken;
+    }
+  } // End for loop
+  return successReturn(apiServices);
+}
+
+/**
+ * Gets a page of results from the nearby search API for a given nonprofit
+ * + API Used: https://developers.google.com/maps/documentation/places/web-service/text-search
+ * @param {object} nonprofit - The nonprofit to get services around
+ * @param {string} pageToken - The page token to get the next page of results if applicable
+ */
+async function getServicesNearbyPage(nonprofit, pageToken = null) {
   const searchURL = "https://places.googleapis.com/v1/places:searchText";
-  const nonprofitGiven = nonprofit !== null;
 
   // Data for the POST request
-  let data = getNearbyRequestBody(nonprofit.addressInfo);
+  let data = getNearbyRequestBody(nonprofit.addressInfo, pageToken);
   let mask = getNearbyRequestMask();
 
   return await fetch(`${searchURL}`, {
@@ -46,15 +69,15 @@ export default async function servicesNearby(nonprofit) {
  * @param {object} location-  The location to search around (Usually the nonprofit's address) in the format {location: {latitude: number, longitude: number}}
  * @returns The body of the POST request to the nearby search API
  */
-function getNearbyRequestBody(location) {
+function getNearbyRequestBody(location, pageToken = null) {
   return {
     locationBias: {
       circle: {
         center: location.location,
-        radius: 5000, // 5km
+        radius: 50000, // 50km
       },
     },
-    maxResultCount: 20,
+    pageToken: pageToken,
     textQuery: "nonprofit",
   };
 }
@@ -66,6 +89,7 @@ function getNearbyRequestBody(location) {
  */
 function getNearbyRequestMask() {
   return [
+    "nextPageToken",
     "places.id", // ID
     "places.displayName", // Name
     "places.formattedAddress", // Address
