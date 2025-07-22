@@ -7,9 +7,30 @@ const googleApiKey = process.env.MAPS_API_KEY;
  *  * @param {object} nonprofit - The nonprofit to get services around
  * @returns {object} - The response from the API containing the services suggested
  */
-export default async function servicesNearby(nonprofit, pageToken = null) {
+export default async function servicesNearby(nonprofit) {
+  // Find nearby services (Look thru the 3 pages that google places API returns)
+  let apiServices = [];
+  let pageToken = null;
+  for (let a = 0; a < 3; a++) {
+    let result = await getServicesNearbyPage(nonprofit, pageToken);
+    if (!result.valid) {
+      console.log("Error: ", result.error);
+    } else {
+      apiServices = apiServices.concat(result.data.places);
+      pageToken = result.data.nextPageToken;
+    }
+  } // End for loop
+  return apiServices;
+}
+
+/**
+ * Gets a page of results from the nearby search API for a given nonprofit
+ * + API Used: https://developers.google.com/maps/documentation/places/web-service/text-search
+ * @param {object} nonprofit - The nonprofit to get services around
+ * @param {string} pageToken - The page token to get the next page of results if applicable
+ */
+async function getServicesNearbyPage(nonprofit, pageToken = null) {
   const searchURL = "https://places.googleapis.com/v1/places:searchText";
-  const nonprofitGiven = nonprofit !== null;
 
   // Data for the POST request
   let data = getNearbyRequestBody(nonprofit.addressInfo, pageToken);
@@ -52,7 +73,7 @@ function getNearbyRequestBody(location, pageToken = null) {
     locationBias: {
       circle: {
         center: location.location,
-        radius: 50000, // 5km
+        radius: 50000, // 50km
       },
     },
     pageToken: pageToken,

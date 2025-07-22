@@ -22,19 +22,7 @@ export default async function recServices(nonprofit) {
 
   // If there are less than 10 services, find nearby services using google places API
   if (otherServices.length < 60) {
-    // Find nearby services (Look thru the 3 pages that google places API returns)
-    let apiServices = [];
-    let pageToken = null;
-    for (let a = 0; a < 3; a++) {
-      let result = await servicesNearby(nonprofit, pageToken);
-      if (!result.valid) {
-        console.log("Error: ", result.error);
-      } else {
-        apiServices = apiServices.concat(result.data.places);
-        pageToken = result.data.nextPageToken;
-      }
-    } // End for loop
-
+    const apiServices = await servicesNearby(nonprofit);
     // Reformat the services
     const reformattedServices = reformatServices(apiServices);
     // Remove Duplicates Services Already in Database
