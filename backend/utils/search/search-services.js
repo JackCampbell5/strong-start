@@ -30,13 +30,12 @@ export default async function searchServices(query, nonprofit) {
   if (!params.valid) {
     return errorReturn(params.error);
   }
-
   // Weight and return the top 5 services
   const topData = await topServices(params.data, nonprofit);
   if (!topData.valid) {
     return errorReturn(topData.error);
   }
-  return successReturn(topData.data);
+  return successReturn({ searchResults: topData.data, params: params.data });
 }
 
 /**
@@ -182,8 +181,10 @@ async function isValidParams(query, nonprofit) {
   });
 
   // Validate Language
-  if (params.language) {
-    params.language = language_given.trim().toLowerCase();
+  if (language_given) {
+    params.language = language_given
+      .split(",")
+      .map((language) => language.trim().toLowerCase());
   }
 
   // Validate Date
@@ -193,7 +194,7 @@ async function isValidParams(query, nonprofit) {
     if (!date_valid.valid) {
       return errorReturn(date_valid.error);
     }
-    date_entered = date_valid.data;
+    params.date_entered = date_valid.data;
   }
 
   return successReturn(params);
