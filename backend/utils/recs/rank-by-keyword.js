@@ -8,19 +8,15 @@ import { prettyPrintService } from "#utils/service-utils.js";
  * @param {Array} servicesGiven -  Array of services to rank based on keyword matches
  * @returns The services sorted by ranking with an updated services offered field
  */
-export default function rankServicesByKeyword(servicesGiven) {
+export default function addServicesOfferedInfoByKeyword(servicesGiven) {
   // Update the Services offered field with the keyword counts
   let services = [];
   for (let service of servicesGiven) {
     services.push(getKeywordCounts(service));
   }
-  // Sort the keyword counts by total
-  let keywordCount = services
-    .map((keyword) => keyword.services_offered.total)
-    .sort((a, b) => b - a);
 
   // Add the ranking information to the services, if they offer any services.
-  let rankedServices = addRankingInformation(services, keywordCount);
+  let rankedServices = addServiceInformation(services);
   rankedServices.sort((a, b) => b.ranking - a.ranking);
   return rankedServices;
 }
@@ -28,16 +24,13 @@ export default function rankServicesByKeyword(servicesGiven) {
 /**
  * Add the ranking information to the services, if they offer any services.
  * + If they dont offer any services, they are not added to the ranked list
- * @param {Array} services - The services to add the ranking information to
- * @param {Array} keywordCount - The sorted keyword counts to use for the ranking information
+ * @param {Array} services - The list of services to add the ranking information to
  * @returns The services with the ranking information added
  */
-function addRankingInformation(services, keywordCount) {
+function addServiceInformation(services) {
   let rankedServices = [];
-  let totalLength = keywordCount.length;
   for (let service of services) {
-    service.ranking =
-      totalLength - keywordCount.indexOf(service.services_offered.total);
+    service.ranking = service.services_offered.total;
     // Add the keyword count to the ranked list
     service.services_offered = getPopularKeywords(service.services_offered);
     // If they offer any services, add them to the ranked list
@@ -52,7 +45,7 @@ function addRankingInformation(services, keywordCount) {
  * Gets the count of each keyword category in the description of the service
  * + If there is a description, check for keywords and add counts if not set the services_offered to total:0
  * @param {object} serviceGiven - The Service to count the keywords of
- * @returns
+ * @returns The service with the keyword categories added to the services_offered field
  */
 function getKeywordCounts(serviceGiven) {
   let service = JSON.parse(JSON.stringify(serviceGiven));
@@ -87,14 +80,14 @@ function getKeywordCounts(serviceGiven) {
 /**
  * Get any keyword categories that occurred more than 3 times in the description and add them to the result string
  * @param {object} keywords -  The keywords object to check
- * @returns A string with the popular keywords
+ * @returns A array with the popular keywords
  */
 function getPopularKeywords(keywords) {
-  let popularKeywords =[] ;
+  let popularKeywords = [];
   for (const keyword in keywords) {
     if (keywords[keyword] > 3 && keyword !== "total") {
-      popularKeywords.push(prettyPrintService(keyword));
+      popularKeywords.push(keyword);
     }
   }
-  return popularKeywords.join(", ");
+  return popularKeywords;
 }

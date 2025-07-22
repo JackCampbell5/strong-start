@@ -98,7 +98,8 @@ serviceRouter.get("/recommend", async (req, res, next) => {
     const nonprofit = req.body.nonprofit;
     let result = await recServices(nonprofit);
     if (result.valid) {
-      res.status(200).json(result.data);
+      const formattedService = reformatServiceForReturn(result.data);
+      res.status(200).json(formattedService);
     } else {
       res.status(404).send(result.error);
     }

@@ -102,5 +102,6 @@ function getNearbyRequestMask() {
     "places.iconMaskBaseUri", //logo
     "places.types", //categories
     "places.reviews",
+    "places.rating", // The overall rating of the place
   ].join(",");
 }

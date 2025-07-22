@@ -17,13 +17,14 @@ export function reformatServices(serviceDataGiven) {
     serviceObj.website = service?.websiteUri;
     serviceObj.hours = stringifyHours(service?.regularOpeningHours);
     serviceObj.logo = service?.iconMaskBaseUri + ".svg"; // Links come without a tag
-    serviceObj.language = convertLanguageCode(
-      service?.displayName?.languageCode
-    );
+    serviceObj.language = [
+      convertLanguageCode(service?.displayName?.languageCode),
+    ];
     serviceObj.date_needed = null;
     serviceObj.services_offered = null;
     serviceObj.restrictions = null;
     serviceObj.next_steps = service?.nextSteps;
+    serviceObj.rating = service?.rating;
     serviceObj = Object.fromEntries(
       Object.entries(serviceObj).filter(([_, value]) => value != null)
     );
