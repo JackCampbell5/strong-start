@@ -10,15 +10,25 @@ import "./RecList.css";
 import RecService from "#components/RecService/RecService";
 
 function RecList({ data }) {
+  // Constant Variables
+  const pageSize = 10;
+  let highestPage = Math.ceil(data.length / pageSize);
+
+  // State Variables
   const [serviceList, setServiceList] = useState(data);
   const [currentServices, setCurrentServices] = useState([]);
   const [successText, setSuccessText] = useState("");
   const [page, setPage] = useState(0);
 
+  /**
+   * Changes the page to the new page
+   * @param {number} newPage - The page to change to
+   */
   function changePage(newPage) {
     setPage(newPage);
-    console.log(newPage);
-    setCurrentServices(serviceList.slice(newPage * 10 - 10, newPage * 10));
+    setCurrentServices(
+      serviceList.slice(newPage * pageSize - pageSize, newPage * pageSize)
+    );
   }
 
   /**
@@ -32,6 +42,8 @@ function RecList({ data }) {
     setTimeout(() => {
       setSuccessText("");
     }, 5000);
+
+    // Update the data/vars
     setServiceList(updatedData);
   }
   useEffect(() => {
@@ -69,9 +81,9 @@ function RecList({ data }) {
           Prev
         </button>
         <button
-          className={page >= serviceList.length / 10 ? "disabled" : undefined}
+          className={page >= highestPage ? "disabled" : undefined}
           onClick={() => {
-            if (page < serviceList.length / 10) {
+            if (page < highestPage) {
               changePage(page + 1);
             }
           }}
@@ -79,7 +91,7 @@ function RecList({ data }) {
           Next
         </button>
         <div>
-          Page {page} of {Math.ceil(serviceList.length / 10)}
+          Page {page} of {highestPage}
           <br />
           Total Services: {serviceList.length}
         </div>
