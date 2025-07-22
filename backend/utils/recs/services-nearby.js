@@ -16,13 +16,13 @@ export default async function servicesNearby(nonprofit) {
   for (let a = 0; a < googleAPIMaxPageNumber; a++) {
     let result = await getServicesNearbyPage(nonprofit, pageToken);
     if (!result.valid) {
-      console.error("Error: ", result.error);
+      return errorReturn(result.error);
     } else {
       apiServices = apiServices.concat(result.data.places);
       pageToken = result.data.nextPageToken;
     }
   } // End for loop
-  return apiServices;
+  return successReturn(apiServices);
 }
 
 /**
