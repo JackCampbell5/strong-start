@@ -42,7 +42,7 @@ export async function getCurrentlyPopularInfo(nonprofit) {
  */
 async function getPopularOfType(logs, type) {
   let typeList = logs.flatMap((log) => {
-    if (log.search_log) return log.search_log[type];
+    log.search_log ? log.search_log[type] : [];
   });
   return getPopularFromList(typeList);
 }

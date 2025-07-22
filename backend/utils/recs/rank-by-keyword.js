@@ -80,7 +80,7 @@ function getKeywordCounts(serviceGiven) {
 /**
  * Get any keyword categories that occurred more than 3 times in the description and add them to the result string
  * @param {object} keywords -  The keywords object to check
- * @returns A string with the popular keywords
+ * @returns A array with the popular keywords
  */
 function getPopularKeywords(keywords) {
   let popularKeywords = [];

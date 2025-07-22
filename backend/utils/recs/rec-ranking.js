@@ -65,19 +65,19 @@ async function extractRankingParams(servicesGiven, popularCurrently) {
     serviceInfo["service_number"] = service.services_offered.length;
 
     // Popular Zipcodes
-    serviceInfo["pop_zipcode"] = getPopularTotal(
+    serviceInfo["pop_zipcode"] = countPopularElements(
       [service.zipcode],
       popularCurrently["zipcode"]
     );
 
     // Popular Services
-    serviceInfo["pop_service"] = getPopularTotal(
+    serviceInfo["pop_service"] = countPopularElements(
       service.services_offered,
       popularCurrently["services_offered"]
     );
 
     // Popular Languages
-    serviceInfo["pop_languages"] = getPopularTotal(
+    serviceInfo["pop_languages"] = countPopularElements(
       service.language,
       popularCurrently["languages"]
     );
@@ -101,7 +101,7 @@ async function extractRankingParams(servicesGiven, popularCurrently) {
  * @param {object} popularCurrently - What is currently popular for that type
  * @returns
  */
-function getPopularTotal(arrToCheck, popularCurrently) {
+function countPopularElements(arrToCheck, popularCurrently) {
   let total = 0;
   for (const val of arrToCheck) {
     if (popularCurrently[val]) {

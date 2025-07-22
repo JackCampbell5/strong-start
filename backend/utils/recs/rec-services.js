@@ -77,9 +77,9 @@ async function removeServiceDuplicates(apiServices, nonprofit) {
   });
 
   // Get all of the values of the keys in existing services
-  let existedPhoneNumbers = getAllOfKey(existedServices, "phone_number");
-  let existedNames = getAllOfKey(existedServices, "name");
-  let existedAddresses = getAllOfKey(existedServices, "address");
+  const existedPhoneNumbers = getAllOfKey(existedServices, "phone_number");
+  const existedNames = getAllOfKey(existedServices, "name");
+  const existedAddresses = getAllOfKey(existedServices, "address");
 
   // Loop through added services and make sure they do not match any of the existing services
   let apiServicesNoDups = [];
