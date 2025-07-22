@@ -107,18 +107,40 @@ export function getCords(locationObj) {
  * @returns True if the 2 Perimeter's overlap, false if they do not
  */
 export function perimeterOverlap(mainRange, checkRange) {
-  if (
-    ((checkRange.low.latitude >= mainRange.low.latitude &&
-      checkRange.low.latitude <= mainRange.high.latitude) ||
-      (checkRange.high.latitude <= mainRange.high.latitude &&
-        checkRange.high.latitude >= mainRange.low.latitude)) &&
-    ((checkRange.high.longitude <= mainRange.high.longitude &&
-      checkRange.high.longitude >= mainRange.low.longitude) ||
-      (checkRange.low.longitude >= mainRange.low.longitude &&
-        checkRange.low.longitude <= mainRange.high.longitude))
-  ) {
-    return true;
-  } else return false;
+  let mainRangeLat = {
+    low: mainRange.low.latitude,
+    high: mainRange.high.latitude,
+  };
+  let mainRangeLong = {
+    low: mainRange.low.longitude,
+    high: mainRange.high.longitude,
+  };
+  let checkRangeLat = {
+    low: checkRange.low.latitude,
+    high: checkRange.high.latitude,
+  };
+  let checkRangeLong = {
+    low: checkRange.low.longitude,
+    high: checkRange.high.longitude,
+  };
+  return (
+    oneDimensionalHasOverlap(mainRangeLat, checkRangeLat) &&
+    oneDimensionalHasOverlap(mainRangeLong, checkRangeLong)
+  );
+}
+
+/**
+ * Checks if the 2 Perimeter's overlap with each other in one dimension
+ * + Both params in the form {low: number, high: number}
+ * @param {object} mainRange - Cords of the main nonprofit to check against
+ * @param {object} checkRange - Other perimeter to check against
+ * @returns True if the 2 Perimeter's overlap, false if they do not
+ */
+export function oneDimensionalHasOverlap(mainRange, checkRange) {
+  return (
+    (checkRange.low >= mainRange.low && checkRange.low <= mainRange.high) ||
+    (checkRange.high <= mainRange.high && checkRange.high >= mainRange.low)
+  );
 }
 
 /**
