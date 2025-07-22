@@ -1,7 +1,9 @@
 import { goalValues, weights, calcResults } from "#recs/rec-constants.js";
 /**
- * paramname: {weight:number, max:number}
- * @param {*} rankingInfo
+ * Calculates the weights for each param based on the goal and the average
+ * + Returns in the form  {left: {paramName: {weight:number, max:number}}, right: {paramName: {weight:number, max:number}}}
+ * @param {object} rankingInfo - The ranking totals gotten from each service
+ * @returns The results from the calculation of the weights
  */
 export function calculateWeights(rankingInfo) {
   const rankingInfoValues = Object.values(rankingInfo);
@@ -29,16 +31,31 @@ export function calculateWeights(rankingInfo) {
     if (param in calcResults.left) calcResults.left[param] = paramResults;
     else calcResults.right[param] = paramResults;
   }
-  // TODO normalize the weights to 100
+  // Normalize the left and right weights
+  calcResults.left = normalizeWeights(calcResults.left);
+  calcResults.right = normalizeWeights(calcResults.right);
   return calcResults;
 }
 
 /**
- *
+ * Normalizes the weight params so that they add up to 1
+ * @param {object} weights - The weights for each param in the form of {paramName: {weight:number, max:number}}
+ * @returns The normalized weights
+ */
+function normalizeWeights(weights) {
+  const totalWeight = Object.values(weights).reduce((a, b) => a + b.weight, 0);
+  for (const param in weights) {
+    weights[param].weight /= totalWeight;
+  }
+  return weights;
+}
+
+/**
+ * Weighs the service based on the dynamic weights and returns the services with the weight added
  * @param {Array} servicesGiven - All the services given
  * @param {object} rankingInfo - The ranking totals gotten from each service
  * @param {object} calcResults - The results from the calculation of the weights
- * @returns
+ * @returns The services with the weight added
  */
 export function weighServices(servicesGiven, rankingInfo, calcResults) {
   let weightedServices = []; // The services to be returned
