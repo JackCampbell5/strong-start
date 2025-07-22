@@ -24,8 +24,7 @@ export default function addServicesOfferedInfoByKeyword(servicesGiven) {
 /**
  * Add the ranking information to the services, if they offer any services.
  * + If they dont offer any services, they are not added to the ranked list
- * @param {Array} services - The services to add the ranking information to
- * @param {Array} keywordCount - The sorted keyword counts to use for the ranking information
+ * @param {Array} services - The list of services to add the ranking information to
  * @returns The services with the ranking information added
  */
 function addServiceInformation(services) {
@@ -46,7 +45,7 @@ function addServiceInformation(services) {
  * Gets the count of each keyword category in the description of the service
  * + If there is a description, check for keywords and add counts if not set the services_offered to total:0
  * @param {object} serviceGiven - The Service to count the keywords of
- * @returns
+ * @returns The service with the keyword categories added to the services_offered field
  */
 function getKeywordCounts(serviceGiven) {
   let service = JSON.parse(JSON.stringify(serviceGiven));
