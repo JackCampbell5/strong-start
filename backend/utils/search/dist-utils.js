@@ -100,13 +100,13 @@ export function getCords(locationObj) {
 }
 
 /**
- * Checks 2 radius's overlap with each other
+ * Checks 2 Perimeter's overlap with each other
  * + Both params in the form {low: {latitude, longitude}, high: {latitude, longitude}}
  * @param {object} mainRange - Cords of the main nonprofit to check against
  * @param {object} checkRange - Location object to check against
- * @returns True if the 2 radius's overlap, false if they do not
+ * @returns True if the 2 Perimeter's overlap, false if they do not
  */
-export function radiusOverlap(mainRange, checkRange) {
+export function perimeterOverlap(mainRange, checkRange) {
   if (
     ((checkRange.low.latitude >= mainRange.low.latitude &&
       checkRange.low.latitude <= mainRange.high.latitude) ||
@@ -122,12 +122,12 @@ export function radiusOverlap(mainRange, checkRange) {
 }
 
 /**
- * Checks if a service is in the radius
+ * Checks if a service is in the Perimeter
  * @param {object} range - The range to check if the service is in, in the form of {low: {latitude, longitude}, high: {latitude, longitude}}
- * @param {object} service - The service to check if it is in the radius
- * @returns true if the service is in the radius, false if it is not
+ * @param {object} service - The service to check if it is in the Perimeter
+ * @returns true if the service is in the Perimeter, false if it is not
  */
-export function serviceInRadius(range, loc) {
+export function serviceInPerimeter(range, loc) {
   return (
     loc.latitude >= range.low.latitude &&
     loc.latitude <= range.high.latitude &&

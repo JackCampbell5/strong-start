@@ -8,7 +8,7 @@ import servicesNearby from "#recs/services-nearby.js";
 import { reformatServices } from "#recs/rec-utils.js";
 import rankServicesByKeyword from "#recs/rank-by-keyword.js";
 import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
-import getOtherServicesWithinRadius from "#recs/rec-existing.js";
+import getOtherServicesWithinPerimeter from "#recs/rec-existing.js";
 
 /**
  * Takes a nonprofit and finds additional services nearby
@@ -17,8 +17,8 @@ import getOtherServicesWithinRadius from "#recs/rec-existing.js";
  * @returns {Array} - The reformatted services nearby
  */
 export default async function recServices(nonprofit) {
-  // Get other services within this nonprofit's radius
-  let otherServices = await getOtherServicesWithinRadius(nonprofit);
+  // Get other services within this nonprofit's Perimeter
+  let otherServices = await getOtherServicesWithinPerimeter(nonprofit);
 
   // If there are less than 10 services, find nearby services using google places API
   if (otherServices.length < 10) {
