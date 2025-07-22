@@ -87,8 +87,8 @@ function getPopularKeywords(keywords) {
   let popularKeywords = [];
   for (const keyword in keywords) {
     if (keywords[keyword] > 3 && keyword !== "total") {
-      popularKeywords.push(prettyPrintService(keyword));
+      popularKeywords.push(keyword);
     }
   }
-  return popularKeywords.join(", ");
+  return popularKeywords;
 }
