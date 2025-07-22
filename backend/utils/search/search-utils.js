@@ -1,31 +1,38 @@
-const googleApiKey = process.env.MAPS_API_KEY;
+// Node Module Imports
+import { PrismaClient } from "#prisma/client.js";
 
-export async function formatAddress(address, nonprofit={}) {
-    const searchURL = "https://places.googleapis.com/v1/places:searchText";
+// Local Imports
+import { extractZipcode } from "#search/address-utils.js";
 
-    let data = { textQuery: address, languageCode: "en", locationRestriction: nonprofit. }
-    if(nonprofit.length ===0){
-        data.locationRestriction =
-    }
+const prisma = new PrismaClient();
 
-  const result = await fetch(`${searchURL}`, {
-    method: "PUT",
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Goog-Api-Key": googleApiKey,
-      "X-Goog-FieldMask": places.formattedAddress,
+/**
+ * Creates a search log for the given search parameters
+ * @param {object} params - The search parameters
+ * @param {*} nonprofit - The nonprofit that was searched for
+ * @param {*} len - The length of the search results
+ * @param {*} session - The session object for this user
+ */
+export async function createSearchLog(params, nonprofit, len, session) {
+  const searchQuery = {
+    zipcode: extractZipcode(params.address.formattedAddress),
+    services_needed: params.services,
+    languages: params.language,
+    date_needed: params.date_entered.toISOString(),
+    results_found: len,
+  };
+  await prisma.web_log.create({
+    data: {
+      session_token: session.sessionUUID,
+      user_type: 0, // TODO - get user type when more logging is added
+      page_id: "search",
+      action: "searchServices",
+      nonprofit: {
+        connect: { id: nonprofit.id },
+      },
+      search_log: {
+        create: searchQuery,
+      },
     },
-    body: JSON.stringify({ textQuery: address, languageCode: "en", locationRestriction: nonprofit. }),
-  }).then((res) => res.json());
-}
-
-export function extractZipcode(address) {
-  const addressRegex = /(\d{5}?(?:\-\d{4}))(?:\s|$)/;
-  const matches = address.match(addressRegex);
-  if (matches) {
-    return matches[0];
-  } else {
-    return null;
-  }
+  });
 }
