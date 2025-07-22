@@ -1,3 +1,5 @@
+// Local Imports
+import { googleAPIMaxPageNumber } from "#utils/constants.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 const googleApiKey = process.env.MAPS_API_KEY;
@@ -11,10 +13,10 @@ export default async function servicesNearby(nonprofit) {
   // Find nearby services (Look thru the 3 pages that google places API returns)
   let apiServices = [];
   let pageToken = null;
-  for (let a = 0; a < 3; a++) {
+  for (let a = 0; a < googleAPIMaxPageNumber; a++) {
     let result = await getServicesNearbyPage(nonprofit, pageToken);
     if (!result.valid) {
-      console.log("Error: ", result.error);
+      console.error("Error: ", result.error);
     } else {
       apiServices = apiServices.concat(result.data.places);
       pageToken = result.data.nextPageToken;
@@ -35,7 +37,6 @@ async function getServicesNearbyPage(nonprofit, pageToken = null) {
   // Data for the POST request
   let data = getNearbyRequestBody(nonprofit.addressInfo, pageToken);
   let mask = getNearbyRequestMask();
-  // let queryParams = new URLSearchParams({ queryString });
 
   return await fetch(`${searchURL}`, {
     method: "POST",

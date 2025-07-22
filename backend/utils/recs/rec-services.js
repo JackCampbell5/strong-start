@@ -3,12 +3,12 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 // Local Imports
-import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import servicesNearby from "#recs/services-nearby.js";
 import { reformatServices } from "#recs/rec-utils.js";
 import rankServicesByKeyword from "#recs/rank-by-keyword.js";
-import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 import getOtherServicesWithinRadius from "#recs/rec-existing.js";
+import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
+import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
 /**
  * Takes a nonprofit and finds additional services nearby
@@ -20,7 +20,7 @@ export default async function recServices(nonprofit) {
   // Get other services within this nonprofit's radius
   let otherServices = await getOtherServicesWithinRadius(nonprofit);
 
-  // If there are less than 10 services, find nearby services using google places API
+  // If there are less than 60 services, find nearby services using google places API
   if (otherServices.length < 60) {
     const apiServices = await servicesNearby(nonprofit);
     // Reformat the services
