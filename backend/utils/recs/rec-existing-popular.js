@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export async function getCurrentlyPopularInfo(nonprofit) {
   let popular = {};
   // Get popular services
-  popular["services"] = await getCurrentPopularServices(nonprofit);
+  popular["id"] = await getCurrentPopularServices(nonprofit);
 
   // Get more popular info from the search logs
   let searchLog = await prisma.web_log.findMany({
