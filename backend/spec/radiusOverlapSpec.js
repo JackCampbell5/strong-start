@@ -67,7 +67,7 @@ describe("perimeterOverlap function", () => {
 
     expect(perimeterOverlap(mainRange, check1)).toBe(true);
   });
-  it("On the broder ", () => {
+  it("On the border ", () => {
     const lat = -122;
     const long = 47;
     const check1 = {
