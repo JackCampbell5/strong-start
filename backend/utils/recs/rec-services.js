@@ -39,6 +39,8 @@ export default async function recServices(nonprofit) {
     );
 
     allServices = servicesFromDB.concat(serviceApiKeywordRanked);
+  } else {
+    allServices = servicesFromDB;
   }
   // Remove Duplicates Services Already in Database
   const allServicesNoDups = await removeServiceDuplicates(
