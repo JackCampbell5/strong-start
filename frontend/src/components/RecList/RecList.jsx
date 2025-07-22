@@ -37,7 +37,9 @@ function RecList({ data }) {
    * @param {string} id - The id of the service that was added
    */
   function serviceAddedSuccessfully(id) {
-    let updatedData = data.filter((item) => item.id !== id);
+    let updatedData = serviceList.filter((item) => item.id !== id);
+    let updatedPage = currentServices.filter((item) => item.id !== id);
+
     setSuccessText("Service Added Successfully");
     setTimeout(() => {
       setSuccessText("");
@@ -45,6 +47,7 @@ function RecList({ data }) {
 
     // Update the data/vars
     setServiceList(updatedData);
+    setCurrentServices(updatedPage);
   }
   useEffect(() => {
     changePage(1);
