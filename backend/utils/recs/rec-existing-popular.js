@@ -21,12 +21,11 @@ export async function getCurrentlyPopularInfo(nonprofit) {
   });
 
   popular["zipcode"] = await getPopularOfType(searchLog, "zipcode");
-  popular["services_needed"] = await getPopularOfType(
+  popular["services_offered"] = await getPopularOfType(
     searchLog,
     "services_needed"
   );
   popular["languages"] = await getPopularOfType(searchLog, "languages");
-  popular["date_needed"] = await getPopularOfType(searchLog, "date_needed");
   return popular;
 }
 

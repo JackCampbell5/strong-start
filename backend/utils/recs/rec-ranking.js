@@ -6,15 +6,15 @@ export default async function rankRecommendedServices(
   // Get the currently popular info from our database logs
   const popularCurrently = await getCurrentlyPopularInfo(nonprofit);
 
-  const rankingInfo = computeRankingData(
-    servicesGiven,
-    popularCurrently,
-    nonprofit
-  );
+  const rankingInfo = computeRankingData(servicesGiven, popularCurrently);
+  console.log(Object.values(rankingInfo).map((service) => service.existing));
+
+  //   const weights = calculateWeights(rankingInfo);
+  //   const weightedServices = weighServices(servicesGiven, weights);
   return servicesGiven;
 }
 
-function computeRankingData(servicesGiven, popularCurrently, nonprofit) {
+function computeRankingData(servicesGiven, popularCurrently) {
   const rankingInfo = {};
   for (const service of servicesGiven) {
     let serviceInfo = {};
@@ -27,17 +27,44 @@ function computeRankingData(servicesGiven, popularCurrently, nonprofit) {
     // Service number
     serviceInfo["service_number"] = service.services_offered.length;
 
-    // Add Data from popularCurrently
-    for (const key in popularCurrently) {
-      const popKey = popularCurrently[key];
-      const keyVal = service[key];
-      if (Object.keys(popKey).includes(keyVal)) {
-        serviceInfo[key] = popKey[keyVal];
-      } else {
-        serviceInfo[key] = 0;
-      }
-    }
+    // Popular Zipcodes
+    serviceInfo["pop_zipcode"] = getPopularTotal(
+      [service.zipcode],
+      popularCurrently["zipcode"]
+    );
 
+    // Popular Services
+    serviceInfo["pop_service"] = getPopularTotal(
+      service.services_offered,
+      popularCurrently["services_offered"]
+    );
+
+    // Popular Languages
+    serviceInfo["pop_languages"] = getPopularTotal(
+      service.language,
+      popularCurrently["languages"]
+    );
+
+    // The Completeness of data
+    serviceInfo["completeness"] = Object.values(service).filter(
+      (val) => val !== null
+    ).length;
+
+    // In another profits database
+    serviceInfo["existing"] = service.nonprofit_ID ? 1 : 0;
+
+    // Add to the rankingInfo object
     rankingInfo[service.id] = serviceInfo;
   }
+  return rankingInfo;
+}
+
+function getPopularTotal(arrToCheck, popularCurrently) {
+  let total = 0;
+  for (const val of arrToCheck) {
+    if (popularCurrently[val]) {
+      total += popularCurrently[val];
+    }
+  }
+  return total;
 }
