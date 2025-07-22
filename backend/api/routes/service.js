@@ -19,6 +19,7 @@ import searchServices from "#search/search-services.js";
 import getFilter from "#utils/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
 import { checkSession, checkLogin } from "#utils/session-utils.js";
+import { createSearchLog } from "#search/search-utils.js";
 
 const prisma = new PrismaClient();
 const serviceRouter = express.Router();
@@ -75,7 +76,9 @@ serviceRouter.get("/search", async (req, res, next) => {
     const query = req.query;
     let result = await searchServices(query, nonprofit);
     if (result.valid) {
-      const formattedService = reformatServiceForReturn(result.data);
+      const { params, searchResults } = result.data;
+      createSearchLog(params, nonprofit, searchResults.length, req.session);
+      const formattedService = reformatServiceForReturn(searchResults);
       res.status(200).json(formattedService);
     } else {
       res.status(404).send(result.error);

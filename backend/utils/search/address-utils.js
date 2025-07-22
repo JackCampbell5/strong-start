@@ -135,8 +135,8 @@ function getSearchTextRequestMask() {
  * @param {string} address Extracts the zipcode from an address given
  * @returns
  */
-function extractZipcode(address) {
-  const addressRegex = /(\d{5}?(?:\-\d{4}))(?:\s|$)/;
+export function extractZipcode(address) {
+  const addressRegex = /(\d{5}(?:\-\d{4})?)(?:\s*)/;
   const matches = address.match(addressRegex);
   if (matches) {
     return matches[0];

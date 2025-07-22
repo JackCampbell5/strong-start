@@ -87,6 +87,7 @@ model refugee_log{
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
 }
 
+
 model web_log{
   id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   session_token         String
@@ -94,8 +95,20 @@ model web_log{
   user_type             Int // 0 = employee, 1 = refugee
   page_id               String
   action                String
+  search_log            search_log?
   nonprofit_ID          String  @db.Uuid
   nonprofit             nonprofit @relation(fields: [nonprofit_ID], references: [id])
-  service_ID            String  @db.Uuid
-  service               service @relation(fields: [service_ID], references: [id])
+  service_ID            String?  @db.Uuid
+  service               service? @relation(fields: [service_ID], references: [id])
+}
+
+model search_log{
+  id                    String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  zipcode               String
+  services_needed       String[]
+  languages             String[]
+  date_needed           String?
+  results_found         Int
+  web_log_ID            String  @db.Uuid @unique
+  web_log               web_log @relation(fields: [web_log_ID], references: [id])
 }
