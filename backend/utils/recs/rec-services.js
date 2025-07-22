@@ -21,8 +21,8 @@ export default async function recServices(nonprofit) {
   let servicesFromDB = await findExistingServicesWithinRadius(nonprofit);
 
   // If there are less than 60 services, find nearby services using google places API
-  if (otherServices.length < 60) {
-     // Find nearby services
+  if (servicesFromDB.length < 60) {
+    // Find nearby services
     const result = await servicesNearby(nonprofit);
     if (!result.valid) {
       return errorReturn(result.error);
