@@ -2,6 +2,11 @@ const googleApiKey = process.env.MAPS_API_KEY;
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { getAreaAroundPoint } from "#search/dist-utils.js";
 import { nonprofitRadius } from "#utils/constants.js";
+import {
+  serviceInRadius,
+  getCords,
+  getRadiusAroundPointObject,
+} from "#search/dist-utils.js";
 
 /**
  * Searches for an address using the search text API
@@ -12,7 +17,6 @@ import { nonprofitRadius } from "#utils/constants.js";
  */
 export default async function formatAddress(address, nonprofit = null) {
   const searchURL = "https://places.googleapis.com/v1/places:searchText";
-  const nonprofitGiven = nonprofit !== null;
 
   // Data for the POST request
   let data = getSearchTextRequestBody(address, nonprofit);
@@ -36,7 +40,7 @@ export default async function formatAddress(address, nonprofit = null) {
       return response.json(); // Parse JSON data from the response
     })
     .then((data) => {
-      return validateAndExtractSearchData(data, nonprofitGiven);
+      return validateAndExtractSearchData(data, nonprofit);
     })
     .catch((error) => {
       // Handle error
@@ -51,11 +55,11 @@ export default async function formatAddress(address, nonprofit = null) {
  * @param {object} nonprofit - The nonprofit to search around
  * @returns - If the data is valid, return the data, otherwise return an error object containing the error
  */
-function validateAndExtractSearchData(data, nonprofitGiven) {
+function validateAndExtractSearchData(data, nonprofit) {
   // If the address is not found, return an error
   if (Object.keys(data).length === 0) {
-    if (!nonprofitGiven) {
-      return errorReturn("Can not locate address");
+    if (nonprofit === null) {
+      return errorReturn("Can not locate address of nonprofit to create");
     } else {
       return errorReturn(
         `That address not found within ${nonprofitRadius} miles of nonprofit`
@@ -72,6 +76,17 @@ function validateAndExtractSearchData(data, nonprofitGiven) {
     }
     return errorReturn(manyPlacesStr); // Return an error object
   } else {
+    const gottenCords = getCords(data.places[0]);
+    const radius = getRadiusAroundPointObject(
+      getCords(nonprofit.addressInfo),
+      nonprofitRadius
+    );
+    if (serviceInRadius(radius, gottenCords) === false) {
+      return errorReturn(
+        `We can not locate that address within ${nonprofitRadius} miles of the nonprofit please be more specific or try a different address`
+      );
+    }
+
     // if there is only one option return the data
     return successReturn(data.places[0]); // Return the actual data instead of a container
   }
@@ -92,11 +107,7 @@ function getSearchTextRequestBody(address, nonprofit) {
     const info = nonprofit.addressInfo;
     const location = info?.location;
     if (location !== undefined) {
-      const latLong = getAreaAroundPoint(
-        location.latitude,
-        location.longitude,
-        nonprofitRadius
-      );
+      const latLong = getRadiusAroundPointObject(location, nonprofitRadius);
       data.locationRestriction = { rectangle: latLong };
     }
   }

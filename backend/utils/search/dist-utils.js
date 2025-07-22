@@ -40,11 +40,25 @@ export function addMilesToLat(lat, long, miles) {
 }
 
 /**
+ * Helper function so you can pass cord directly as an object
+ * @param {object} encodedPoint - The object of the point, in the form {latitude: number, longitude: number}
+ * @param {number} radius - The distance in miles to add to the point
+ * @returns The calculated rectangle in the form {low: {latitude, longitude}, high: {latitude, longitude}}
+ */
+export function getRadiusAroundPointObject(encodedPoint, radius) {
+  return getAreaAroundPoint(
+    encodedPoint.latitude,
+    encodedPoint.longitude,
+    radius
+  );
+}
+
+/**
  * Adds a certain number of miles to a point's latitude and longitude to make a rectangle around the point
  * @param {number} lat - The latitude of the point
  * @param {number} long - The longitude of the point
  * @param {number} radius - The distance in miles to add to the point
- * @returns
+ * @returns The calculated rectangle in the form {low: {latitude, longitude}, high: {latitude, longitude}}
  */
 export function getAreaAroundPoint(lat, long, radius) {
   return {
