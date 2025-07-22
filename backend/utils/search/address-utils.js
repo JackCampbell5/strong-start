@@ -3,7 +3,7 @@ import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { getAreaAroundPoint } from "#search/dist-utils.js";
 import { nonprofitRadius } from "#utils/constants.js";
 import {
-  serviceInRadius,
+  serviceInPerimeter,
   getCords,
   getRadiusAroundPointObject,
 } from "#search/dist-utils.js";
@@ -81,7 +81,7 @@ function validateAndExtractSearchData(data, nonprofit) {
       getCords(nonprofit.addressInfo),
       nonprofitRadius
     );
-    if (serviceInRadius(radius, gottenCords) === false) {
+    if (serviceInPerimeter(radius, gottenCords) === false) {
       return errorReturn(
         `We can not locate that address within ${nonprofitRadius} miles of the nonprofit please be more specific or try a different address`
       );
