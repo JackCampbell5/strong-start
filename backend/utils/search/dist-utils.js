@@ -98,3 +98,62 @@ export function getCords(locationObj) {
   let lat = cords.latitude;
   return { longitude: long, latitude: lat };
 }
+
+/**
+ * Checks 2 Perimeter's overlap with each other
+ * + Both params in the form {low: {latitude, longitude}, high: {latitude, longitude}}
+ * @param {object} mainRange - Cords of the main nonprofit to check against
+ * @param {object} checkRange - Location object to check against
+ * @returns True if the 2 Perimeter's overlap, false if they do not
+ */
+export function perimeterOverlap(mainRange, checkRange) {
+  let mainRangeLat = {
+    low: mainRange.low.latitude,
+    high: mainRange.high.latitude,
+  };
+  let mainRangeLong = {
+    low: mainRange.low.longitude,
+    high: mainRange.high.longitude,
+  };
+  let checkRangeLat = {
+    low: checkRange.low.latitude,
+    high: checkRange.high.latitude,
+  };
+  let checkRangeLong = {
+    low: checkRange.low.longitude,
+    high: checkRange.high.longitude,
+  };
+  return (
+    oneDimensionalHasOverlap(mainRangeLat, checkRangeLat) &&
+    oneDimensionalHasOverlap(mainRangeLong, checkRangeLong)
+  );
+}
+
+/**
+ * Checks if the 2 Perimeter's overlap with each other in one dimension
+ * + Both params in the form {low: number, high: number}
+ * @param {object} mainRange - Cords of the main nonprofit to check against
+ * @param {object} checkRange - Other perimeter to check against
+ * @returns True if the 2 Perimeter's overlap, false if they do not
+ */
+export function oneDimensionalHasOverlap(mainRange, checkRange) {
+  return (
+    (checkRange.low >= mainRange.low && checkRange.low <= mainRange.high) ||
+    (checkRange.high <= mainRange.high && checkRange.high >= mainRange.low)
+  );
+}
+
+/**
+ * Checks if a service is in the Perimeter
+ * @param {object} range - The range to check if the service is in, in the form of {low: {latitude, longitude}, high: {latitude, longitude}}
+ * @param {object} service - The service to check if it is in the Perimeter
+ * @returns true if the service is in the Perimeter, false if it is not
+ */
+export function serviceInPerimeter(range, loc) {
+  return (
+    loc.latitude >= range.low.latitude &&
+    loc.latitude <= range.high.latitude &&
+    loc.longitude >= range.low.longitude &&
+    loc.longitude <= range.high.longitude
+  );
+}

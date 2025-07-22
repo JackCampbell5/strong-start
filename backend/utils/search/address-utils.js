@@ -1,8 +1,7 @@
 const googleApiKey = process.env.MAPS_API_KEY;
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { getAreaAroundPoint } from "#search/dist-utils.js";
-
-const radius = 50; // Radius in miles to search around the nonprofit
+import { nonprofitRadius } from "#utils/constants.js";
 
 /**
  * Searches for an address using the search text API
@@ -58,7 +57,9 @@ function validateAndExtractSearchData(data, nonprofitGiven) {
     if (!nonprofitGiven) {
       return errorReturn("Can not locate address");
     } else {
-      return errorReturn("That address not found within 50 miles of nonprofit");
+      return errorReturn(
+        `That address not found within ${nonprofitRadius} miles of nonprofit`
+      );
     }
   }
   // If multiple addresses are found, return an error with all possible addresses
@@ -94,7 +95,7 @@ function getSearchTextRequestBody(address, nonprofit) {
       const latLong = getAreaAroundPoint(
         location.latitude,
         location.longitude,
-        50
+        nonprofitRadius
       );
       data.locationRestriction = { rectangle: latLong };
     }

@@ -10,5 +10,6 @@ export function normalizeServiceFromRank(services) {
     let normalized = service.ranking / maxRank;
     service.ranking = (normalized * 100).toFixed(0);
   });
+  normalizedServices.sort((a, b) => b.ranking - a.ranking);
   return normalizedServices;
 }
