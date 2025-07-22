@@ -7,7 +7,7 @@ import { calculateWeights, weighServices } from "#recs/rec-weight.js";
 
 /**
  * Ranks the services based on the ranking parameters
- * Params: service_number, pop_zipcode, pop_service, pop_languages, completeness, existing, popular, rating, keywords
+ * Params: service_number, pop_zipcode, POP_SERVICE_TYPES, pop_languages, completeness, existing, popular, rating, keywords
  * @param {Array} servicesGiven - The services we are trying to rank
  * @param {object} nonprofit - The nonprofit object we are getting recommendations for
  * @returns The ranked services
@@ -54,9 +54,8 @@ async function extractRankingParams(servicesGiven, popularCurrently) {
     const preExisting = service.nonprofit_ID;
     if (preExisting) {
       // How popular is service
-      serviceInfo[REC_NAMES.POPULARITY] = await getPopularOfExistingService(
-        service
-      );
+      serviceInfo[REC_NAMES.EXISTING_POPULARITY] =
+        await getPopularOfExistingService(service);
     } else {
       // Add the average google maps rating if it exists
       if (service.rating) {
@@ -79,7 +78,7 @@ async function extractRankingParams(servicesGiven, popularCurrently) {
     );
 
     // Popular Services
-    serviceInfo[REC_NAMES.POP_SERVICE] = countPopularElements(
+    serviceInfo[REC_NAMES.POP_SERVICE_TYPES] = countPopularElements(
       service.services_offered,
       popularCurrently["services_offered"]
     );
