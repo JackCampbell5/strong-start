@@ -2,9 +2,9 @@
 import seedrandom from "seedrandom";
 
 // Local Module Imports
-import { radiusOverlap } from "#search/dist-utils.js";
+import { perimeterOverlap } from "#search/dist-utils.js";
 
-describe("radiusOverlap function", () => {
+describe("perimeterOverlap function", () => {
   let rng = seedrandom(0);
   function randomInRange(min, max) {
     return rng() * (max - min) + min;
@@ -33,7 +33,7 @@ describe("radiusOverlap function", () => {
       },
     };
 
-    expect(radiusOverlap(mainRange, check1)).toBe(false);
+    expect(perimeterOverlap(mainRange, check1)).toBe(false);
   });
   it("Lat correct ", () => {
     const lat = randomInRange(-121, -121.5);
@@ -49,7 +49,7 @@ describe("radiusOverlap function", () => {
       },
     };
 
-    expect(radiusOverlap(mainRange, check1)).toBe(false);
+    expect(perimeterOverlap(mainRange, check1)).toBe(false);
   });
   it("All correct ", () => {
     const lat = randomInRange(-121, -121.5);
@@ -65,9 +65,9 @@ describe("radiusOverlap function", () => {
       },
     };
 
-    expect(radiusOverlap(mainRange, check1)).toBe(true);
+    expect(perimeterOverlap(mainRange, check1)).toBe(true);
   });
-  it("On the broder ", () => {
+  it("On the border ", () => {
     const lat = -122;
     const long = 47;
     const check1 = {
@@ -80,6 +80,6 @@ describe("radiusOverlap function", () => {
         latitude: long + randomInRange(1, 10),
       },
     };
-    expect(radiusOverlap(mainRange, check1)).toBe(true);
+    expect(perimeterOverlap(mainRange, check1)).toBe(true);
   });
 });

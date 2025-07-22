@@ -59,7 +59,7 @@ function validateAndExtractSearchData(data, nonprofit) {
   // If the address is not found, return an error
   if (Object.keys(data).length === 0) {
     if (nonprofit === null) {
-      return errorReturn("Can not locate address");
+      return errorReturn("Can not locate address of nonprofit to create");
     } else {
       return errorReturn(
         `That address not found within ${nonprofitRadius} miles of nonprofit`

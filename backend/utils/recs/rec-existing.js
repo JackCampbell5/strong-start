@@ -2,39 +2,39 @@
 import { PrismaClient } from "#prisma/client.js";
 
 // Local Imports
-import { radiusOverlap, serviceInRadius } from "#search/dist-utils.js";
+import { perimeterOverlap, serviceInPerimeter } from "#search/dist-utils.js";
 import { getCords, getAreaAroundPoint } from "#search/dist-utils.js";
 import { nonprofitRadius } from "#utils/constants.js";
 
 const prisma = new PrismaClient();
 
 /**
- * Find what other nonprofits are within the nonprofit's radius
+ * Find what other nonprofits are within the nonprofit's perimeter
  * @param {object} nonprofit - The nonprofit to find the duplicate services in
  */
-export default async function getOtherServicesWithinRadius(nonprofit) {
+export default async function findExistingServicesWithinRadius(nonprofit) {
   // Location info for this nonprofit
   const loc = getCords(nonprofit.addressInfo);
   let range = getAreaAroundPoint(loc.latitude, loc.longitude, nonprofitRadius);
 
-  // Get all of the nonprofits whos radius overlaps with the nonprofit's radius
-  const nonprofitsInRange = await getNonProfitsOverlappingRadius(
+  // Get all of the nonprofits whos perimeter overlaps with the nonprofit's perimeter
+  const nonprofitsInRange = await getNonProfitsOverlappingPerimeter(
     nonprofit,
     range
   );
 
-  // Get all of the services within those nonprofits who are also in our nonprofit's radius
+  // Get all of the services within those nonprofits who are also in our nonprofit's perimeter
   const servicesInRange = await getServicesInRange(range, nonprofitsInRange);
   return servicesInRange;
 }
 
 /**
- * Gets the nonprofits that overlap with the given nonprofit's radius
+ * Gets the nonprofits that overlap with the given nonprofit's perimeter
  * @param {object} nonprofit - The current nonprofit
  * @param {object} range - The range of the current nonprofit in the form {low: {latitude, longitude}, high: {latitude, longitude}}
- * @returns The list of nonprofits that overlap with the current nonprofit's radius
+ * @returns The list of nonprofits that overlap with the current nonprofit's perimeter
  */
-async function getNonProfitsOverlappingRadius(nonprofit, range) {
+async function getNonProfitsOverlappingPerimeter(nonprofit, range) {
   // Get all of the nonprofits who are not the current nonprofit
   let otherNonprofits = await prisma.nonprofit.findMany({
     where: {
@@ -50,19 +50,19 @@ async function getNonProfitsOverlappingRadius(nonprofit, range) {
       checkLoc.longitude,
       nonprofitRadius
     );
-    return radiusOverlap(range, checkRange);
+    return perimeterOverlap(range, checkRange);
   });
   return nonprofitsInRange;
 }
 
 /**
- * Gets the services that are in the range of the current nonprofit but only checks the ones where nonprofits have overlapping radius
+ * Gets the services that are in the range of the current nonprofit but only checks the ones where nonprofits have overlapping perimeter
  * @param {object} range - The range of the current nonprofit in the form {low: {latitude, longitude}, high: {latitude, longitude}}
- * @param {Array} nonprofitsInRange - List of nonprofits that have overlapping radius with the current nonprofit
+ * @param {Array} nonprofitsInRange - List of nonprofits that have overlapping perimeter with the current nonprofit
  * @returns The list of services that are in the range of the current nonprofit
  */
 async function getServicesInRange(range, nonprofitsInRange) {
-  // Get all of the services within the nonprofit's radius
+  // Get all of the services within the nonprofit's perimeter
   let otherServices = await prisma.service.findMany({
     where: {
       nonprofit_ID: { in: nonprofitsInRange.map((nonprofit) => nonprofit.id) },
@@ -70,7 +70,7 @@ async function getServicesInRange(range, nonprofitsInRange) {
   });
   let servicesInRange = otherServices.filter((service) => {
     const checkLoc = getCords(service.addressInfo);
-    return serviceInRadius(range, checkLoc);
+    return serviceInPerimeter(range, checkLoc);
   });
   return servicesInRange;
 }
