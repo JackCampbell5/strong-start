@@ -69,6 +69,7 @@ async function getServicesInRange(range, nonprofitsInRange) {
     },
   });
   let servicesInRange = otherServices.filter((service) => {
+    if (!service.addressInfo) return false;
     const checkLoc = getCords(service.addressInfo);
     return serviceInPerimeter(range, checkLoc);
   });
