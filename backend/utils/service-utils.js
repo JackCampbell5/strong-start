@@ -99,13 +99,13 @@ export function prettyPrintService(service) {
  */
 export function reformatServiceForReturn(orgServices) {
   return orgServices.map((service) => {
-    delete service.rating;
+    const { rating, ...serviceInfoToReturn } = service;
     return {
-      ...service,
+      ...serviceInfoToReturn,
       services_offered: prettyPrintServicesOfferedList(
-        service.services_offered
+        serviceInfoToReturn.services_offered
       ),
-      language: service.language.join(", "),
+      language: serviceInfoToReturn.language.join(", "),
     };
   });
 }
