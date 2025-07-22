@@ -8,19 +8,15 @@ import { prettyPrintService } from "#utils/service-utils.js";
  * @param {Array} servicesGiven -  Array of services to rank based on keyword matches
  * @returns The services sorted by ranking with an updated services offered field
  */
-export default function rankServicesByKeyword(servicesGiven) {
+export default function addServicesOfferedInfoByKeyword(servicesGiven) {
   // Update the Services offered field with the keyword counts
   let services = [];
   for (let service of servicesGiven) {
     services.push(getKeywordCounts(service));
   }
-  // Sort the keyword counts by total
-  let keywordCount = services
-    .map((keyword) => keyword.services_offered.total)
-    .sort((a, b) => b - a);
 
   // Add the ranking information to the services, if they offer any services.
-  let rankedServices = addRankingInformation(services, keywordCount);
+  let rankedServices = addServiceInformation(services);
   rankedServices.sort((a, b) => b.ranking - a.ranking);
   return rankedServices;
 }
@@ -32,12 +28,10 @@ export default function rankServicesByKeyword(servicesGiven) {
  * @param {Array} keywordCount - The sorted keyword counts to use for the ranking information
  * @returns The services with the ranking information added
  */
-function addRankingInformation(services, keywordCount) {
+function addServiceInformation(services) {
   let rankedServices = [];
-  let totalLength = keywordCount.length;
   for (let service of services) {
-    service.ranking =
-      totalLength - keywordCount.indexOf(service.services_offered.total);
+    service.ranking = service.services_offered.total;
     // Add the keyword count to the ranked list
     service.services_offered = getPopularKeywords(service.services_offered);
     // If they offer any services, add them to the ranked list
@@ -90,7 +84,7 @@ function getKeywordCounts(serviceGiven) {
  * @returns A string with the popular keywords
  */
 function getPopularKeywords(keywords) {
-  let popularKeywords =[] ;
+  let popularKeywords = [];
   for (const keyword in keywords) {
     if (keywords[keyword] > 3 && keyword !== "total") {
       popularKeywords.push(prettyPrintService(keyword));

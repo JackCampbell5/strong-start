@@ -3,10 +3,11 @@ import { PrismaClient } from "#prisma/client.js";
 const prisma = new PrismaClient();
 
 // Local Imports
+import findExistingServicesWithinRadius from "#recs/rec-existing.js";
 import servicesNearby from "#recs/services-nearby.js";
 import { reformatServices } from "#recs/rec-utils.js";
-import rankServicesByKeyword from "#recs/rank-by-keyword.js";
-import findExistingServicesWithinRadius from "#recs/rec-existing.js";
+import addServicesOfferedInfoByKeyword from "#recs/rank-by-keyword.js";
+import rankRecommendedServices from "#recs/rec-ranking.js";
 import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 
@@ -17,6 +18,7 @@ import { errorReturn, successReturn } from "#utils/validate-utils.js";
  * @returns {Array} - The reformatted services nearby
  */
 export default async function recServices(nonprofit) {
+  let allServices = [];
   // Get other services within this nonprofit's Perimeter
   let servicesFromDB = await findExistingServicesWithinRadius(nonprofit);
 
@@ -28,28 +30,30 @@ export default async function recServices(nonprofit) {
       return errorReturn(result.error);
     }
     const apiServices = result.data;
-    // Reformat the services
+    // Reformat the services to be in our format
     const reformattedApiServices = reformatServices(apiServices);
-    // Remove Duplicates Services Already in Database
-    const apiServicesNoDups = await removeServiceDuplicates(
-      reformattedApiServices,
-      nonprofit
-    );
+
     // Rank the services by keyword
-    const serviceApiKeywordRanked = await rankServicesByKeyword(
-      apiServicesNoDups
+    const serviceApiKeywordRanked = await addServicesOfferedInfoByKeyword(
+      reformattedApiServices
     );
 
-    // Put the services in the database at a higher ranking for now
-    // TODO put in a real ranking system
-    let highRanking = serviceApiKeywordRanked[0].ranking + 2;
-    servicesFromDB.forEach((service) => (service.ranking = highRanking));
-    servicesFromDB = servicesFromDB.concat(serviceApiKeywordRanked);
-  } else {
-    // As the services are from another nonprofit, they can all be ranked 1
-    servicesFromDB.forEach((service) => (service.ranking = 1));
+    allServices = servicesFromDB.concat(serviceApiKeywordRanked);
   }
-  const normalizedServices = normalizeServiceFromRank(servicesFromDB);
+  // Remove Duplicates Services Already in Database
+  const allServicesNoDups = await removeServiceDuplicates(
+    allServices,
+    nonprofit
+  );
+
+  // Rank all the Services
+  const allServicesRanked = await rankRecommendedServices(
+    allServicesNoDups,
+    nonprofit
+  );
+
+  // Normalize the services
+  const normalizedServices = normalizeServiceFromRank(allServicesRanked);
   return successReturn(normalizedServices);
 }
 
