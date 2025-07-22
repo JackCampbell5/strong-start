@@ -2,6 +2,14 @@ import {
   getCurrentlyPopularInfo,
   getPopularOfExistingService,
 } from "#recs/rec-existing-popular.js";
+
+/**
+ * Ranks the services based on the ranking parameters
+ * Params: service_number, pop_zipcode, pop_service, pop_languages, completeness, existing, popular, rating, keywords
+ * @param {Array} servicesGiven - The services we are trying to rank
+ * @param {object} nonprofit - The nonprofit object we are getting recommendations for
+ * @returns The ranked services
+ */
 export default async function rankRecommendedServices(
   servicesGiven,
   nonprofit
@@ -9,7 +17,10 @@ export default async function rankRecommendedServices(
   // Get the currently popular info from our database logs
   const popularCurrently = await getCurrentlyPopularInfo(nonprofit);
 
-  const rankingInfo = computeRankingData(servicesGiven, popularCurrently);
+  const rankingInfo = await extractRankingParams(
+    servicesGiven,
+    popularCurrently
+  );
   // TODO Remove and add actual ranking logic here
   // Temporary so there are weights for PR
   servicesGiven.forEach((element) => {
@@ -24,14 +35,20 @@ export default async function rankRecommendedServices(
   return servicesGiven;
 }
 
-function computeRankingData(servicesGiven, popularCurrently) {
+/**
+ * Extract the ranking parameters for each service to get ready for the ranking
+ * @param {Array} servicesGiven - The array of services we would like to rank
+ * @param {object} popularCurrently -  Object with what is currently popular in our current nonprofit
+ * @returns A object with id's for keys and the ranking parameters as the values for each service
+ */
+async function extractRankingParams(servicesGiven, popularCurrently) {
   const rankingInfo = {};
   for (const service of servicesGiven) {
     let serviceInfo = {};
     const preExisting = service.nonprofit_ID;
     if (preExisting) {
       // How popular is service
-      serviceInfo["popularity"] = getPopularOfExistingService(service);
+      serviceInfo["popularity"] = await getPopularOfExistingService(service);
     } else {
       // Add the average google maps rating if it exists
       if (service.rating) {
@@ -78,7 +95,12 @@ function computeRankingData(servicesGiven, popularCurrently) {
   }
   return rankingInfo;
 }
-
+/**
+ * Find the total of the values in the array that are in the popularCurrently object
+ * @param {Array} arrToCheck - The array of values to find in popularCurrently and sum
+ * @param {object} popularCurrently - What is currently popular for that type
+ * @returns
+ */
 function getPopularTotal(arrToCheck, popularCurrently) {
   let total = 0;
   for (const val of arrToCheck) {
