@@ -33,6 +33,10 @@ function computeRankingData(servicesGiven, popularCurrently) {
       // How popular is service
       serviceInfo["popularity"] = getPopularOfExistingService(service);
     } else {
+      // Add the average google maps rating if it exists
+      if (service.rating) {
+        serviceInfo["rating"] = service.rating;
+      }
       // Get the keyword number out of the current ranking param
       // We are only ranking keywords for API services
       if (service.ranking) {

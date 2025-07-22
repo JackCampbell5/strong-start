@@ -99,6 +99,7 @@ export function prettyPrintService(service) {
  */
 export function reformatServiceForReturn(orgServices) {
   return orgServices.map((service) => {
+    delete service.rating;
     return {
       ...service,
       services_offered: prettyPrintServicesOfferedList(

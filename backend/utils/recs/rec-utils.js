@@ -24,6 +24,7 @@ export function reformatServices(serviceDataGiven) {
     serviceObj.services_offered = null;
     serviceObj.restrictions = null;
     serviceObj.next_steps = service?.nextSteps;
+    serviceObj.rating = service?.rating;
     serviceObj = Object.fromEntries(
       Object.entries(serviceObj).filter(([_, value]) => value != null)
     );
