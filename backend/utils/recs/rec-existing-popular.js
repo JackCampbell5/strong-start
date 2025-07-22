@@ -28,7 +28,9 @@ export async function getCurrentlyPopularInfo(nonprofit) {
     searchLog,
     "services_needed"
   );
-  popular["languages"] = await getPopularOfType(searchLog, "languages");
+  let languages = await getPopularOfType(searchLog, "languages");
+  if (languages["english"]) delete languages["english"];
+  popular["languages"] = languages;
   return popular;
 }
 
