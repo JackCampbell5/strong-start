@@ -21,6 +21,7 @@ export const goalValues = {
   [REC_NAMES.POP_LANGUAGES]: 1, // Would like 1 language other than english
   [REC_NAMES.COMPLETENESS]: 15, // Want average fields filled out to be 15
 };
+// The default weight for each param before dynamic weighting
 export const weights = {
   [REC_NAMES.EXISTING_POPULARITY]: 0.3,
   [REC_NAMES.RATING]: 0.15,
@@ -33,7 +34,8 @@ export const weights = {
   [REC_NAMES.COMPLETENESS]: 0.1,
 };
 
-export const calcResults = {
+// The default weight for each param before dynamic weighting
+export const calcResultsDefault = {
   left: {
     [REC_NAMES.EXISTING_POPULARITY]: {},
     [REC_NAMES.RATING]: {},

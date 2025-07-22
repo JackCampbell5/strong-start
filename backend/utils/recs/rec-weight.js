@@ -1,4 +1,8 @@
-import { goalValues, weights, calcResults } from "#recs/rec-constants.js";
+import {
+  goalValues,
+  weights,
+  calcResultsDefault,
+} from "#recs/rec-constants.js";
 /**
  * Calculates the weights for each param based on the goal and the average
  * + Returns in the form  {left: {paramName: {weight:number, max:number}}, right: {paramName: {weight:number, max:number}}}
@@ -6,6 +10,7 @@ import { goalValues, weights, calcResults } from "#recs/rec-constants.js";
  * @returns The results from the calculation of the weights
  */
 export function calculateWeights(rankingInfo) {
+  let calcResults = JSON.parse(JSON.stringify(calcResultsDefault)); // Copy the default results
   const rankingInfoValues = Object.values(rankingInfo);
   for (const param in goalValues) {
     // vars
