@@ -1,4 +1,7 @@
-import { getCurrentlyPopularInfo } from "#recs/rec-existing-popular.js";
+import {
+  getCurrentlyPopularInfo,
+  getPopularOfExistingService,
+} from "#recs/rec-existing-popular.js";
 export default async function rankRecommendedServices(
   servicesGiven,
   nonprofit
@@ -7,7 +10,6 @@ export default async function rankRecommendedServices(
   const popularCurrently = await getCurrentlyPopularInfo(nonprofit);
 
   const rankingInfo = computeRankingData(servicesGiven, popularCurrently);
-
   // TODO Remove and add actual ranking logic here
   // Temporary so there are weights for PR
   servicesGiven.forEach((element) => {
@@ -16,7 +18,6 @@ export default async function rankRecommendedServices(
       0
     );
   });
-
   // TODO: The function names for the rest of the weight calculations
   //   const weights = calculateWeights(rankingInfo);
   //   const weightedServices = weighServices(servicesGiven, weights);
@@ -27,10 +28,16 @@ function computeRankingData(servicesGiven, popularCurrently) {
   const rankingInfo = {};
   for (const service of servicesGiven) {
     let serviceInfo = {};
-
-    // Get the keyword number out of the current ranking param
-    if (service.ranking) {
-      serviceInfo["keywords"] = service.ranking;
+    const preExisting = service.nonprofit_ID;
+    if (preExisting) {
+      // How popular is service
+      serviceInfo["popularity"] = getPopularOfExistingService(service);
+    } else {
+      // Get the keyword number out of the current ranking param
+      // We are only ranking keywords for API services
+      if (service.ranking) {
+        serviceInfo["keywords"] = service.ranking;
+      }
     }
 
     // Service number
@@ -54,7 +61,7 @@ function computeRankingData(servicesGiven, popularCurrently) {
       popularCurrently["languages"]
     );
 
-    // The Completeness of data
+    // The completeness of data
     serviceInfo["completeness"] = Object.values(service).filter(
       (val) => val !== null
     ).length;

@@ -3,6 +3,11 @@ import { PrismaClient } from "#prisma/client.js";
 
 const prisma = new PrismaClient();
 
+/**
+ *
+ * @param {object} nonprofit - The object to get the popular info for
+ * @returns
+ */
 export async function getCurrentlyPopularInfo(nonprofit) {
   let popular = {};
   // Get popular services
@@ -64,4 +69,14 @@ function getPopularInOrder(list) {
     }
   });
   return popular;
+}
+
+export async function getPopularOfExistingService(service) {
+  let searchLog = await prisma.web_log.findMany({
+    where: {
+      service_ID: service.id,
+      action: "moreDetails",
+    },
+  });
+  return searchLog.length;
 }
