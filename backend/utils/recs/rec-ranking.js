@@ -7,8 +7,17 @@ export default async function rankRecommendedServices(
   const popularCurrently = await getCurrentlyPopularInfo(nonprofit);
 
   const rankingInfo = computeRankingData(servicesGiven, popularCurrently);
-  console.log(Object.values(rankingInfo).map((service) => service.existing));
 
+  // TODO Remove and add actual ranking logic here
+  // Temporary so there are weights for PR
+  servicesGiven.forEach((element) => {
+    element.ranking = Object.values(rankingInfo[element.id]).reduce(
+      (a, b) => a + b,
+      0
+    );
+  });
+
+  // TODO: The function names for the rest of the weight calculations
   //   const weights = calculateWeights(rankingInfo);
   //   const weightedServices = weighServices(servicesGiven, weights);
   return servicesGiven;
