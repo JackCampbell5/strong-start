@@ -77,12 +77,7 @@ serviceRouter.get("/search", async (req, res, next) => {
     let result = await searchServices(query, nonprofit);
     if (result.valid) {
       const { params, searchResults } = result.data;
-      await createSearchLog(
-        params,
-        nonprofit,
-        searchResults.length,
-        req.session
-      );
+      createSearchLog(params, nonprofit, searchResults.length, req.session);
       const formattedService = reformatServiceForReturn(searchResults);
       res.status(200).json(formattedService);
     } else {
