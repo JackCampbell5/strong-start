@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
  * Find what other nonprofits are within the nonprofit's perimeter
  * @param {object} nonprofit - The nonprofit to find the duplicate services in
  */
-export default async function getOtherServicesWithinPerimeter(nonprofit) {
+export default async function findExistingServicesWithinRadius(nonprofit) {
   // Location info for this nonprofit
   const loc = getCords(nonprofit.addressInfo);
   let range = getAreaAroundPoint(loc.latitude, loc.longitude, nonprofitRadius);
