@@ -8,7 +8,7 @@ import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { routeBetween, createDirectionLink } from "#search/direction-utils.js";
 import { indexOfDay } from "#utils/constants.js";
-
+import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 /**
  * The weights for each parameter as of now(Total = 100)
  */
@@ -37,7 +37,11 @@ export default async function searchServices(query, nonprofit) {
   if (!topData.valid) {
     return errorReturn(topData.error);
   }
-  return successReturn({ searchResults: topData.data, params: params.data });
+  const normalizedServices = normalizeServiceFromRank(topData.data);
+  return successReturn({
+    searchResults: normalizedServices,
+    params: params.data,
+  });
 }
 
 /**
