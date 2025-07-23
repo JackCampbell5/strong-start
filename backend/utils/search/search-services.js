@@ -7,6 +7,7 @@ import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { routeBetween, createDirectionLink } from "#search/direction-utils.js";
+import { indexOfDay } from "#utils/constants.js";
 
 /**
  * The weights for each parameter as of now(Total = 100)
@@ -16,6 +17,7 @@ const weights = {
   services: 50,
   language: 10,
   date: 10,
+  attend: 10,
 };
 
 /**
@@ -105,6 +107,25 @@ function weightServices(foundServices, params) {
   const services = params.services;
   const language = params.language;
   const date_entered = params.date_entered;
+  const attend_time = params.attend_time;
+  const attend_day = params.attend_day;
+  const preference = params.preference;
+
+  // Dynamic weights based on preference
+  if (preference) {
+    for (const singlePreference of preference) {
+      weights[singlePreference] *= 1.5;
+    }
+    // Normalize the weights
+    let total = 0;
+    for (const key in weights) {
+      total += weights[key];
+    }
+    for (const key in weights) {
+      weights[key] /= total;
+      weights[key] *= 100;
+    }
+  }
 
   // Calculate the weights for each service
   let weightTotals = [];
@@ -147,6 +168,44 @@ function weightServices(foundServices, params) {
     ) {
       ranking += weights.date;
     }
+    // If both day and time
+    if (attend_time && attend_day) {
+      const dayTimes = service.hours;
+      for (const day of attend_day) {
+        const dayIndex = indexOfDay[day];
+        if (dayIndex) {
+          const times = dayTimes[dayIndex];
+          const startTime = new Date(times.start);
+          const endTime = new Date(times.end);
+          if (attend_time > startTime && attend_time < endTime) {
+            ranking += weights.attend / attend_day.length;
+          }
+        }
+      }
+    } else {
+      // Just time
+      if (attend_time) {
+        for (const time of attend_time) {
+          const startTime = new Date(time.start);
+          const endTime = new Date(time.end);
+          if (attend_time > startTime && attend_time < endTime) {
+            ranking += weights.attend / 7;
+          }
+        }
+      }
+      // Just day
+      if (attend_day) {
+        for (const day of attend_day) {
+          const dayIndex = indexOfDay[day];
+          if (dayIndex) {
+            const times = dayTimes[dayIndex];
+            if (times.start !== times.end) {
+              ranking += weights.attend / attend_day.length;
+            }
+          } // If day is valid
+        } // End Loop thru days
+      } // If just the day
+    } // If not both time and day
 
     weightTotals.push({ ...service, ranking: ranking });
   }
@@ -160,7 +219,6 @@ function weightServices(foundServices, params) {
  * @returns The valid query parameters or an error
  */
 async function isValidParams(query, nonprofit) {
-  console.log(query);
   // Params that can be used for search
   const address_given = query.address;
   const services_needed_given = JSON.parse(query.services_needed);
@@ -203,19 +261,19 @@ async function isValidParams(query, nonprofit) {
 
   // The time the user is available to attend
   if (attend_time_given) {
-    params.attend_time = attend_time_given.map((option) => {
-      return option.value;
-    });
+    params.attend_time = new Date(attend_time_given);
   }
 
   // The days the user is available to attend
   if (attend_day_given) {
-    params.attend_day = new Date(attend_day_given);
+    params.attend_day = JSON.parse(attend_day_given).map((option) => {
+      return option.value;
+    });
   }
 
   // The preference of the user for top category
   if (preference_given) {
-    params.preference = preference_given.map((option) => {
+    params.preference = JSON.parse(preference_given).map((option) => {
       return option.value;
     });
   }

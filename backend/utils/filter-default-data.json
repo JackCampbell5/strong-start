@@ -68,10 +68,10 @@
     "name": "Most Important Factors",
     "options": [
       { "value": "address", "label": "Address" },
-      { "value": "services_needed", "label": "Services Required" },
+      { "value": "services", "label": "Services Required" },
       { "value": "language", "label": "Language Spoken" },
       { "value": "date_entered", "label": "Date entered US" },
-      { "value": "attend_time", "label": "Attend Time" }
+      { "value": "attend", "label": "Attend Time/Date" }
     ],
     "value": "",
     "default": "None",

@@ -8,4 +8,13 @@ export const googleToMeDaysConversion = {
   4: 3,
   5: 4,
   6: 5,
-};
+}; // Converts google day of week to day of week encoding I am using
+export const indexOfDay = {
+  monday: 0,
+  tuesday: 1,
+  wednesday: 2,
+  thursday: 3,
+  friday: 4,
+  saturday: 5,
+  sunday: 6,
+}; // Converts day of week to index of day of week
