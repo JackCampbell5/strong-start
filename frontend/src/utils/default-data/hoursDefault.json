@@ -1,0 +1,93 @@
+[
+  {
+    "name": "Monday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  },
+  {
+    "name": "Tuesday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  },
+  {
+    "name": "Wednesday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  },
+  {
+    "name": "Thursday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  },
+  {
+    "name": "Friday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  },
+  {
+    "name": "Saturday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  },
+  {
+    "name": "Sunday",
+    "start": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    },
+    "end": {
+      "hours": "",
+      "minutes": "",
+      "amPm": "am"
+    }
+  }
+]
