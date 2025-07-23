@@ -9,6 +9,7 @@ import makeAnimated from "react-select/animated";
 import "./SearchFilters.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
+import TimeInput from "#components/TimeInput/TimeInput";
 // Util Methods
 import { fetchServiceFilters } from "#fetch/serviceFetchUtils";
 import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
@@ -16,6 +17,7 @@ import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
 import { fillMissingDataFields } from "#utils/selectUtils";
+import { createTime } from "#utils/hoursUtils";
 
 function SearchFilters({ loading, setLoading, searchFor }) {
   // Constant Variables
@@ -106,6 +108,19 @@ function SearchFilters({ loading, setLoading, searchFor }) {
                   if (e.length === 0) value = "";
                   const data = [...searchInput];
                   data[index].value = JSON.stringify(value);
+                  setSearchInput(data);
+                }}
+              />
+            ) : obj.id === "attend_time" ? (
+              <TimeInput
+                data={obj.default}
+                updateData={(dataReceived) => {
+                  const time = dataReceived.hours
+                    ? createTime(dataReceived)
+                    : "";
+                  const data = [...searchInput];
+                  data[index].value = time;
+                  data[index].default = dataReceived;
                   setSearchInput(data);
                 }}
               />
