@@ -1,0 +1,19 @@
+.HoursInput {
+  margin: 20px;
+}
+
+.HoursInput .hoursInputHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Each Day */
+.HoursInput .dayHours {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
