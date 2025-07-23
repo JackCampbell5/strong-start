@@ -58,14 +58,15 @@ function HoursInput({ data, updateData }) {
    * @param {object} days - The days object to ingest into the hoursData array
    */
   function ingestHours(daysInput) {
-    let days = daysInput;
-    for (const day in days) {
-      const inObj = hours[day];
-      const outObj = [...hoursData];
-      outObj[day].start = convertTime(inObj.start);
-      outObj[day].end = convertTime(inObj.end);
+    let days = [];
+    for (const day in daysInput) {
+      const inObj = daysInput[day];
+      const outObj = hoursData[day];
+      outObj.start = convertTime(inObj.start, outObj.start);
+      outObj.end = convertTime(inObj.end, outObj.end);
+      days.push(outObj);
     }
-    setHoursData(outObj);
+    setHoursData(days);
   }
 
   /**
@@ -73,14 +74,15 @@ function HoursInput({ data, updateData }) {
    * @param {String} inObj -  The string of a date object to convert to the form required by the frontend
    * @returns {object} - The date object in the form required by the frontend (hours, minutes, amPm)
    */
-  function convertTime(inObj) {
+  function convertTime(inObj, hoursData) {
     const date = new Date(Date.UTC(inObj));
-    const hours = date.getHours();
-    return {
-      hours: hours > 12 ? hours - 12 : hours,
-      minutes: date.getMinutes(),
-      amPm: hours > 12 ? "pm" : "am",
-    };
+    if (!isNaN(date)) {
+      const hours = date.getHours();
+      hoursData["hours"] = hours > 12 ? hours - 12 : hours;
+      hoursData["minutes"] = date.getMinutes();
+      hoursData["amPm"] = hours > 12 ? "pm" : "am";
+    }
+    return hoursData;
   }
 
   useEffect(() => {
