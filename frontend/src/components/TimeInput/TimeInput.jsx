@@ -59,8 +59,8 @@ function TimeInput({ data, updateData }) {
             checkAndUpdateData(e, "amPm");
           }}
         >
-          <option value="AM">AM</option>
-          <option value="PM">PM</option>
+          <option value="am">AM</option>
+          <option value="pm">PM</option>
         </select>
       </div>
       <div className="errorText">{errorText}</div>
