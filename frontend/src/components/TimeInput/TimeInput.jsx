@@ -40,7 +40,7 @@ function TimeInput({ data, updateData }) {
           className={"minuteInput"}
           type="text"
           value={data.minutes}
-          placeholder={"59"}
+          placeholder={"00"}
           onChange={(e) => {
             checkAndUpdateData(e, "minutes", 60);
           }}
