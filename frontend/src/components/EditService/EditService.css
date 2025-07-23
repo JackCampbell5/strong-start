@@ -5,7 +5,7 @@
 }
 
 /* Div containing all the params */
-.EditService .allServiceParams {
+.EditService .nonHourParams {
   display: flex;
   flex-direction: row;
   align-items: flex-end;
