@@ -86,7 +86,7 @@ function HoursInput({ data, updateData }) {
   }
 
   useEffect(() => {
-    if (data.value) ingestHours(data.value);
+    if (data.value[0]?.end !== undefined) ingestHours(data.value);
     else reformatAndUpdateParent(hoursData); // Make sure the parent component at least has the default data
   }, []);
   return data ? (

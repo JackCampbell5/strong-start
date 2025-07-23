@@ -1,3 +1,5 @@
+import { array } from "prop-types";
+
 const days = [
   "Monday",
   "Tuesday",
@@ -19,7 +21,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
  * @returns The string representation of the hours
  */
 export function stringifyHours(hours) {
-  if (hours) {
+  if (hours[0].end !== undefined) {
     return hours
       .map((hour, index) => {
         let startHours = new Date(hour.start);
