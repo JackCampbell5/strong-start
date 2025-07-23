@@ -106,8 +106,24 @@ export function reformatServiceForReturn(orgServices) {
         serviceInfoToReturn.services_offered
       ),
       language: serviceInfoToReturn.language.join(", "),
+      date_needed: dateString(serviceInfoToReturn.date_needed),
     };
   });
+}
+
+/**
+ *  Formats the date to be returned to the client in the form we want
+ * @param {string} dateStr - The date string to be formatted
+ * @returns The formatted date as a string in the correct format
+ */
+export function dateString(dateStr) {
+  const date = new Date(dateStr);
+  const dateFormatted = date.toLocaleDateString("en-US", {
+    month: "2-digit",
+    day: "2-digit",
+    year: "numeric",
+  });
+  return dateFormatted.replace(/\//g, "-");
 }
 
 /**
