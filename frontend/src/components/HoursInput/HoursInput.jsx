@@ -75,11 +75,13 @@ function HoursInput({ data, updateData }) {
    * @returns {object} - The date object in the form required by the frontend (hours, minutes, amPm)
    */
   function convertTime(inObj, hoursData) {
-    const date = new Date(Date.UTC(inObj));
+    const date = new Date(inObj);
     if (!isNaN(date)) {
-      const hours = date.getHours();
-      hoursData["hours"] = hours > 12 ? hours - 12 : hours;
-      hoursData["minutes"] = date.getMinutes();
+      const hours = date.getUTCHours();
+      const hoursAmPm = hours > 12 ? hours - 12 : hours;
+      hoursData["hours"] = hoursAmPm === 0 ? "" : hoursAmPm;
+      const minutes = date.getMinutes();
+      hoursData["minutes"] = minutes === 0 ? "" : minutes;
       hoursData["amPm"] = hours > 12 ? "pm" : "am";
     }
     return hoursData;
@@ -88,7 +90,7 @@ function HoursInput({ data, updateData }) {
   useEffect(() => {
     if (data.value[0]?.end !== undefined) ingestHours(data.value);
     else reformatAndUpdateParent(hoursData); // Make sure the parent component at least has the default data
-  }, []);
+  }, [data]);
   return data ? (
     <div className="HoursInput">
       <div className="hoursInputHeader">
