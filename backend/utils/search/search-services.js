@@ -146,10 +146,16 @@ function weightServices(foundServices, params) {
       }
     }
 
+    let serviceWeightAlreadyAdded = false;
     // Add the services weight
     for (const service_needed of service.services_offered) {
       if (services.includes(service_needed)) {
-        ranking += weights.services;
+        if (!serviceWeightAlreadyAdded) {
+          serviceWeightAlreadyAdded = true;
+          ranking += weights.services;
+        } else {
+          ranking += weights.services / 2;
+        }
       }
     }
 
@@ -179,9 +185,7 @@ function weightServices(foundServices, params) {
         const dayIndex = indexOfDay[day];
         if (dayIndex) {
           const times = dayTimes[dayIndex];
-          const startTime = new Date(times.start);
-          const endTime = new Date(times.end);
-          if (attend_time > startTime && attend_time < endTime) {
+          if (timeInRange(attend_time, times)) {
             ranking += weights.attend / attend_day.length;
           }
         }
@@ -190,9 +194,7 @@ function weightServices(foundServices, params) {
       // Just time
       if (attend_time) {
         for (const time of attend_time) {
-          const startTime = new Date(time.start);
-          const endTime = new Date(time.end);
-          if (attend_time > startTime && attend_time < endTime) {
+          if (timeInRange(attend_time, times)) {
             ranking += weights.attend / 7;
           }
         }
@@ -214,6 +216,12 @@ function weightServices(foundServices, params) {
     weightTotals.push({ ...service, ranking: ranking });
   }
   return weightTotals;
+}
+
+function timeInRange(time, range) {
+  const startTime = new Date(range.start);
+  const endTime = new Date(range.end);
+  return time > startTime && time < endTime;
 }
 
 /**
