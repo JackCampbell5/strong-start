@@ -35,5 +35,48 @@
     "required": false,
     "icon": "MdDateRange",
     "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025"
+  },
+  {
+    "id": "attend_time",
+    "name": "Attend Time",
+    "value": "",
+    "default": { "hours": "", "minutes": "", "amPm": "pm" },
+    "required": false,
+    "icon": "MdDateRange",
+    "tooltip": "What time it works best to go to the service"
+  },
+  {
+    "id": "attend_day",
+    "name": "Attend Day",
+    "options": [
+      { "value": "monday", "label": "Monday" },
+      { "value": "tuesday", "label": "Tuesday" },
+      { "value": "wednesday", "label": "Wednesday" },
+      { "value": "thursday", "label": "Thursday" },
+      { "value": "friday", "label": "Friday" },
+      { "value": "saturday", "label": "Saturday" },
+      { "value": "sunday", "label": "Sunday" }
+    ],
+    "value": "",
+    "default": "None",
+    "required": false,
+    "icon": "MdDateRange",
+    "tooltip": "What day of the week it works best to go to the service"
+  },
+  {
+    "id": "preference",
+    "name": "Most Important Factors",
+    "options": [
+      { "value": "address", "label": "Address" },
+      { "value": "services_needed", "label": "Services Required" },
+      { "value": "language", "label": "Language Spoken" },
+      { "value": "date_entered", "label": "Date entered US" },
+      { "value": "attend_time", "label": "Attend Time" }
+    ],
+    "value": "",
+    "default": "None",
+    "required": false,
+    "icon": "MdImportantDevices",
+    "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025"
   }
 ]
