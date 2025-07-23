@@ -6,6 +6,13 @@ import "./TimeInput.css";
 function TimeInput({ data, updateData }) {
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Takes the value from the input and updates the data object. If the value is not a number or is greater than the max, sets an error text.
+   * @param {Event} e - The event object.
+   * @param {string} paramName - The name of the parameter to update.
+   * @param {number} max - The maximum value for the parameter.
+   * @returns
+   */
   function checkAndUpdateData(e, paramName, max = null) {
     const value = e.target.value;
     if (
@@ -62,7 +69,8 @@ function TimeInput({ data, updateData }) {
 }
 
 TimeInput.propTypes = {
-  // data: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
 
 export default TimeInput;
