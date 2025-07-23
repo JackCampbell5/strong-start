@@ -160,11 +160,15 @@ function weightServices(foundServices, params) {
  * @returns The valid query parameters or an error
  */
 async function isValidParams(query, nonprofit) {
+  console.log(query);
   // Params that can be used for search
   const address_given = query.address;
   const services_needed_given = JSON.parse(query.services_needed);
   const language_given = query.language;
   const date_entered_given = query.date_entered;
+  const attend_time_given = query.attend_time;
+  const attend_day_given = query.attend_day;
+  const preference_given = query.preference;
 
   let params = {};
 
@@ -176,8 +180,8 @@ async function isValidParams(query, nonprofit) {
   params.address = result.data;
 
   // Extract Services Needed
-  params.services = services_needed_given.map((service) => {
-    return service.value;
+  params.services = services_needed_given.map((option) => {
+    return option.value;
   });
 
   // Validate Language
@@ -197,6 +201,24 @@ async function isValidParams(query, nonprofit) {
     params.date_entered = date_valid.data;
   }
 
+  // The time the user is available to attend
+  if (attend_time_given) {
+    params.attend_time = attend_time_given.map((option) => {
+      return option.value;
+    });
+  }
+
+  // The days the user is available to attend
+  if (attend_day_given) {
+    params.attend_day = new Date(attend_day_given);
+  }
+
+  // The preference of the user for top category
+  if (preference_given) {
+    params.preference = preference_given.map((option) => {
+      return option.value;
+    });
+  }
   return successReturn(params);
 }
 
