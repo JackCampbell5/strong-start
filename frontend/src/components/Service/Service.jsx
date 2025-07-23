@@ -151,6 +151,8 @@ function Service({ inputData }) {
                   <a href={obj.value} target="_blank">
                     {obj.value}
                   </a>
+                ) : obj.id === "hours" ? (
+                  <span>{stringifyHours(obj.value)}</span>
                 ) : (
                   <span>{obj.value}</span>
                 )}
