@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import "./EditService.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
+import HoursInput from "#components/HoursInput/HoursInput";
 // Util Functions
 import serviceInputDefaultValuesJson from "#default-data/serviceInputDefaultValues.json";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
@@ -151,48 +152,59 @@ function EditService({
   return (
     <div className="EditService">
       <div className="allServiceParams">
-        {serviceInput.map((obj, index) => {
-          return (
-            <div className="serviceParam" key={obj.id + "Class"}>
-              <p className={obj.id + "P"}>{obj.name}:</p>
-              {obj.icon
-                ? React.createElement(serviceSearchIconMap[obj.icon], {})
-                : null}{" "}
-              {obj.id === "description" ? (
-                <textarea
-                  key={obj.id + "Input"}
-                  className={obj.id + "Input"}
-                  type="text"
-                  value={obj.value}
-                  placeholder={obj.default}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    const data = [...serviceInput];
-                    data[index].value = value;
-                    setServiceInput(data);
-                  }}
-                />
-              ) : (
-                <input
-                  key={obj.id + "Input"}
-                  className={obj.id + "Input"}
-                  type="text"
-                  value={obj.value}
-                  placeholder={obj.default}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    const data = [...serviceInput];
-                    data[index].value = value;
-                    setServiceInput(data);
-                  }}
-                />
-              )}
-              {obj.tooltip && (
-                <span className="tooltiptext">{obj.tooltip}</span>
-              )}
-            </div>
-          );
-        })}
+        <div className="nonHourParams">
+          {serviceInput.map((obj, index) => {
+            return obj.id === "hours" ? null : (
+              <div className="serviceParam" key={index}>
+                <p className={obj.id + "P"}>{obj.name}:</p>
+                {obj.icon
+                  ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                  : null}{" "}
+                {obj.id === "description" ? (
+                  <textarea
+                    key={obj.id + "Input"}
+                    className={obj.id + "Input"}
+                    type="text"
+                    value={obj.value}
+                    placeholder={obj.default}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const data = [...serviceInput];
+                      data[index].value = value;
+                      setServiceInput(data);
+                    }}
+                  />
+                ) : (
+                  <input
+                    key={obj.id + "Input"}
+                    className={obj.id + "Input"}
+                    type="text"
+                    value={obj.value}
+                    placeholder={obj.default}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      const data = [...serviceInput];
+                      data[index].value = value;
+                      setServiceInput(data);
+                    }}
+                  />
+                )}
+                {obj.tooltip && (
+                  <span className="tooltiptext">{obj.tooltip}</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+        <HoursInput
+          data={serviceInput.filter((obj) => obj.id === "hours")[0]}
+          updateData={(data) => {
+            const newData = [...serviceInput];
+            newData[serviceInput.findIndex((obj) => obj.id === "hours")].value =
+              data;
+            setServiceInput(newData);
+          }}
+        />
       </div>
       <LoadingButton loading={loading} onClick={serviceSubmit} text="Submit" />
       <p className="errorText">{errorText}</p>
