@@ -15,6 +15,7 @@ import {
   MdOutlineSkipNext,
   MdAirplanemodeActive,
   MdOutlinePersonAddAlt,
+  MdImportantDevices,
 } from "react-icons/md";
 
 export const serviceSearchIconMap = {
@@ -34,4 +35,5 @@ export const serviceSearchIconMap = {
   MdImage: MdImage,
   MdFilterList: MdFilterList,
   MdOutlineSkipNext: MdOutlineSkipNext,
+  MdImportantDevices: MdImportantDevices,
 };
