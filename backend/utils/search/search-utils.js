@@ -18,7 +18,9 @@ export async function createSearchLog(params, nonprofit, len, session) {
     zipcode: extractZipcode(params.address.formattedAddress),
     services_needed: params.services,
     languages: params.language,
-    date_needed: params.date_entered.toISOString(),
+    date_needed: params.date_needed
+      ? new Date(params.date_entered).toISOString()
+      : "",
     results_found: len,
   };
   await prisma.web_log.create({
