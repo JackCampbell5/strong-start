@@ -13,6 +13,7 @@ import {
   validateAndFormatServiceData,
   prettyPrintServicesOfferedList,
   reformatServiceForReturn,
+  dateString,
 } from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
@@ -216,6 +217,7 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
         findServiceCopy.services_offered
       );
       findServiceCopy.language = findServiceCopy.language.join(", ");
+      findServiceCopy.date_needed = dateString(findServiceCopy.date_needed);
       // Reformat for frontend
       const keys = Object.keys(findServiceCopy);
       const values = Object.values(findServiceCopy);
