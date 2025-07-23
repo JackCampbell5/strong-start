@@ -77,14 +77,16 @@ function validateAndExtractSearchData(data, nonprofit) {
     return errorReturn(manyPlacesStr); // Return an error object
   } else {
     const gottenCords = getCords(data.places[0]);
-    const radius = getRadiusAroundPointObject(
-      getCords(nonprofit.addressInfo),
-      nonprofitRadius
-    );
-    if (serviceInPerimeter(radius, gottenCords) === false) {
-      return errorReturn(
-        `We can not locate that address within ${nonprofitRadius} miles of the nonprofit please be more specific or try a different address`
+    if (nonprofit) {
+      const radius = getRadiusAroundPointObject(
+        getCords(nonprofit.addressInfo),
+        nonprofitRadius
       );
+      if (serviceInPerimeter(radius, gottenCords) === false) {
+        return errorReturn(
+          `We can not locate that address within ${nonprofitRadius} miles of the nonprofit please be more specific or try a different address`
+        );
+      }
     }
 
     // if there is only one option return the data
