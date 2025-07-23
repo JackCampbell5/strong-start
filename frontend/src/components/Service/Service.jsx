@@ -11,6 +11,7 @@ import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
 import { fillMissingDataFields } from "#utils/selectUtils";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import { stringifyHours } from "#utils/hoursUtils";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added

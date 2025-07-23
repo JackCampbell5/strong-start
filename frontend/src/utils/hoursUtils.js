@@ -11,6 +11,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
   hour: "numeric",
   minute: "numeric",
   hour12: true,
+  timeZone: "UTC",
 });
 /**
  *  Takes the hours object from the backend and returns a string representation of the hours
@@ -21,8 +22,11 @@ export function stringifyHours(hours) {
   if (hours) {
     return hours
       .map((hour, index) => {
-        let startHours = new Date(Date.UTC(hours.start));
-        let endHours = new Date(Date.UTC(hours.end));
+        let startHours = new Date(hour.start);
+        let endHours = new Date(hour.end);
+        if (startHours.toUTCString() === endHours.toUTCString()) {
+          return `${days[index]}: Closed`;
+        }
         return `${days[index]}: ${formatter.format(
           startHours
         )} - ${formatter.format(endHours)}`;
