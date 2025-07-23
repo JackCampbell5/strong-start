@@ -1,3 +1,4 @@
+import { googleToMeDaysConversion } from "#utils/constants.js";
 /**
  * Takes the services objects from googles API and reformats them into a format that can be used by the frontend
  * @param {Array} serviceDataGiven - An array of services objects from googles API response
@@ -39,20 +40,31 @@ export function reformatServices(serviceDataGiven) {
  * @returns The reformatted hours as a string
  */
 function stringifyHours(hoursObj) {
-  // Check if obj is valid
-  if (!hoursObj) return null;
-
-  const hours = hoursObj?.weekdayDescriptions; // Get the hours array
-
-  // Loop through hours and add them to a string
-  let formattedHours = "";
-  for (const hour of hours) {
-    formattedHours += hour + ",   ";
+  if (!hoursObj?.periods) return [];
+  const hoursArr = Array.from({ length: 7 }, (value, index) => {
+    return {
+      start: "1899-12-31T00:00:00.000Z",
+      end: "1899-12-31T00:00:00.000Z",
+    };
+  });
+  for (const dayInfo of hoursObj.periods) {
+    if (dayInfo["open"] === undefined || dayInfo["close"] === undefined) {
+      continue;
+    }
+    const start = getTimeFromGoogle(dayInfo.open);
+    const end = getTimeFromGoogle(dayInfo.close);
+    const day = googleToMeDaysConversion[dayInfo.open.day];
+    hoursArr[day].start = start;
+    hoursArr[day].end = end;
   }
+  return hoursArr;
+}
 
-  // Remove the last comma and space
-  formattedHours = formattedHours.slice(0, -4);
-  return formattedHours;
+function getTimeFromGoogle(time) {
+  const hours = time.hour;
+  const minutes = time.minute;
+  const date = new Date(Date.UTC(0, 0, 0, hours || 0, minutes || 0));
+  return date.toISOString();
 }
 
 /**
