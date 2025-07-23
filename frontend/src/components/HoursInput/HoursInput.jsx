@@ -9,6 +9,7 @@ import "./HoursInput.css";
 import TimeInput from "#components/TimeInput/TimeInput";
 // Utils
 import hoursDefault from "#default-data/hoursDefault.json";
+import { createTime } from "#utils/hoursUtils";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 
 function HoursInput({ data, updateData }) {
@@ -37,20 +38,6 @@ function HoursInput({ data, updateData }) {
       end: createTime(obj.end),
     }));
     updateData(reformattedData);
-  }
-
-  /**
-   * Takes a time object and converts it to a date string to be returned to the backend
-   * + Time objects should be in the format of {hours, minutes, amPm}
-   * @param {obj} time - The time object to convert to a date
-   * @returns {string} - The date string
-   */
-  function createTime(time) {
-    const amPm = time.amPm;
-    const hours = amPm === "am" ? time.hours : time.hours + 12;
-    const minutes = time.minutes;
-    const date = new Date(Date.UTC(0, 0, 0, hours || 0, minutes || 0));
-    return date.toISOString();
   }
 
   /**
@@ -121,6 +108,7 @@ function HoursInput({ data, updateData }) {
 
 HoursInput.propTypes = {
   data: PropTypes.object.isRequired,
+  updateData: PropTypes.func.isRequired,
 };
 
 export default HoursInput;

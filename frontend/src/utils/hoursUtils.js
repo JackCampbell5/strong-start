@@ -1,5 +1,3 @@
-import { array } from "prop-types";
-
 const days = [
   "Monday",
   "Tuesday",
@@ -36,4 +34,18 @@ export function stringifyHours(hours) {
       .join(", ");
   }
   return "";
+}
+
+/**
+ * Takes a time object and converts it to a date string to be returned to the backend
+ * + Time objects should be in the format of {hours, minutes, amPm}
+ * @param {obj} time - The time object to convert to a date
+ * @returns {string} - The date string
+ */
+export function createTime(time) {
+  const amPm = time.amPm;
+  const hours = amPm === "am" ? time.hours : time.hours + 12;
+  const minutes = time.minutes;
+  const date = new Date(Date.UTC(0, 0, 0, hours || 0, minutes || 0));
+  return date.toISOString();
 }
