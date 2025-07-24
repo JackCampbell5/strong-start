@@ -65,10 +65,8 @@ function HoursInput({ data, updateData }) {
     const date = new Date(inObj);
     if (!isNaN(date)) {
       const hours = date.getUTCHours();
-      const hoursAmPm = hours > 12 ? hours - 12 : hours;
-      hoursData["hours"] = hoursAmPm === 0 ? "" : hoursAmPm;
-      const minutes = date.getMinutes();
-      hoursData["minutes"] = minutes === 0 ? "" : minutes;
+      hoursData["hours"] = hours > 12 ? hours - 12 : hours;
+      hoursData["minutes"] = date.getMinutes();
       hoursData["amPm"] = hours > 12 ? "pm" : "am";
     }
     return hoursData;
