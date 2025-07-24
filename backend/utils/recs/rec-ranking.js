@@ -2,10 +2,12 @@ import {
   getCurrentlyPopularInfo,
   getPopularOfExistingService,
 } from "#recs/rec-existing-popular.js";
+import { REC_FEATURES } from "#recs/rec-constants.js";
+import { calculateWeights, weighServices } from "#recs/rec-weight.js";
 
 /**
  * Ranks the services based on the ranking parameters
- * Params: service_number, pop_zipcode, pop_service, pop_languages, completeness, existing, popular, rating, keywords
+ * Params: service_number, pop_zipcode, POP_SERVICE_TYPES, pop_languages, completeness, existing, popular, rating, keywords
  * @param {Array} servicesGiven - The services we are trying to rank
  * @param {object} nonprofit - The nonprofit object we are getting recommendations for
  * @returns The ranked services
@@ -29,10 +31,13 @@ export default async function rankRecommendedServices(
       0
     );
   });
-  // TODO: The function names for the rest of the weight calculations
-  //   const weights = calculateWeights(rankingInfo);
-  //   const weightedServices = weighServices(servicesGiven, weights);
-  return servicesGiven;
+  const calcResults = calculateWeights(rankingInfo);
+  const weightedServices = weighServices(
+    servicesGiven,
+    rankingInfo,
+    calcResults
+  );
+  return weightedServices;
 }
 
 /**
@@ -48,47 +53,48 @@ async function extractRankingParams(servicesGiven, popularCurrently) {
     const preExisting = service.nonprofit_ID;
     if (preExisting) {
       // How popular is service
-      serviceInfo["popularity"] = await getPopularOfExistingService(service);
+      serviceInfo[REC_FEATURES.EXISTING_POPULARITY] =
+        await getPopularOfExistingService(service);
     } else {
       // Add the average google maps rating if it exists
       if (service.rating) {
-        serviceInfo["rating"] = service.rating;
+        serviceInfo[REC_FEATURES.RATING] = service.rating;
       }
       // Get the keyword number out of the current ranking param
       // We are only ranking keywords for API services
       if (service.ranking) {
-        serviceInfo["keywords"] = service.ranking;
+        serviceInfo[REC_FEATURES.KEYWORDS] = service.ranking;
       }
     }
 
     // Service number
-    serviceInfo["service_number"] = service.services_offered.length;
+    serviceInfo[REC_FEATURES.SERVICE_NUMBER] = service.services_offered.length;
 
     // Popular Zipcodes
-    serviceInfo["pop_zipcode"] = countPopularElements(
+    serviceInfo[REC_FEATURES.POP_ZIPCODE] = countPopularElements(
       [service.zipcode],
       popularCurrently["zipcode"]
     );
 
     // Popular Services
-    serviceInfo["pop_service"] = countPopularElements(
+    serviceInfo[REC_FEATURES.POP_SERVICE_TYPES] = countPopularElements(
       service.services_offered,
       popularCurrently["services_offered"]
     );
 
     // Popular Languages
-    serviceInfo["pop_languages"] = countPopularElements(
+    serviceInfo[REC_FEATURES.POP_LANGUAGES] = countPopularElements(
       service.language,
       popularCurrently["languages"]
     );
 
     // The completeness of data
-    serviceInfo["completeness"] = Object.values(service).filter(
+    serviceInfo[REC_FEATURES.COMPLETENESS] = Object.values(service).filter(
       (val) => val !== null
     ).length;
 
     // In another profits database
-    serviceInfo["existing"] = service.nonprofit_ID ? 1 : 0;
+    serviceInfo[REC_FEATURES.EXISTING] = service.nonprofit_ID ? 1 : 0;
 
     // Add to the rankingInfo object
     rankingInfo[service.id] = serviceInfo;
