@@ -26,14 +26,6 @@ export default async function rankRecommendedServices(
     servicesGiven,
     popularCurrently
   );
-  // TODO Remove and add actual ranking logic here
-  // Temporary so there are weights for PR
-  servicesGiven.forEach((element) => {
-    element.ranking = Object.values(rankingInfo[element.id]).reduce(
-      (a, b) => a + b,
-      0
-    );
-  });
   const calcResults = calculateDynamicWeights(rankingInfo);
   const weightedServices = calculateWeightedScoreForServices(
     servicesGiven,
