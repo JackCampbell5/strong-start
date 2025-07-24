@@ -141,8 +141,13 @@
   margin: 0px;
 }
 
-.Service .serviceParam .serviceParamValue th,
+.Service .serviceParam .serviceParamValue table,
+th,
 td {
-  border-left: 2px solid;
+  border: 2px solid var(--border-light);
   margin: 0px;
+  padding: 5px;
+}
+table {
+  border-collapse: collapse;
 }
