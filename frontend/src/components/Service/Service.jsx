@@ -131,7 +131,8 @@ function Service({ inputData }) {
             expanded ? "expanded" : "notExpanded",
           ].join(" ")}
         >
-          More Details <MdArrowDropDownCircle />
+          {expanded ? "Hide Details" : "More Details"}
+          <MdArrowDropDownCircle />
         </div>
       </div>
       {expanded ? (
