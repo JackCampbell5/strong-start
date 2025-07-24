@@ -57,7 +57,8 @@ async function topServices(params, nonprofit) {
     },
   });
 
-  const serviceWithWeight = weightServices(foundServices, params);
+  const weights = retrieveRankingWeights(params);
+  const serviceWithWeight = weightServices(foundServices, params, weights);
 
   // Sort the services by ranking
   const rankedOrder = serviceWithWeight.sort((a, b) => {
@@ -72,7 +73,9 @@ async function topServices(params, nonprofit) {
     (service) => service.ranking > 50
   );
   const top =
-    overFiftyPercent.length > 10 ? overFiftyPercent : rankedOrder.slice(0, 10);
+    overFiftyPercent.length > 10
+      ? overFiftyPercent
+      : normalizedServices.slice(0, 10);
 
   const result = await addRouteData(top, params.address);
   if (!result.valid) {
@@ -105,21 +108,12 @@ async function addRouteData(services, address) {
 }
 
 /**
- * Search thru the different services and calculate the weights for each one based on global weights
- * @param {object} foundServices - The services found in the database to search within
- * @param {object} params - Object containing the parameters for the search
- * @returns The list of services with their ranking
+ * Calculates the dynamic weights for each parameter based on the preference given and then normalizes
+ * @param {object} params - The query parameters given in the search
+ * @returns The weights for each parameter based on the preference given normalized to 100
  */
-function weightServices(foundServices, params) {
-  // Get the params
-  const address = params.address;
-  const services = params.services;
-  const language = params.language;
-  const date_entered = params.date_entered;
-  const attend_time = params.attend_time;
-  const attend_day = params.attend_day;
+function retrieveRankingWeights(params) {
   const preference = params.preference;
-
   // Dynamic weights based on preference
   let weights = JSON.parse(JSON.stringify(weightsDefault));
   if (preference) {
@@ -128,6 +122,23 @@ function weightServices(foundServices, params) {
     }
     weights = normalizeWeights(weights);
   }
+  return weights;
+}
+
+/**
+ * Search thru the different services and calculate the weights for each one based on global weights
+ * @param {object} foundServices - The services found in the database to search within
+ * @param {object} params - Object containing the parameters for the search
+ * @returns The list of services with their ranking
+ */
+function weightServices(foundServices, params, weights) {
+  // Get the params
+  const address = params.address;
+  const services = params.services;
+  const language = params.language;
+  const date_entered = params.date_entered;
+  const attend_time = params.attend_time;
+  const attend_day = params.attend_day;
 
   // Calculate the weights for each service
   let weightTotals = [];
