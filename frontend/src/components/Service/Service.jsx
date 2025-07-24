@@ -139,24 +139,27 @@ function Service({ inputData }) {
           {serviceData.bottom.map((obj) => {
             return obj?.value ? (
               <div className="serviceParam" key={obj.id}>
-                <strong>{obj.name}</strong>
-                {obj.icon
-                  ? React.createElement(serviceSearchIconMap[obj.icon], {})
-                  : null}
-                {":"}
-                {obj.id === "address" ? (
-                  <a href={links?.route} target="_blank">
-                    {obj.value}
-                  </a>
-                ) : obj.id === "website" ? (
-                  <a href={obj.value} target="_blank">
-                    {obj.value}
-                  </a>
-                ) : obj.id === "hours" ? (
-                  <span>{stringifyHours(obj.value)}</span>
-                ) : (
-                  <span>{obj.value}</span>
-                )}
+                <div className="serviceParamName">
+                  {obj.icon
+                    ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                    : null}
+                  <strong>{obj.name}</strong>
+                </div>
+                <div className="serviceParamValue">
+                  {obj.id === "address" ? (
+                    <a href={links?.route} target="_blank">
+                      {obj.value}
+                    </a>
+                  ) : obj.id === "website" ? (
+                    <a href={obj.value} target="_blank">
+                      {obj.value}
+                    </a>
+                  ) : obj.id === "hours" ? (
+                    <span>{stringifyHours(obj.value)}</span>
+                  ) : (
+                    <span>{obj.value}</span>
+                  )}
+                </div>
               </div>
             ) : null;
           })}

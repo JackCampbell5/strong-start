@@ -99,13 +99,23 @@
 /*  Each individual param  */
 .Service .serviceParam {
   display: flex;
-  flex-wrap: wrap;
-  margin: 15px 0px;
+  align-items: center;
+  margin: 20px 0px;
+  width: 100%;
 }
-/* Split the params apart from each other  */
-.Service .serviceParam span,
-.Service .serviceParam a {
-  margin: 0 0 0 20px;
+
+/* The Left Column */
+.Service .serviceParam .serviceParamName {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  width: min(25%, 150px);
+}
+/* The Right Column */
+.Service .serviceParam .serviceParamValue {
+  margin: 0 0 0 10px;
+  width: max(calc(75% - 10px), calc(100% - 140px));
 }
 
 .Service .serviceBottom svg {
