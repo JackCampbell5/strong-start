@@ -1,0 +1,15 @@
+.TimeInput .inputsAll {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2px;
+}
+
+.TimeInput input {
+  width: 30px;
+  margin: 0px;
+}
+
+.TimeInput .errorText {
+  width: 100%;
+}

@@ -11,6 +11,7 @@ import serviceDisplayDefault from "#default-data/serviceDisplayDefault.json";
 import { fillMissingDataFields } from "#utils/selectUtils";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import { stringifyHours } from "#utils/hoursUtils";
 
 /**
  *  A service component that displays info about a specific service a nonprofit has added
@@ -151,6 +152,8 @@ function Service({ inputData }) {
                   <a href={obj.value} target="_blank">
                     {obj.value}
                   </a>
+                ) : obj.id === "hours" ? (
+                  <span>{stringifyHours(obj.value)}</span>
                 ) : (
                   <span>{obj.value}</span>
                 )}
