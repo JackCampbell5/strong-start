@@ -37,10 +37,8 @@ export default async function searchServices(query, nonprofit) {
   if (!topData.valid) {
     return errorReturn(topData.error);
   }
-  console.log(topData.data.map((service) => service.ranking));
-  const normalizedServices = normalizeServiceFromRank(topData.data);
   return successReturn({
-    searchResults: normalizedServices,
+    searchResults: topData.data,
     params: params.data,
   });
 }
@@ -66,9 +64,15 @@ async function topServices(params, nonprofit) {
     return b.ranking - a.ranking;
   });
 
-  // Return the top 5 services by ranking
-  // TODO: do this via normal distribution for more accurate results and remove outliers
-  const top = rankedOrder.slice(0, 5);
+  // Normalize the rankings to 100
+  const normalizedServices = normalizeServiceFromRank(rankedOrder);
+
+  // Return all services normalized above 50% if there are more than 5 services
+  const overFiftyPercent = normalizedServices.filter(
+    (service) => service.ranking > 50
+  );
+  const top =
+    overFiftyPercent.length > 5 ? overFiftyPercent : rankedOrder.slice(0, 5);
 
   const result = await addRouteData(top, params.address);
   if (!result.valid) {
