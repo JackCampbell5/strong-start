@@ -72,7 +72,7 @@ async function topServices(params, nonprofit) {
     (service) => service.ranking > 50
   );
   const top =
-    overFiftyPercent.length > 5 ? overFiftyPercent : rankedOrder.slice(0, 5);
+    overFiftyPercent.length > 10 ? overFiftyPercent : rankedOrder.slice(0, 10);
 
   const result = await addRouteData(top, params.address);
   if (!result.valid) {
@@ -181,11 +181,9 @@ function weightServices(foundServices, params) {
       const dayTimes = service.hours;
       for (const day of attend_day) {
         const dayIndex = indexOfDay[day];
-        if (dayIndex) {
-          const times = dayTimes[dayIndex];
-          if (timeInRange(attend_time, times)) {
-            ranking += weights.attend / attend_day.length;
-          }
+        const times = dayTimes[dayIndex];
+        if (dayIndex && timeInRange(attend_time, times)) {
+          ranking += weights.attend / attend_day.length;
         }
       }
     } else {
@@ -201,15 +199,13 @@ function weightServices(foundServices, params) {
       if (attend_day) {
         for (const day of attend_day) {
           const dayIndex = indexOfDay[day];
-          if (dayIndex) {
-            const times = service.hours[dayIndex];
-            if (times.start !== times.end) {
-              ranking += weights.attend / attend_day.length;
-            }
-          } // If day is valid
-        } // End Loop thru days
-      } // If just the day
-    } // If not both time and day
+          const times = service.hours[dayIndex];
+          if (dayIndex && times.start !== times.end) {
+            ranking += weights.attend / attend_day.length;
+          }
+        }
+      }
+    }
 
     weightTotals.push({ ...service, ranking: ranking });
   }
