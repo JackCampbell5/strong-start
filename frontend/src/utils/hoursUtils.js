@@ -19,7 +19,7 @@ const formatter = new Intl.DateTimeFormat("en-US", {
  * @returns The string representation of the hours
  */
 export function stringifyHours(hours) {
-  if (hours[0].end !== undefined) {
+  if (hours[0]?.end !== undefined) {
     return hours
       .map((hour, index) => {
         let startHours = new Date(hour.start);
@@ -42,7 +42,8 @@ export function stringifyHours(hours) {
  * @param {obj} time - The time object to convert to a date
  * @returns {string} - The date string
  */
-export function createTime(time) {
+
+export function createDatetimeString(time) {
   const amPm = time.amPm;
   const hours =
     amPm === "am" ? parseInt(time.hours) : parseInt(time.hours) + 12;

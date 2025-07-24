@@ -17,7 +17,7 @@ import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
 import { fillMissingDataFields } from "#utils/selectUtils";
-import { createTime } from "#utils/hoursUtils";
+import { createDatetimeString } from "#utils/hoursUtils";
 
 function SearchFilters({ loading, setLoading, searchFor }) {
   // Constant Variables
@@ -116,7 +116,7 @@ function SearchFilters({ loading, setLoading, searchFor }) {
                 data={obj.default}
                 updateData={(dataReceived) => {
                   const time = dataReceived.hours
-                    ? createTime(dataReceived)
+                    ? createDatetimeString(dataReceived)
                     : "";
                   const data = [...searchInput];
                   data[index].value = time;

@@ -1,7 +1,7 @@
 import {
-  goalValues,
-  weights,
-  calcResultsDefault,
+  featureGoalBaselines,
+  starterWeights,
+  dynamicWeightsAndFormulaDefault,
 } from "#recs/rec-constants.js";
 /**
  * Calculates the weights for each param based on the goal and the average
@@ -10,13 +10,13 @@ import {
  * @returns The results from the calculation of the weights
  */
 export function calculateWeights(rankingInfo) {
-  let calcResults = JSON.parse(JSON.stringify(calcResultsDefault)); // Copy the default results
+  let calcResults = JSON.parse(JSON.stringify(dynamicWeightsAndFormulaDefault)); // Copy the default results
   const rankingInfoValues = Object.values(rankingInfo);
-  for (const param in goalValues) {
+  for (const param in featureGoalBaselines) {
     // vars
     let paramResults = {};
-    const goal = goalValues[param];
-    const weight = weights[param];
+    const goal = featureGoalBaselines[param];
+    const weight = starterWeights[param];
     // Get the data for this param
     let extractedParam = rankingInfoValues.map((val) => val[param]);
     extractedParam = extractedParam.filter((val) => val !== undefined);
