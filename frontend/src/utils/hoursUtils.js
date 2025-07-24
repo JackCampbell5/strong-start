@@ -42,7 +42,7 @@ export function stringifyHours(hours) {
  * @param {obj} time - The time object to convert to a date
  * @returns {string} - The date string
  */
-export function createTime(time) {
+export function createDatetimeString(time) {
   const amPm = time.amPm;
   const hours =
     amPm === "am" ? parseInt(time.hours) : parseInt(time.hours) + 12;
