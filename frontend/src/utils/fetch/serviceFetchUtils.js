@@ -190,13 +190,13 @@ export async function addServiceView(nonprofit, serviceID) {
  */
 export async function fetchSearch(nonprofit, data) {
   // Construct the query params based on the search data
-  let paramObj = {};
+  let queryParams = {};
   for (const key in data) {
     if (data[key] && data[key] !== '""') {
-      paramObj[key] = data[key];
+      queryParams[key] = data[key];
     }
   }
-  const params = new URLSearchParams(paramObj);
+  const params = new URLSearchParams(queryParams);
   return await fetch(
     `${serviceLink}/${nonprofit}/search?${params.toString()}`,
     {
