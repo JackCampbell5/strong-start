@@ -7,7 +7,7 @@ import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { routeBetween, createDirectionLink } from "#search/direction-utils.js";
-import { indexOfDay } from "#utils/constants.js";
+import { dayToIndex } from "#utils/constants.js";
 import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 /**
  * The weights for each parameter as of now(Total = 100)
@@ -180,7 +180,7 @@ function weightServices(foundServices, params) {
     if (attend_time && attend_day) {
       const dayTimes = service.hours;
       for (const day of attend_day) {
-        const dayIndex = indexOfDay[day];
+        const dayIndex = dayToIndex[day];
         const times = dayTimes[dayIndex];
         if (dayIndex && timeInRange(attend_time, times)) {
           ranking += weights.attend / attend_day.length;
@@ -198,7 +198,7 @@ function weightServices(foundServices, params) {
       // Just day
       if (attend_day) {
         for (const day of attend_day) {
-          const dayIndex = indexOfDay[day];
+          const dayIndex = dayToIndex[day];
           const times = service.hours[dayIndex];
           if (dayIndex && times.start !== times.end) {
             ranking += weights.attend / attend_day.length;
