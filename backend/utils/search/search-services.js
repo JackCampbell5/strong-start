@@ -58,7 +58,11 @@ async function topServices(params, nonprofit) {
   });
 
   const weights = retrieveRankingWeights(params);
-  const serviceWithWeight = weightServices(foundServices, params, weights);
+  const serviceWithWeight = calculateRankingScoreForServices(
+    foundServices,
+    params,
+    weights
+  );
 
   // Sort the services by ranking
   const rankedOrder = serviceWithWeight.sort((a, b) => {
@@ -131,7 +135,7 @@ function retrieveRankingWeights(params) {
  * @param {object} params - Object containing the parameters for the search
  * @returns The list of services with their ranking
  */
-function weightServices(foundServices, params, weights) {
+function calculateRankingScoreForServices(foundServices, params, weights) {
   // Get the params
   const address = params.address;
   const services = params.services;
