@@ -19,6 +19,7 @@ async function main() {
   // Delete all existing data
   await deleteAll();
 
+
   // Get the Service Data ready for seeding
   let serviceList = await addLocationInformation(serviceJson, currentServices)  // Format the address info for services
   // Get starting and ending indices for each nonprofit's slice of services
@@ -65,7 +66,9 @@ async function main() {
 async function addLocationInformation(arrayNoLocationInfo, currentData){
   let addressInfo = {}
   for(let a of currentData){
-    addressInfo[a.address] = a.addressInfo
+    if(a.addressInfo){
+      addressInfo[a.address] = a.addressInfo
+    }
   }
 
   let arrayWithLocationInfo = [...arrayNoLocationInfo];
@@ -100,6 +103,8 @@ async function adminEmployee(increment){
  */
 async function deleteAll(){
   // Delete all existing data
+  await prisma.search_log.deleteMany();
+  await prisma.web_log.deleteMany();
   await prisma.service.deleteMany();
   await prisma.nonprofit_employee.deleteMany();
   await prisma.nonprofit.deleteMany();

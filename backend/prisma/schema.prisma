@@ -22,7 +22,7 @@ model service{
   email                 String?
   phone                 String?
   website               String
-  hours                 String?
+  hours                 Json[]
   logo                  String?
   language              String[]
   date_needed           String?
