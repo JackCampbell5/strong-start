@@ -114,15 +114,24 @@
   align-items: center;
   justify-content: flex-start;
   gap: 15px;
-  width: min(25%, 150px);
+  width: min(25%, 200px);
 }
+
+/* Just The Text Portion */
+.Service .serviceParam .serviceParamName .serviceParamNameText {
+  width: calc(100% - 25px);
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Service .serviceBottom .serviceParam svg {
+  height: 25px;
+  width: 25px;
+}
+
 /* The Right Column */
 .Service .serviceParam .serviceParamValue {
   margin: 0 0 0 10px;
-  width: max(calc(75% - 10px), calc(100% - 140px));
-}
-
-.Service .serviceBottom svg {
-  height: 25px;
-  width: 25px;
+  width: max(calc(75% - 10px), calc(100% - 190px));
 }

@@ -144,7 +144,7 @@ function Service({ inputData }) {
                   {obj.icon
                     ? React.createElement(serviceSearchIconMap[obj.icon], {})
                     : null}
-                  <strong>{obj.name}</strong>
+                  <div className="serviceParamNameText">{obj.name}</div>
                 </div>
                 <div className="serviceParamValue">
                   {obj.id === "address" ? (
