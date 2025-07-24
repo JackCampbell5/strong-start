@@ -65,6 +65,7 @@ function HoursInput({ data, updateData }) {
    * Formats the new data and updates the parent component data
    * @param {Array} newData - The new data to update the parent component data with
    */
+
   function reformatAndUpdateData(newData) {
     const reformattedData = newData.map((obj) => ({
       start: createDatetimeString(obj.start),
