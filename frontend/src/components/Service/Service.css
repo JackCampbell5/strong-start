@@ -135,3 +135,14 @@
   margin: 0 0 0 10px;
   width: max(calc(75% - 10px), calc(100% - 190px));
 }
+
+.Service .serviceParam .serviceParamValue table {
+  border: 3px solid;
+  margin: 0px;
+}
+
+.Service .serviceParam .serviceParamValue th,
+td {
+  border-left: 2px solid;
+  margin: 0px;
+}

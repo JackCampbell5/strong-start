@@ -64,10 +64,18 @@ function Service({ inputData }) {
 
     // Fill the fields to add icon and name
     const completeTop = fillMissingDataFields(topData, serviceDisplayDefault);
-    const completeBottom = fillMissingDataFields(
+    let completeBottom = fillMissingDataFields(
       bottomData,
       serviceDisplayDefault
     );
+    completeBottom = completeBottom.map((obj) => {
+      obj.id === "hours" ? (obj.value = stringifyHours(obj.value)) : null;
+      return obj;
+    });
+    completeBottom.map((obj) => {
+      obj.id === "hours" && console.log(obj.value);
+      return obj;
+    });
     // Restructure the top for easier form to get
     let updatedTopData = completeTop.reduce((acc, obj) => {
       return { ...acc, [obj.id]: obj.value };
@@ -156,7 +164,22 @@ function Service({ inputData }) {
                       {obj.value}
                     </a>
                   ) : obj.id === "hours" ? (
-                    <span>{stringifyHours(obj.value)}</span>
+                    <table>
+                      <thead>
+                        <tr className="headerFields">
+                          {obj.value.map((day, index) => (
+                            <th key={index}>{day.name}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          {obj.value.map((day, index) => (
+                            <td key={index}>{day.value}</td>
+                          ))}
+                        </tr>
+                      </tbody>
+                    </table>
                   ) : (
                     <span>{obj.value}</span>
                   )}
