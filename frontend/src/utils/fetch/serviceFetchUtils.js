@@ -190,7 +190,13 @@ export async function addServiceView(nonprofit, serviceID) {
  */
 export async function fetchSearch(nonprofit, data) {
   // Construct the query params based on the search data
-  const params = new URLSearchParams(data);
+  let queryParams = {};
+  for (const key in data) {
+    if (data[key] && data[key] !== '""') {
+      queryParams[key] = data[key];
+    }
+  }
+  const params = new URLSearchParams(queryParams);
   return await fetch(
     `${serviceLink}/${nonprofit}/search?${params.toString()}`,
     {
@@ -252,7 +258,7 @@ export async function fetchAllServices(nonprofit) {
 
 /**
  * Gets a list of all services recommended for a given nonprofit
- * @param {object} nonProfit - The non profit to search services in
+ * @param {object} nonProfit - The non profit to recommend  services in
  * @returns An object containing all the services that are recommended for this non profit
  */
 export async function fetchRecs(nonprofit) {

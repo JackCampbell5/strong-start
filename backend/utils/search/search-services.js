@@ -7,15 +7,17 @@ import formatAddress from "#utils/search/address-utils.js";
 import { calcDistance, getCords } from "#search/dist-utils.js";
 import { errorReturn, successReturn } from "#utils/validate-utils.js";
 import { routeBetween, createDirectionLink } from "#search/direction-utils.js";
-
+import { dayToIndex } from "#utils/constants.js";
+import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 /**
  * The weights for each parameter as of now(Total = 100)
  */
-const weights = {
+const weightsDefault = {
   address: 30,
-  services: 50,
+  services: 45,
   language: 10,
-  date: 10,
+  date: 5,
+  attend: 10,
 };
 
 /**
@@ -35,7 +37,10 @@ export default async function searchServices(query, nonprofit) {
   if (!topData.valid) {
     return errorReturn(topData.error);
   }
-  return successReturn({ searchResults: topData.data, params: params.data });
+  return successReturn({
+    searchResults: topData.data,
+    params: params.data,
+  });
 }
 
 /**
@@ -59,9 +64,15 @@ async function topServices(params, nonprofit) {
     return b.ranking - a.ranking;
   });
 
-  // Return the top 5 services by ranking
-  // TODO: do this via normal distribution for more accurate results and remove outliers
-  const top = rankedOrder.slice(0, 5);
+  // Normalize the rankings to 100
+  const normalizedServices = normalizeServiceFromRank(rankedOrder);
+
+  // Return all services normalized above 50% if there are more than 5 services
+  const overFiftyPercent = normalizedServices.filter(
+    (service) => service.ranking > 50
+  );
+  const top =
+    overFiftyPercent.length > 10 ? overFiftyPercent : rankedOrder.slice(0, 10);
 
   const result = await addRouteData(top, params.address);
   if (!result.valid) {
@@ -105,6 +116,18 @@ function weightServices(foundServices, params) {
   const services = params.services;
   const language = params.language;
   const date_entered = params.date_entered;
+  const attend_time = params.attend_time;
+  const attend_day = params.attend_day;
+  const preference = params.preference;
+
+  // Dynamic weights based on preference
+  let weights = JSON.parse(JSON.stringify(weightsDefault));
+  if (preference) {
+    for (const singlePreference of preference) {
+      weights[singlePreference] *= 1.5;
+    }
+    weights = normalizeWeights(weights);
+  }
 
   // Calculate the weights for each service
   let weightTotals = [];
@@ -121,10 +144,16 @@ function weightServices(foundServices, params) {
       }
     }
 
+    let serviceWeightAlreadyAdded = false;
     // Add the services weight
     for (const service_needed of service.services_offered) {
       if (services.includes(service_needed)) {
-        ranking += weights.services;
+        if (!serviceWeightAlreadyAdded) {
+          serviceWeightAlreadyAdded = true;
+          ranking += weights.services;
+        } else {
+          ranking += weights.services / 2;
+        }
       }
     }
 
@@ -147,10 +176,71 @@ function weightServices(foundServices, params) {
     ) {
       ranking += weights.date;
     }
+    // If both day and time
+    if (attend_time && attend_day) {
+      const dayTimes = service.hours;
+      for (const day of attend_day) {
+        const dayIndex = dayToIndex[day];
+        const times = dayTimes[dayIndex];
+        if (dayIndex && timeInRange(attend_time, times)) {
+          ranking += weights.attend / attend_day.length;
+        }
+      }
+    } else {
+      // Just time
+      if (attend_time) {
+        for (const times of service.hours) {
+          if (timeInRange(attend_time, times)) {
+            ranking += weights.attend / 7;
+          }
+        }
+      }
+      // Just day
+      if (attend_day) {
+        for (const day of attend_day) {
+          const dayIndex = dayToIndex[day];
+          const times = service.hours[dayIndex];
+          if (dayIndex && times.start !== times.end) {
+            ranking += weights.attend / attend_day.length;
+          }
+        }
+      }
+    }
 
     weightTotals.push({ ...service, ranking: ranking });
   }
   return weightTotals;
+}
+
+/**
+ * Normalizes the weight values to 100
+ * @param {object} weightsObj - The weights object to normalize where {key: weight}
+ * @returns A object with the weights normalized
+ */
+function normalizeWeights(weightsObj) {
+  let weights = JSON.parse(JSON.stringify(weightsObj));
+  // Normalize the weights
+  let total = 0;
+  for (const key in weights) {
+    total += weights[key];
+  }
+  for (const key in weights) {
+    weights[key] /= total;
+    weights[key] *= 100;
+  }
+  return weights;
+}
+
+/**
+ * Checks if the given date object is within the given range
+ * @param {Date} time - The date object to check
+ * @param {object} range - The range to check against
+ * @returns True if the time is within the range, false otherwise
+ */
+function timeInRange(time, range) {
+  const startTime = new Date(range.start);
+  const endTime = new Date(range.end);
+  return time > startTime && time < endTime;
 }
 
 /**
@@ -165,6 +255,9 @@ async function isValidParams(query, nonprofit) {
   const services_needed_given = JSON.parse(query.services_needed);
   const language_given = query.language;
   const date_entered_given = query.date_entered;
+  const attend_time_given = query.attend_time;
+  const attend_day_given = query.attend_day;
+  const preference_given = query.preference;
 
   let params = {};
 
@@ -176,8 +269,8 @@ async function isValidParams(query, nonprofit) {
   params.address = result.data;
 
   // Extract Services Needed
-  params.services = services_needed_given.map((service) => {
-    return service.value;
+  params.services = services_needed_given.map((option) => {
+    return option.value;
   });
 
   // Validate Language
@@ -197,6 +290,24 @@ async function isValidParams(query, nonprofit) {
     params.date_entered = date_valid.data;
   }
 
+  // The time the user is available to attend
+  if (attend_time_given) {
+    params.attend_time = new Date(attend_time_given);
+  }
+
+  // The days the user is available to attend
+  if (attend_day_given) {
+    params.attend_day = JSON.parse(attend_day_given).map((option) => {
+      return option.value;
+    });
+  }
+
+  // The preference of the user for top category
+  if (preference_given) {
+    params.preference = JSON.parse(preference_given).map((option) => {
+      return option.value;
+    });
+  }
   return successReturn(params);
 }
 
