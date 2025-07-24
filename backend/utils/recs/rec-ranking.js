@@ -2,7 +2,7 @@ import {
   getCurrentlyPopularInfo,
   getPopularOfExistingService,
 } from "#recs/rec-existing-popular.js";
-import { REC_NAMES } from "#recs/rec-constants.js";
+import { REC_FEATURES } from "#recs/rec-constants.js";
 import { calculateWeights, weighServices } from "#recs/rec-weight.js";
 
 /**
@@ -31,7 +31,6 @@ export default async function rankRecommendedServices(
       0
     );
   });
-  // TODO: The function names for the rest of the weight calculations
   const calcResults = calculateWeights(rankingInfo);
   const weightedServices = weighServices(
     servicesGiven,
@@ -54,48 +53,48 @@ async function extractRankingParams(servicesGiven, popularCurrently) {
     const preExisting = service.nonprofit_ID;
     if (preExisting) {
       // How popular is service
-      serviceInfo[REC_NAMES.EXISTING_POPULARITY] =
+      serviceInfo[REC_FEATURES.EXISTING_POPULARITY] =
         await getPopularOfExistingService(service);
     } else {
       // Add the average google maps rating if it exists
       if (service.rating) {
-        serviceInfo[REC_NAMES.RATING] = service.rating;
+        serviceInfo[REC_FEATURES.RATING] = service.rating;
       }
       // Get the keyword number out of the current ranking param
       // We are only ranking keywords for API services
       if (service.ranking) {
-        serviceInfo[REC_NAMES.KEYWORDS] = service.ranking;
+        serviceInfo[REC_FEATURES.KEYWORDS] = service.ranking;
       }
     }
 
     // Service number
-    serviceInfo[REC_NAMES.SERVICE_NUMBER] = service.services_offered.length;
+    serviceInfo[REC_FEATURES.SERVICE_NUMBER] = service.services_offered.length;
 
     // Popular Zipcodes
-    serviceInfo[REC_NAMES.POP_ZIPCODE] = countPopularElements(
+    serviceInfo[REC_FEATURES.POP_ZIPCODE] = countPopularElements(
       [service.zipcode],
       popularCurrently["zipcode"]
     );
 
     // Popular Services
-    serviceInfo[REC_NAMES.POP_SERVICE_TYPES] = countPopularElements(
+    serviceInfo[REC_FEATURES.POP_SERVICE_TYPES] = countPopularElements(
       service.services_offered,
       popularCurrently["services_offered"]
     );
 
     // Popular Languages
-    serviceInfo[REC_NAMES.POP_LANGUAGES] = countPopularElements(
+    serviceInfo[REC_FEATURES.POP_LANGUAGES] = countPopularElements(
       service.language,
       popularCurrently["languages"]
     );
 
     // The completeness of data
-    serviceInfo[REC_NAMES.COMPLETENESS] = Object.values(service).filter(
+    serviceInfo[REC_FEATURES.COMPLETENESS] = Object.values(service).filter(
       (val) => val !== null
     ).length;
 
     // In another profits database
-    serviceInfo[REC_NAMES.EXISTING] = service.nonprofit_ID ? 1 : 0;
+    serviceInfo[REC_FEATURES.EXISTING] = service.nonprofit_ID ? 1 : 0;
 
     // Add to the rankingInfo object
     rankingInfo[service.id] = serviceInfo;
