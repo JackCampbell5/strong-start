@@ -13,7 +13,9 @@ import { createTime } from "#utils/hoursUtils";
 import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 
 function HoursInput({ data, updateData }) {
+  // State variables
   const [hoursData, setHoursData] = useState(hoursDefault);
+  const [errorMessage, setErrorMessage] = useState("");
 
   /**
    * Takes the new data and updates the hoursData array with it and then reformats and updates the parent component data
@@ -24,8 +26,39 @@ function HoursInput({ data, updateData }) {
   function updateDataLocal(dataGiven, type, index) {
     const newData = [...hoursData];
     newData[index][type] = dataGiven;
+
+    // Make sure the there is a start time if there is an end time and vice versa
+    for (let dataIndex in newData) {
+      if (
+        existsAndNotZero(
+          newData[dataIndex].start.hours,
+          newData[dataIndex].end.hours
+        ) ||
+        existsAndNotZero(
+          newData[dataIndex].end.hours,
+          newData[dataIndex].start.hours
+        )
+      ) {
+        setErrorMessage(
+          "All days need to have a start and end time or be 0 or be blank"
+        );
+        break;
+      } else {
+        setErrorMessage("");
+      }
+    }
     setHoursData(newData);
     reformatAndUpdateParent(newData);
+  }
+
+  /**
+   * Checks if obj1 exists while obj2 does not or is zero
+   * @param {object} obj1 - The object to check if it exists while other does not or is zero
+   * @param {object} obj2 - The object to check if it is zero or does not exist while other exists
+   * @returns true if obj1 exists while obj2 does not or is zero, false otherwise
+   */
+  function existsAndNotZero(obj1, obj2) {
+    return obj1 && obj1 !== 0 && (!obj2 || obj2 === 0);
   }
 
   /**
@@ -100,6 +133,7 @@ function HoursInput({ data, updateData }) {
           </div>
         );
       })}
+      <p className="errorText">{errorMessage}</p>
     </div>
   ) : null;
 }
