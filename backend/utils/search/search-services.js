@@ -13,10 +13,10 @@ import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
  * The weights for each parameter as of now(Total = 100)
  */
 const weights = {
-  address: 30,
+  address: 25,
   services: 50,
   language: 10,
-  date: 10,
+  date: 5,
   attend: 10,
 };
 
@@ -37,6 +37,7 @@ export default async function searchServices(query, nonprofit) {
   if (!topData.valid) {
     return errorReturn(topData.error);
   }
+  console.log(topData.data.map((service) => service.ranking));
   const normalizedServices = normalizeServiceFromRank(topData.data);
   return successReturn({
     searchResults: normalizedServices,
@@ -193,7 +194,7 @@ function weightServices(foundServices, params) {
     } else {
       // Just time
       if (attend_time) {
-        for (const time of attend_time) {
+        for (const times of service.hours) {
           if (timeInRange(attend_time, times)) {
             ranking += weights.attend / 7;
           }
@@ -204,7 +205,7 @@ function weightServices(foundServices, params) {
         for (const day of attend_day) {
           const dayIndex = indexOfDay[day];
           if (dayIndex) {
-            const times = dayTimes[dayIndex];
+            const times = service.hours[dayIndex];
             if (times.start !== times.end) {
               ranking += weights.attend / attend_day.length;
             }
@@ -218,6 +219,12 @@ function weightServices(foundServices, params) {
   return weightTotals;
 }
 
+/**
+ * Checks if the given date object is within the given range
+ * @param {Date} time - The date object to check
+ * @param {object} range - The range to check against
+ * @returns True if the time is within the range, false otherwise
+ */
 function timeInRange(time, range) {
   const startTime = new Date(range.start);
   const endTime = new Date(range.end);

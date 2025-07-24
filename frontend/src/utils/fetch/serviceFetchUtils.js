@@ -192,12 +192,10 @@ export async function fetchSearch(nonprofit, data) {
   // Construct the query params based on the search data
   let paramObj = {};
   for (const key in data) {
-    console.log(key, data[key]);
     if (data[key] && data[key] !== '""') {
       paramObj[key] = data[key];
     }
   }
-
   const params = new URLSearchParams(paramObj);
   return await fetch(
     `${serviceLink}/${nonprofit}/search?${params.toString()}`,
