@@ -12,9 +12,9 @@ import { normalizeServiceFromRank } from "#utils/ranking-utils.js";
 /**
  * The weights for each parameter as of now(Total = 100)
  */
-const weights = {
-  address: 25,
-  services: 50,
+const weightsDefault = {
+  address: 30,
+  services: 45,
   language: 10,
   date: 5,
   attend: 10,
@@ -121,19 +121,12 @@ function weightServices(foundServices, params) {
   const preference = params.preference;
 
   // Dynamic weights based on preference
+  let weights = JSON.parse(JSON.stringify(weightsDefault));
   if (preference) {
     for (const singlePreference of preference) {
       weights[singlePreference] *= 1.5;
     }
-    // Normalize the weights
-    let total = 0;
-    for (const key in weights) {
-      total += weights[key];
-    }
-    for (const key in weights) {
-      weights[key] /= total;
-      weights[key] *= 100;
-    }
+    weights = normalizeWeights(weights);
   }
 
   // Calculate the weights for each service
@@ -221,6 +214,25 @@ function weightServices(foundServices, params) {
     weightTotals.push({ ...service, ranking: ranking });
   }
   return weightTotals;
+}
+
+/**
+ * Normalizes the weight values to 100
+ * @param {object} weightsObj - The weights object to normalize where {key: weight}
+ * @returns A object with the weights normalized
+ */
+function normalizeWeights(weightsObj) {
+  let weights = JSON.parse(JSON.stringify(weightsObj));
+  // Normalize the weights
+  let total = 0;
+  for (const key in weights) {
+    total += weights[key];
+  }
+  for (const key in weights) {
+    weights[key] /= total;
+    weights[key] *= 100;
+  }
+  return weights;
 }
 
 /**
