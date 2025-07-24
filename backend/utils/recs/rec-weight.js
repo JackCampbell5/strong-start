@@ -9,7 +9,7 @@ import {
  * @param {object} rankingInfo - The ranking totals gotten from each service
  * @returns The results from the calculation of the weights
  */
-export function calculateWeights(rankingInfo) {
+export function calculateDynamicWeights(rankingInfo) {
   let calcResults = JSON.parse(JSON.stringify(dynamicWeightsAndFormulaDefault)); // Copy the default results
   const rankingInfoValues = Object.values(rankingInfo);
   for (const param in featureGoalBaselines) {
@@ -62,7 +62,11 @@ function normalizeWeights(weights) {
  * @param {object} calcResults - The results from the calculation of the weights
  * @returns The services with the weight added
  */
-export function weighServices(servicesGiven, rankingInfo, calcResults) {
+export function calculateWeightedScoreForServices(
+  servicesGiven,
+  rankingInfo,
+  calcResults
+) {
   let weightedServices = []; // The services to be returned
   for (const service of servicesGiven) {
     const serviceCounts = rankingInfo[service.id]; // The counts of each param for this service

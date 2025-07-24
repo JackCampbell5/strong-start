@@ -3,7 +3,10 @@ import {
   getPopularOfExistingService,
 } from "#recs/rec-existing-popular.js";
 import { REC_FEATURES } from "#recs/rec-constants.js";
-import { calculateWeights, weighServices } from "#recs/rec-weight.js";
+import {
+  calculateDynamicWeights,
+  calculateWeightedScoreForServices,
+} from "#recs/rec-weight.js";
 
 /**
  * Ranks the services based on the ranking parameters
@@ -31,8 +34,8 @@ export default async function rankRecommendedServices(
       0
     );
   });
-  const calcResults = calculateWeights(rankingInfo);
-  const weightedServices = weighServices(
+  const calcResults = calculateDynamicWeights(rankingInfo);
+  const weightedServices = calculateWeightedScoreForServices(
     servicesGiven,
     rankingInfo,
     calcResults
