@@ -99,11 +99,11 @@ function NonProfitOverall() {
           </Route>
           <Route
             path={`/${NpPages.LOGIN}`}
-            element={<LoginPage setLoggedIn={setLoggedIn} />}
+            element={<LoginPage setLoggedIn={setLoggedIn} nav={nav} />}
           />
           <Route
             path={`/${NpPages.REGISTER}`}
-            element={<RegisterPage setLoggedIn={setLoggedIn} />}
+            element={<RegisterPage setLoggedIn={setLoggedIn} nav={nav} />}
           />
         </Routes>
       </div>

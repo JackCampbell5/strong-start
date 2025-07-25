@@ -6,12 +6,12 @@ import "./RegisterPage.css";
 // Other Components
 import Register from "#components/Register/Register";
 
-function RegisterPage({ setLoggedIn }) {
+function RegisterPage({ setLoggedIn, nav }) {
   {
     return (
       <div className="RegisterPage">
         <h1>Register For a New Account</h1>
-        <Register setLoggedIn={setLoggedIn} />
+        <Register setLoggedIn={setLoggedIn} nav={nav} />
       </div>
     );
   }

@@ -18,7 +18,7 @@ import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit, NpPages, createPageNavigator } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 
-function Register({ setLoggedIn }) {
+function Register({ setLoggedIn, nav }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const navigate = useNavigate();
@@ -102,6 +102,11 @@ function Register({ setLoggedIn }) {
     if (result.valid) {
       setLoggedIn(true);
       setSuccessText(result.data);
+      // Navigate to the home page after 2 seconds
+      setTimeout(() => {
+        nav("");
+        setSuccessText("");
+      }, 2000); // 2000 milliseconds = 2 seconds
     } else {
       setErrorText(result.error);
     }
