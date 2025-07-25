@@ -35,7 +35,7 @@ export function setColorVariables(mainColorGiven, darkModeValue = false) {
     "text-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
     "text-mid": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
     "text-light": `hsl(${hue}, 100%, ${darkMode(65)}%)`,
-    "background-greyer": `hsl(${hue}, 75%, ${darkMode(10)}%)`,
+    "background-greyer": `hsl(${hue}, 50%, ${darkMode(90)}%)`,
     "background-darker": `hsl(${hue}, 100%, ${darkMode(88)}%)`,
     "background-hover": `hsl(${hue}, 100%, ${darkMode(73)}%)`,
     "background-selected": `hsl(${hue}, 60%, ${darkMode(65)}%)`,
