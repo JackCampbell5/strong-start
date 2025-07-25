@@ -273,3 +273,29 @@ export async function fetchRecs(nonprofit) {
       return errorReturn(error);
     });
 }
+
+/**
+ * Delete a service form a nonprofit
+ * @param {object} nonProfit - The non profit to delete the service of
+ * @param {string} serviceID - The id of the service to delete
+ * @return {object} - Object with true or an error
+ */
+export async function deleteServiceFromDatabase(nonprofit, serviceID) {
+  return await fetch(`${serviceLink}/${nonprofit}/${serviceID}/delete`, {
+    method: "DELETE",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      const data = response.json(); // Parse JSON data from the response
+      return successReturn();
+    })
+    .catch((error) => {
+      // Return more info on the error
+      return errorReturn(error);
+    });
+}
