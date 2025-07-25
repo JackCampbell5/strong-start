@@ -104,7 +104,13 @@ function EditService({
       if (!serviceID) {
         setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
       }
-      onValidAdd();
+      // Give the data to parent if onValidAdd does anything
+      let validAddData = {};
+      for (const param of serviceInput) {
+        validAddData[param.id] = param.value;
+      }
+      onValidAdd(validAddData);
+
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
