@@ -56,7 +56,12 @@ function RecList({ data }) {
    * + This will show a success message for 5 seconds and no longer show the service
    * @param {string} id - The id of the service that was added
    */
-  function serviceAddedSuccessfully(id, validData = {}, editOnly = false) {
+  function serviceAddedSuccessfully(
+    id,
+    validData = {},
+    editOnly = false,
+    deleteEndpoint = false
+  ) {
     let updatedData;
     let updatedPage;
     if (editOnly) {
@@ -68,8 +73,11 @@ function RecList({ data }) {
       // Remove the id from the list
       updatedData = serviceList.filter((item) => item.id !== id);
       updatedPage = currentServices.filter((item) => item.id !== id);
-
-      setSuccessText("Service Added Successfully");
+      if (deleteEndpoint) {
+        setSuccessText("Service Deleted Successfully");
+      } else {
+        setSuccessText("Service Added Successfully");
+      }
     }
     setTimeout(() => {
       setSuccessText("");

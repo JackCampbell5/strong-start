@@ -11,6 +11,7 @@ import "./RecService.css";
 import Service from "#components/Service/Service";
 import EditService from "#components/EditService/EditService";
 import { getNonProfit } from "#utils/pathUtils";
+import { deleteServiceFromDatabase } from "#fetch/serviceFetchUtils";
 
 function RecService({ data, serviceAddedSuccessfully }) {
   // Constant Variables
@@ -19,6 +20,7 @@ function RecService({ data, serviceAddedSuccessfully }) {
   const existingInCurrentDatabase = nonprofit === data.nonprofit_ID;
   // State Variables
   const [isExpanded, setIsExpanded] = useState(false);
+  const [errorText, setErrorText] = useState("");
 
   /**
    * If the employee successfully adds a service, we want to remove it from the recommended list so we call the function passed in from the parent list component
@@ -32,11 +34,29 @@ function RecService({ data, serviceAddedSuccessfully }) {
     }
   }
 
-  function deleteService() {
-    console.log(data.nonprofit_ID);
-    if (nonprofit === data.nonprofit_ID) {
+  /**
+   * Takes the result of the delete service endpoint and updates the UI accordingly
+   * @param {object} result - The result of the delete service endpoint
+   */
+  function deleteServiceCallback(result) {
+    if (result.valid) {
+      serviceAddedSuccessfully(data.id, null, false, true);
+    } else {
+      setErrorText(result.error);
     }
-    console.log("delete service");
+  }
+
+  /**
+   *  Function that is called when the user clicks the delete button.
+   *   + If the service is in the current database, we delete it from the database.
+   *   + Otherwise, we just remove it from the recommended list.
+   */
+  function deleteService() {
+    if (existingInCurrentDatabase) {
+      deleteServiceFromDatabase(nonprofit, data.id).then(deleteServiceCallback);
+    } else {
+      serviceAddedSuccessfully(data.id);
+    }
   }
 
   return (
@@ -64,6 +84,7 @@ function RecService({ data, serviceAddedSuccessfully }) {
           />
         </div>
       )}
+      <div className="errorText">{errorText}</div>
     </div>
   );
 }
