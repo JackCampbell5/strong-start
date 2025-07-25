@@ -1,5 +1,9 @@
 /* Stick the footer to the bottom */
 .FooterNonProfit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   position: relative;
   left: 0;
   bottom: 0;
@@ -7,6 +11,33 @@
   text-align: center;
 }
 
+/* All text on the page  */
 .FooterNonProfit p {
+  font-style: italic;
+  margin: 2px;
+  padding: 0px;
+}
+
+/*  The logo of the nonprofit */
+.FooterNonProfit .logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+}
+
+/*  The name of the nonprofit */
+.FooterNonProfit .nonprofitName {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* All text that is not the name */
+.FooterNonProfit .nonprofitInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 14px;
   font-style: italic;
 }

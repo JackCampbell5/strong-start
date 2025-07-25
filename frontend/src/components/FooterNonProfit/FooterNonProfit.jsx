@@ -1,29 +1,65 @@
 // Node Module Imports
 import React, { use, useEffect } from "react";
 import PropTypes from "prop-types";
+import {
+  MdLocationOn,
+  MdWeb,
+  MdLocalPhone,
+  MdEmail,
+  MdOutlineQuestionMark,
+} from "react-icons/md";
 
 // Local Imports
 import "./FooterNonProfit.css";
 
 function FooterNonProfit({ data }) {
+  const strongEmail = "strongStartWeb@gmail.com";
   const name = data.name;
   const email = data.email;
   const phone = data.phone;
   const address = data.address;
+  const addressLink =
+    "https://www.google.com/maps/search/?api=1&query=" +
+    new URLSearchParams(address).toString();
   const website = data.website;
   const logo = data.logo;
 
   return (
     <div className="FooterNonProfit">
-      <p>{name}</p>
-      <p>
-        {phone} {email}
-      </p>
-      <p>{address}</p>
-      <a href={website} target="_blank">
-        {website}
-      </a>
-      <p>Contact: StrongStart@gmail.com with any questions</p>
+      {logo ? <img className="logo" src={logo} /> : null}
+      <div className="leftFooter">
+        <p className="nonprofitName">{name}</p>
+        <p className="nonprofitInfo">
+          <MdLocalPhone />
+          <a href={"tel:+" + phone} target="_blank">
+            {phone}
+          </a>
+        </p>
+        <p className="nonprofitInfo">
+          <MdEmail />
+          <a href={"mailto:" + email} target="_blank">
+            {email}
+          </a>{" "}
+        </p>
+      </div>
+      <div className="rightFooter">
+        <p className="nonprofitInfo">
+          <MdLocationOn />
+          <a href={addressLink} target="_blank">
+            {address}
+          </a>
+        </p>
+        <p className="nonprofitInfo">
+          <MdWeb />
+          <a href={website} target="_blank">
+            {website}
+          </a>
+        </p>
+        <p className="nonprofitInfo">
+          <MdOutlineQuestionMark />
+          <a href={"mailto:" + strongEmail}> {strongEmail} </a>
+        </p>
+      </div>
     </div>
   );
 }
