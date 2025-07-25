@@ -44,3 +44,15 @@
   font-size: 14px;
   font-style: italic;
 }
+
+/* Dark Mode Icon */
+.FooterNonProfit .darkMode svg {
+  height: 40px;
+  width: 40px;
+  color: var(--text-mid);
+}
+
+/* Light Mode Icon */
+.FooterNonProfit .darkMode svg:hover {
+  color: var(--text-dark);
+}
