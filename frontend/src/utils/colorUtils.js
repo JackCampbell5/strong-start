@@ -1,28 +1,21 @@
-export function setColorVariables(mainColorGiven, darkModeValue = false) {
-  function darkMode(value) {
-    return darkModeValue ? 100 - value : value;
-  }
-  function darkModeAdjust(value, adjust = 100) {
-    return darkModeValue ? value - adjust : value + adjust;
-  }
-
+export function setColorVariables(mainColorGiven) {
   let mainColor = mainColorGiven ? mainColorGiven : "#effeff";
   // Get the hue of the main color
   const hue = hexToHue(mainColor);
   let colors = {
-    background: `hsl(${hue}, 100%, ${darkMode(97)}%)`,
-    text: `hsl(${hue}, 100%, ${darkMode(3)}%)`,
-    "text-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
-    "text-mid": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
-    "text-light": `hsl(${hue}, 100%, ${darkMode(65)}%)`,
-    "background-greyer": `hsl(${hue}, 75%, ${darkMode(10)}%)`,
-    "background-darker": `hsl(${hue}, 100%, ${darkMode(88)}%)`,
-    "background-hover": `hsl(${hue}, 100%, ${darkMode(73)}%)`,
-    "background-selected": `hsl(${hue}, 60%, ${darkMode(65)}%)`,
-    "border-light": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
-    "border-mid": `hsl(${darkModeAdjust(hue, 10)}, 100%, ${darkMode(50)}%)`,
-    "border-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
-    "border-very-dark": `hsl(${hue}, 100%, ${darkMode(12)}%)`,
+    background: `hsl(${hue}, 100%, 97}%)`,
+    text: `hsl(${hue}, 100%, 3}%)`,
+    "text-dark": `hsl(${hue}, 100%, 25}%)`,
+    "text-mid": `hsl(${hue}, 100%, 40}%)`,
+    "text-light": `hsl(${hue}, 100%, 65}%)`,
+    "background-greyer": `hsl(${hue}, 75%, 10}%)`,
+    "background-darker": `hsl(${hue}, 100%, 88}%)`,
+    "background-hover": `hsl(${hue}, 100%, 73}%)`,
+    "background-selected": `hsl(${hue}, 60%, 65}%)`,
+    "border-light": `hsl(${hue}, 100%, 40}%)`,
+    "border-mid": `${hue}, 10)}, 100%, 50}%)`,
+    "border-dark": `hsl(${hue}, 100%, 25}%)`,
+    "border-very-dark": `hsl(${hue}, 100%, 12}%)`,
   };
   for (const [varName, color] of Object.entries(colors)) {
     document.documentElement.style.setProperty("--" + varName, color);
