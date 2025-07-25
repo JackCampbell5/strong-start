@@ -1,8 +1,7 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 import express from "express";
 
-const prisma = new PrismaClient();
 const refugeeRouter = express.Router();
 
 // TODO - Implement routes for refugee as a part of stretch goal

@@ -1,5 +1,5 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 import express from "express";
 
 // Local Imports
@@ -18,7 +18,6 @@ import {
 import { createErrorReturn } from "#utils/error-utils.js";
 import { checkLogin } from "#utils/session-utils.js";
 
-const prisma = new PrismaClient();
 const employeeRouter = express.Router();
 
 // Default is to get all nonprofits

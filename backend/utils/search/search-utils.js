@@ -1,10 +1,8 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 
 // Local Imports
 import { extractZipcode } from "#search/address-utils.js";
-
-const prisma = new PrismaClient();
 
 /**
  * Creates a search log for the given search parameters

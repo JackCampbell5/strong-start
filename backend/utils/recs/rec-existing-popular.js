@@ -1,7 +1,5 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
-
-const prisma = new PrismaClient();
+import { prisma } from "#utils/constants.js";
 
 /**
  * Finds the most popular info for a nonprofits fields of id, zipcode, services_offered, and languages

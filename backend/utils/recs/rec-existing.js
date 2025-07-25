@@ -1,12 +1,10 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 
 // Local Imports
 import { perimeterOverlap, serviceInPerimeter } from "#search/dist-utils.js";
 import { getCords, getAreaAroundPoint } from "#search/dist-utils.js";
 import { nonprofitRadius } from "#utils/constants.js";
-
-const prisma = new PrismaClient();
 
 /**
  * Find what other nonprofits are within the nonprofit's perimeter

@@ -1,7 +1,5 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
-
-const prisma = new PrismaClient();
+import { prisma } from "#utils/constants.js";
 
 /**
  * Checks if a Employee exists with that name

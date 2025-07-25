@@ -1,10 +1,8 @@
 // Local Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 
 // Local Imports
 import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
-
-const prisma = new PrismaClient();
 
 /**
  * Checks if a nonprofit exists with that name

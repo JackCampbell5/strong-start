@@ -1,12 +1,10 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 
 // Local Imports
 import formatAddress from "#utils/search/address-utils.js";
 import { getAndValidateDate } from "#search/search-services.js";
 import { errorReturn, successReturn } from "./validate-utils.js";
-
-const prisma = new PrismaClient();
 
 /**
  * Checks if a service exists with that name
