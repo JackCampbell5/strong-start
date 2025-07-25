@@ -28,8 +28,7 @@ export async function fetchServiceDetails(nonProfit, id) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching given service:", error.message);
+      // Return more info on the error
       return errorReturn(error);
     });
 }
@@ -59,8 +58,7 @@ export async function fetchServiceNameList(nonProfit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching given service:", error.message);
+      // Return more info on the error
       return errorReturn(error);
     });
 }
@@ -90,8 +88,7 @@ export async function fetchServiceFilters(nonprofit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching given service:", error.message);
+      // Return more info on the error
       return errorReturn(error);
     });
 }
@@ -118,8 +115,6 @@ export async function postService(info, nonprofit) {
       return successReturn();
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching boards:", error);
       // Return more info on the error
       return errorReturn(error);
     });
@@ -148,8 +143,6 @@ export async function putService(info, nonprofit, serviceID) {
       return successReturn();
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching boards:", error);
       // Return more info on the error
       return errorReturn(error);
     });
@@ -175,8 +168,6 @@ export async function addServiceView(nonprofit, serviceID) {
       return { result: true };
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error adding view:", error);
       // Return more info on the error
       return { result: false, error: error.message };
     });
@@ -219,8 +210,6 @@ export async function fetchSearch(nonprofit, data) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching given service:", error);
       return errorReturn(error);
     });
 }
@@ -250,8 +239,6 @@ export async function fetchAllServices(nonprofit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching given service:", error);
       return errorReturn(error);
     });
 }
@@ -282,8 +269,7 @@ export async function fetchRecs(nonprofit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching given service:", error);
+      // Return more info on the error
       return errorReturn(error);
     });
 }

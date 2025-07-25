@@ -27,8 +27,6 @@ export async function loginNonprofitEmployee(nonprofit, username, password) {
       return successReturn("Welcome " + data.username);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching boards:", error);
       // Return more info on the error
       return errorReturn(error);
     });
@@ -52,8 +50,6 @@ export async function checkEmployeeLoginStatus(nonprofit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching boards:", error);
       // Return more info on the error
       return errorReturn(error);
     });
@@ -82,8 +78,6 @@ export async function registerNonprofitEmployee(nonprofit, data) {
       return successReturn("User created " + data.username);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching boards:", error);
       // Return more info on the error
       return errorReturn(error);
     });
@@ -107,8 +101,6 @@ export async function logoutNonprofitEmployee(nonprofit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching boards:", error);
       // Return more info on the error
       return errorReturn(error);
     });
