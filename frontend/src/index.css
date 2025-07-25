@@ -5,6 +5,7 @@
   --background: #effeff;
   --icon-background: #effeff;
   --text: #00292c;
+  --text-greyer: #1a2425;
   --text-dark: #00747d;
   --text-mid: #00c2d0;
   --text-light: #51f3ff;
@@ -51,6 +52,10 @@ button {
 }
 button:hover {
   background-color: var(--background-hover);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-greyer);
 }
 
 .errorText {

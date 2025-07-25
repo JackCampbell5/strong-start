@@ -77,7 +77,7 @@ Key:
 
 /* The Placeholder text when no options are selected  */
 .custom-select__placeholder {
-  color: var(--text-dark) !important;
+  color: var(--text-greyer) !important;
 }
 
 /* The background of the selected param in the bar */

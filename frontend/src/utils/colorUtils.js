@@ -31,6 +31,7 @@ export function setColorVariables(mainColorGiven, darkModeValue = false) {
     background: `hsl(${hue}, 100%, ${darkMode(97)}%)`,
     text: `hsl(${hue}, 100%, ${darkMode(3)}%)`,
     "icon-background": `hsl(${hue}, 100%, 97%)`,
+    "text-greyer": `hsl(${hue}, 30%, ${darkMode(30)}%)`,
     "text-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
     "text-mid": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
     "text-light": `hsl(${hue}, 100%, ${darkMode(65)}%)`,
