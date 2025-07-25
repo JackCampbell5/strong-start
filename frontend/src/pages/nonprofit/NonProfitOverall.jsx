@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
 
@@ -19,15 +19,20 @@ import Recommend from "#nonprofitPage/Recommend/Recommend";
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
 import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 // Util Functions
+import { fetchNonProfitInfo } from "#fetch/nonProfitFetchUtils";
 import { NpPages } from "#utils/pathUtils";
 import { createPageNavigator } from "#utils/pathUtils";
+import { getNonProfit } from "#utils/pathUtils";
 
 function NonProfitOverall() {
   // Constant Variables
   const priorPart = "/nonprofit/";
   const navigate = useNavigate();
   const location = useLocation();
+  const nonprofit = getNonProfit();
   const pageNavigator = createPageNavigator(navigate, location);
+  // State Variables
+  const [footerInfo, setFooterInfo] = useState({});
 
   /**
    * Navigate to a new page.
@@ -36,6 +41,23 @@ function NonProfitOverall() {
   function nav(path) {
     pageNavigator(priorPart + path);
   }
+
+  function fetchNonProfitInfoCallback(result) {
+    if (result.valid) {
+      setFooterInfo(result.data);
+    } else {
+      setFooterInfo({ error: result.error });
+    }
+  }
+
+  useEffect(() => {
+    // Move to homepage if no stats
+    if (!nonprofit) {
+      navigate("/");
+    } else {
+      fetchNonProfitInfo(nonprofit).then(fetchNonProfitInfoCallback);
+    }
+  }, [nonprofit]);
   return (
     <div className="NonProfitOverall">
       <NavNonProfit onNavigate={nav} />
@@ -55,7 +77,7 @@ function NonProfitOverall() {
           <Route path={`/${NpPages.RECOMMEND}`} element={<Recommend />} />
         </Routes>
       </div>
-      <FooterNonProfit />
+      <FooterNonProfit data={footerInfo} />
     </div>
   );
 }

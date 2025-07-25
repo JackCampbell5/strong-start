@@ -3,10 +3,44 @@
   position: relative;
   left: 0;
   bottom: 0;
-  width: 100%;
+  width: calc(100% - 20px);
   text-align: center;
+  margin: 10px 10px;
+}
+.FooterNonProfit .insideFooter {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow-x: auto;
 }
 
+/* All text on the page  */
 .FooterNonProfit p {
+  font-style: italic;
+  text-align: left;
+  margin: 2px;
+  padding: 0px;
+}
+
+/*  The logo of the nonprofit */
+.FooterNonProfit .logo {
+  height: 100px;
+  border-radius: 20px;
+}
+
+/*  The name of the nonprofit */
+.FooterNonProfit .nonprofitName {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+}
+
+/* All text that is not the name */
+.FooterNonProfit .nonprofitInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  font-size: 14px;
   font-style: italic;
 }
