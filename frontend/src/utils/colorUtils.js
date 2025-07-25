@@ -20,7 +20,7 @@ export function setColorVariables(mainColorGiven) {
     "background-hover": `hsl(${hue}, 100%, 73%)`,
     "background-selected": `hsl(${hue}, 60%, 65%)`,
     "border-light": `hsl(${hue}, 100%, 40%)`,
-    "border-mid": `${hue}, 10)}, 100%, 50%)`,
+    "border-mid": `hsl(${hue}, 100%, 50%)`,
     "border-dark": `hsl(${hue}, 100%, 25%)`,
     "border-very-dark": `hsl(${hue}, 100%, 12%)`,
   };
