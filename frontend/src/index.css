@@ -37,6 +37,7 @@ button {
   font-size: 110%;
   border: var(--border-light) solid 1px;
   border-radius: 20px;
+  color: var(--text);
 }
 button:hover {
   background-color: var(--background-hover);
