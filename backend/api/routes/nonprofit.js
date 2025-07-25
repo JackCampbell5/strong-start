@@ -7,12 +7,12 @@ import {
   NonProfitNotFoundError,
   NonProfitAlreadyExistsError,
 } from "#errors/nonprofit-errors.js";
-import { createErrorReturn } from "#utils/error-utils.js";
-import { generateStats } from "#utils/nonprofit-stat-utils.js";
+import { createErrorReturn } from "#utils/validate-utils.js";
+import { generateStats } from "#api-helpers/nonprofit-stat-utils.js";
 import {
   checkNonProfitName,
   checkNonProfitId,
-} from "#utils/nonprofit-utils.js";
+} from "#api-helpers/nonprofit-utils.js";
 import formatAddress from "#search/address-utils.js";
 import { checkLogin } from "#utils/session-utils.js";
 

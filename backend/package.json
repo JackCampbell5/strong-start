@@ -31,6 +31,8 @@
     "#utils/*": "./utils/*",
     "#search/*": "./utils/search/*",
     "#recs/*": "./utils/recs/*",
+    "#search-filters/*": "./utils/search-filters/*",
+    "#api-helpers/*": "./utils/api-helpers/*",
     "#seed/*": "./prisma/seed/*"
   },
   "prisma": {

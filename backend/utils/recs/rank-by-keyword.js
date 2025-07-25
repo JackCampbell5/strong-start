@@ -1,6 +1,6 @@
 // Local Imports
 import serviceTypeKeywords from "#recs/serviceTypeKeywords.json" with { type: "json" };
-import { prettyPrintService } from "#utils/service-utils.js";
+import { prettyPrintService } from "#api-helpers/service-param-standardize.js";
 
 /**
  * Rank services based how many serviceTypes they offer based on keyword matches

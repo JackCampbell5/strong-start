@@ -1,4 +1,4 @@
-import { getPopular } from "#utils/nonprofit-stat-utils.js";
+import { getPopular } from "#api-helpers/nonprofit-stat-utils.js";
 describe("getPopular function", () => {
   it("Output 3 and 2 as they are the most popular ", () => {
     expect(getPopular([1, 3, 3, 2, 2, 3])).toBe("3, 2");
