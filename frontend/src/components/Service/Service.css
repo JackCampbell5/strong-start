@@ -136,18 +136,25 @@
   width: max(calc(75% - 10px), calc(100% - 190px));
 }
 
-.Service .serviceParam .serviceParamValue table {
-  border: 3px solid;
+/* Div in Table */
+.Service .serviceParam .serviceParamValue .hoursTable {
+  width: 100%;
   margin: 0px;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 2px solid var(--border-light);
 }
 
-.Service .serviceParam .serviceParamValue table,
-th,
-td {
+/* The table itself */
+.Service .serviceParam .serviceParamValue table {
+  border-collapse: collapse;
+}
+
+/* The table and column and rows  */
+.Service .serviceParam .serviceParamValue th,
+.Service .serviceParam .serviceParamValue td {
   border: 2px solid var(--border-light);
   margin: 0px;
   padding: 5px;
-}
-table {
-  border-collapse: collapse;
+  min-width: 80px;
 }

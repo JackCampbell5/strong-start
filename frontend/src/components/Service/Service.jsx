@@ -164,22 +164,24 @@ function Service({ inputData }) {
                       {obj.value}
                     </a>
                   ) : obj.id === "hours" ? (
-                    <table>
-                      <thead>
-                        <tr className="headerFields">
-                          {obj.value.map((day, index) => (
-                            <th key={index}>{day.name}</th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          {obj.value.map((day, index) => (
-                            <td key={index}>{day.value}</td>
-                          ))}
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div className="hoursTable">
+                      <table>
+                        <thead>
+                          <tr className="headerFields">
+                            {obj.value.map((day, index) => (
+                              <th key={index}>{day.name}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            {obj.value.map((day, index) => (
+                              <td key={index}>{day.value}</td>
+                            ))}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   ) : (
                     <span>{obj.value}</span>
                   )}
