@@ -5,11 +5,10 @@ import { useState, useEffect } from "react";
 // Local Imports
 import "./ViewServices.css";
 // Other components
-import ServiceList from "#components/ServiceList/ServiceList";
+import RecList from "#components/RecList/RecList";
 // util functions
 import { fetchAllServices } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
-import RecList from "#components/RecList/RecList";
 
 function ViewServices() {
   // Constant Variables
