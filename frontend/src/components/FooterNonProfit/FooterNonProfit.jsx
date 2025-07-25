@@ -1,5 +1,5 @@
 // Node Module Imports
-import React, { use, useEffect } from "react";
+import React, { use, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   MdLocationOn,
@@ -7,6 +7,8 @@ import {
   MdLocalPhone,
   MdEmail,
   MdOutlineQuestionMark,
+  MdDarkMode,
+  MdLightMode,
 } from "react-icons/md";
 
 // Local Imports
@@ -14,6 +16,7 @@ import "./FooterNonProfit.css";
 import { setColorVariables } from "#utils/colorUtils";
 
 function FooterNonProfit({ data }) {
+  // Constant Variables
   const strongEmail = "strongStartWeb@gmail.com";
   const name = data.name;
   const email = data.email;
@@ -25,8 +28,22 @@ function FooterNonProfit({ data }) {
   const website = data.website;
   const logo = data.logo;
   const color = data.color;
+  const darkModeGiven = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  // State Variables
+  const [darkMode, setDarkMode] = useState(darkModeGiven);
+
+  /**
+   * When the dark mode button is clicked, toggle the dark mode state and change the color variables to fit accordingly
+   */
+  function changeDarkMode() {
+    setDarkMode((prv) => !prv);
+    setColorVariables(color, !darkMode);
+  }
+
   useEffect(() => {
-    setColorVariables(color);
+    setColorVariables(color, darkMode);
   }, [color]);
 
   return (
@@ -73,6 +90,9 @@ function FooterNonProfit({ data }) {
             <MdOutlineQuestionMark />
             <a href={"mailto:" + strongEmail}> {strongEmail} </a>
           </p>
+        </div>
+        <div className="darkMode" onClick={changeDarkMode}>
+          {darkMode ? <MdLightMode /> : <MdDarkMode />}
         </div>
       </div>
     </div>

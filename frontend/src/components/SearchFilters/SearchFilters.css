@@ -45,11 +45,65 @@
   width: 25px;
 }
 
+/* START The select bar
+Key:
++ In the bar- Pertains to everything inside the selection box which is always visible
++ Select menu- the menu that opens up that you can select options from */
+/* The whole Select bar */
 .custom-select__control {
   width: 70vw;
   margin: 10px;
-  /* TODO make styles match the rest */
+  color: var(--background);
 }
+
+/* When the select is in focus */
+.custom-select__control--is-focused {
+  border: 2px solid var(--border-dark) !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* The background color for the bar itself and the options list */
+.custom-select__value-container,
+.custom-select__indicators,
+.custom-select__menu-list {
+  background-color: var(--background);
+}
+/* Hover on the bar  */
+.custom-select__control:hover .custom-select__indicators,
+.custom-select__control:hover .custom-select__value-container {
+  background-color: var(--background-hover);
+}
+
+/* The Placeholder text when no options are selected  */
+.custom-select__placeholder {
+  color: var(--text-greyer) !important;
+}
+
+/* The background of the selected param in the bar */
+.custom-select__multi-value {
+  background-color: var(--background-darker) !important; /* neutral-400 */
+  border-radius: 0.375rem; /* rounded-md */
+}
+/*  The text of the Selected Param  in the bar*/
+.custom-select__multi-value__label {
+  color: var(--text) !important;
+}
+
+/* The border around the select menu */
+.custom-select__menu-list {
+  border: 2px solid var(--border-dark);
+}
+/* Hovering over an option in the select menu */
+.custom-select__option:hover {
+  background-color: var(--background-darker);
+}
+/* When there is no hover but the menu is open this is what is selected
++ This is also what appears when you use arrow keys to navigate  */
+.css-d7l1ni-option {
+  background-color: var(--background-selected) !important;
+}
+/* END Select Bar */
 
 .addressInput {
   width: 69vw;

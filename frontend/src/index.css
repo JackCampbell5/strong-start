@@ -3,7 +3,9 @@
   line-height: 1.5;
   font-weight: 400;
   --background: #effeff;
+  --icon-background: #effeff;
   --text: #00292c;
+  --text-greyer: #1a2425;
   --text-dark: #00747d;
   --text-mid: #00c2d0;
   --text-light: #51f3ff;
@@ -15,6 +17,7 @@
   --border-mid: #0098f7;
   --border-dark: #007e87;
   --border-very-dark: #003b3f;
+  scrollbar-color: var(--border-light) var(--background-darker);
 }
 
 *:focus {
@@ -30,6 +33,15 @@ body {
   text-align: center;
 }
 
+select {
+  padding: 5px 10px;
+  background-color: var(--background-darker);
+  color: var(--text);
+  border: var(--border-light) solid 1px;
+  border-radius: 20px;
+  font-size: 110%;
+}
+
 button {
   cursor: pointer;
   border: var(--text) solid 0px;
@@ -37,9 +49,14 @@ button {
   font-size: 110%;
   border: var(--border-light) solid 1px;
   border-radius: 20px;
+  color: var(--text);
 }
 button:hover {
   background-color: var(--background-hover);
+}
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-greyer);
 }
 
 .errorText {
