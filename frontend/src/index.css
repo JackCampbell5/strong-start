@@ -30,6 +30,15 @@ body {
   text-align: center;
 }
 
+select {
+  padding: 5px 10px;
+  background-color: var(--background-darker);
+  color: var(--text);
+  border: var(--border-light) solid 1px;
+  border-radius: 20px;
+  font-size: 110%;
+}
+
 button {
   cursor: pointer;
   border: var(--text) solid 0px;
