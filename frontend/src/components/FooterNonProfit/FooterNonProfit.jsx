@@ -26,39 +26,41 @@ function FooterNonProfit({ data }) {
 
   return (
     <div className="FooterNonProfit">
-      {logo ? <img className="logo" src={logo} /> : null}
-      <div className="leftFooter">
-        <p className="nonprofitName">{name}</p>
-        <p className="nonprofitInfo">
-          <MdLocalPhone />
-          <a href={"tel:+" + phone} target="_blank">
-            {phone}
-          </a>
-        </p>
-        <p className="nonprofitInfo">
-          <MdEmail />
-          <a href={"mailto:" + email} target="_blank">
-            {email}
-          </a>{" "}
-        </p>
-      </div>
-      <div className="rightFooter">
-        <p className="nonprofitInfo">
-          <MdLocationOn />
-          <a href={addressLink} target="_blank">
-            {address}
-          </a>
-        </p>
-        <p className="nonprofitInfo">
-          <MdWeb />
-          <a href={website} target="_blank">
-            {website}
-          </a>
-        </p>
-        <p className="nonprofitInfo">
-          <MdOutlineQuestionMark />
-          <a href={"mailto:" + strongEmail}> {strongEmail} </a>
-        </p>
+      <div className="insideFooter">
+        {logo ? <img className="logo" src={logo} /> : null}
+        <div className="leftFooter">
+          <p className="nonprofitName">{name}</p>
+          <p className="nonprofitInfo">
+            <MdLocalPhone />
+            <a href={"tel:+" + phone} target="_blank">
+              {phone}
+            </a>
+          </p>
+          <p className="nonprofitInfo">
+            <MdEmail />
+            <a href={"mailto:" + email} target="_blank">
+              {email}
+            </a>
+          </p>
+        </div>
+        <div className="rightFooter">
+          <p className="nonprofitInfo">
+            <MdLocationOn />
+            <a href={addressLink} target="_blank">
+              {address}
+            </a>
+          </p>
+          <p className="nonprofitInfo">
+            <MdWeb />
+            <a href={website} target="_blank">
+              {website}
+            </a>
+          </p>
+          <p className="nonprofitInfo">
+            <MdOutlineQuestionMark />
+            <a href={"mailto:" + strongEmail}> {strongEmail} </a>
+          </p>
+        </div>
       </div>
     </div>
   );

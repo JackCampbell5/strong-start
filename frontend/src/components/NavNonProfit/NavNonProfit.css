@@ -5,7 +5,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
-  width: calc(100vw - 10px);
+  width: calc(100vw - 15px);
   border-bottom: var(--border-light) 2px solid;
 }
 
