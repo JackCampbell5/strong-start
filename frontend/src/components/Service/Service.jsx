@@ -72,10 +72,6 @@ function Service({ inputData }) {
       obj.id === "hours" ? (obj.value = stringifyHours(obj.value)) : null;
       return obj;
     });
-    completeBottom.map((obj) => {
-      obj.id === "hours" && console.log(obj.value);
-      return obj;
-    });
     // Restructure the top for easier form to get
     let updatedTopData = completeTop.reduce((acc, obj) => {
       return { ...acc, [obj.id]: obj.value };

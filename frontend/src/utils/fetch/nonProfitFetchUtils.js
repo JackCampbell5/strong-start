@@ -21,8 +21,7 @@ export async function fetchNonProfitStats(nonprofit) {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching non-profit stats:", error);
+      // Return more info on the error
       return errorReturn(error);
     });
 }
@@ -42,8 +41,7 @@ export async function fetchNonProfitList() {
       return successReturn(data);
     })
     .catch((error) => {
-      // Handle error
-      console.error("Error fetching all non-profits :", error);
+      // Return more info on the error
       return errorReturn(error);
     });
 }

@@ -19,7 +19,6 @@ export async function hashPassword(plainPassword) {
     });
     return hash;
   } catch (err) {
-    console.error("Hashing failed:", err);
     throw new PasswordHashFailed(err.message);
   }
 }
@@ -34,7 +33,6 @@ export async function verifyPassword(plainPassword, hash) {
   try {
     return await argon2.verify(hash, plainPassword);
   } catch (err) {
-    console.error("Verification failed:", err);
     return false;
   }
 }
