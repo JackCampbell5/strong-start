@@ -20,13 +20,13 @@ function NewService() {
    * Callback function to print error message if user is not logged in
    * @param {*} result - result of testLoginNonprofitEmployee
    */
-  function testLoginCallback(result) {
+  function checkEmployeeLoginStatusCallback(result) {
     if (!result.valid) {
       setErrorText(result.error);
     }
   }
   useEffect(() => {
-    checkEmployeeLoginStatus(nonprofit).then(testLoginCallback);
+    checkEmployeeLoginStatus(nonprofit).then(checkEmployeeLoginStatusCallback);
   }, []);
   return (
     <div className="NewService">
