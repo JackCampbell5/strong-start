@@ -17,7 +17,7 @@ import {
 } from "#utils/service-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
 import searchServices from "#search/search-services.js";
-import getFilter from "#utils/filter-create-utils.js";
+import getFilter from "#utils/search-filters/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
 import { checkSession, checkLogin } from "#utils/session-utils.js";
 import { createSearchLog } from "#search/search-utils.js";

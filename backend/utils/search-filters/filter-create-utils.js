@@ -2,7 +2,7 @@
 import { prisma } from "#utils/constants.js";
 
 // Local Imports
-import data from "#utils/filter-default-data.json" with { type: "json" };
+import data from "#utils/search-filters/filter-default-data.json" with { type: "json" };
 import {prettyPrintService} from "#utils/service-utils.js"
 
 
