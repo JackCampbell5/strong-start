@@ -112,6 +112,10 @@ function Register({ setLoggedIn, nav }) {
     }
   }
 
+  /**
+   * Checks the password against the password requirements and updates the requirements view
+   * @param {object} value - Object containing the value of the password
+   */
   function setPasswordHelper(value) {
     setPassword(value);
     for (const req of passwordRequirements) {
