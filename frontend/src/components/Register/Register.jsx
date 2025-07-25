@@ -15,14 +15,15 @@ import "./Register.css";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
-import { getNonProfit } from "#utils/pathUtils";
+import { getNonProfit, NpPages, createPageNavigator } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 
-function Register() {
+function Register({ setLoggedIn }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const navigate = useNavigate();
   const location = useLocation();
+  const pageNavigator = createPageNavigator(navigate, location);
 
   // State Variables
   const [username, setUsername] = useState("");
@@ -99,6 +100,7 @@ function Register() {
   function registerCallback(result) {
     setLoading(false);
     if (result.valid) {
+      setLoggedIn(true);
       setSuccessText(result.data);
     } else {
       setErrorText(result.error);
@@ -121,13 +123,15 @@ function Register() {
    * Navigates to the login page
    */
   function goToLogin() {
-    const allLocations = location.pathname.split("/");
+    const path = location.pathname;
+    const allLocations = path.split("/");
     const ending = allLocations[allLocations.length - 1];
-    const newPath = location.pathname.replace(ending, "login");
-    navigate(newPath);
+    const newPath = path.replace(ending, NpPages.LOGIN);
+    pageNavigator(newPath);
   }
   return (
     <div className="Register">
+      <button onClick={goToLogin}>Login Instead?</button>
       <div className="userInfo">
         <div className="registerField">
           <p>Username:</p>
@@ -215,7 +219,6 @@ function Register() {
       />
       <p className="errorText">{errorText}</p>
       <p className="successText">{successText}</p>
-      <button onClick={goToLogin}>Login?</button>
     </div>
   );
 }
