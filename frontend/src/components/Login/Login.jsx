@@ -94,7 +94,10 @@ function Login({ setLoggedIn, nav }) {
 
   return (
     <div className="Login">
-      <button onClick={goToRegister}>Register Instead?</button>
+      <div className="topButtons">
+        <button onClick={goToRegister}>Register Instead?</button>
+        <button onClick={() => navigate("/")}>Change Nonprofit</button>
+      </div>
       <div className="userInfo">
         <div className="loginField">
           <p>Username:</p>

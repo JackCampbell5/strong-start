@@ -136,7 +136,10 @@ function Register({ setLoggedIn, nav }) {
   }
   return (
     <div className="Register">
-      <button onClick={goToLogin}>Login Instead?</button>
+      <div className="topButtons">
+        <button onClick={goToLogin}>Login Instead?</button>
+        <button onClick={() => navigate("/")}>Change Nonprofit</button>
+      </div>
       <div className="userInfo">
         <div className="registerField">
           <p>Username:</p>
