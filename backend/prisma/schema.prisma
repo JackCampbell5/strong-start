@@ -44,6 +44,7 @@ model nonprofit {
   addressInfo            Json?
   website                String?
   logo                   String?
+  color                  String?
   services               service[]
   employees              nonprofit_employee[]
   refugees               refugee[]
