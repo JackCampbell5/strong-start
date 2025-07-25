@@ -11,6 +11,7 @@ import {
 
 // Local Imports
 import "./FooterNonProfit.css";
+import { setColorVariables } from "#utils/colorUtils";
 
 function FooterNonProfit({ data }) {
   const strongEmail = "strongStartWeb@gmail.com";
@@ -23,6 +24,13 @@ function FooterNonProfit({ data }) {
     new URLSearchParams(address).toString();
   const website = data.website;
   const logo = data.logo;
+  // const color = data.color;
+  let color = "#effeff";
+  useEffect(() => {
+    if (color) {
+      setColorVariables(color);
+    }
+  }, [color]);
 
   return (
     <div className="FooterNonProfit">
