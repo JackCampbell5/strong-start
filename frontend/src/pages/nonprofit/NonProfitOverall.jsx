@@ -31,7 +31,7 @@ function NonProfitOverall() {
   const location = useLocation();
   const nonprofit = getNonProfit();
   const pageNavigator = createPageNavigator(navigate, location);
-
+  // State Variables
   const [footerInfo, setFooterInfo] = useState({});
 
   /**
