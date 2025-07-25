@@ -36,3 +36,31 @@
   height: 30px;
   width: 30px;
 }
+
+.Register .errorText {
+  width: 50%;
+}
+
+/* Make everything centered  */
+.passwordRequirements .passwordParam,
+.passwordRequirements svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Icon sizing  */
+.passwordRequirements svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Make Red if unchecked */
+.passwordRequirements .unchecked {
+  color: red;
+}
+/* make green if checked */
+.passwordRequirements .checked {
+  color: green;
+}

@@ -2,7 +2,12 @@
 import React from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
-import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
+import {
+  MdOutlineRemoveRedEye,
+  MdRemoveRedEye,
+  MdCheckBox,
+  MdCheckBoxOutlineBlank,
+} from "react-icons/md";
 
 // Local Imports
 import "./Register.css";
@@ -11,6 +16,7 @@ import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 
 function Register() {
   // Constant Variables
@@ -67,6 +73,16 @@ function Register() {
     if (password === "") {
       errorMessage += "Password cannot be empty. ";
     }
+    for (const req of passwordRequirements) {
+      const regex = new RegExp(req.value, "g");
+      if (!regex.test(password)) {
+        errorMessage += "Password requirements not met. ";
+        break;
+      }
+    }
+    if (password.length < 8) {
+      errorMessage += "Password must be at least 8 characters. ";
+    }
     if (password !== passwordCheck) {
       errorMessage += "Passwords do not match. ";
     }
@@ -86,6 +102,18 @@ function Register() {
       setSuccessText(result.data);
     } else {
       setErrorText(result.error);
+    }
+  }
+
+  function setPasswordHelper(value) {
+    setPassword(value);
+    for (const req of passwordRequirements) {
+      const regex = new RegExp(req.value, "g");
+      if (!regex.test(value)) {
+        req.valid = false;
+      } else {
+        req.valid = true;
+      }
     }
   }
 
@@ -121,7 +149,7 @@ function Register() {
             value={password}
             placeholder="password"
             onChange={(e) => {
-              setPassword(e.target.value);
+              setPasswordHelper(e.target.value);
             }}
           />
           <div
@@ -130,6 +158,25 @@ function Register() {
           >
             {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
           </div>
+        </div>
+        <div className="passwordRequirements">
+          <div>
+            <strong>Password Requirements:</strong>
+          </div>
+          {passwordRequirements.map((req, index) => (
+            <div className="passwordParam" key={index}>
+              <div>{req.name}: </div>
+              {req.valid ? (
+                <div className="checked">
+                  <MdCheckBox />
+                </div>
+              ) : (
+                <div className="unchecked">
+                  <MdCheckBoxOutlineBlank />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
         <div className="registerField">
           <p>Confirm Password:</p>
