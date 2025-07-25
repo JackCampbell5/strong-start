@@ -47,7 +47,7 @@ function hexToHue(inputHex) {
 
   if (max === min) {
     // Achromatic
-    return { h: 0, s: 0, l };
+    return 0;
   }
 
   const d = max - min;
