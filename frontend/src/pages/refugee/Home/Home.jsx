@@ -43,8 +43,8 @@ function Home() {
     }
   }
   return (
-    <div className="SearchService">
-      <h3>Home</h3>
+    <div className="Home">
+      <h1 className="homeHeader">Home</h1>
       <SearchFilters
         loading={loading}
         setLoading={setLoading}
