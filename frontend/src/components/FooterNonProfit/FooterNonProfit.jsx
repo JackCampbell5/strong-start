@@ -34,6 +34,9 @@ function FooterNonProfit({ data }) {
   // State Variables
   const [darkMode, setDarkMode] = useState(darkModeGiven);
 
+  /**
+   * When the dark mode button is clicked, toggle the dark mode state and change the color variables to fit accordingly
+   */
   function changeDarkMode() {
     setDarkMode((prv) => !prv);
     setColorVariables(color, !darkMode);
