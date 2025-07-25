@@ -11,7 +11,7 @@ import { getLocation, NpPages } from "#utils/pathUtils";
 import { logoutNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 
-function NavNonProfit({ onNavigate }) {
+function NavNonProfit({ onNavigate, setLoggedIn }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const location = getLocation();
@@ -43,6 +43,8 @@ function NavNonProfit({ onNavigate }) {
   function logoutCallback(result) {
     if (result.valid) {
       alert("You have been logged out");
+      setLoggedIn(false);
+      window.location.reload();
     } else {
       alert("Error logging out" + result.error);
     }
