@@ -1,34 +1,28 @@
-export function setColorVariables(mainColor, darkMode = false) {
-  // --background: #effeff;
-  // --text: #00292c;
-  // --text-dark: #00747d;
-  // --text-mid: #00c2d0;
-  // --text-light: #51f3ff;
-  // --background-greyer: #c2cecf;
-  // --background-darker: #c4faff;
-  // --background-hover: #77f4ff;
-  // --background-selected: #84c2c8;
-  // --border-light: #00c1d3;
-  // --border-mid: #0098f7;
-  // --border-dark: #007e87;
-  // --border-very-dark: #003b3f;
+export function setColorVariables(mainColorGiven, darkModeValue = false) {
+  function darkMode(value) {
+    return darkModeValue ? 100 - value : value;
+  }
+  function darkModeAdjust(value, adjust = 100) {
+    return darkModeValue ? value - adjust : value + adjust;
+  }
+
+  let mainColor = mainColorGiven ? mainColorGiven : "#effeff";
   // Get the hue of the main color
   const hue = hexToHue(mainColor);
-  console.log("Hue: " + hue);
   let colors = {
-    background: "#effeff",
-    text: "#00292c",
-    "text-dark": "#00747d",
-    "text-mid": "#00c2d0",
-    "text-light": "#51f3ff",
-    "background-greyer": "#c2cecf",
-    "background-darker": "#c4faff",
-    "background-hover": "#77f4ff",
-    "background-selected": "#84c2c8",
-    "border-light": "#00c1d3",
-    "border-mid": "#0098f7",
-    "border-dark": "#007e87",
-    "border-very-dark": "#003b3f",
+    background: `hsl(${hue}, 100%, ${darkMode(97)}%)`,
+    text: `hsl(${hue}, 100%, ${darkMode(3)}%)`,
+    "text-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
+    "text-mid": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
+    "text-light": `hsl(${hue}, 100%, ${darkMode(65)}%)`,
+    "background-greyer": `hsl(${hue}, 75%, ${darkMode(10)}%)`,
+    "background-darker": `hsl(${hue}, 100%, ${darkMode(88)}%)`,
+    "background-hover": `hsl(${hue}, 100%, ${darkMode(73)}%)`,
+    "background-selected": `hsl(${hue}, 60%, ${darkMode(65)}%)`,
+    "border-light": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
+    "border-mid": `hsl(${darkModeAdjust(hue, 10)}, 100%, ${darkMode(50)}%)`,
+    "border-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
+    "border-very-dark": `hsl(${hue}, 100%, ${darkMode(12)}%)`,
   };
   for (const [varName, color] of Object.entries(colors)) {
     document.documentElement.style.setProperty("--" + varName, color);
