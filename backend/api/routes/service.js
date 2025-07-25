@@ -19,7 +19,7 @@ import {
 } from "#utils/api-helpers/service-param-standardize.js";
 import { createErrorReturn } from "#utils/validate-utils.js";
 import searchServices from "#search/search-services.js";
-import getFilter from "#utils/search-filters/filter-create-utils.js";
+import getFilter from "#search-filters/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
 import { checkSession, checkLogin } from "#utils/session-utils.js";
 import { createSearchLog } from "#search/search-utils.js";
