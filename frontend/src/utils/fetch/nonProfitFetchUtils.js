@@ -45,3 +45,28 @@ export async function fetchNonProfitList() {
       return errorReturn(error);
     });
 }
+
+/**
+ * Gets all of the data associated with a nonprofit
+ * @param {string} nonprofit - The nonprofit ID
+ * @returns The data associated with the nonprofit or an error
+ */
+export async function fetchNonProfitInfo(nonprofit) {
+  // return nonprofitAllTest;
+  return await fetch(`${nonProfitLink}/id/${nonprofit}`)
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return successReturn(data);
+    })
+    .catch((error) => {
+      // Return more info on the error
+      return errorReturn(error);
+    });
+}
