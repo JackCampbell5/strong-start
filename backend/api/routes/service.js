@@ -14,7 +14,7 @@ import {
   prettyPrintServicesOfferedList,
   reformatServiceForReturn,
   dateString,
-} from "#utils/service-utils.js";
+} from "#utils/api-helpers/service-utils.js";
 import { createErrorReturn } from "#utils/validate-utils.js";
 import searchServices from "#search/search-services.js";
 import getFilter from "#utils/search-filters/filter-create-utils.js";

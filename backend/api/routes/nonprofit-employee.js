@@ -14,7 +14,7 @@ import {
   checkEmployeeId,
   secureEmployeeData,
   getEmployeeData,
-} from "#utils/employee-valid-utils.js";
+} from "#utils/api-helpers/employee-valid-utils.js";
 import { createErrorReturn } from "#utils/validate-utils.js";
 import { checkLogin } from "#utils/session-utils.js";
 
