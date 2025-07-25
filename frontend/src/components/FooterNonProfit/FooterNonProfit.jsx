@@ -24,12 +24,9 @@ function FooterNonProfit({ data }) {
     new URLSearchParams(address).toString();
   const website = data.website;
   const logo = data.logo;
-  // const color = data.color;
-  let color = "#effeff";
+  const color = data.color;
   useEffect(() => {
-    if (color) {
-      setColorVariables(color);
-    }
+    setColorVariables(color);
   }, [color]);
 
   return (
