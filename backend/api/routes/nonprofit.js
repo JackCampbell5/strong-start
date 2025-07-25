@@ -7,7 +7,7 @@ import {
   NonProfitNotFoundError,
   NonProfitAlreadyExistsError,
 } from "#errors/nonprofit-errors.js";
-import { createErrorReturn } from "#utils/error-utils.js";
+import { createErrorReturn } from "#utils/validate-utils.js";
 import { generateStats } from "#utils/nonprofit-stat-utils.js";
 import {
   checkNonProfitName,
