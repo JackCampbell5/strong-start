@@ -85,7 +85,6 @@ function NonProfitOverall() {
         <Routes>
           <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
             <Route path="" element={<Dashboard />} />{" "}
-            <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
             <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
             <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
             <Route

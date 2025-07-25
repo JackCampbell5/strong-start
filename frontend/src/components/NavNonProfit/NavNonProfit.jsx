@@ -63,9 +63,9 @@ function NavNonProfit({ onNavigate, setLoggedIn }) {
         <button
           className={[
             "navBarButton",
-            location === NpPages.DASHBOARD && "selected",
+            (location === "nonprofit" || location === "") && "selected",
           ].join(" ")}
-          onClick={() => onNavigate(NpPages.DASHBOARD)}
+          onClick={() => onNavigate("")}
         >
           Dashboard
         </button>
