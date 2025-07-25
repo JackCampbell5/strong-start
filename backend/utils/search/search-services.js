@@ -1,6 +1,5 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
-const prisma = new PrismaClient();
+import { prisma } from "#utils/constants.js";
 
 // Local Imports
 import formatAddress from "#utils/search/address-utils.js";

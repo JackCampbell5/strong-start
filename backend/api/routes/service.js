@@ -1,5 +1,5 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 import express from "express";
 
 // Local Imports
@@ -22,7 +22,6 @@ import recServices from "#recs/rec-services.js";
 import { checkSession, checkLogin } from "#utils/session-utils.js";
 import { createSearchLog } from "#search/search-utils.js";
 
-const prisma = new PrismaClient();
 const serviceRouter = express.Router();
 
 serviceRouter.get("/", (req, res) => {

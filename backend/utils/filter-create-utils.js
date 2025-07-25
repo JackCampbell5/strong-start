@@ -1,11 +1,10 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 
 // Local Imports
 import data from "#utils/filter-default-data.json" with { type: "json" };
 import {prettyPrintService} from "#utils/service-utils.js"
 
-const prisma = new PrismaClient();
 
 /**
  * Creates the filters for a given nonprofit based on their services

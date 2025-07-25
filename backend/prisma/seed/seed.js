@@ -1,4 +1,4 @@
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 // Node Module Imports
 
 // Local Imports
@@ -10,7 +10,6 @@ import nonprofitJson from "#seed/nonprofits.json" with { type: "json" };
 import employees from "#seed/employees.json" with { type: "json" };
 import formatAddress from "#utils/search/address-utils.js";
 
-const prisma = new PrismaClient();
 
 async function main() {
   const currentServices = await prisma.service.findMany();

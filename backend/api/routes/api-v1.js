@@ -1,5 +1,5 @@
 // Node Module Imports
-import { PrismaClient } from "#prisma/client.js";
+import { prisma } from "#utils/constants.js";
 import express from "express";
 
 // Local Imports
@@ -13,7 +13,6 @@ import serviceRouter from "#apiroutes/service.js";
 import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
 import { getNonProfit } from "#utils/nonprofit-utils.js";
 
-const prisma = new PrismaClient();
 const apiRouter = express.Router();
 
 // Default route for /api/v1
