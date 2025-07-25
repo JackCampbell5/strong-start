@@ -4,5 +4,6 @@
 .Contact .contactButton {
   width: 50%;
   height: 50%;
-  font-size: 15vh;
+  font-size: min(10vw, 15vh);
+  color: var(--text);
 }
