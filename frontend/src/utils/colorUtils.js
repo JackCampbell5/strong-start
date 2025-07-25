@@ -30,6 +30,7 @@ export function setColorVariables(mainColorGiven, darkModeValue = false) {
   let colors = {
     background: `hsl(${hue}, 100%, ${darkMode(97)}%)`,
     text: `hsl(${hue}, 100%, ${darkMode(3)}%)`,
+    "icon-background": `hsl(${hue}, 100%, 97%)`,
     "text-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
     "text-mid": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
     "text-light": `hsl(${hue}, 100%, ${darkMode(65)}%)`,
@@ -38,7 +39,7 @@ export function setColorVariables(mainColorGiven, darkModeValue = false) {
     "background-hover": `hsl(${hue}, 100%, ${darkMode(73)}%)`,
     "background-selected": `hsl(${hue}, 60%, ${darkMode(65)}%)`,
     "border-light": `hsl(${hue}, 100%, ${darkMode(40)}%)`,
-    "border-mid": `hsl(${darkModeAdjust(hue, 10)}, 100%, ${darkMode(50)}%)`,
+    "border-mid": `hsl(${darkModeAdjust(hue, 10)}, 70%, ${darkMode(50)}%)`,
     "border-dark": `hsl(${hue}, 100%, ${darkMode(25)}%)`,
     "border-very-dark": `hsl(${hue}, 100%, ${darkMode(12)}%)`,
   };
