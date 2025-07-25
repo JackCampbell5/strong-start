@@ -22,9 +22,9 @@ function NavRefugee({ onNavigate }) {
         <button
           className={[
             "navBarButton",
-            location === RPages.HOME && "selected",
+            (location === "refugee" || location === "") && "selected",
           ].join(" ")}
-          onClick={() => onNavigate(RPages.HOME)}
+          onClick={() => onNavigate("")}
         >
           Home
         </button>
