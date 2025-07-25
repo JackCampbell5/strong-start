@@ -77,18 +77,14 @@ function Login() {
    *  If successful provides the username of the currently signed in employee and if not provides nothing
    * @param {object} result - The result of the test login
    */
-  function loginTestCallback(result) {
+  function checkEmployeeLoginStatusCallback(result) {
     if (result.valid) {
-      if (result.data) {
-        setSuccessText(result.data);
-      }
-    } else {
-      setErrorText(result.error);
+      setSuccessText(result.data);
     }
   }
 
   useEffect(() => {
-    checkEmployeeLoginStatus(nonprofit).then(loginTestCallback);
+    checkEmployeeLoginStatus(nonprofit).then(checkEmployeeLoginStatusCallback);
   }, []);
 
   return (

@@ -18,9 +18,22 @@ export function checkSession(req) {
  * @returns The request and response objects
  */
 export function checkLogin(req, res) {
-  req = checkSession(req);
+  req = checkSession(req); // Add a session UUID if it doesn't exist
+
+  // Check if the user is logged in at all
   if (!req.session.employee) {
     res.status(401).send("Unauthorized: Please log in");
+  } else {
+    // Check if the user is logged in to the correct nonprofit
+    const nonprofit = req.body.nonprofit;
+    if (req.session.employee.nonprofit_ID !== nonprofit.id) {
+      res
+        .status(401)
+        .send(
+          "Currently signed into another non profit. Please sign out and log into an account with access to " +
+            nonprofit.name
+        );
+    }
   }
   return [req, res];
 }

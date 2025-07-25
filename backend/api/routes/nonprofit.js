@@ -14,6 +14,7 @@ import {
   checkNonProfitId,
 } from "#utils/nonprofit-utils.js";
 import formatAddress from "#search/address-utils.js";
+import { checkLogin } from "#utils/session-utils.js";
 
 const prisma = new PrismaClient();
 const nonprofitRouter = express.Router();
@@ -68,17 +69,16 @@ nonprofitRouter.get("/:nonprofit_name", async (req, res, next) => {
 
 // Get stats for one nonprofit by id
 nonprofitRouter.get("/:nonprofit_id/stats", async (req, res, next) => {
-  if (!req.session.employee) {
-    res.status(401).send("Unauthorized: Please log in");
-    return;
-  }
-  const { nonprofit_id } = req.params;
   try {
+    const { nonprofit_id } = req.params;
     const findNonProfit = await prisma.nonprofit.findUnique({
       where: {
         id: nonprofit_id,
       },
     });
+    req.body = { nonprofit: findNonProfit };
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
     if (findNonProfit) {
       const stats = await generateStats(findNonProfit);
       res.status(200).json(stats);
