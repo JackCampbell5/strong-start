@@ -3,25 +3,26 @@
  * @param {string} mainColorGiven - The main color to use for the theme in HEX. If not given, it will use the default color.
  */
 export function setColorVariables(mainColorGiven) {
+  console.log(mainColorGiven);
   let mainColor = mainColorGiven ? mainColorGiven : "#effeff";
   // Get the hue of the main color
   const hue = hexToHue(mainColor);
 
   // Set the colors
   let colors = {
-    background: `hsl(${hue}, 100%, 97}%)`,
-    text: `hsl(${hue}, 100%, 3}%)`,
-    "text-dark": `hsl(${hue}, 100%, 25}%)`,
-    "text-mid": `hsl(${hue}, 100%, 40}%)`,
-    "text-light": `hsl(${hue}, 100%, 65}%)`,
-    "background-greyer": `hsl(${hue}, 75%, 10}%)`,
-    "background-darker": `hsl(${hue}, 100%, 88}%)`,
-    "background-hover": `hsl(${hue}, 100%, 73}%)`,
-    "background-selected": `hsl(${hue}, 60%, 65}%)`,
-    "border-light": `hsl(${hue}, 100%, 40}%)`,
-    "border-mid": `${hue}, 10)}, 100%, 50}%)`,
-    "border-dark": `hsl(${hue}, 100%, 25}%)`,
-    "border-very-dark": `hsl(${hue}, 100%, 12}%)`,
+    background: `hsl(${hue}, 100%, 97%)`,
+    text: `hsl(${hue}, 100%, 3%)`,
+    "text-dark": `hsl(${hue}, 100%, 25%)`,
+    "text-mid": `hsl(${hue}, 100%, 40%)`,
+    "text-light": `hsl(${hue}, 100%, 65%)`,
+    "background-greyer": `hsl(${hue}, 75%, 10%)`,
+    "background-darker": `hsl(${hue}, 100%, 88%)`,
+    "background-hover": `hsl(${hue}, 100%, 73%)`,
+    "background-selected": `hsl(${hue}, 60%, 65%)`,
+    "border-light": `hsl(${hue}, 100%, 40%)`,
+    "border-mid": `${hue}, 10)}, 100%, 50%)`,
+    "border-dark": `hsl(${hue}, 100%, 25%)`,
+    "border-very-dark": `hsl(${hue}, 100%, 12%)`,
   };
   // Set all the color variables
   for (const [varName, color] of Object.entries(colors)) {
