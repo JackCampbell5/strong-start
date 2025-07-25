@@ -1,7 +1,13 @@
+/**
+ * Sets the color variables for the theme based on the main color given
+ * @param {string} mainColorGiven - The main color to use for the theme in HEX. If not given, it will use the default color.
+ */
 export function setColorVariables(mainColorGiven) {
   let mainColor = mainColorGiven ? mainColorGiven : "#effeff";
   // Get the hue of the main color
   const hue = hexToHue(mainColor);
+
+  // Set the colors
   let colors = {
     background: `hsl(${hue}, 100%, 97}%)`,
     text: `hsl(${hue}, 100%, 3}%)`,
@@ -17,6 +23,7 @@ export function setColorVariables(mainColorGiven) {
     "border-dark": `hsl(${hue}, 100%, 25}%)`,
     "border-very-dark": `hsl(${hue}, 100%, 12}%)`,
   };
+  // Set all the color variables
   for (const [varName, color] of Object.entries(colors)) {
     document.documentElement.style.setProperty("--" + varName, color);
   }
