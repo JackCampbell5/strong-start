@@ -21,11 +21,7 @@ function NewService() {
    * @param {*} result - result of testLoginNonprofitEmployee
    */
   function testLoginCallback(result) {
-    if (result.valid) {
-      if (!result.data) {
-        setErrorText("No user signed in, please sign in to add a service");
-      }
-    } else {
+    if (!result.valid) {
       setErrorText(result.error);
     }
   }

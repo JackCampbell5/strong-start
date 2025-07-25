@@ -16,6 +16,7 @@ import {
   getEmployeeData,
 } from "#utils/employee-valid-utils.js";
 import { createErrorReturn } from "#utils/error-utils.js";
+import { checkLogin } from "#utils/session-utils.js";
 
 const prisma = new PrismaClient();
 const employeeRouter = express.Router();
@@ -116,13 +117,12 @@ employeeRouter.post("/login", async (req, res, next) => {
 employeeRouter.get("/login/test", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
-    if (req.session.employee) {
-      return res
-        .status(200)
-        .json(req.session.employee.username + " is currently logged in");
-    } else {
-      return res.status(200).json(null);
-    }
+    [req, res] = checkLogin(req, res);
+    if (res.statusCode === 401) return;
+
+    return res
+      .status(200)
+      .json(req.session.employee.username + " is currently logged in");
   } catch (e) {
     return next(e);
   }

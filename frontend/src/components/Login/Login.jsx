@@ -79,11 +79,7 @@ function Login() {
    */
   function loginTestCallback(result) {
     if (result.valid) {
-      if (result.data) {
-        setSuccessText(result.data);
-      }
-    } else {
-      setErrorText(result.error);
+      setSuccessText(result.data);
     }
   }
 
