@@ -20,18 +20,19 @@ const formatter = new Intl.DateTimeFormat("en-US", {
  */
 export function stringifyHours(hours) {
   if (hours[0]?.end !== undefined) {
-    return hours
-      .map((hour, index) => {
-        let startHours = new Date(hour.start);
-        let endHours = new Date(hour.end);
-        if (startHours.toUTCString() === endHours.toUTCString()) {
-          return `${days[index]}: Closed`;
-        }
-        return `${days[index]}: ${formatter.format(
-          startHours
-        )} - ${formatter.format(endHours)}`;
-      })
-      .join(", ");
+    return hours.map((hour, index) => {
+      let startHours = new Date(hour.start);
+      let endHours = new Date(hour.end);
+      let hours = "";
+      if (startHours.toUTCString() === endHours.toUTCString()) {
+        hours = "Closed";
+      } else {
+        hours = `${formatter.format(startHours)} - ${formatter.format(
+          endHours
+        )}`;
+      }
+      return { name: days[index], value: hours };
+    });
   }
   return "";
 }

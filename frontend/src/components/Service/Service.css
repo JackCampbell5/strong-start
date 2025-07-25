@@ -56,7 +56,7 @@
 
 /* Middle Container */
 .Service .serviceMid {
-  width: 100%;
+  width: calc(100% - 20px);
   display: flex;
   justify-content: center;
   margin: 10px;
@@ -74,6 +74,10 @@
 .Service .serviceMid svg {
   width: 25px;
   height: 25px;
+}
+
+.Service .serviceMid .expanded svg {
+  transform: scaleY(-1);
 }
 
 .Service .serviceMid .moreDetails:hover {
@@ -99,16 +103,58 @@
 /*  Each individual param  */
 .Service .serviceParam {
   display: flex;
-  flex-wrap: wrap;
-  margin: 15px 0px;
-}
-/* Split the params apart from each other  */
-.Service .serviceParam span,
-.Service .serviceParam a {
-  margin: 0 0 0 20px;
+  align-items: center;
+  margin: 20px 0px;
+  width: 100%;
 }
 
-.Service .serviceBottom svg {
+/* The Left Column */
+.Service .serviceParam .serviceParamName {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  width: min(25%, 200px);
+}
+
+/* Just The Text Portion */
+.Service .serviceParam .serviceParamName .serviceParamNameText {
+  width: calc(100% - 25px);
+  font-weight: bolder;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Service .serviceBottom .serviceParam svg {
   height: 25px;
   width: 25px;
+}
+
+/* The Right Column */
+.Service .serviceParam .serviceParamValue {
+  margin: 0 0 0 10px;
+  width: max(calc(75% - 10px), calc(100% - 190px));
+}
+
+/* Div in Table */
+.Service .serviceParam .serviceParamValue .hoursTable {
+  width: 100%;
+  margin: 0px;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border: 2px solid var(--border-light);
+}
+
+/* The table itself */
+.Service .serviceParam .serviceParamValue table {
+  border-collapse: collapse;
+}
+
+/* The table and column and rows  */
+.Service .serviceParam .serviceParamValue th,
+.Service .serviceParam .serviceParamValue td {
+  border: 2px solid var(--border-light);
+  margin: 0px;
+  padding: 5px;
+  min-width: 80px;
 }

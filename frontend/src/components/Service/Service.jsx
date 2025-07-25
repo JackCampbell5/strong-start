@@ -64,10 +64,18 @@ function Service({ inputData }) {
 
     // Fill the fields to add icon and name
     const completeTop = fillMissingDataFields(topData, serviceDisplayDefault);
-    const completeBottom = fillMissingDataFields(
+    let completeBottom = fillMissingDataFields(
       bottomData,
       serviceDisplayDefault
     );
+    completeBottom = completeBottom.map((obj) => {
+      obj.id === "hours" ? (obj.value = stringifyHours(obj.value)) : null;
+      return obj;
+    });
+    completeBottom.map((obj) => {
+      obj.id === "hours" && console.log(obj.value);
+      return obj;
+    });
     // Restructure the top for easier form to get
     let updatedTopData = completeTop.reduce((acc, obj) => {
       return { ...acc, [obj.id]: obj.value };
@@ -131,7 +139,8 @@ function Service({ inputData }) {
             expanded ? "expanded" : "notExpanded",
           ].join(" ")}
         >
-          More Details <MdArrowDropDownCircle />
+          {expanded ? "Hide Details" : "More Details"}
+          <MdArrowDropDownCircle />
         </div>
       </div>
       {expanded ? (
@@ -139,24 +148,44 @@ function Service({ inputData }) {
           {serviceData.bottom.map((obj) => {
             return obj?.value ? (
               <div className="serviceParam" key={obj.id}>
-                <strong>{obj.name}</strong>
-                {obj.icon
-                  ? React.createElement(serviceSearchIconMap[obj.icon], {})
-                  : null}
-                {":"}
-                {obj.id === "address" ? (
-                  <a href={links?.route} target="_blank">
-                    {obj.value}
-                  </a>
-                ) : obj.id === "website" ? (
-                  <a href={obj.value} target="_blank">
-                    {obj.value}
-                  </a>
-                ) : obj.id === "hours" ? (
-                  <span>{stringifyHours(obj.value)}</span>
-                ) : (
-                  <span>{obj.value}</span>
-                )}
+                <div className="serviceParamName">
+                  {obj.icon
+                    ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                    : null}
+                  <div className="serviceParamNameText">{obj.name}</div>
+                </div>
+                <div className="serviceParamValue">
+                  {obj.id === "address" ? (
+                    <a href={links?.route} target="_blank">
+                      {obj.value}
+                    </a>
+                  ) : obj.id === "website" ? (
+                    <a href={obj.value} target="_blank">
+                      {obj.value}
+                    </a>
+                  ) : obj.id === "hours" ? (
+                    <div className="hoursTable">
+                      <table>
+                        <thead>
+                          <tr className="headerFields">
+                            {obj.value.map((day, index) => (
+                              <th key={index}>{day.name}</th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            {obj.value.map((day, index) => (
+                              <td key={index}>{day.value}</td>
+                            ))}
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  ) : (
+                    <span>{obj.value}</span>
+                  )}
+                </div>
               </div>
             ) : null;
           })}
