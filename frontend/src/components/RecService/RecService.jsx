@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { MdAddHome, MdCreate } from "react-icons/md";
+import { MdAddHome, MdDelete, MdCreate } from "react-icons/md";
 
 // Local Imports
 import "./RecService.css";
@@ -32,10 +32,21 @@ function RecService({ data, serviceAddedSuccessfully }) {
     }
   }
 
+  function deleteService() {
+    console.log(data.nonprofit_ID);
+    if (nonprofit === data.nonprofit_ID) {
+    }
+    console.log("delete service");
+  }
+
   return (
     <div className="RecService">
       <div className="serviceHeader">
         <h3 className="serviceTitle">{name}</h3>
+        <MdDelete
+          title="Delete Service from Database"
+          onClick={deleteService}
+        />
         <div
           title="Edit/Add Service to Database"
           onClick={() => setIsExpanded((prev) => !prev)}
