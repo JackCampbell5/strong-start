@@ -9,6 +9,7 @@ import ServiceList from "#components/ServiceList/ServiceList";
 // util functions
 import { fetchAllServices } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
+import RecList from "#components/RecList/RecList";
 
 function ViewServices() {
   // Constant Variables
@@ -37,7 +38,7 @@ function ViewServices() {
   return (
     <div className="ViewServices">
       <h1>All Services</h1>
-      <ServiceList data={searchResults} />
+      {searchResults.length > 0 ? <RecList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
     </div>
   );
