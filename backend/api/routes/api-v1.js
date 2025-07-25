@@ -11,7 +11,7 @@ import serviceRouter from "#apiroutes/service.js";
 
 // Errors/Utils
 import { NonProfitNotFoundError } from "#errors/nonprofit-errors.js";
-import { getNonProfit } from "#utils/api-helpers/nonprofit-utils.js";
+import { getNonProfit } from "#api-helpers/nonprofit-utils.js";
 
 const apiRouter = express.Router();
 

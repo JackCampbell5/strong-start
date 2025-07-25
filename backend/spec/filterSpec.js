@@ -1,4 +1,4 @@
-import { prettyPrintService } from "#utils/api-helpers/service-param-standardize.js";
+import { prettyPrintService } from "#api-helpers/service-param-standardize.js";
 
 describe("prettyPrintService function", () => {
   it("hi_hello", () => {
