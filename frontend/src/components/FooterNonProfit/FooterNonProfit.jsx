@@ -30,32 +30,40 @@ function FooterNonProfit({ data }) {
         {logo ? <img className="logo" src={logo} /> : null}
         <div className="leftFooter">
           <p className="nonprofitName">{name}</p>
-          <p className="nonprofitInfo">
-            <MdLocalPhone />
-            <a href={"tel:+" + phone} target="_blank">
-              {phone}
-            </a>
-          </p>
-          <p className="nonprofitInfo">
-            <MdEmail />
-            <a href={"mailto:" + email} target="_blank">
-              {email}
-            </a>
-          </p>
+          {phone && (
+            <p className="nonprofitInfo">
+              <MdLocalPhone />
+              <a href={"tel:+" + phone} target="_blank">
+                {phone}
+              </a>
+            </p>
+          )}
+          {email && (
+            <p className="nonprofitInfo">
+              <MdEmail />
+              <a href={"mailto:" + email} target="_blank">
+                {email}
+              </a>
+            </p>
+          )}
         </div>
         <div className="rightFooter">
-          <p className="nonprofitInfo">
-            <MdLocationOn />
-            <a href={addressLink} target="_blank">
-              {address}
-            </a>
-          </p>
-          <p className="nonprofitInfo">
-            <MdWeb />
-            <a href={website} target="_blank">
-              {website}
-            </a>
-          </p>
+          {address && (
+            <p className="nonprofitInfo">
+              <MdLocationOn />
+              <a href={addressLink} target="_blank">
+                {address}
+              </a>
+            </p>
+          )}
+          {website && (
+            <p className="nonprofitInfo">
+              <MdWeb />
+              <a href={website} target="_blank">
+                {website}
+              </a>
+            </p>
+          )}
           <p className="nonprofitInfo">
             <MdOutlineQuestionMark />
             <a href={"mailto:" + strongEmail}> {strongEmail} </a>
