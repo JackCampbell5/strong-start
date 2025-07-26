@@ -55,12 +55,15 @@ function RecList({ data }) {
    * Removes the service from the list of services using the id of the service
    * + This will show a success message for 5 seconds and no longer show the service
    * @param {string} id - The id of the service that was added
+   * @param {object} validData - The updated data if the service was edited
+   * @param {boolean} editOnly - If the service was edited or not
+   * @param {boolean} deleteButtonUsed - If this was from the delete button press
    */
-  function serviceAddedSuccessfully(
+  function serviceAddOrDeleteSuccessfully(
     id,
     validData = {},
     editOnly = false,
-    deleteEndpoint = false
+    deleteButtonUsed = false
   ) {
     let updatedData;
     let updatedPage;
@@ -73,7 +76,7 @@ function RecList({ data }) {
       // Remove the id from the list
       updatedData = serviceList.filter((item) => item.id !== id);
       updatedPage = currentServices.filter((item) => item.id !== id);
-      if (deleteEndpoint) {
+      if (deleteButtonUsed) {
         setSuccessText("Service Deleted Successfully");
       } else {
         setSuccessText("Service Added Successfully");
@@ -100,7 +103,9 @@ function RecList({ data }) {
                 <RecService
                   key={obj.id}
                   data={obj}
-                  serviceAddedSuccessfully={serviceAddedSuccessfully}
+                  serviceAddOrDeleteSuccessfully={
+                    serviceAddOrDeleteSuccessfully
+                  }
                 />
               );
             })

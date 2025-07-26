@@ -13,7 +13,7 @@ import EditService from "#components/EditService/EditService";
 import { getNonProfit } from "#utils/pathUtils";
 import { deleteServiceFromDatabase } from "#fetch/serviceFetchUtils";
 
-function RecService({ data, serviceAddedSuccessfully }) {
+function RecService({ data, serviceAddOrDeleteSuccessfully }) {
   // Constant Variables
   const name = data?.name ?? "No Name Provided";
   const nonprofit = getNonProfit();
@@ -27,9 +27,9 @@ function RecService({ data, serviceAddedSuccessfully }) {
    */
   function onValidAdd(validAddData) {
     if (!existingInCurrentDatabase) {
-      serviceAddedSuccessfully(data.id);
+      serviceAddOrDeleteSuccessfully(data.id);
     } else {
-      serviceAddedSuccessfully(data.id, validAddData, true);
+      serviceAddOrDeleteSuccessfully(data.id, validAddData, true);
       setIsExpanded(false);
     }
   }
@@ -40,7 +40,7 @@ function RecService({ data, serviceAddedSuccessfully }) {
    */
   function deleteServiceCallback(result) {
     if (result.valid) {
-      serviceAddedSuccessfully(data.id, null, false, true);
+      serviceAddOrDeleteSuccessfully(data.id, null, false, true);
     } else {
       setErrorText(result.error);
     }
@@ -55,7 +55,7 @@ function RecService({ data, serviceAddedSuccessfully }) {
     if (existingInCurrentDatabase) {
       deleteServiceFromDatabase(nonprofit, data.id).then(deleteServiceCallback);
     } else {
-      serviceAddedSuccessfully(data.id);
+      serviceAddOrDeleteSuccessfully(data.id);
     }
   }
 
