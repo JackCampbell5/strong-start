@@ -169,6 +169,10 @@ main()
     await prisma.$disconnect();
   })
   .catch(async (e) => {
+    // Helpful to have console.err here as seed does fail occasionally and I want to know the error message so I can fix it.
+    // That message will also never be shown to the user as:
+    //  + It is server side
+    //  + We should never be seeding with live users
     console.error(e);
     await prisma.$disconnect();
     process.exit(1);
