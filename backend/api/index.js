@@ -49,6 +49,7 @@ app.use("/api/v1", apiRouter);
 
 // Tell that the server is starting
 app.listen(port, () => {
+  // Helpful to have console log here to know that the server is running and give a link
   console.log(`Server Started at http://localhost:${port}`);
 });
 
