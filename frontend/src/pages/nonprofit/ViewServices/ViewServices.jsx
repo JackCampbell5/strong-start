@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 // Local Imports
 import "./ViewServices.css";
 // Other components
-import ServiceList from "#components/ServiceList/ServiceList";
+import RecList from "#components/RecList/RecList";
 // util functions
 import { fetchAllServices } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
@@ -37,7 +37,7 @@ function ViewServices() {
   return (
     <div className="ViewServices">
       <h1>All Services</h1>
-      <ServiceList data={searchResults} />
+      {searchResults.length > 0 ? <RecList data={searchResults} /> : null}
       <p className="errorText">{errorText}</p>
     </div>
   );

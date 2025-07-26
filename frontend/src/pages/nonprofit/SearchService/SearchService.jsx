@@ -6,7 +6,7 @@ import { useState } from "react";
 import "./SearchService.css";
 // Other components
 import SearchFilters from "#components/SearchFilters/SearchFilters";
-import ServiceList from "#components/ServiceList/ServiceList";
+import RecList from "#components/RecList/RecList";
 // Util Functions
 import { fetchSearch } from "#fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
@@ -52,7 +52,7 @@ function SearchService() {
         searchFor={searchFor}
       />
       <p className="errorText">{errorText}</p>
-      {searchResults.length !== 0 ? <ServiceList data={searchResults} /> : null}
+      {searchResults.length !== 0 ? <RecList data={searchResults} /> : null}
     </div>
   );
 }

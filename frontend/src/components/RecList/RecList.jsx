@@ -32,15 +32,45 @@ function RecList({ data }) {
   }
 
   /**
+   * Loops thru the existing data, finds the matching the id given. Then updates that existing object with any matching params from dataToUpdateWith
+   * @param {object} existingData -  The existing data to update
+   * @param {object} dataToUpdateWith - The new data to update the existing data with
+   * @param {string} idToUpdate - The ID to update
+   * @returns The updated existing data
+   */
+  function editParamsInDict(existingData, dataToUpdateWith, idToUpdate) {
+    return existingData.map((element) => {
+      if (element.id === idToUpdate) {
+        for (let param in dataToUpdateWith) {
+          element[param] = dataToUpdateWith[param];
+        }
+        return element;
+      } else {
+        return element;
+      }
+    });
+  }
+
+  /**
    * Removes the service from the list of services using the id of the service
    * + This will show a success message for 5 seconds and no longer show the service
    * @param {string} id - The id of the service that was added
    */
-  function serviceAddedSuccessfully(id) {
-    let updatedData = serviceList.filter((item) => item.id !== id);
-    let updatedPage = currentServices.filter((item) => item.id !== id);
+  function serviceAddedSuccessfully(id, validData = {}, editOnly = false) {
+    let updatedData;
+    let updatedPage;
+    if (editOnly) {
+      // Update the existing data
+      updatedData = editParamsInDict(serviceList, validData, id);
+      updatedPage = editParamsInDict(currentServices, validData, id);
+      setSuccessText("Service Updated Successfully");
+    } else {
+      // Remove the id from the list
+      updatedData = serviceList.filter((item) => item.id !== id);
+      updatedPage = currentServices.filter((item) => item.id !== id);
 
-    setSuccessText("Service Added Successfully");
+      setSuccessText("Service Added Successfully");
+    }
     setTimeout(() => {
       setSuccessText("");
     }, 5000);
