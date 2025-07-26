@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import IconComp from "#components/IconComp/IconComp";
@@ -13,6 +13,7 @@ import "./SubPageSelect.css";
 import NonProfitSelector from "#components/NonProfitSelector/NonProfitSelector";
 // Util Functions
 import { QueryParams } from "#utils/pathUtils";
+import { setColorVariables } from "#utils/colorUtils";
 
 function SubPageSelect({ changePage }) {
   // Constant Variables
@@ -33,6 +34,10 @@ function SubPageSelect({ changePage }) {
       setErrorText("Please select a non-profit to continue");
     }
   }
+
+  useEffect(() => {
+    setColorVariables(null);
+  }, []);
 
   return (
     <div className="SubPageSelect">

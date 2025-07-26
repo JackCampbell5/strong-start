@@ -15,14 +15,15 @@ import "./Register.css";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 // Util Functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
-import { getNonProfit } from "#utils/pathUtils";
+import { getNonProfit, NpPages, createPageNavigator } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 
-function Register() {
+function Register({ setLoggedIn, nav }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const navigate = useNavigate();
   const location = useLocation();
+  const pageNavigator = createPageNavigator(navigate, location);
 
   // State Variables
   const [username, setUsername] = useState("");
@@ -99,12 +100,22 @@ function Register() {
   function registerCallback(result) {
     setLoading(false);
     if (result.valid) {
+      setLoggedIn(true);
       setSuccessText(result.data);
+      // Navigate to the home page after 2 seconds
+      setTimeout(() => {
+        nav("");
+        setSuccessText("");
+      }, 2000); // 2000 milliseconds = 2 seconds
     } else {
       setErrorText(result.error);
     }
   }
 
+  /**
+   * Checks the password against the password requirements and updates the requirements view
+   * @param {object} value - Object containing the value of the password
+   */
   function setPasswordHelper(value) {
     setPassword(value);
     for (const req of passwordRequirements) {
@@ -121,13 +132,18 @@ function Register() {
    * Navigates to the login page
    */
   function goToLogin() {
-    const allLocations = location.pathname.split("/");
+    const path = location.pathname;
+    const allLocations = path.split("/");
     const ending = allLocations[allLocations.length - 1];
-    const newPath = location.pathname.replace(ending, "login");
-    navigate(newPath);
+    const newPath = path.replace(ending, NpPages.LOGIN);
+    pageNavigator(newPath);
   }
   return (
     <div className="Register">
+      <div className="topButtons">
+        <button onClick={goToLogin}>Login Instead?</button>
+        <button onClick={() => navigate("/")}>Change Nonprofit</button>
+      </div>
       <div className="userInfo">
         <div className="registerField">
           <p>Username:</p>
@@ -215,7 +231,6 @@ function Register() {
       />
       <p className="errorText">{errorText}</p>
       <p className="successText">{successText}</p>
-      <button onClick={goToLogin}>Login?</button>
     </div>
   );
 }

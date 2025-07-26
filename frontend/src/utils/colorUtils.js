@@ -3,7 +3,6 @@
  * @param {string} mainColorGiven - The main color to use for the theme in HEX. If not given, it will use the default color.
  */
 export function setColorVariables(mainColorGiven, darkModeValue = false) {
-  console.log(mainColorGiven);
   /**
    * Adjust the value based on if dark mode is enabled
    * @param {number} value - The value to adjust

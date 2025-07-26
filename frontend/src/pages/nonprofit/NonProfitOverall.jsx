@@ -16,13 +16,14 @@ import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
 import RegisterPage from "#nonprofitPage/RegisterPage/RegisterPage";
 import Recommend from "#nonprofitPage/Recommend/Recommend";
 //Other Components
+import PrivateRoutes from "#components/PrivateRoutes/PrivateRoutes";
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
 import FooterNonProfit from "#components/FooterNonProfit/FooterNonProfit";
 // Util Functions
 import { fetchNonProfitInfo } from "#fetch/nonProfitFetchUtils";
 import { NpPages } from "#utils/pathUtils";
-import { createPageNavigator } from "#utils/pathUtils";
-import { getNonProfit } from "#utils/pathUtils";
+import { createPageNavigator, getNonProfit } from "#utils/pathUtils";
+import { checkEmployeeLoginStatus } from "#utils/fetch/nonprofitEmployeeFetchUtils";
 
 function NonProfitOverall() {
   // Constant Variables
@@ -33,6 +34,7 @@ function NonProfitOverall() {
   const pageNavigator = createPageNavigator(navigate, location);
   // State Variables
   const [footerInfo, setFooterInfo] = useState({});
+  const [loggedIn, setLoggedIn] = useState(true);
 
   /**
    * Navigate to a new page.
@@ -42,11 +44,26 @@ function NonProfitOverall() {
     pageNavigator(priorPart + path);
   }
 
+  /**
+   * Call back function for the fetchNonProfitInfo function. To set the footer info based on the result.
+   * @param {object} result - The result object from the fetchNonProfitInfo function.
+   */
   function fetchNonProfitInfoCallback(result) {
     if (result.valid) {
       setFooterInfo(result.data);
     } else {
-      setFooterInfo({ error: result.error });
+      setFooterInfo({ name: result.error });
+    }
+  }
+  /**
+   * Callback function for the checkEmployeeLoginStatus function. To set the loggedIn status based on the result.
+   * @param {object} result - The result object from the checkEmployeeLoginStatus function.
+   */
+  function checkEmployeeLoginStatusCallback(result) {
+    if (result.valid) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
     }
   }
 
@@ -57,24 +74,37 @@ function NonProfitOverall() {
     } else {
       fetchNonProfitInfo(nonprofit).then(fetchNonProfitInfoCallback);
     }
+    checkEmployeeLoginStatus(nonprofit).then(checkEmployeeLoginStatusCallback);
   }, [nonprofit]);
   return (
     <div className="NonProfitOverall">
-      <NavNonProfit onNavigate={nav} />
+      {loggedIn ? (
+        <NavNonProfit onNavigate={nav} setLoggedIn={setLoggedIn} />
+      ) : null}
       <div className="mainContent">
         <Routes>
-          <Route path="" element={<Dashboard />} />{" "}
-          <Route path={`/${NpPages.DASHBOARD}`} element={<Dashboard />} />
-          <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
-          <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
+          <Route element={<PrivateRoutes loggedIn={loggedIn} />}>
+            <Route path="" element={<Dashboard />} />{" "}
+            <Route path={`/${NpPages.EDITSERVICE}`} element={<EditService />} />
+            <Route path={`/${NpPages.NEWSERVICE}`} element={<NewService />} />
+            <Route
+              path={`/${NpPages.SEARCHSERVICE}`}
+              element={<SearchService />}
+            />
+            <Route
+              path={`/${NpPages.VIEWSERVICES}`}
+              element={<ViewServices />}
+            />
+            <Route path={`/${NpPages.RECOMMEND}`} element={<Recommend />} />
+          </Route>
           <Route
-            path={`/${NpPages.SEARCHSERVICE}`}
-            element={<SearchService />}
+            path={`/${NpPages.LOGIN}`}
+            element={<LoginPage setLoggedIn={setLoggedIn} nav={nav} />}
           />
-          <Route path={`/${NpPages.VIEWSERVICES}`} element={<ViewServices />} />
-          <Route path={`/${NpPages.LOGIN}`} element={<LoginPage />} />
-          <Route path={`/${NpPages.REGISTER}`} element={<RegisterPage />} />
-          <Route path={`/${NpPages.RECOMMEND}`} element={<Recommend />} />
+          <Route
+            path={`/${NpPages.REGISTER}`}
+            element={<RegisterPage setLoggedIn={setLoggedIn} nav={nav} />}
+          />
         </Routes>
       </div>
       <FooterNonProfit data={footerInfo} />

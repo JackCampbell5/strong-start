@@ -12,10 +12,9 @@ import {
   loginNonprofitEmployee,
   checkEmployeeLoginStatus,
 } from "#fetch/nonprofitEmployeeFetchUtils";
-import { createPageNavigator } from "#utils/pathUtils";
-import { getNonProfit } from "#utils/pathUtils";
+import { createPageNavigator, NpPages, getNonProfit } from "#utils/pathUtils";
 
-function Login() {
+function Login({ setLoggedIn, nav }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const navigate = useNavigate();
@@ -56,7 +55,13 @@ function Login() {
   function loginCallback(result) {
     setLoading(false);
     if (result.valid) {
+      setLoggedIn(true);
       setSuccessText(result.data);
+      // Navigate to the home page after 2 seconds
+      setTimeout(() => {
+        nav("");
+        setSuccessText("");
+      }, 2000); // 2000 milliseconds = 2 seconds
     } else {
       setErrorText(result.error);
     }
@@ -69,7 +74,7 @@ function Login() {
     const path = location.pathname;
     const allLocations = path.split("/");
     const ending = allLocations[allLocations.length - 1];
-    const newPath = path.replace(ending, "register");
+    const newPath = path.replace(ending, NpPages.REGISTER);
     pageNavigator(newPath);
   }
 
@@ -89,6 +94,10 @@ function Login() {
 
   return (
     <div className="Login">
+      <div className="topButtons">
+        <button onClick={goToRegister}>Register Instead?</button>
+        <button onClick={() => navigate("/")}>Change Nonprofit</button>
+      </div>
       <div className="userInfo">
         <div className="loginField">
           <p>Username:</p>
@@ -124,7 +133,6 @@ function Login() {
       <LoadingButton loading={loading} onClick={handleLogin} text="Log In" />
       <p className="errorText">{errorText}</p>
       <p className="successText">{successText}</p>
-      <button onClick={goToRegister}>Register</button>
     </div>
   );
 }
