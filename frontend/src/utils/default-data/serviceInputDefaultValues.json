@@ -6,7 +6,8 @@
     "default": "Community Food Kitchen",
     "icon": "MdOutlinePerson",
     "required": true,
-    "tooltip": "Official Name of the Service"
+    "tooltip": "Official Name of the Service",
+    "type": "text"
   },
   "address": {
     "id": "address",
@@ -15,7 +16,8 @@
     "default": "123 Main St, Anytown, USA",
     "icon": "MdOutlineLocationOn",
     "required": true,
-    "tooltip": "Complete address of the service(No PO BOX)"
+    "tooltip": "Complete address of the service(No PO BOX)",
+    "type": "text"
   },
   "zipcode": {
     "id": "zipcode",
@@ -23,7 +25,8 @@
     "value": "",
     "default": "12345",
     "icon": "MdNumbers",
-    "required": true
+    "required": true,
+    "type": "text"
   },
   "description": {
     "id": "description",
@@ -32,7 +35,8 @@
     "default": "Providing free meals to those in need",
     "icon": "MdOutlineTextSnippet",
     "required": true,
-    "tooltip": "Explaining what the service does"
+    "tooltip": "Explaining what the service does",
+    "type": "longText"
   },
   "email": {
     "id": "email",
@@ -40,7 +44,8 @@
     "value": "",
     "default": "info@communityfoodkitchen.org",
     "icon": "MdEmail",
-    "required": false
+    "required": false,
+    "type": "text"
   },
   "phone": {
     "id": "phone",
@@ -48,7 +53,8 @@
     "value": "",
     "default": "(555) 555-5555",
     "icon": "MdLocalPhone",
-    "required": false
+    "required": false,
+    "type": "text"
   },
   "website": {
     "id": "website",
@@ -56,7 +62,8 @@
     "value": "",
     "default": "https://www.communityfoodkitchen.org",
     "icon": "MdLanguage",
-    "required": true
+    "required": true,
+    "type": "text"
   },
   "hours": {
     "id": "hours",
@@ -65,7 +72,8 @@
     "default": "Monday - Friday: 11am - 2pm, Saturday: 12pm - 3pm",
     "icon": "MdHourglassBottom",
     "required": false,
-    "tooltip": "Hours of operation. Will be displayed as plain text."
+    "tooltip": "Hours of operation. Will be displayed as plain text.",
+    "type": "text"
   },
   "logo": {
     "id": "logo",
@@ -74,7 +82,8 @@
     "default": "https://www.communityfoodkitchen.org/logo.png",
     "icon": "MdImage",
     "required": false,
-    "tooltip": "Link to just the logo of the service. Will be displayed as an image."
+    "tooltip": "Link to just the logo of the service. Will be displayed as an image.",
+    "type": "text"
   },
   "language": {
     "id": "language",
@@ -83,7 +92,8 @@
     "default": "English",
     "icon": "MdOutlineSpatialAudioOff",
     "required": false,
-    "tooltip": "Languages that the service offers. Comma separated. Ex: English, Spanish"
+    "tooltip": "Languages that the service offers. Comma separated. Ex: English, Spanish",
+    "type": "text"
   },
   "date_needed": {
     "id": "date_needed",
@@ -92,7 +102,8 @@
     "default": "1-1-2025",
     "icon": "MdDateRange",
     "required": false,
-    "tooltip": "The date that refugees must have entered the US after. If it does not matter leave blank. In mm-dd-yyyy format. Ex: 01-01-2023"
+    "tooltip": "The date that refugees must have entered the US after. If it does not matter leave blank. In mm-dd-yyyy format. Ex: 01-01-2023",
+    "type": "date"
   },
   "services_offered": {
     "id": "services_offered",
@@ -101,7 +112,8 @@
     "default": "Free meals, food pantry, nutrition counseling",
     "icon": "MdFilterList",
     "required": true,
-    "tooltip": "Services Offered by this service. Comma separated. Please be consistent across services for search Ex: Free meals, food pantry, nutrition counseling"
+    "tooltip": "Services Offered by this service. Comma separated. Please be consistent across services for search Ex: Free meals, food pantry, nutrition counseling",
+    "type": "text"
   },
   "restrictions": {
     "id": "restrictions",
@@ -110,7 +122,8 @@
     "default": "None",
     "icon": "MdOutlineStopCircle",
     "required": false,
-    "tooltip": "Any restrictions on who can use the service. Ex: Must be 18+"
+    "tooltip": "Any restrictions on who can use the service. Ex: Must be 18+",
+    "type": "text"
   },
   "next_steps": {
     "id": "next_steps",
@@ -119,6 +132,7 @@
     "default": "Call or email to schedule an appointment",
     "icon": "MdOutlineSkipNext",
     "required": true,
-    "tooltip": "What the refugee should do next. Ex: Call or email to schedule an appointment"
+    "tooltip": "What the refugee should do next. Ex: Call or email to schedule an appointment",
+    "type": "text"
   }
 }
