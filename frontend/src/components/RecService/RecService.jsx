@@ -52,10 +52,14 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
    *   + Otherwise, we just remove it from the recommended list.
    */
   function deleteService() {
-    if (existingInCurrentDatabase) {
-      deleteServiceFromDatabase(nonprofit, data.id).then(deleteServiceCallback);
-    } else {
-      serviceAddOrDeleteSuccessfully(data.id);
+    if (confirm("Are you sure you want to delete the service: " + data.name)) {
+      if (existingInCurrentDatabase) {
+        deleteServiceFromDatabase(nonprofit, data.id).then(
+          deleteServiceCallback
+        );
+      } else {
+        serviceAddOrDeleteSuccessfully(data.id);
+      }
     }
   }
 
