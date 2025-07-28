@@ -88,7 +88,9 @@ function FooterNonProfit({ data }) {
           )}
           <p className="nonprofitInfo">
             <MdOutlineQuestionMark />
-            <a href={"mailto:" + strongEmail}> {strongEmail} </a>
+            <a href={"mailto:" + strongEmail} target="_blank">
+              {strongEmail}
+            </a>
           </p>
         </div>
         <div className="darkMode" onClick={changeDarkMode}>

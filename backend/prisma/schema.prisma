@@ -45,6 +45,7 @@ model nonprofit {
   website                String?
   logo                   String?
   color                  String?
+  contact_form_link      String?
   services               service[]
   employees              nonprofit_employee[]
   refugees               refugee[]

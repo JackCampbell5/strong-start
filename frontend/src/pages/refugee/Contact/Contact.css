@@ -1,8 +1,26 @@
 .Contact {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.Contact .contactButton {
+
+/* The text if there is no form that appears */
+.Contact .noForm {
   width: 50%;
-  height: 50%;
-  font-size: min(10vw, 15vh);
+}
+
+/* The Contact form and its elements */
+.Contact .contactForm {
+  width: 100%;
+}
+
+.Contact .contactButton {
+  margin: 20px;
+  padding: 1% 5%;
+}
+
+.Contact .contactForm iframe {
+  width: calc(100% - 20px);
+  height: 500px;
 }
