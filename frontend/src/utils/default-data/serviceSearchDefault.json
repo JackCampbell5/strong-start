@@ -4,41 +4,57 @@
     "value": "",
     "default": "123 Main St, Anytown, USA",
     "required": true,
-    "icon": "MdOutlineLocationOn"
+    "icon": "MdOutlineLocationOn",
+    "type": "text"
   },
   "services_needed": {
     "name": "Services Required*",
     "value": "",
     "default": "None",
     "required": true,
-    "icon": "MdOutlineStopCircle"
-  },
-  "country_of_origin": {
-    "name": "Country of Origin",
-    "value": "",
-    "default": "Afghanistan",
-    "required": false,
-    "icon": "MdAirplanemodeActive"
+    "icon": "MdOutlineStopCircle",
+    "type": "dropdown"
   },
   "language": {
     "name": "Language Spoken",
     "value": "",
     "default": "Arabic",
     "required": false,
-    "icon": "MdOutlineSpatialAudioOff"
+    "icon": "MdOutlineSpatialAudioOff",
+    "type": "text"
   },
   "date_entered": {
     "name": "Date entered US",
     "value": "",
     "default": "01-01-2025",
     "required": false,
-    "icon": "MdDateRange"
+    "icon": "MdDateRange",
+    "type": "date"
   },
-  "family_members": {
-    "name": "Family Size",
+  "attend_time": {
+    "name": "Attend Time",
     "value": "",
-    "default": "2",
+    "default": { "hours": "", "minutes": "", "amPm": "pm" },
     "required": false,
-    "icon": "MdOutlinePersonAddAlt"
+    "icon": "MdDateRange",
+    "type": "time"
+  },
+
+  "attend_day": {
+    "name": "Attend Day",
+    "value": "",
+    "default": "None",
+    "required": false,
+    "icon": "MdDateRange",
+    "type": "dropdown"
+  },
+
+  "preference": {
+    "name": "Most Important Factors",
+    "value": "",
+    "default": "None",
+    "required": false,
+    "icon": "MdImportantDevices",
+    "type": "dropdown"
   }
 }
