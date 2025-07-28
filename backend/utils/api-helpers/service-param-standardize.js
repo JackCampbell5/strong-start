@@ -70,12 +70,8 @@ export function reformatServiceForReturn(orgServices) {
  */
 export function dateString(dateStr) {
   const date = new Date(dateStr);
-  const dateFormatted = date.toLocaleDateString("en-US", {
-    month: "2-digit",
-    day: "2-digit",
-    year: "numeric",
-  });
-  return dateFormatted.replace(/\//g, "-");
+  const dateFormatted = date.toISOString().split("T")[0];
+  return dateFormatted;
 }
 
 /**
@@ -114,11 +110,11 @@ export async function validateAndFormatServiceData(
 
   // Validate the date
   if (updatedService.date_needed) {
-    let date = getAndValidateDate(updatedService.date_needed);
-    if (!date.valid) {
-      errorMessage += date.error + ", ";
+    const date = new Date(updatedService.date_needed);
+    if (!isNaN(date.getTime())) {
+      updatedService.date_needed = date.toISOString();
     } else {
-      updatedService.date_needed = date.data.toISOString();
+      errorMessage += "Invalid Date, ";
     }
   }
 
