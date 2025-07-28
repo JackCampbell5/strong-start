@@ -61,6 +61,18 @@ function InputField({ obj, index, setValue }) {
               setValue(index, dataReceived, "default");
             }}
           />
+        ) : obj.type === "date" ? (
+          <input
+            key={obj.id + "Input"}
+            className={obj.id + "Input"}
+            type="date"
+            value={obj.value}
+            onChange={(e) => {
+              const value = e.target.valueAsDate;
+              const valueDate = value.toISOString().split("T")[0];
+              setValue(index, valueDate);
+            }}
+          />
         ) : (
           <input
             key={obj.id + "Input"}
