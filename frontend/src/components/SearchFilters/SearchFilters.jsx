@@ -92,53 +92,55 @@ function SearchFilters({ loading, setLoading, searchFor }) {
       <div className="allSearch">
         {searchInput.map((obj, index) => (
           <div className="searchParam" key={obj.id + "Class"}>
-            <p className={obj.id + "P"}>{obj.name}:</p>
-            {obj.icon
-              ? React.createElement(serviceSearchIconMap[obj.icon], {})
-              : null}
-            {obj.options ? (
-              <Select
-                classNamePrefix="custom-select"
-                closeMenuOnSelect={false}
-                isMulti={true}
-                options={obj.options}
-                components={animatedComponents}
-                onChange={(e) => {
-                  let value = e;
-                  if (e.length === 0) value = "";
-                  const data = [...searchInput];
-                  data[index].value = JSON.stringify(value);
-                  setSearchInput(data);
-                }}
-              />
-            ) : obj.id === "attend_time" ? (
-              <TimeInput
-                data={obj.default}
-                updateData={(dataReceived) => {
-                  const time = dataReceived.hours
-                    ? createDatetimeString(dataReceived)
-                    : "";
-                  const data = [...searchInput];
-                  data[index].value = time;
-                  data[index].default = dataReceived;
-                  setSearchInput(data);
-                }}
-              />
-            ) : (
-              <input
-                key={obj.id + "Input"}
-                className={obj.id + "Input"}
-                type="text"
-                value={obj.value}
-                placeholder={obj.default}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  const data = [...searchInput];
-                  data[index].value = value;
-                  setSearchInput(data);
-                }}
-              />
-            )}
+            <div className="searchParamBody">
+              <p className={obj.id + "P"}>{obj.name}:</p>
+              {obj.icon
+                ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                : null}
+              {obj.options ? (
+                <Select
+                  classNamePrefix="custom-select"
+                  closeMenuOnSelect={false}
+                  isMulti={true}
+                  options={obj.options}
+                  components={animatedComponents}
+                  onChange={(e) => {
+                    let value = e;
+                    if (e.length === 0) value = "";
+                    const data = [...searchInput];
+                    data[index].value = JSON.stringify(value);
+                    setSearchInput(data);
+                  }}
+                />
+              ) : obj.id === "attend_time" ? (
+                <TimeInput
+                  data={obj.default}
+                  updateData={(dataReceived) => {
+                    const time = dataReceived.hours
+                      ? createDatetimeString(dataReceived)
+                      : "";
+                    const data = [...searchInput];
+                    data[index].value = time;
+                    data[index].default = dataReceived;
+                    setSearchInput(data);
+                  }}
+                />
+              ) : (
+                <input
+                  key={obj.id + "Input"}
+                  className={obj.id + "Input"}
+                  type="text"
+                  value={obj.value}
+                  placeholder={obj.default}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    const data = [...searchInput];
+                    data[index].value = value;
+                    setSearchInput(data);
+                  }}
+                />
+              )}
+            </div>
             <span className="tooltiptext">{obj.tooltip}</span>
           </div>
         ))}
