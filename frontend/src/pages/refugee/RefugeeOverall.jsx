@@ -26,7 +26,7 @@ function RefugeeOverall() {
   const nonprofit = getNonProfit();
   const pageNavigator = createPageNavigator(navigate, location);
   // State Variables
-  const [footerInfo, setFooterInfo] = useState({});
+  const [nonprofitInfo, setNonprofitInfo] = useState({});
 
   /**
    * Navigate to a new page
@@ -37,9 +37,9 @@ function RefugeeOverall() {
   }
   function fetchNonProfitInfoCallback(result) {
     if (result.valid) {
-      setFooterInfo(result.data);
+      setNonprofitInfo(result.data);
     } else {
-      setFooterInfo({ error: result.error });
+      setNonprofitInfo({ error: result.error });
     }
   }
 
@@ -60,11 +60,14 @@ function RefugeeOverall() {
           <Route path="" element={<Home />} />
           {/* The default path will probably end up as the home page*/}
           <Route path={`/${RPages.ALLSERVICES}`} element={<AllServices />} />
-          <Route path={`/${RPages.CONTACT}`} element={<Contact />} />
+          <Route
+            path={`/${RPages.CONTACT}`}
+            element={<Contact data={nonprofitInfo} />}
+          />
           <Route path={`/${RPages.HELP}`} element={<Help />} />
         </Routes>
       </div>
-      <FooterNonProfit data={footerInfo} />
+      <FooterNonProfit data={nonprofitInfo} />
     </div>
   );
 }
