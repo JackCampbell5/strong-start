@@ -5,16 +5,16 @@ import PropTypes from "prop-types";
 // Local Imports
 import "./Account.css";
 // Other Components
-import AccountInfoChange from "#components/AccountInfoCheck/AccountInfoCheck";
+import AccountInfoCheck from "#components/AccountInfoCheck/AccountInfoCheck";
 import EditAccount from "#components/EditAccount/EditAccount";
+import LoadingButton from "#components/LoadingButton/LoadingButton";
+// Util Functions
 import { getNonProfit } from "#utils/pathUtils";
 import {
   checkEmployeeLoginStatus,
   editNonprofitEmployee,
 } from "#utils/fetch/nonprofitEmployeeFetchUtils";
-import AccountInfoCheck from "#components/AccountInfoCheck/AccountInfoCheck";
 import { errorReturn, successReturn } from "#utils/httpUtils";
-import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 function Account({ nav }) {
   // Constant Variables
@@ -34,7 +34,7 @@ function Account({ nav }) {
    */
   async function editAccountFetch(_, accountInfo) {
     // Checks what params have been changed and adds them to the request body
-    let reqBody = createRecBody(reqBody, accountInfo);
+    let reqBody = createRecBody(accountInfo);
     if (reqBody.valid) {
       reqBody = reqBody.data;
     } else {

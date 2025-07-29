@@ -34,7 +34,6 @@ function SearchFilters({ loading, setLoading, searchFor }) {
   function searchSubmit() {
     // Check to make sure the data is valid and print and error message if it is not
     const data = searchInput;
-    console.log(data);
     const invalid = checkRequired(data);
     if (invalid) {
       setErrorText(invalid);

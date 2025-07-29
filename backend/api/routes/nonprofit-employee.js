@@ -158,8 +158,7 @@ employeeRouter.put("/:employee_id/edit", async (req, res, next) => {
         },
         data: employeeData,
       });
-      res.json(updateOne);
-      res.status(200).send();
+      return res.status(200).json(updateOne);
     } else {
       throw new EmployeeNotFoundError(employee_id);
     }
