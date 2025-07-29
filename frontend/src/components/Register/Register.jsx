@@ -15,16 +15,13 @@ import "./Register.css";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 import InputField from "#components/InputField/InputField";
 // Util Functions
-import { getNonProfit, NpPages, createPageNavigator } from "#utils/pathUtils";
+import { getNonProfit } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 import accountInfoDefaultData from "#default-data/accountInfoDefaultData.json";
 
 function Register({ setLoggedIn, nav, registerFetch, defaults }) {
   // Constant Variables
   const nonprofit = getNonProfit();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const pageNavigator = createPageNavigator(navigate, location);
 
   // State Variables
   const [username, setUsername] = useState(defaults?.username || "");
@@ -129,24 +126,9 @@ function Register({ setLoggedIn, nav, registerFetch, defaults }) {
     }
   }
 
-  /**
-   * Navigates to the login page
-   */
-  function goToLogin() {
-    const path = location.pathname;
-    const allLocations = path.split("/");
-    const ending = allLocations[allLocations.length - 1];
-    const newPath = path.replace(ending, NpPages.LOGIN);
-    pageNavigator(newPath);
-  }
-
   useEffect(() => {}, []);
   return (
     <div className="Register">
-      <div className="topButtons">
-        <button onClick={goToLogin}>Login Instead?</button>
-        <button onClick={() => navigate("/")}>Change Nonprofit</button>
-      </div>
       <div className="userInfo">
         <div className="registerField">
           <InputField
