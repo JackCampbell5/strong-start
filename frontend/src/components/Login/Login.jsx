@@ -61,7 +61,7 @@ function Login({ setLoggedIn, nav }) {
       setTimeout(() => {
         nav("");
         setSuccessText("");
-      }, 2000); // 2000 milliseconds = 2 seconds
+      }, 500); // 500 milliseconds = .5 seconds
     } else {
       setErrorText(result.error);
     }
