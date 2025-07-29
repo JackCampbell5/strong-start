@@ -1,7 +1,6 @@
 // Node Module Imports
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router";
 import {
   MdOutlineRemoveRedEye,
   MdRemoveRedEye,
@@ -42,7 +41,8 @@ function EditAccount({
   /**
    * Handles the editAccount button click
    */
-  function editAccountButtonClicked() {
+  function editAccountButtonClicked(e) {
+    e.preventDefault();
     setSuccessText("");
     setErrorText("");
     const invalid = findValidationErrors();
@@ -137,82 +137,85 @@ function EditAccount({
   return (
     <div className="EditAccount">
       <div className="userInfo">
-        <div className="editAccountField">
-          <InputField
-            obj={{ ...accountInfoDefaultData.username, value: username }}
-            setValue={(_, value) => {
-              setUsername(value);
-            }}
-          />
-        </div>
-        <div className="editAccountField">
-          <p>Password:</p>
-          <input
-            className="password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            placeholder="password"
-            onChange={(e) => {
-              setPasswordHelper(e.target.value);
-            }}
-          />
-          <div
-            className="showPassword"
-            onClick={() => setShowPassword((prev) => !prev)}
-          >
-            {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
+        <form autoComplete="on" onSubmit={editAccountButtonClicked}>
+          <div className="editAccountField">
+            <InputField
+              obj={{ ...accountInfoDefaultData.username, value: username }}
+              setValue={(_, value) => {
+                setUsername(value);
+              }}
+            />
           </div>
-        </div>
-        <div className="passwordRequirements">
-          <div>
-            <strong>Password Requirements:</strong>
-          </div>
-          {passwordRequirements.map((req, index) => (
-            <div className="passwordParam" key={index}>
-              <div>{req.name}: </div>
-              {req.valid ? (
-                <div className="checked">
-                  <MdCheckBox />
-                </div>
-              ) : (
-                <div className="unchecked">
-                  <MdCheckBoxOutlineBlank />
-                </div>
-              )}
+          <div className="editAccountField">
+            <p>Password:</p>
+            <input
+              className="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              placeholder="password"
+              onChange={(e) => {
+                setPasswordHelper(e.target.value);
+              }}
+              autoComplete="new-password"
+            />
+            <div
+              className="showPassword"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
             </div>
-          ))}
-        </div>
-        <div className="editAccountField">
-          <p>Confirm Password:</p>
-          <input
-            className="password"
-            type={showPassword ? "text" : "password"}
-            placeholder="password"
-            value={passwordCheck}
-            onChange={(e) => {
-              setPasswordCheck(e.target.value);
-              if (e.target.value !== password) {
-                setErrorText("Passwords do not match");
-              } else {
-                setErrorText("");
-              }
-            }}
+          </div>
+          <div className="passwordRequirements">
+            <div>
+              <strong>Password Requirements:</strong>
+            </div>
+            {passwordRequirements.map((req, index) => (
+              <div className="passwordParam" key={index}>
+                <div>{req.name}: </div>
+                {req.valid ? (
+                  <div className="checked">
+                    <MdCheckBox />
+                  </div>
+                ) : (
+                  <div className="unchecked">
+                    <MdCheckBoxOutlineBlank />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="editAccountField">
+            <p>Confirm Password:</p>
+            <input
+              className="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="password"
+              value={passwordCheck}
+              onChange={(e) => {
+                setPasswordCheck(e.target.value);
+                if (e.target.value !== password) {
+                  setErrorText("Passwords do not match");
+                } else {
+                  setErrorText("");
+                }
+              }}
+            />
+          </div>
+          <div className="editAccountField">
+            <InputField
+              obj={{ ...accountInfoDefaultData.email, value: email }}
+              setValue={(_, value) => {
+                setEmail(value);
+              }}
+            />
+          </div>
+          <LoadingButton
+            loading={loading}
+            onClick={() => {}}
+            text={newAccount ? "Register" : "Save Changes"}
           />
-        </div>
-        <div className="editAccountField">
-          <InputField
-            obj={{ ...accountInfoDefaultData.email, value: email }}
-            setValue={(_, value) => {
-              setEmail(value);
-            }}
-          />
-        </div>
+        </form>
       </div>
-      <LoadingButton
-        loading={loading}
-        onClick={editAccountButtonClicked}
-        text={newAccount ? "Register" : "Save Changes"}
-      />
       <p className="errorText">{errorText}</p>
       <p className="successText">{successText}</p>
     </div>
