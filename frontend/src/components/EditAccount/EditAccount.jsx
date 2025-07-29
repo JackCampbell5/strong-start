@@ -75,19 +75,19 @@ function EditAccount({
     if (password !== passwordCheck) {
       errorMessage += "Passwords do not match. ";
     }
+    for (const req of passwordRequirements) {
+      const regex = new RegExp(req.value, "g");
+      if (password && !regex.test(password)) {
+        errorMessage += "Password requirements not met. ";
+        break;
+      }
+    }
     if (newAccount) {
       if (username === "") {
         errorMessage += "Username cannot be empty. ";
       }
       if (password === "") {
         errorMessage += "Password cannot be empty. ";
-      }
-      for (const req of passwordRequirements) {
-        const regex = new RegExp(req.value, "g");
-        if (!regex.test(password)) {
-          errorMessage += "Password requirements not met. ";
-          break;
-        }
       }
       if (email === "") {
         errorMessage += "Email cannot be empty. ";
