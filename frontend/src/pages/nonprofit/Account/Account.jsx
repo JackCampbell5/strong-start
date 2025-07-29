@@ -8,7 +8,10 @@ import "./Account.css";
 import AccountInfoChange from "#components/AccountInfoCheck/AccountInfoCheck";
 import Register from "#components/Register/Register";
 import { getNonProfit } from "#utils/pathUtils";
-import { checkEmployeeLoginStatus } from "#utils/fetch/nonprofitEmployeeFetchUtils";
+import {
+  checkEmployeeLoginStatus,
+  editNonprofitEmployee,
+} from "#utils/fetch/nonprofitEmployeeFetchUtils";
 import AccountInfoCheck from "#components/AccountInfoCheck/AccountInfoCheck";
 import { errorReturn, successReturn } from "#utils/httpUtils";
 import LoadingButton from "#components/LoadingButton/LoadingButton";
@@ -49,8 +52,18 @@ function Account({ nav }) {
         "No changes made to account as no fields were changed"
       );
     }
-    // Todo: Add account editing
-    return successReturn("Account edited");
+    return editNonprofitEmployee(nonprofit, reqBody.id, reqBody).then(
+      editCallback
+    );
+  }
+
+  function editCallback(result) {
+    if (result.valid) {
+      setInitEmployee(result.data);
+      return successReturn(result.data.username + "edited successfully");
+    } else {
+      return result;
+    }
   }
 
   function LoginStatusCallback(result) {
