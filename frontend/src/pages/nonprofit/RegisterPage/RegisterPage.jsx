@@ -39,6 +39,7 @@ function RegisterPage({ setLoggedIn, nav }) {
           setLoggedIn={setLoggedIn}
           nav={nav}
           registerFetch={registerFetch}
+          newAccount={true}
         />
       </div>
     );

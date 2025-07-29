@@ -19,7 +19,7 @@ import { getNonProfit } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 import accountInfoDefaultData from "#default-data/accountInfoDefaultData.json";
 
-function Register({ setLoggedIn, nav, registerFetch, defaults }) {
+function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
   // Constant Variables
   const nonprofit = getNonProfit();
 
@@ -66,27 +66,26 @@ function Register({ setLoggedIn, nav, registerFetch, defaults }) {
    */
   function findValidationErrors() {
     let errorMessage = "";
-    if (username === "") {
-      errorMessage += "Username cannot be empty. ";
-    }
-    if (password === "") {
-      errorMessage += "Password cannot be empty. ";
-    }
-    for (const req of passwordRequirements) {
-      const regex = new RegExp(req.value, "g");
-      if (!regex.test(password)) {
-        errorMessage += "Password requirements not met. ";
-        break;
-      }
-    }
-    if (password.length < 8) {
-      errorMessage += "Password must be at least 8 characters. ";
-    }
     if (password !== passwordCheck) {
       errorMessage += "Passwords do not match. ";
     }
-    if (email === "") {
-      errorMessage += "Email cannot be empty. ";
+    if (newAccount) {
+      if (username === "") {
+        errorMessage += "Username cannot be empty. ";
+      }
+      if (password === "") {
+        errorMessage += "Password cannot be empty. ";
+      }
+      for (const req of passwordRequirements) {
+        const regex = new RegExp(req.value, "g");
+        if (!regex.test(password)) {
+          errorMessage += "Password requirements not met. ";
+          break;
+        }
+      }
+      if (email === "") {
+        errorMessage += "Email cannot be empty. ";
+      }
     }
     return errorMessage;
   }
@@ -102,8 +101,10 @@ function Register({ setLoggedIn, nav, registerFetch, defaults }) {
       setSuccessText(result.data);
       // Navigate to the home page after 2 seconds
       setTimeout(() => {
-        nav("");
         setSuccessText("");
+        if (newAccount) {
+          nav("");
+        }
       }, 1000); // 2000 milliseconds = 2 seconds
     } else {
       setErrorText(result.error);
@@ -204,7 +205,7 @@ function Register({ setLoggedIn, nav, registerFetch, defaults }) {
       <LoadingButton
         loading={loading}
         onClick={registerButtonClicked}
-        text="Register"
+        text={newAccount ? "Register" : "Save Changes"}
       />
       <p className="errorText">{errorText}</p>
       <p className="successText">{successText}</p>
