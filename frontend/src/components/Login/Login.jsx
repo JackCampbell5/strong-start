@@ -84,7 +84,8 @@ function Login({ setLoggedIn, nav }) {
    */
   function checkEmployeeLoginStatusCallback(result) {
     if (result.valid) {
-      setSuccessText(result.data);
+      const message = `${result.data.username} currently signed in`;
+      setSuccessText(message);
     }
   }
 

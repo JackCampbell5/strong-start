@@ -113,15 +113,13 @@ employeeRouter.post("/login", async (req, res, next) => {
 });
 
 // Register a new non profit employee
-employeeRouter.get("/login/test", async (req, res, next) => {
+employeeRouter.get("/login/current", async (req, res, next) => {
   const nonprofit = req.body.nonprofit;
   try {
     [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
-    return res
-      .status(200)
-      .json(req.session.employee.username + " is currently logged in");
+    return res.status(200).json(secureEmployeeData(req.session.employee));
   } catch (e) {
     return next(e);
   }

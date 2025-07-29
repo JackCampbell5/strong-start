@@ -33,7 +33,7 @@ export async function loginNonprofitEmployee(nonprofit, username, password) {
 }
 
 export async function checkEmployeeLoginStatus(nonprofit) {
-  return await fetch(`${serviceLink}/${nonprofit}/login/test`, {
+  return await fetch(`${serviceLink}/${nonprofit}/login/current`, {
     method: "GET",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
