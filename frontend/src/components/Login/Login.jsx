@@ -100,40 +100,38 @@ function Login({ setLoggedIn, nav }) {
         <button onClick={() => navigate("/")}>Change Nonprofit</button>
       </div>
       <div className="userInfo">
-        <form>
-          <div className="loginField">
-            <p>Username:</p>
-            <input
-              className="username"
-              type="text"
-              value={username}
-              placeholder="username"
-              autoComplete="username"
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-            />
+        <div className="loginField">
+          <p>Username:</p>
+          <input
+            className="username"
+            type="text"
+            value={username}
+            placeholder="username"
+            autoComplete="username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+          />
+        </div>
+        <div className="loginField">
+          <p>Password:</p>
+          <input
+            className="password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            placeholder="password"
+            autoComplete="current-password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <div
+            className="showPassword"
+            onClick={() => setShowPassword((prev) => !prev)}
+          >
+            {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
           </div>
-          <div className="loginField">
-            <p>Password:</p>
-            <input
-              className="password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              placeholder="password"
-              autoComplete="current-password"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
-            <div
-              className="showPassword"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              {showPassword ? <MdRemoveRedEye /> : <MdOutlineRemoveRedEye />}
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
       <LoadingButton loading={loading} onClick={handleLogin} text="Log In" />
       <p className="errorText">{errorText}</p>
