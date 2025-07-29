@@ -19,12 +19,20 @@ function Account({ nav }) {
   const [validAccount, setValidAccount] = useState(false);
   // State Variables
   const [userChecked, setUserChecked] = useState(false);
-  const [initUsername, setInitUsername] = useState("");
-  const [initEmail, setInitEmail] = useState("");
+  const [initEmployee, setInitEmployee] = useState({});
   const [errorText, setErrorText] = useState("");
 
   async function registerFetch(_, accountInfo) {
-    let reqBody = {};
+    // Create the request body with all the params except for the password
+    let {
+      username: initUsername,
+      password: a,
+      email: initEmail,
+      ...reqBody
+    } = initEmployee;
+    const startingLength = Object.keys(reqBody).length;
+
+    // Check if any of the params have changed
     if (accountInfo.username && accountInfo.username !== initUsername) {
       reqBody.username = accountInfo.username;
     }
@@ -34,8 +42,9 @@ function Account({ nav }) {
     if (accountInfo.password) {
       reqBody.password = accountInfo.password;
     }
-    if (Object.keys(reqBody).length === 0) {
-      console.log("No changes made to account as no fields were changed");
+
+    // If no params have changed, return an error
+    if (Object.keys(reqBody).length === startingLength) {
       return errorReturn(
         "No changes made to account as no fields were changed"
       );
@@ -48,8 +57,7 @@ function Account({ nav }) {
     console.log("LoginStatusCallback", result);
     if (result.valid) {
       const data = result.data;
-      setInitUsername(data.username);
-      setInitEmail(data.email);
+      setInitEmployee(data);
       setValidAccount(true);
     } else {
       setErrorText(result.error);
@@ -74,7 +82,10 @@ function Account({ nav }) {
                 setLoggedIn={() => {}}
                 nav={nav}
                 registerFetch={registerFetch}
-                defaults={{ username: initUsername, email: initEmail }}
+                defaults={{
+                  username: initEmployee.username,
+                  email: initEmployee.email,
+                }}
                 newAccount={false}
               />
             </div>
