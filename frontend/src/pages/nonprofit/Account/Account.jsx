@@ -21,7 +21,7 @@ function Account({ nav }) {
   const nonprofit = getNonProfit();
   const [validAccount, setValidAccount] = useState(false);
   // State Variables
-  const [userChecked, setUserChecked] = useState(false);
+  const [userChecked, setUserChecked] = useState(true);
   const [initEmployee, setInitEmployee] = useState({});
   const [errorText, setErrorText] = useState("");
 
@@ -85,9 +85,6 @@ function Account({ nav }) {
       <h1>Account Settings</h1>
       {validAccount ? (
         <div className="validAccount">
-          <button onClick={() => setUserChecked((prev) => !prev)}>
-            Check Account Info
-          </button>
           {userChecked ? (
             <div className="changeAccountInfo">
               <p>Change whatever params you want</p>
@@ -102,9 +99,7 @@ function Account({ nav }) {
                 newAccount={false}
               />
             </div>
-          ) : (
-            <AccountInfoCheck setUserChecked={setUserChecked} />
-          )}
+          ) : null}
         </div>
       ) : (
         <LoadingButton loading={true} />
