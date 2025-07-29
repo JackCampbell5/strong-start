@@ -105,6 +105,7 @@ function NonProfitOverall() {
             path={`/${NpPages.REGISTER}`}
             element={<RegisterPage setLoggedIn={setLoggedIn} nav={nav} />}
           />
+          <Route path={`/${NpPages.ACCOUNT}`} element={<Account nav={nav} />} />
         </Routes>
       </div>
       <FooterNonProfit data={footerInfo} />

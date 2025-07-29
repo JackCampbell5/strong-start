@@ -11,6 +11,7 @@ export const NpPages = Object.freeze({
   LOGIN: "login",
   REGISTER: "register",
   RECOMMEND: "recommend",
+  ACCOUNT: "account",
 });
 export const RPages = Object.freeze({
   CONTACT: "contact",
