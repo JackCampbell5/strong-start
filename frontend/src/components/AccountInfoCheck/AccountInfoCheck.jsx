@@ -1,14 +1,15 @@
 // Node Module Imports
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { MdOutlineRemoveRedEye, MdRemoveRedEye } from "react-icons/md";
 
 // Local Imports
 import "./AccountInfoCheck.css";
+// Other Components
+import LoadingButton from "#components/LoadingButton/LoadingButton";
+// Until Methods
 import { loginNonprofitEmployee } from "#utils/fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
-import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 function AccountInfoCheck({ setUserChecked, userData }) {
   // Constant Variables
@@ -20,6 +21,9 @@ function AccountInfoCheck({ setUserChecked, userData }) {
   const [loading, setLoading] = useState(false);
   const [errorText, setErrorText] = useState("");
 
+  /**
+   * Method that runs when the user clicks the verify button to check the login status. It makes sure the password is not empty and then calls the loginNonprofitEmployee method to check the login status.
+   */
   function handlePasswordCheck() {
     setErrorText("");
     if (password === "") {
@@ -31,13 +35,15 @@ function AccountInfoCheck({ setUserChecked, userData }) {
       passwordCheckCallback
     );
   }
-
+  /**
+   * Callback function that runs when the loginNonprofitEmployee method returns a result. If the result is valid, it sets the userChecked state to true. If the result is not valid, it delivers an error message.
+   * @param {object} result - The result object returned from the loginNonprofitEmployee method.
+   */
   function passwordCheckCallback(result) {
     setLoading(false);
     if (result.valid) {
       setUserChecked(true);
     } else {
-      setUserChecked(false);
       setErrorText(result.error);
     }
   }
@@ -69,7 +75,7 @@ function AccountInfoCheck({ setUserChecked, userData }) {
       <LoadingButton
         loading={loading}
         onClick={handlePasswordCheck}
-        text="Log In"
+        text="Verify"
       />
       <p className="errorText">{errorText}</p>
     </div>
