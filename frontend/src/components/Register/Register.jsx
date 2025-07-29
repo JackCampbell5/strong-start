@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import {
@@ -13,12 +13,13 @@ import {
 import "./Register.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
+import InputField from "#components/InputField/InputField";
 // Util Functions
-import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { getNonProfit, NpPages, createPageNavigator } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
+import accountInfoDefaultData from "#default-data/accountInfoDefaultData.json";
 
-function Register({ setLoggedIn, nav }) {
+function Register({ setLoggedIn, nav, registerFetch, defaults }) {
   // Constant Variables
   const nonprofit = getNonProfit();
   const navigate = useNavigate();
@@ -26,10 +27,10 @@ function Register({ setLoggedIn, nav }) {
   const pageNavigator = createPageNavigator(navigate, location);
 
   // State Variables
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(defaults?.username || "");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(defaults?.email || "");
   const [showPassword, setShowPassword] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
@@ -59,7 +60,7 @@ function Register({ setLoggedIn, nav }) {
       email: email,
     };
     setLoading(true);
-    registerNonprofitEmployee(nonprofit, user).then(registerCallback);
+    registerFetch(nonprofit, user).then(registerCallback);
   }
 
   /**
@@ -106,7 +107,7 @@ function Register({ setLoggedIn, nav }) {
       setTimeout(() => {
         nav("");
         setSuccessText("");
-      }, 2000); // 2000 milliseconds = 2 seconds
+      }, 1000); // 2000 milliseconds = 2 seconds
     } else {
       setErrorText(result.error);
     }
@@ -138,6 +139,8 @@ function Register({ setLoggedIn, nav }) {
     const newPath = path.replace(ending, NpPages.LOGIN);
     pageNavigator(newPath);
   }
+
+  useEffect(() => {}, []);
   return (
     <div className="Register">
       <div className="topButtons">
@@ -146,14 +149,10 @@ function Register({ setLoggedIn, nav }) {
       </div>
       <div className="userInfo">
         <div className="registerField">
-          <p>Username:</p>
-          <input
-            className="username"
-            type="text"
-            value={username}
-            placeholder="username"
-            onChange={(e) => {
-              setUsername(e.target.value);
+          <InputField
+            obj={{ ...accountInfoDefaultData.username, value: username }}
+            setValue={(_, value) => {
+              setUsername(value);
             }}
           />
         </div>
@@ -212,14 +211,10 @@ function Register({ setLoggedIn, nav }) {
           />
         </div>
         <div className="registerField">
-          <p>Email:</p>
-          <input
-            className="email"
-            type="text"
-            value={email}
-            placeholder="email@domain.com"
-            onChange={(e) => {
-              setEmail(e.target.value);
+          <InputField
+            obj={{ ...accountInfoDefaultData.email, value: email }}
+            setValue={(_, value) => {
+              setEmail(value);
             }}
           />
         </div>
