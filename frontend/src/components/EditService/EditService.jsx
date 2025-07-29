@@ -162,39 +162,41 @@ function EditService({
           {serviceInput.map((obj, index) => {
             return obj.id === "hours" ? null : (
               <div className="serviceParam" key={index}>
-                <p className={obj.id + "P"}>{obj.name}:</p>
-                {obj.icon
-                  ? React.createElement(serviceSearchIconMap[obj.icon], {})
-                  : null}{" "}
-                {obj.id === "description" ? (
-                  <textarea
-                    key={obj.id + "Input"}
-                    className={obj.id + "Input"}
-                    type="text"
-                    value={obj.value}
-                    placeholder={obj.default}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const data = [...serviceInput];
-                      data[index].value = value;
-                      setServiceInput(data);
-                    }}
-                  />
-                ) : (
-                  <input
-                    key={obj.id + "Input"}
-                    className={obj.id + "Input"}
-                    type="text"
-                    value={obj.value}
-                    placeholder={obj.default}
-                    onChange={(e) => {
-                      const value = e.target.value;
-                      const data = [...serviceInput];
-                      data[index].value = value;
-                      setServiceInput(data);
-                    }}
-                  />
-                )}
+                <div className="serviceParamBody">
+                  <p className={obj.id + "P"}>{obj.name}:</p>
+                  {obj.icon
+                    ? React.createElement(serviceSearchIconMap[obj.icon], {})
+                    : null}{" "}
+                  {obj.id === "description" ? (
+                    <textarea
+                      key={obj.id + "Input"}
+                      className={obj.id + "Input"}
+                      type="text"
+                      value={obj.value}
+                      placeholder={obj.default}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        const data = [...serviceInput];
+                        data[index].value = value;
+                        setServiceInput(data);
+                      }}
+                    />
+                  ) : (
+                    <input
+                      key={obj.id + "Input"}
+                      className={obj.id + "Input"}
+                      type="text"
+                      value={obj.value}
+                      placeholder={obj.default}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        const data = [...serviceInput];
+                        data[index].value = value;
+                        setServiceInput(data);
+                      }}
+                    />
+                  )}
+                </div>
                 {obj.tooltip && (
                   <span className="tooltiptext">{obj.tooltip}</span>
                 )}

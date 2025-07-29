@@ -18,11 +18,14 @@
 
 /* Div for each individual param */
 .EditService .serviceParam {
+  position: relative;
+}
+/* Div without tooltip */
+.EditService .serviceParamBody {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  position: relative;
 }
 
 /* The label for each field */
@@ -42,13 +45,13 @@
   height: 30px;
 }
 /* The icon for each field */
-.EditService .serviceParam svg {
+.EditService .serviceParamBody svg {
   height: 25px;
   width: 25px;
 }
 
 /* The input for the description field is larger to allow for more text */
-.EditService .serviceParam .descriptionInput {
+.EditService .serviceParamBody .descriptionInput {
   width: min(500px, calc(100vw - 100px));
   height: 100px;
 }
@@ -76,6 +79,6 @@
   left: 10%;
 }
 
-.EditService .serviceParam:hover .tooltiptext {
+.EditService .serviceParamBody:hover + .tooltiptext {
   visibility: visible;
 }

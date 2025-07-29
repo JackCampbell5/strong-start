@@ -15,13 +15,17 @@
   margin: 20px;
 }
 
-/* Each individual param */
+/* Each individual param with tooltip */
 .SearchFilters .searchParam {
+  position: relative;
+}
+
+/* Each individual param without tooltip */
+.SearchFilters .searchParamBody {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   flex-wrap: wrap;
-  position: relative;
 }
 /* The label for each param */
 .SearchFilters .allSearchParams p {
@@ -127,6 +131,6 @@ Key:
   left: 10%;
 }
 
-.SearchFilters .searchParam:hover .tooltiptext {
+.SearchFilters .searchParamBody:hover + .tooltiptext {
   visibility: visible;
 }
