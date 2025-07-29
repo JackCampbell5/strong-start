@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import "./Account.css";
 // Other Components
 import AccountInfoChange from "#components/AccountInfoCheck/AccountInfoCheck";
-import Register from "#components/Register/Register";
+import EditAccount from "#components/EditAccount/EditAccount";
 import { getNonProfit } from "#utils/pathUtils";
 import {
   checkEmployeeLoginStatus,
@@ -25,7 +25,7 @@ function Account({ nav }) {
   const [initEmployee, setInitEmployee] = useState({});
   const [errorText, setErrorText] = useState("");
 
-  async function registerFetch(_, accountInfo) {
+  async function editAccountFetch(_, accountInfo) {
     // Create the request body with all the params except for the password
     let {
       username: initUsername,
@@ -88,10 +88,10 @@ function Account({ nav }) {
           {userChecked ? (
             <div className="changeAccountInfo">
               <p>Change whatever params you want</p>
-              <Register
+              <EditAccount
                 setLoggedIn={() => {}}
                 nav={nav}
-                registerFetch={registerFetch}
+                editAccountFetch={editAccountFetch}
                 defaults={{
                   username: initEmployee.username,
                   email: initEmployee.email,

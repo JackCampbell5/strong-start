@@ -10,7 +10,7 @@ import {
 } from "react-icons/md";
 
 // Local Imports
-import "./Register.css";
+import "./EditAccount.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
 import InputField from "#components/InputField/InputField";
@@ -19,7 +19,13 @@ import { getNonProfit } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
 import accountInfoDefaultData from "#default-data/accountInfoDefaultData.json";
 
-function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
+function EditAccount({
+  setLoggedIn,
+  nav,
+  editAccountFetch,
+  defaults,
+  newAccount,
+}) {
   // Constant Variables
   const nonprofit = getNonProfit();
 
@@ -34,30 +40,30 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
   const [loading, setLoading] = useState(false);
 
   /**
-   * Handles the register button click
+   * Handles the editAccount button click
    */
-  function registerButtonClicked() {
+  function editAccountButtonClicked() {
     setSuccessText("");
     setErrorText("");
     const invalid = findValidationErrors();
     if (invalid) {
       setErrorText(invalid);
     } else {
-      handleRegister();
+      handleEditAccount();
     }
   }
 
   /**
-   * Handles the actual register request if all fields are valid
+   * Handles the actual editAccount request if all fields are valid
    */
-  function handleRegister() {
+  function handleEditAccount() {
     const user = {
       username: username,
       password: password,
       email: email,
     };
     setLoading(true);
-    registerFetch(nonprofit, user).then(registerCallback);
+    editAccountFetch(nonprofit, user).then(editAccountCallback);
   }
 
   /**
@@ -91,10 +97,10 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
   }
 
   /**
-   * Processes the result of the register request
-   * @param {object} result - The result of the register request
+   * Processes the result of the editAccount request
+   * @param {object} result - The result of the editAccount request
    */
-  function registerCallback(result) {
+  function editAccountCallback(result) {
     setLoading(false);
     if (result.valid) {
       setLoggedIn(true);
@@ -129,9 +135,9 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
 
   useEffect(() => {}, []);
   return (
-    <div className="Register">
+    <div className="EditAccount">
       <div className="userInfo">
-        <div className="registerField">
+        <div className="editAccountField">
           <InputField
             obj={{ ...accountInfoDefaultData.username, value: username }}
             setValue={(_, value) => {
@@ -139,7 +145,7 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
             }}
           />
         </div>
-        <div className="registerField">
+        <div className="editAccountField">
           <p>Password:</p>
           <input
             className="password"
@@ -176,7 +182,7 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
             </div>
           ))}
         </div>
-        <div className="registerField">
+        <div className="editAccountField">
           <p>Confirm Password:</p>
           <input
             className="password"
@@ -193,7 +199,7 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
             }}
           />
         </div>
-        <div className="registerField">
+        <div className="editAccountField">
           <InputField
             obj={{ ...accountInfoDefaultData.email, value: email }}
             setValue={(_, value) => {
@@ -204,7 +210,7 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
       </div>
       <LoadingButton
         loading={loading}
-        onClick={registerButtonClicked}
+        onClick={editAccountButtonClicked}
         text={newAccount ? "Register" : "Save Changes"}
       />
       <p className="errorText">{errorText}</p>
@@ -213,4 +219,4 @@ function Register({ setLoggedIn, nav, registerFetch, defaults, newAccount }) {
   );
 }
 
-export default Register;
+export default EditAccount;

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 // Local Imports
 import "./RegisterPage.css";
 // Other Components
-import Register from "#components/Register/Register";
+import EditAccount from "#components/EditAccount/EditAccount";
 // Util Functions
 import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
 import { useLocation, useNavigate } from "react-router";
@@ -35,10 +35,10 @@ function RegisterPage({ setLoggedIn, nav }) {
           <button onClick={goToLogin}>Login Instead?</button>
           <button onClick={() => navigate("/")}>Change Nonprofit</button>
         </div>
-        <Register
+        <EditAccount
           setLoggedIn={setLoggedIn}
           nav={nav}
-          registerFetch={registerFetch}
+          editAccountFetch={registerFetch}
           newAccount={true}
         />
       </div>
