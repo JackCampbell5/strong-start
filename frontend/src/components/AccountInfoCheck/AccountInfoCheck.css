@@ -1,4 +1,11 @@
-.AccountInfoChange {
+.AccountInfoCheck {
   height: auto;
   width: auto;
+}
+
+.AccountInfoCheck .passwordField {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
