@@ -96,6 +96,10 @@ function NonProfitOverall() {
               element={<ViewServices />}
             />
             <Route path={`/${NpPages.RECOMMEND}`} element={<Recommend />} />
+            <Route
+              path={`/${NpPages.ACCOUNT}`}
+              element={<Account nav={nav} />}
+            />
           </Route>
           <Route
             path={`/${NpPages.LOGIN}`}
@@ -105,7 +109,6 @@ function NonProfitOverall() {
             path={`/${NpPages.REGISTER}`}
             element={<RegisterPage setLoggedIn={setLoggedIn} nav={nav} />}
           />
-          <Route path={`/${NpPages.ACCOUNT}`} element={<Account nav={nav} />} />
         </Routes>
       </div>
       <FooterNonProfit data={footerInfo} />
