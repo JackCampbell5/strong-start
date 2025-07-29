@@ -6,7 +6,8 @@
     "default": "123 Main St. Anytown, 12345 MD USA",
     "required": true,
     "icon": "MdOutlineLocationOn",
-    "tooltip": "Address to search from(Can use nearby address for security). Apartment number not required"
+    "tooltip": "Address to search from(Can use nearby address for security). Apartment number not required",
+    "type": "text"
   },
   {
     "id": "services_needed",
@@ -16,7 +17,8 @@
     "default": "None",
     "required": true,
     "icon": "MdOutlineStopCircle",
-    "tooltip": "Select as many as are useful"
+    "tooltip": "Select as many as are useful",
+    "type": "dropdown"
   },
   {
     "id": "language",
@@ -25,7 +27,8 @@
     "default": "Arabic",
     "required": false,
     "icon": "MdOutlineSpatialAudioOff",
-    "tooltip": "Language name in english form, comma separated. Ex: Arabic, English, Spanish"
+    "tooltip": "Language name in english form, comma separated. Ex: Arabic, English, Spanish",
+    "type": "text"
   },
   {
     "id": "date_entered",
@@ -34,7 +37,8 @@
     "default": "01-01-2025",
     "required": false,
     "icon": "MdDateRange",
-    "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025"
+    "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025",
+    "type": "date"
   },
   {
     "id": "attend_time",
@@ -43,7 +47,8 @@
     "default": { "hours": "", "minutes": "", "amPm": "pm" },
     "required": false,
     "icon": "MdDateRange",
-    "tooltip": "What time it works best to go to the service"
+    "tooltip": "What time it works best to go to the service",
+    "type": "time"
   },
   {
     "id": "attend_day",
@@ -61,7 +66,8 @@
     "default": "None",
     "required": false,
     "icon": "MdDateRange",
-    "tooltip": "What day of the week it works best to go to the service"
+    "tooltip": "What day of the week it works best to go to the service",
+    "type": "dropdown"
   },
   {
     "id": "preference",
@@ -77,6 +83,7 @@
     "default": "None",
     "required": false,
     "icon": "MdImportantDevices",
-    "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025"
+    "tooltip": "The date you entered the USA. In mm-dd-yyyy format. Ex: 01-01-2025",
+    "type": "dropdown"
   }
 ]

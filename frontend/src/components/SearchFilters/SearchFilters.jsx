@@ -2,32 +2,31 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 
 // Local Imports
 import "./SearchFilters.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
-import TimeInput from "#components/TimeInput/TimeInput";
+import InputField from "#components/InputField/InputField";
 // Util Methods
 import { fetchServiceFilters } from "#fetch/serviceFetchUtils";
 import serviceSearchDefault from "#default-data/serviceSearchDefault.json";
-import { serviceSearchIconMap } from "#utils/serviceIconUtils";
 import { reformatData } from "#utils/textUtils";
 import { getNonProfit } from "#utils/pathUtils";
 import { fillMissingDataFields } from "#utils/selectUtils";
-import { createDatetimeString } from "#utils/hoursUtils";
+import { setValueCreator } from "#utils/inputUtils";
 
 function SearchFilters({ loading, setLoading, searchFor }) {
   // Constant Variables
   const nonprofit = getNonProfit();
-  const animatedComponents = makeAnimated();
 
   // State Variables
   const [errorText, setErrorText] = useState("");
   // Uses serviceSearchDefault which is a list of objects that contain the name, icon, and default value for each param
   const [searchInput, setSearchInput] = useState([]);
+
+  // Constant depends on state variables so declared later
+  const setValue = setValueCreator(searchInput, setSearchInput);
 
   /**
    * Submit the search to the backend
@@ -35,6 +34,7 @@ function SearchFilters({ loading, setLoading, searchFor }) {
   function searchSubmit() {
     // Check to make sure the data is valid and print and error message if it is not
     const data = searchInput;
+    console.log(data);
     const invalid = checkRequired(data);
     if (invalid) {
       setErrorText(invalid);
@@ -71,6 +71,10 @@ function SearchFilters({ loading, setLoading, searchFor }) {
     return errorMessage;
   }
 
+  /**
+   * Callback function for the fetchServiceFilters function. Sets the filter params if the data is valid and prints an error message if it is not
+   * @param {object} results - The results of the fetchServiceFilters function
+   */
   function filterCallback(results) {
     if (results.valid) {
       setLoading(false);
@@ -91,58 +95,7 @@ function SearchFilters({ loading, setLoading, searchFor }) {
       <h1>Filters</h1>
       <div className="allSearch">
         {searchInput.map((obj, index) => (
-          <div className="searchParam" key={obj.id + "Class"}>
-            <div className="searchParamBody">
-              <p className={obj.id + "P"}>{obj.name}:</p>
-              {obj.icon
-                ? React.createElement(serviceSearchIconMap[obj.icon], {})
-                : null}
-              {obj.options ? (
-                <Select
-                  classNamePrefix="custom-select"
-                  closeMenuOnSelect={false}
-                  isMulti={true}
-                  options={obj.options}
-                  components={animatedComponents}
-                  onChange={(e) => {
-                    let value = e;
-                    if (e.length === 0) value = "";
-                    const data = [...searchInput];
-                    data[index].value = JSON.stringify(value);
-                    setSearchInput(data);
-                  }}
-                />
-              ) : obj.id === "attend_time" ? (
-                <TimeInput
-                  data={obj.default}
-                  updateData={(dataReceived) => {
-                    const time = dataReceived.hours
-                      ? createDatetimeString(dataReceived)
-                      : "";
-                    const data = [...searchInput];
-                    data[index].value = time;
-                    data[index].default = dataReceived;
-                    setSearchInput(data);
-                  }}
-                />
-              ) : (
-                <input
-                  key={obj.id + "Input"}
-                  className={obj.id + "Input"}
-                  type="text"
-                  value={obj.value}
-                  placeholder={obj.default}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    const data = [...searchInput];
-                    data[index].value = value;
-                    setSearchInput(data);
-                  }}
-                />
-              )}
-            </div>
-            <span className="tooltiptext">{obj.tooltip}</span>
-          </div>
+          <InputField key={index} obj={obj} index={index} setValue={setValue} />
         ))}
       </div>
       <LoadingButton loading={loading} onClick={searchSubmit} text="Submit" />
