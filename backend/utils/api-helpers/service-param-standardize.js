@@ -69,6 +69,7 @@ export function reformatServiceForReturn(orgServices) {
  * @returns The formatted date as a string in the correct format
  */
 export function dateString(dateStr) {
+  if (!dateStr) return null;
   const date = new Date(dateStr);
   const dateFormatted = date.toISOString().split("T")[0];
   return dateFormatted;
