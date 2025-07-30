@@ -13,7 +13,11 @@ import EditService from "#components/EditService/EditService";
 import { getNonProfit } from "#utils/pathUtils";
 import { deleteServiceFromDatabase } from "#fetch/serviceFetchUtils";
 
-function RecService({ data, serviceAddOrDeleteSuccessfully }) {
+function RecService({
+  data,
+  serviceAddOrDeleteSuccessfully,
+  editorOnly = false,
+}) {
   // Constant Variables
   const name = data?.name ?? "No Name Provided";
   const nonprofit = getNonProfit();
@@ -26,7 +30,7 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
    * If the employee successfully adds a service, we want to remove it from the recommended list so we call the function passed in from the parent list component
    */
   function onValidAdd(validAddData) {
-    if (!existingInCurrentDatabase) {
+    if (!existingInCurrentDatabase && !editorOnly) {
       serviceAddOrDeleteSuccessfully(data.id);
     } else {
       serviceAddOrDeleteSuccessfully(data.id, validAddData, true);
@@ -52,7 +56,7 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
    *   + Otherwise, we just remove it from the recommended list.
    */
   function deleteService() {
-    if (existingInCurrentDatabase) {
+    if (existingInCurrentDatabase && !editorOnly) {
       deleteServiceFromDatabase(nonprofit, data.id).then(deleteServiceCallback);
     } else {
       serviceAddOrDeleteSuccessfully(data.id);
@@ -81,6 +85,7 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
             inputData={data}
             onValidAdd={onValidAdd}
             serviceID={existingInCurrentDatabase ? data.id : null}
+            localEdit={editorOnly}
           />
         </div>
       )}
