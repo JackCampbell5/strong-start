@@ -1,5 +1,13 @@
+// Node Module Imports
 import { PrismaClient } from "#prisma/client.js";
+import multer from "multer"; // File Uploads
+
+// Client to access prisma database
 export const prisma = new PrismaClient(); // Universal prisma client for all queries
+
+// File Uploads
+const storage = multer.memoryStorage();
+export const upload = multer({ storage: storage });
 
 export const nonprofitRadius = 50; // Radius in miles to search around the nonprofit
 export const googleAPIMaxPageNumber = 3; // Max number of pages returned by Google API search
