@@ -90,6 +90,15 @@ function NavNonProfit({ onNavigate, setLoggedIn }) {
         <button
           className={[
             "navBarButton",
+            location === NpPages.CSV_IMPORT && "selected",
+          ].join(" ")}
+          onClick={() => onNavigate(NpPages.CSV_IMPORT)}
+        >
+          CsvImport
+        </button>
+        <button
+          className={[
+            "navBarButton",
             location === NpPages.SEARCHSERVICE && "selected",
           ].join(" ")}
           onClick={() => onNavigate(NpPages.SEARCHSERVICE)}

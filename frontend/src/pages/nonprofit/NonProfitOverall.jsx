@@ -15,6 +15,7 @@ import SearchService from "#nonprofitPage/SearchService/SearchService";
 import ViewServices from "#nonprofitPage/ViewServices/ViewServices";
 import RegisterPage from "#nonprofitPage/RegisterPage/RegisterPage";
 import Recommend from "#nonprofitPage/Recommend/Recommend";
+import CsvImport from "./CsvImport/CsvImport";
 //Other Components
 import PrivateRoutes from "#components/PrivateRoutes/PrivateRoutes";
 import NavNonProfit from "#components/NavNonProfit/NavNonProfit";
@@ -99,6 +100,10 @@ function NonProfitOverall() {
             <Route
               path={`/${NpPages.ACCOUNT}`}
               element={<Account nav={nav} />}
+            />
+            <Route
+              path={`/${NpPages.CSV_IMPORT}`}
+              element={<CsvImport nav={nav} />}
             />
           </Route>
           <Route
