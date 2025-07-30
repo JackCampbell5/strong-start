@@ -149,6 +149,62 @@ export async function putService(info, nonprofit, serviceID) {
 }
 
 /**
+ * Uploads the csv file to the backend and returns the formatted services extracted from the csv
+ * @param {object} info - The file to upload to the backend
+ * @param {object} nonProfit - The non profit to update the service of
+ * @returns All of the services properly formatted with errors for each if applicable
+ */
+export async function uploadCsvServices(file, nonprofit) {
+  return await fetch(`${serviceLink}/${nonprofit}/csv`, {
+    method: "POST",
+    credentials: "include",
+    body: file,
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update the component with the data
+      return successReturn(data);
+    })
+    .catch((error) => {
+      // Return more info on the error
+      return errorReturn(error);
+    });
+}
+
+/**
+ * Add all the services from the csv to the database
+ * @param {object} info - The info to post to the backend
+ * @param {object} nonProfit - The non profit to update the service of
+ * @returns Success or error message that contains errors for each of the new services
+ */
+export async function addAllServices(info, nonprofit) {
+  return await fetch(`${serviceLink}/${nonprofit}/add-all`, {
+    method: "PUT",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: info }),
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      const data = response.json(); // Parse JSON data from the response
+      return successReturn();
+    })
+    .catch((error) => {
+      // Return more info on the error
+      return errorReturn(error);
+    });
+}
+
+/**
  * Adds a view to a service
  * @param {object} nonprofit - The nonprofit containing the service to add a view to
  * @param {String} serviceID - The id of the service to add a view to
