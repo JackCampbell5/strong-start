@@ -25,6 +25,7 @@ function InputField({ obj, index, setValue }) {
           : null}{" "}
         {obj.type === "longText" ? (
           <textarea
+            name={obj.id}
             key={obj.id + "Input"}
             className={obj.id + "Input"}
             type="text"
@@ -63,6 +64,7 @@ function InputField({ obj, index, setValue }) {
           />
         ) : obj.type === "date" ? (
           <input
+            name={obj.id}
             key={obj.id + "Input"}
             className={obj.id + "Input"}
             type="date"
@@ -75,11 +77,13 @@ function InputField({ obj, index, setValue }) {
           />
         ) : (
           <input
+            name={obj.id}
             key={obj.id + "Input"}
             className={obj.id + "Input"}
             type="text"
             value={obj.value}
             placeholder={obj.default}
+            autoComplete={obj.autoComplete || "off"}
             onChange={(e) => {
               const value = e.target.value;
               setValue(index, value);

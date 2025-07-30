@@ -1,7 +1,6 @@
 // Node Module Imports
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router";
 import {
   MdOutlineRemoveRedEye,
   MdRemoveRedEye,
@@ -155,6 +154,7 @@ function EditAccount({
             onChange={(e) => {
               setPasswordHelper(e.target.value);
             }}
+            autoComplete="new-password"
           />
           <div
             className="showPassword"
