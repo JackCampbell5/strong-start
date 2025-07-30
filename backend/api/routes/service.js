@@ -23,6 +23,8 @@ import getFilter from "#search-filters/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
 import { checkSession, checkLogin } from "#utils/session-utils.js";
 import { createSearchLog } from "#search/search-utils.js";
+import { importCSV } from "#utils/csv/csv-import.js";
+import { upload } from "#utils/constants.js";
 
 const serviceRouter = express.Router();
 
@@ -262,6 +264,23 @@ serviceRouter.post("/add", async (req, res, next) => {
       }
     } else {
       throw new ServiceAlreadyExistsError(name);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
+// Add a new service via csv
+serviceRouter.post("/csv", upload.single("file"), async (req, res, next) => {
+  const serviceData = req.file;
+  const nonprofit = req.body.nonprofit;
+  try {
+    const result = await importCSV(serviceData, nonprofit);
+    if (result.valid) {
+      const reformatData = reformatServiceForReturn(result.data);
+      res.status(201).json(reformatData);
+    } else {
+      console.log(result.error);
+      throw new Error(result.error);
     }
   } catch (e) {
     return next(e);
