@@ -33,7 +33,7 @@ export async function loginNonprofitEmployee(nonprofit, username, password) {
 }
 
 export async function checkEmployeeLoginStatus(nonprofit) {
-  return await fetch(`${serviceLink}/${nonprofit}/login/test`, {
+  return await fetch(`${serviceLink}/${nonprofit}/login/current`, {
     method: "GET",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
@@ -88,6 +88,34 @@ export async function logoutNonprofitEmployee(nonprofit) {
     method: "POST",
     credentials: "include",
     headers: { "Content-Type": "application/json" },
+  })
+    .then(async (response) => {
+      if (!response.ok) {
+        const errorText = await response.text(); // Read the response as text
+        throw new MyHTTPError(response.status, errorText);
+      }
+      return response.json(); // Parse JSON data from the response
+    })
+    .then((data) => {
+      // Update now that success
+      return successReturn(data);
+    })
+    .catch((error) => {
+      // Return more info on the error
+      return errorReturn(error);
+    });
+}
+
+/**
+ * Edits a user for a nonprofit
+ * @param {object} info - The info to post to the backend
+ */
+export async function editNonprofitEmployee(nonprofit, userId, data) {
+  return await fetch(`${serviceLink}/${nonprofit}/${userId}/edit`, {
+    method: "PUT",
+    credentials: "include",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: data }),
   })
     .then(async (response) => {
       if (!response.ok) {

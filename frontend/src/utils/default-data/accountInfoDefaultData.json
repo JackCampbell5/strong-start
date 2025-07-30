@@ -1,0 +1,14 @@
+{
+  "username": {
+    "id": "username",
+    "name": "Username",
+    "type": "text",
+    "default": "username"
+  },
+  "email": {
+    "id": "email",
+    "name": "Email",
+    "type": "text",
+    "default": "email"
+  }
+}
