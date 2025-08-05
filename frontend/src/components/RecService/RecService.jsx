@@ -17,6 +17,8 @@ function RecService({
   data,
   serviceAddOrDeleteSuccessfully,
   editorOnly = false,
+  errors,
+  setErrors,
 }) {
   // Constant Variables
   const name = data?.name ?? "No Name Provided";
@@ -24,7 +26,7 @@ function RecService({
   const existingInCurrentDatabase = nonprofit === data.nonprofit_ID;
   // State Variables
   const [isExpanded, setIsExpanded] = useState(false);
-  const [errorText, setErrorText] = useState("");
+  const [errorText, setErrorText] = useState(errors);
 
   /**
    * If the employee successfully adds a service, we want to remove it from the recommended list so we call the function passed in from the parent list component

@@ -1,4 +1,8 @@
- .CsvImport{
+.CsvImport {
   width: auto;
   height: auto;
+}
+
+.CsvImport .fileInput {
+  margin: 20px;
 }

@@ -5,6 +5,7 @@ import "./CsvImport.css";
 import { uploadCsvServices } from "#utils/fetch/serviceFetchUtils";
 import { getNonProfit } from "#utils/pathUtils";
 import RecList from "#components/RecList/RecList";
+import LoadingButton from "#components/LoadingButton/LoadingButton";
 
 function CsvImport({}) {
   const nonprofit = getNonProfit();
@@ -12,12 +13,13 @@ function CsvImport({}) {
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [importedServices, setImportedServices] = useState([]);
+  const [loading, setLoading] = useState(false);
   const handleChange = (event) => {
     setFileInput(event.target.files[0]);
   };
 
   function uploadCsvCallback(result) {
-    console.log(result);
+    setLoading(false);
     setErrorText("");
     setSuccessText("");
     if (result.valid) {
@@ -28,14 +30,16 @@ function CsvImport({}) {
     }
   }
   function handleSubmit() {
+    setImportedServices([]);
+    setLoading(true);
     const formData = new FormData();
     formData.append("file", fileInput);
     uploadCsvServices(formData, nonprofit).then(uploadCsvCallback);
   }
   return (
     <div className="CsvImport">
-      <h3>CsvImport</h3>
-      <div>
+      <h1>Import CSV</h1>
+      <div className="fileInput">
         <input
           type="file"
           name="file"
@@ -47,9 +51,7 @@ function CsvImport({}) {
           onChange={handleChange}
         />
       </div>
-      <button onClick={handleSubmit} className="submitButton">
-        Submit
-      </button>
+      <LoadingButton text={"Submit"} loading={loading} onClick={handleSubmit} />
       <div className="errorText">{errorText}</div>
       <div className="successText">{successText}</div>
       {importedServices.length !== 0 && (

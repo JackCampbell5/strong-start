@@ -9,7 +9,12 @@ import "./RecList.css";
 // Other components
 import RecService from "#components/RecService/RecService";
 
-function RecList({ data, exportData = () => {}, editorOnly = false }) {
+function RecList({
+  data,
+  exportData = () => {},
+  editorOnly = false,
+  errors = {},
+}) {
   // Constant Variables
   const pageSize = 10;
   let highestPage = Math.ceil(data.length / pageSize);
@@ -101,14 +106,17 @@ function RecList({ data, exportData = () => {}, editorOnly = false }) {
         {currentServices
           ? currentServices.map((obj) => {
               return (
-                <RecService
-                  key={obj.id}
-                  data={obj}
-                  serviceAddOrDeleteSuccessfully={
-                    serviceAddOrDeleteSuccessfully
-                  }
-                  editorOnly={editorOnly}
-                />
+                <div className="rec" key={obj.id}>
+                  <RecService
+                    key={obj.id}
+                    data={obj}
+                    serviceAddOrDeleteSuccessfully={
+                      serviceAddOrDeleteSuccessfully
+                    }
+                    editorOnly={editorOnly}
+                    errors={errors[obj.id]}
+                  />
+                </div>
               );
             })
           : null}
