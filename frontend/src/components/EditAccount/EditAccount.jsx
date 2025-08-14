@@ -1,5 +1,5 @@
 // Node Module Imports
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import {
@@ -10,56 +10,60 @@ import {
 } from "react-icons/md";
 
 // Local Imports
-import "./Register.css";
+import "./EditAccount.css";
 // Other Components
 import LoadingButton from "#components/LoadingButton/LoadingButton";
+import InputField from "#components/InputField/InputField";
 // Util Functions
-import { registerNonprofitEmployee } from "#fetch/nonprofitEmployeeFetchUtils";
-import { getNonProfit, NpPages, createPageNavigator } from "#utils/pathUtils";
+import { getNonProfit } from "#utils/pathUtils";
 import passwordRequirements from "#default-data/passwordRequirementsDefault.json";
+import accountInfoDefaultData from "#default-data/accountInfoDefaultData.json";
 
-function Register({ setLoggedIn, nav }) {
+function EditAccount({
+  setLoggedIn,
+  nav,
+  editAccountFetch,
+  defaults,
+  newAccount,
+}) {
   // Constant Variables
   const nonprofit = getNonProfit();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const pageNavigator = createPageNavigator(navigate, location);
 
   // State Variables
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState(defaults?.username || "");
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(defaults?.email || "");
   const [showPassword, setShowPassword] = useState(false);
   const [errorText, setErrorText] = useState("");
   const [successText, setSuccessText] = useState("");
   const [loading, setLoading] = useState(false);
 
   /**
-   * Handles the register button click
+   * Handles the editAccount button click
    */
-  function registerButtonClicked() {
+  function editAccountButtonClicked() {
     setSuccessText("");
     setErrorText("");
     const invalid = findValidationErrors();
     if (invalid) {
       setErrorText(invalid);
     } else {
-      handleRegister();
+      handleEditAccount();
     }
   }
 
   /**
-   * Handles the actual register request if all fields are valid
+   * Handles the actual editAccount request if all fields are valid
    */
-  function handleRegister() {
+  function handleEditAccount() {
     const user = {
       username: username,
       password: password,
       email: email,
     };
     setLoading(true);
-    registerNonprofitEmployee(nonprofit, user).then(registerCallback);
+    editAccountFetch(nonprofit, user).then(editAccountCallback);
   }
 
   /**
@@ -68,45 +72,46 @@ function Register({ setLoggedIn, nav }) {
    */
   function findValidationErrors() {
     let errorMessage = "";
-    if (username === "") {
-      errorMessage += "Username cannot be empty. ";
-    }
-    if (password === "") {
-      errorMessage += "Password cannot be empty. ";
+    if (password !== passwordCheck) {
+      errorMessage += "Passwords do not match. ";
     }
     for (const req of passwordRequirements) {
       const regex = new RegExp(req.value, "g");
-      if (!regex.test(password)) {
+      if (password && !regex.test(password)) {
         errorMessage += "Password requirements not met. ";
         break;
       }
     }
-    if (password.length < 8) {
-      errorMessage += "Password must be at least 8 characters. ";
-    }
-    if (password !== passwordCheck) {
-      errorMessage += "Passwords do not match. ";
-    }
-    if (email === "") {
-      errorMessage += "Email cannot be empty. ";
+    if (newAccount) {
+      if (username === "") {
+        errorMessage += "Username cannot be empty. ";
+      }
+      if (password === "") {
+        errorMessage += "Password cannot be empty. ";
+      }
+      if (email === "") {
+        errorMessage += "Email cannot be empty. ";
+      }
     }
     return errorMessage;
   }
 
   /**
-   * Processes the result of the register request
-   * @param {object} result - The result of the register request
+   * Processes the result of the editAccount request
+   * @param {object} result - The result of the editAccount request
    */
-  function registerCallback(result) {
+  function editAccountCallback(result) {
     setLoading(false);
     if (result.valid) {
       setLoggedIn(true);
       setSuccessText(result.data);
       // Navigate to the home page after 2 seconds
       setTimeout(() => {
-        nav("");
         setSuccessText("");
-      }, 2000); // 2000 milliseconds = 2 seconds
+        if (newAccount) {
+          nav("");
+        }
+      }, 500); // 500 milliseconds = .5 seconds
     } else {
       setErrorText(result.error);
     }
@@ -128,36 +133,19 @@ function Register({ setLoggedIn, nav }) {
     }
   }
 
-  /**
-   * Navigates to the login page
-   */
-  function goToLogin() {
-    const path = location.pathname;
-    const allLocations = path.split("/");
-    const ending = allLocations[allLocations.length - 1];
-    const newPath = path.replace(ending, NpPages.LOGIN);
-    pageNavigator(newPath);
-  }
+  useEffect(() => {}, []);
   return (
-    <div className="Register">
-      <div className="topButtons">
-        <button onClick={goToLogin}>Login Instead?</button>
-        <button onClick={() => navigate("/")}>Change Nonprofit</button>
-      </div>
+    <div className="EditAccount">
       <div className="userInfo">
-        <div className="registerField">
-          <p>Username:</p>
-          <input
-            className="username"
-            type="text"
-            value={username}
-            placeholder="username"
-            onChange={(e) => {
-              setUsername(e.target.value);
+        <div className="editAccountField">
+          <InputField
+            obj={{ ...accountInfoDefaultData.username, value: username }}
+            setValue={(_, value) => {
+              setUsername(value);
             }}
           />
         </div>
-        <div className="registerField">
+        <div className="editAccountField">
           <p>Password:</p>
           <input
             className="password"
@@ -194,7 +182,7 @@ function Register({ setLoggedIn, nav }) {
             </div>
           ))}
         </div>
-        <div className="registerField">
+        <div className="editAccountField">
           <p>Confirm Password:</p>
           <input
             className="password"
@@ -211,23 +199,19 @@ function Register({ setLoggedIn, nav }) {
             }}
           />
         </div>
-        <div className="registerField">
-          <p>Email:</p>
-          <input
-            className="email"
-            type="text"
-            value={email}
-            placeholder="email@domain.com"
-            onChange={(e) => {
-              setEmail(e.target.value);
+        <div className="editAccountField">
+          <InputField
+            obj={{ ...accountInfoDefaultData.email, value: email }}
+            setValue={(_, value) => {
+              setEmail(value);
             }}
           />
         </div>
       </div>
       <LoadingButton
         loading={loading}
-        onClick={registerButtonClicked}
-        text="Register"
+        onClick={editAccountButtonClicked}
+        text={newAccount ? "Register" : "Save Changes"}
       />
       <p className="errorText">{errorText}</p>
       <p className="successText">{successText}</p>
@@ -235,4 +219,4 @@ function Register({ setLoggedIn, nav }) {
   );
 }
 
-export default Register;
+export default EditAccount;

@@ -147,6 +147,15 @@ function NavNonProfit({ onNavigate, setLoggedIn }) {
             >
               Register
             </button>
+            <button
+              className={[
+                "navBarButton",
+                location === NpPages.ACCOUNT && "selected",
+              ].join(" ")}
+              onClick={() => onNavigate(NpPages.ACCOUNT)}
+            >
+              Account Settings
+            </button>
             <button className={"navBarButton"} onClick={() => logout()}>
               Logout
             </button>

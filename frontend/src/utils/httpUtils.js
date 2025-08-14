@@ -6,7 +6,7 @@ export class MyHTTPError extends Error {
 }
 
 export function errorReturn(error) {
-  return { valid: false, error: error.message };
+  return { valid: false, error: error?.message || error };
 }
 
 export function successReturn(data = {}) {
