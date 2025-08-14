@@ -18,7 +18,7 @@
 
 /* Overall Site Stats Container*/
 .Dashboard .siteStats {
-  width: 75%;
+  width: max(75%, min(100%, 500px));
   display: flex;
 }
 

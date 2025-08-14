@@ -1,5 +1,6 @@
 // Node Module Imports
 import { prisma } from "#utils/constants.js";
+import { prettyPrintServicesOfferedList } from "#api-helpers/service-param-standardize.js";
 
 /**
  * Generates the stats for a nonprofit
@@ -29,7 +30,10 @@ export async function generateStats(nonprofit) {
     servicesNumber: { name: "Service #:", key: servicesNumber },
     servicesOffered: { name: "Service Types #:", key: serviceCount },
     popularZipCode: { name: "Popular Zip Codes:", key: popularZipCode },
-    servicePopular: { name: "Popular Service Types:", key: servicePopular },
+    servicePopular: {
+      name: "Popular Service Types:",
+      key: prettyPrintServicesOfferedList(servicePopular),
+    },
   };
   return result;
 }
@@ -44,7 +48,7 @@ function getPopularZipCode(allServices) {
   const serviceZipCodes = allServices.reduce((acc, service) => {
     return [...acc, service.zipcode];
   }, []);
-  return getPopular(serviceZipCodes);
+  return getPopular(serviceZipCodes).join(", ");
 }
 
 /**
@@ -73,7 +77,7 @@ export function getPopular(list) {
     .reverse();
   const popularList = popularTypes.map((type) => type[0]);
   // Format the result and return
-  const popular = popularList.slice(0, 2).join(", ");
+  const popular = popularList.slice(0, 2);
   return popular;
 }
 
