@@ -21,7 +21,7 @@ function Account({ nav }) {
   const nonprofit = getNonProfit();
   const [validAccount, setValidAccount] = useState(false);
   // State Variables
-  const [userChecked, setUserChecked] = useState(true);
+  const [userChecked, setUserChecked] = useState(false);
   const [initEmployee, setInitEmployee] = useState({});
   const [errorText, setErrorText] = useState("");
 
@@ -138,7 +138,12 @@ function Account({ nav }) {
                 newAccount={false}
               />
             </div>
-          ) : null}
+          ) : (
+            <AccountInfoCheck
+              setUserChecked={setUserChecked}
+              userData={initEmployee}
+            />
+          )}
         </div>
       ) : (
         <LoadingButton loading={true} />

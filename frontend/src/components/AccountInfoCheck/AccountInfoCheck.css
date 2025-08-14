@@ -1,4 +1,18 @@
-.AccountInfoChange {
+.AccountInfoCheck {
   height: auto;
   width: auto;
+}
+
+/*  The container for the password field and text */
+.AccountInfoCheck .passwordField {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The show hide icon for password */
+.AccountInfoCheck .showPassword svg {
+  height: 30px;
+  width: 30px;
 }
