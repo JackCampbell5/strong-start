@@ -20,6 +20,7 @@ function LoadingButton({ loading, onClick, text, fit = false }) {
             loading && "currentlyLoading",
             fit ? "fitText" : "setSize",
           ].join(" ")}
+          type="submit"
         >
           {loading ? (
             <div className="loadingInside">

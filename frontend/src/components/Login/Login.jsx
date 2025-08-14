@@ -107,6 +107,7 @@ function Login({ setLoggedIn, nav }) {
             type="text"
             value={username}
             placeholder="username"
+            autoComplete="username"
             onChange={(e) => {
               setUsername(e.target.value);
             }}
@@ -119,6 +120,7 @@ function Login({ setLoggedIn, nav }) {
             type={showPassword ? "text" : "password"}
             value={password}
             placeholder="password"
+            autoComplete="current-password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
