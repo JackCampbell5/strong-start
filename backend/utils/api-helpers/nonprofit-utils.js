@@ -65,14 +65,15 @@ async function getNonProfitData(id, next) {
  * @returns The result of the next function or a 404 if the non profit is not found
  */
 export async function getNonProfit(req, res, next) {
+  console.log(req.params);
   try {
     const name = req.params.nonprofitname;
     const data = await getNonProfitData(name, next);
     if (!data) {
       throw new NonProfitNotFoundError(name);
     } else {
-      if (!req.body) req.body = {};
-      req.body.nonprofit = data;
+      if (!req) req = {};
+      req.nonprofit = data;
       next();
     }
   } catch (error) {

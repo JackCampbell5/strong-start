@@ -75,7 +75,7 @@ nonprofitRouter.get("/:nonprofit_id/stats", async (req, res, next) => {
         id: nonprofit_id,
       },
     });
-    req.body = { nonprofit: findNonProfit };
+    req.nonprofit = findNonProfit;
     [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
     if (findNonProfit) {
