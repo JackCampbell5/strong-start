@@ -23,11 +23,13 @@ import getFilter from "#search-filters/filter-create-utils.js";
 import recServices from "#recs/rec-services.js";
 import { checkSession, checkLogin } from "#utils/session-utils.js";
 import { createSearchLog } from "#search/search-utils.js";
+import { importCSV } from "#utils/csv/csv-import.js";
+import { upload } from "#utils/constants.js";
 
 const serviceRouter = express.Router();
 
 serviceRouter.get("/", (req, res) => {
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   res.send(`Welcome to ${nonprofit.name}'s service database!`);
 });
 
@@ -38,7 +40,7 @@ serviceRouter.get("/all", async (req, res, next) => {
     // Make sure the session is valid if it exists
     req = checkSession(req);
 
-    const nonprofit = req.body.nonprofit;
+    const nonprofit = req.nonprofit;
     const foundServices = await prisma.service.findMany({
       where: {
         nonprofit_ID: nonprofit.id,
@@ -61,7 +63,7 @@ serviceRouter.get("/filters", async (req, res, next) => {
     // Make sure the session is valid if it exists
     req = checkSession(req);
 
-    const nonprofit = req.body.nonprofit;
+    const nonprofit = req.nonprofit;
     return res.status(200).json(await getFilter(nonprofit));
   } catch (e) {
     return next(e);
@@ -74,7 +76,7 @@ serviceRouter.get("/search", async (req, res, next) => {
     // Make sure the session is valid if it exists
     req = checkSession(req);
 
-    const nonprofit = req.body.nonprofit;
+    const nonprofit = req.nonprofit;
     const query = req.query;
     let result = await searchServices(query, nonprofit);
     if (result.valid) {
@@ -97,7 +99,7 @@ serviceRouter.get("/recommend", async (req, res, next) => {
     [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
-    const nonprofit = req.body.nonprofit;
+    const nonprofit = req.nonprofit;
     let result = await recServices(nonprofit);
     if (result.valid) {
       const formattedService = reformatServiceForReturn(result.data);
@@ -117,7 +119,7 @@ serviceRouter.get("/all/name-list", async (req, res, next) => {
     [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
 
-    const nonprofit = req.body.nonprofit;
+    const nonprofit = req.nonprofit;
     const foundServices = await prisma.service.findMany({
       where: {
         nonprofit_ID: nonprofit.id,
@@ -140,7 +142,7 @@ serviceRouter.get("/all/name-list", async (req, res, next) => {
 // Get one service by name
 serviceRouter.get("/name/:service_name", async (req, res, next) => {
   const { service_name } = req.params;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     // Make sure the session is valid if it exists
     [req, res] = checkLogin(req, res);
@@ -172,7 +174,7 @@ serviceRouter.get("/name/:service_name", async (req, res, next) => {
 // Get one service by id
 serviceRouter.get("/:service_id", async (req, res, next) => {
   const { service_id } = req.params;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     // Make sure the session is valid if it exists
     [req, res] = checkLogin(req, res);
@@ -196,7 +198,7 @@ serviceRouter.get("/:service_id", async (req, res, next) => {
 // Get one service by id
 serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
   const { service_id } = req.params;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     // Make sure the session is valid if it exists
     [req, res] = checkLogin(req, res);
@@ -239,7 +241,7 @@ serviceRouter.get("/:service_id/get-edit", async (req, res, next) => {
 serviceRouter.post("/add", async (req, res, next) => {
   const serviceData = req.body.data;
   const name = serviceData.name;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     // Make sure the session is valid if it exists
     [req, res] = checkLogin(req, res);
@@ -267,11 +269,27 @@ serviceRouter.post("/add", async (req, res, next) => {
     return next(e);
   }
 });
+// Add a new service via csv
+serviceRouter.post("/csv", upload.single("file"), async (req, res, next) => {
+  const serviceData = req.file;
+  const nonprofit = req.nonprofit;
+  try {
+    const result = await importCSV(serviceData, nonprofit);
+    if (result.valid) {
+      const reformatData = reformatServiceForReturn(result.data);
+      res.status(201).json(reformatData);
+    } else {
+      throw new Error(result.error);
+    }
+  } catch (e) {
+    return next(e);
+  }
+});
 
 // Edit a service by id
 serviceRouter.put("/:service_id/edit", async (req, res, next) => {
   const { service_id } = req.params;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   const updatedData = req.body.data;
   try {
     // Make sure the session is valid if it exists
@@ -307,7 +325,7 @@ serviceRouter.put("/:service_id/edit", async (req, res, next) => {
 
 // Add a view to a service by id
 serviceRouter.put("/:service_id/view-add", async (req, res) => {
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   const { service_id } = req.params;
 
   try {
@@ -349,7 +367,7 @@ serviceRouter.put("/:service_id/view-add", async (req, res) => {
 // Delete a service by id
 serviceRouter.delete("/:service_id/delete", async (req, res, next) => {
   const { service_id } = req.params;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     // Make sure the session is valid if it exists
     [req, res] = checkLogin(req, res);

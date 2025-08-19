@@ -71,8 +71,8 @@ export async function getNonProfit(req, res, next) {
     if (!data) {
       throw new NonProfitNotFoundError(name);
     } else {
-      if (!req.body) req.body = {};
-      req.body.nonprofit = data;
+      if (!req) req = {};
+      req.nonprofit = data;
       next();
     }
   } catch (error) {

@@ -26,6 +26,25 @@ export async function checkServiceName(name, nonprofit, next) {
 }
 
 /**
+ * Checks if a service is in a nonprofit and returns true if it is
+ * @param {String} name The name to check
+ * @param {object} nonprofit - The nonprofit to check
+ * @returns
+ */
+export async function checkServiceNameBoolean(name, nonprofit) {
+  const resultData = await prisma.service.findMany({
+    where: {
+      name: name,
+      nonprofit_ID: nonprofit.id,
+    },
+  });
+  if (resultData !== null && resultData.length > 0) {
+    return true;
+  }
+  return false;
+}
+
+/**
  * Checks if a service exists with that id
  * @param {String} id The id to check
  * @returns True if it exists, false otherwise

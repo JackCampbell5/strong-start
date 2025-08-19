@@ -25,7 +25,7 @@ export function checkLogin(req, res) {
     res.status(401).send("Unauthorized: Please log in");
   } else {
     // Check if the user is logged in to the correct nonprofit
-    const nonprofit = req.body.nonprofit;
+    const nonprofit = req.nonprofit;
     if (req.session.employee.nonprofit_ID !== nonprofit.id) {
       res
         .status(401)

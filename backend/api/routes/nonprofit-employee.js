@@ -22,7 +22,7 @@ const employeeRouter = express.Router();
 
 // Default is to get all nonprofits
 employeeRouter.get("/", async (req, res, next) => {
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   res.send(`Welcome to ${nonprofit.name}'s employee database!`);
 });
 
@@ -63,7 +63,7 @@ employeeRouter.post("/register", async (req, res, next) => {
   // I believe it does not mater what non profit they are trying to Log Into here for Register as usernames have to be unique anyways.
   const employeeData = req.body.data;
   const username = employeeData.username;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     const exists = await checkEmployeeUsername(username, "", next);
     if (!exists) {
@@ -92,7 +92,7 @@ employeeRouter.post("/register", async (req, res, next) => {
 // Register a new non profit employee
 employeeRouter.post("/login", async (req, res, next) => {
   const { username, password: plainPassword } = req.body.data;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     const employeeData = await getEmployeeData(username, nonprofit, next);
     if (employeeData) {
@@ -114,7 +114,7 @@ employeeRouter.post("/login", async (req, res, next) => {
 
 // Register a new non profit employee
 employeeRouter.get("/login/current", async (req, res, next) => {
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     [req, res] = checkLogin(req, res);
     if (res.statusCode === 401) return;
@@ -141,7 +141,7 @@ employeeRouter.post("/logout", (req, res, next) => {
 employeeRouter.put("/:employee_id/edit", async (req, res, next) => {
   const { employee_id } = req.params;
   const employeeData = req.body.data;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     const exists = await checkEmployeeId(employee_id, nonprofit, next);
     if (exists) {
@@ -170,7 +170,7 @@ employeeRouter.put("/:employee_id/edit", async (req, res, next) => {
 // Delete a nonprofit by name
 employeeRouter.delete("/:employee_id/delete", async (req, res, next) => {
   const { employee_id } = req.params;
-  const nonprofit = req.body.nonprofit;
+  const nonprofit = req.nonprofit;
   try {
     const exists = await checkEmployeeId(employee_id, nonprofit, next);
     if (exists) {
