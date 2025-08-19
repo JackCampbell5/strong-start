@@ -279,7 +279,6 @@ serviceRouter.post("/csv", upload.single("file"), async (req, res, next) => {
       const reformatData = reformatServiceForReturn(result.data);
       res.status(201).json(reformatData);
     } else {
-      console.log(result.error);
       throw new Error(result.error);
     }
   } catch (e) {
