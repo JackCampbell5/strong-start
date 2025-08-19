@@ -18,6 +18,7 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
   const name = data?.name ?? "No Name Provided";
   const nonprofit = getNonProfit();
   const existingInCurrentDatabase = nonprofit === data.nonprofit_ID;
+  const { error, ...dataNoError } = data;
   // State Variables
   const [isExpanded, setIsExpanded] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -65,6 +66,7 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
 
   return (
     <div className="RecService">
+      <p className="errorText">{error}</p>
       <div className="serviceHeader">
         <h3 className="serviceTitle">{name}</h3>
         <MdDelete
@@ -78,7 +80,7 @@ function RecService({ data, serviceAddOrDeleteSuccessfully }) {
           {existingInCurrentDatabase ? <MdCreate /> : <MdAddHome />}
         </div>
       </div>
-      <Service inputData={{ ...data, name: undefined }} />
+      <Service inputData={{ ...dataNoError, name: undefined }} />
       {isExpanded && (
         <div className="editTopDivider">
           <EditService

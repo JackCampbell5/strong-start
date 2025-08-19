@@ -12,6 +12,7 @@ export const NpPages = Object.freeze({
   REGISTER: "register",
   RECOMMEND: "recommend",
   ACCOUNT: "account",
+  CSV_IMPORT: "csv_import",
 });
 export const RPages = Object.freeze({
   CONTACT: "contact",

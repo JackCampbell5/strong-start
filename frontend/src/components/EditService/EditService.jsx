@@ -99,6 +99,17 @@ function EditService({
   }
 
   /**
+   * When a services is successfully added, call the onValidAdd callback of the parent component
+   */
+  function validAdd() {
+    // Give the data to parent if onValidAdd does anything
+    let validAddData = {};
+    for (const param of serviceInput) {
+      validAddData[param.id] = param.value;
+    }
+    onValidAdd(validAddData);
+  }
+  /**
    * Checks to see if the service was submitted successfully and reloads the page if it was and prints the error message if it wasn't
    * @param {string} success - Blank if successful and the error message if not
    */
@@ -108,13 +119,8 @@ function EditService({
       if (!serviceID) {
         setServiceInput(serviceInput.map((obj) => ({ ...obj, value: "" })));
       }
-      // Give the data to parent if onValidAdd does anything
-      let validAddData = {};
-      for (const param of serviceInput) {
-        validAddData[param.id] = param.value;
-      }
-      onValidAdd(validAddData);
 
+      validAdd();
       setSuccessText("Service successfully uploaded");
       setTimeout(() => {
         setSuccessText("");
