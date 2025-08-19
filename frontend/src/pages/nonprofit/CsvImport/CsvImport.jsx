@@ -20,7 +20,11 @@ function CsvImport({}) {
     setErrorText("");
     setSuccessText("");
     if (result.valid) {
-      setImportedServices(result.data);
+      if (result.data.length === 0) {
+        setSuccessText("No invalid services to edit and then add");
+      } else {
+        setImportedServices(result.data);
+      }
     } else {
       setErrorText(result.error);
     }
@@ -32,26 +36,35 @@ function CsvImport({}) {
   }
   return (
     <div className="CsvImport">
-      <h3>CsvImport</h3>
-      <div>
-        <input
-          type="file"
-          name="file"
-          icon="file text outline"
-          iconPosition="left"
-          label="Upload CSV"
-          labelPosition="right"
-          placeholder="UploadCSV..."
-          onChange={handleChange}
-        />
-      </div>
-      <button onClick={handleSubmit} className="submitButton">
-        Submit
-      </button>
-      <div className="errorText">{errorText}</div>
-      <div className="successText">{successText}</div>
-      {importedServices && importedServices.length !== 0 && (
-        <RecList data={importedServices} />
+      <h1>Import CSV</h1>
+      {importedServices.length === 0 ? (
+        <div className="fileSelector">
+          <input
+            type="file"
+            name="file"
+            icon="file text outline"
+            iconPosition="left"
+            label="Upload CSV"
+            labelPosition="right"
+            placeholder="UploadCSV..."
+            onChange={handleChange}
+          />
+          <button onClick={handleSubmit} className="submitButton">
+            Submit
+          </button>
+          <div className="errorText">{errorText}</div>
+          <div className="successText">{successText}</div>
+        </div>
+      ) : (
+        <div className="invalidServices">
+          <p className="invalidDescription">
+            These services had issues adding to the database. Please solve the
+            issues listed in red at the top by clicking the right button. If you
+            would instead like to delete that service please click the delete
+            icon.
+          </p>
+          <RecList data={importedServices} />
+        </div>
       )}
     </div>
   );

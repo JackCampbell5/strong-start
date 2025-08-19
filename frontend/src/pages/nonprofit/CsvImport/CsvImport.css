@@ -1,4 +1,16 @@
- .CsvImport{
+.CsvImport {
   width: auto;
   height: auto;
+}
+
+.CsvImport .fileSelector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.CsvImport .invalidDescription {
+  padding: 20px;
 }
