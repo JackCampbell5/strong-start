@@ -17,11 +17,9 @@ function CsvImport({}) {
   };
 
   function uploadCsvCallback(result) {
-    console.log(result);
     setErrorText("");
     setSuccessText("");
     if (result.valid) {
-      // setSuccessText(result.data);
       setImportedServices(result.data);
     } else {
       setErrorText(result.error);
@@ -52,12 +50,8 @@ function CsvImport({}) {
       </button>
       <div className="errorText">{errorText}</div>
       <div className="successText">{successText}</div>
-      {importedServices.length !== 0 && (
-        <RecList
-          data={importedServices}
-          exportData={setImportedServices}
-          editorOnly={true}
-        />
+      {importedServices && importedServices.length !== 0 && (
+        <RecList data={importedServices} />
       )}
     </div>
   );
