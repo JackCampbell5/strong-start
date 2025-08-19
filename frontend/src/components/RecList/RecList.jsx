@@ -9,7 +9,7 @@ import "./RecList.css";
 // Other components
 import RecService from "#components/RecService/RecService";
 
-function RecList({ data, exportData = () => {}, editorOnly = false }) {
+function RecList({ data }) {
   // Constant Variables
   const pageSize = 10;
   let highestPage = Math.ceil(data.length / pageSize);
@@ -88,7 +88,6 @@ function RecList({ data, exportData = () => {}, editorOnly = false }) {
 
     // Update the data/vars
     setServiceList(updatedData);
-    exportData(updatedData);
     setCurrentServices(updatedPage);
   }
   useEffect(() => {
@@ -107,7 +106,6 @@ function RecList({ data, exportData = () => {}, editorOnly = false }) {
                   serviceAddOrDeleteSuccessfully={
                     serviceAddOrDeleteSuccessfully
                   }
-                  editorOnly={editorOnly}
                 />
               );
             })

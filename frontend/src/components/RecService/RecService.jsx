@@ -13,15 +13,12 @@ import EditService from "#components/EditService/EditService";
 import { getNonProfit } from "#utils/pathUtils";
 import { deleteServiceFromDatabase } from "#fetch/serviceFetchUtils";
 
-function RecService({
-  data,
-  serviceAddOrDeleteSuccessfully,
-  editorOnly = false,
-}) {
+function RecService({ data, serviceAddOrDeleteSuccessfully }) {
   // Constant Variables
   const name = data?.name ?? "No Name Provided";
   const nonprofit = getNonProfit();
   const existingInCurrentDatabase = nonprofit === data.nonprofit_ID;
+  const { error, ...dataNoError } = data;
   // State Variables
   const [isExpanded, setIsExpanded] = useState(false);
   const [errorText, setErrorText] = useState("");
@@ -30,7 +27,7 @@ function RecService({
    * If the employee successfully adds a service, we want to remove it from the recommended list so we call the function passed in from the parent list component
    */
   function onValidAdd(validAddData) {
-    if (!existingInCurrentDatabase && !editorOnly) {
+    if (!existingInCurrentDatabase) {
       serviceAddOrDeleteSuccessfully(data.id);
     } else {
       serviceAddOrDeleteSuccessfully(data.id, validAddData, true);
@@ -56,7 +53,7 @@ function RecService({
    *   + Otherwise, we just remove it from the recommended list.
    */
   function deleteService() {
-    if (existingInCurrentDatabase && !editorOnly) {
+    if (existingInCurrentDatabase) {
       deleteServiceFromDatabase(nonprofit, data.id).then(deleteServiceCallback);
     } else {
       serviceAddOrDeleteSuccessfully(data.id);
@@ -65,6 +62,7 @@ function RecService({
 
   return (
     <div className="RecService">
+      <p className="errorText">{error}</p>
       <div className="serviceHeader">
         <h3 className="serviceTitle">{name}</h3>
         <MdDelete
@@ -78,14 +76,13 @@ function RecService({
           {existingInCurrentDatabase ? <MdCreate /> : <MdAddHome />}
         </div>
       </div>
-      <Service inputData={{ ...data, name: undefined }} />
+      <Service inputData={{ ...dataNoError, name: undefined }} />
       {isExpanded && (
         <div className="editTopDivider">
           <EditService
             inputData={data}
             onValidAdd={onValidAdd}
             serviceID={existingInCurrentDatabase ? data.id : null}
-            localEdit={editorOnly}
           />
         </div>
       )}

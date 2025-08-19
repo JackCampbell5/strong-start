@@ -36,7 +36,6 @@ function EditService({
   serviceID = null,
   inputData = null,
   onValidAdd = () => {},
-  localEdit = false,
 }) {
   // Constant Variables
   const serviceInputDefaultValues = JSON.parse(
@@ -65,14 +64,10 @@ function EditService({
       setLoading(true);
 
       const data = reformatData(serviceInput);
-      if (localEdit) {
-        validAdd();
+      if (serviceID) {
+        putService(data, nonprofit, serviceID).then(submitCallback);
       } else {
-        if (serviceID) {
-          putService(data, nonprofit, serviceID).then(submitCallback);
-        } else {
-          postService(data, nonprofit).then(submitCallback);
-        }
+        postService(data, nonprofit).then(submitCallback);
       }
     } else {
       setErrorText(invalid);
