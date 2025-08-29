@@ -1,6 +1,6 @@
 # Backend
 
-The **Newcomer Network backend** is built with **Node.js, Express, and Prisma** and connects to a **PostgreSQL database**.  
+The **Strong Start backend** is built with **Node.js, Express, and Prisma** and connects to a **PostgreSQL database**.  
 It handles authentication, nonprofit and service management, and the search/recommendation APIs that power the refugee service matching tool.
 
 ## Inital Setup

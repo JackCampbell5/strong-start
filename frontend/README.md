@@ -1,6 +1,6 @@
 # Strong Start Frontend
 
-The **Newcomer Network frontend** is built with **React** and styled with custom components.  
+The **Strong Start frontend** is built with **React** and styled with custom components.  
 It provides user-facing pages for both nonprofits and refugees, including service dashboards, search tools, and recommendation displays, all connected to the backend APIs.
 
 ## Setup
