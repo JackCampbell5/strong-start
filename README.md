@@ -1,8 +1,6 @@
 # Strong Start
 
-### Live Site: [newcomernetwork.com](http://newcomernetwork.com/)
-
-### Contact: newcomernetworkweb@gmail.com
+### Live Site: [Strong Start](https://strong-start.vercel.app/)
 
 ## 🌍 Project Overview
 
